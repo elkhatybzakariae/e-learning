@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role_User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -12,11 +14,34 @@ class UserController extends Controller
 
     public function registerpage()
     {
-        return view('auth.register');
+        $roles= Role::all();
+        return view('auth.register',compact('roles'));
     }
     public function dashboard()
     {
         return view('auth.dashboard');
+    }
+    public function profile($id)
+    {
+        $profile= User::find($id);
+        return view('auth.profile',compact('profile'));
+    }
+    public function update(Request $req,$id)
+    {
+        $validation=$req->validate([
+            'FirstName' => 'required|string|max:50',
+            'LastName' => 'required|string|max:50',
+            'Phone' => 'required|string|max:50',
+        ]);
+        $profile= User::find($id);
+        if($profile){
+            $profile->update($req->all());
+
+            return redirect()->route('profile',$profile->id_U)->with('success', 'Record updated successfully.');    
+        }
+        else{
+            return redirect()->route('profile',$profile->id_U)->with('error', 'profile not found.');   
+        }
     }
     public function register(Request $request)
     {
@@ -24,6 +49,7 @@ class UserController extends Controller
             'FirstName' => 'required|string|max:50',
             'LastName' => 'required|string|max:50',
             'Email' => 'required|email|max:50',
+            'type' => 'required',
             'Phone' => 'required|string|max:50',
             'Password' => 'required|string|min:8',
             'Confirm_password' => 'required|string|min:8',
@@ -36,7 +62,10 @@ class UserController extends Controller
                 'Phone' => $validation['Phone'],
                 'Password' => Hash::make($validation['Password']),
             ]);
-
+            $uu=Role_User::create([
+                'id_U'=>$u->id_U,
+                'id_R'=>$validation['type'],
+            ]);
             auth()->login($u);
             return redirect()->route('dashboard');
         } else {

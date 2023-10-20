@@ -5,7 +5,7 @@
 @section('content')
     <section>
         <div class="container">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-12 d-flex justify-content-end align-items-center mt-1  pe-5">
                     <div class="d-inline pe-1 me-1">
                         <a class="link-offset-2 link-underline link-underline-opacity-0" style="font-style: italic;">You
@@ -19,8 +19,8 @@
                         </a>
                     </div>
                 </div>
-            </div>
-            <div class="row  ">
+            </div> --}}
+            <div class="row pt-2 ">
                 <div class="col-12 col-md-6">
                     <img src="{{ asset('storage/images/e-learning1.jpg') }}" class="img-fluid">
                 </div>

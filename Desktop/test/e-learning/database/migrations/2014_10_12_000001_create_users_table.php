@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('Email')->unique();
             $table->string('Phone');
             $table->string('Password');
+            // $table->unsignedBigInteger('id_R'); // Foreign key column
+
+            // $table->foreign('id_R')->references('id_R')->on('roles'); // Updated to 'id_R'
         });
     }
 

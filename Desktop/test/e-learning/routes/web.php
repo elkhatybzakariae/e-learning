@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 Route::group(['middleware' => 'authen'], function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/profile/{id}', [UserController::class, 'profile'])->name('profile');
+    Route::put('/profile/{id}/update', [UserController::class, 'update'])->name('update');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
 

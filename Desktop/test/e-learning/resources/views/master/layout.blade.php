@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -34,7 +35,7 @@
         <!-- Container wrapper -->
         <div class="container">
             <!-- Navbar brand -->
-            <a class="navbar-brand me-2" href="#">
+            <a class="navbar-brand me-2" href="{{ route('home') }}">
                 <img src="{{ asset('storage/images/logo.png') }}" height="30" alt="Logo" loading="lazy"
                     style="margin-top: -1px;" />
             </a>
@@ -52,8 +53,17 @@
                 <ul class="navbar-nav dropdown me-auto mb-2 mb-lg-0">
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Dashboard</a>
+                            <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
+                        {{-- @dd(auth()->user()->FirstName) --}}
+                        @if (auth()->user()->roles->contains('role_name', 'client'))
+                            <!-- Content for admin users -->
+                            <p>Welcome back ,{{ auth()->user()->FirstName }}</p>
+                        @else
+                            <!-- Content for regular users -->
+                            <p>Welcome, formateur!</p>
+                        @endif
+
 
                     @endauth
                 </ul>
@@ -65,12 +75,12 @@
                             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                                 id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown"
                                 aria-expanded="false">
-                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle"
-                                    height="25" alt="Black and White Portrait of a Man" loading="lazy" />
+                                <i class="fa-regular fa-user"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                                 <li>
-                                    <a class="dropdown-item" href="#">My profile</a>
+                                    <a class="dropdown-item" href="{{ route('profile', auth()->user()->id_U) }}">My
+                                        profile</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">Settings</a>
@@ -87,16 +97,18 @@
                         </div>
                     @endauth
                     @guest
-
-                        <button type="button" class="btn btn-link px-3 me-2">
-                            Login
-                        </button>
-                        <button type="button" class="btn btn-primary me-3">
-                            Sign up for free
-                        </button>
+                        <a href="{{ route('loginpage') }}">
+                            <button type="button" class="btn btn-link px-3 me-2">
+                                Login
+                            </button>
+                        </a>
+                        <a href="{{ route('registerpage') }}">
+                            <button type="button" class="btn btn-primary px-3 me-3">
+                                Sign up for free
+                            </button></a>
                         <a class="btn btn-primary px-3" href="#" role="button">
-
-                            <i class="fa-brands fa-google"></i></a>
+                            <i class="fa fa-google"></i>
+                        </a>
                     @endguest
                 </div>
             </div>
@@ -105,8 +117,43 @@
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    @yield('content')
+    <div class="container">
+        <div class="center-div">
+            <!-- Content to be centered -->
+            @yield('content')
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-light text-center fixed mt-2">
+        <!-- Grid container -->
+        <div class="container p-4">
 
+
+
+            <!-- Section: Text -->
+            <section class="mb-4">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                    distinctio earum repellat quaerat voluptatibus placeat nam,
+                    commodi optio pariatur est quia magnam eum harum corrupti dicta,
+                    aliquam sequi voluptate quas.
+                </p>
+            </section>
+            <!-- Section: Text -->
+
+
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2020 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
