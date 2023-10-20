@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role_User;
 use App\Models\Role;
+use App\Models\Categorie;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller

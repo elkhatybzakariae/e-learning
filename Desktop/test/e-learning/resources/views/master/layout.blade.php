@@ -25,6 +25,15 @@
             background-size: 100% 100%;
             background-position-x: center;
         }
+
+        .dropdown:hover>.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown>.dropdown-toggle:active {
+            /*Without this, clicking will make it sticky*/
+            pointer-events: none;
+        }
     </style>
 
 </head>
@@ -35,6 +44,7 @@
         <!-- Container wrapper -->
         <div class="container">
             <!-- Navbar brand -->
+            <!-- LOGO -->
             <a class="navbar-brand me-2" href="{{ route('home') }}">
                 <img src="{{ asset('storage/images/logo.png') }}" height="30" alt="Logo" loading="lazy"
                     style="margin-top: -1px;" />
@@ -55,9 +65,33 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
-                        {{-- @dd(auth()->user()->FirstName) --}}
+                        
                         @if (auth()->user()->roles->contains('role_name', 'client'))
-                            <!-- Content for admin users -->
+                            <div class="dropdown nav-item dropend">
+                                <a class="nav-link dropdown-toggle dropdown-toggle-split" id="dropdownMenuButton" href=""
+                                    data-mdb-toggle="dropdown dropdown-toggle" aria-expanded="false">Categories</a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    @foreach ($categories as $cat)
+                                        <li>
+                                            <div class="dropdown nav-item ">
+                                                <a class="dropdown-item " href="#">{{ $cat->CatName }}</a>
+                                                <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                                    @foreach ($souscategories as $scat)
+                                                        <div class="">
+                                                            <li class="">
+                                                                <a class="dropdown-item"
+                                                                    href="#">{{ $scat->SCatName }}</a>
+                                                            </li>
+                                                        </div>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
                             <p>Welcome back ,{{ auth()->user()->FirstName }}</p>
                         @else
                             <!-- Content for regular users -->

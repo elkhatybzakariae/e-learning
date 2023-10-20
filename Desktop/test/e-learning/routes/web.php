@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\Home;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
+
+Route::get('/', [Home::class, 'index'])->name('home');
+
 Route::group(['middleware' => 'authen'], function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/profile/{id}', [UserController::class, 'profile'])->name('profile');
@@ -29,3 +34,10 @@ Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/signin', [UserController::class, 'loginpage'])->name('loginpage');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
+
+// Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
+// Route::get('/create', [CategorieController::class, 'create'])->name('categorie.create');
+// Route::post('/store', [CategorieController::class, 'store'])->name('categorie.store');
+// Route::get('/edit/{id}', [CategorieController::class, 'edit'])->name('categorie.edit');
+// Route::put('/update/{id}', [CategorieController::class, 'update'])->name('categorie.update');
+// Route::delete('/destroy/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
