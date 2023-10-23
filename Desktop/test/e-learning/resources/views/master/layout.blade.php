@@ -18,9 +18,7 @@
     <style>
         body {
             background-image: url('{{ asset('storage/images/gradient_2.jpg') }}');
-
             background-repeat: no-repeat;
-
             background-attachment: fixed;
             background-size: 100% 100%;
             background-position-x: center;
@@ -28,11 +26,29 @@
 
         .dropdown:hover>.dropdown-menu {
             display: block;
+            margin: 0px;
         }
 
         .dropdown>.dropdown-toggle:active {
             /*Without this, clicking will make it sticky*/
             pointer-events: none;
+        }
+
+
+        #catlist ul {
+            display: none;
+            /* Initially hide the <ul> */
+            position: absolute;
+            /* Position it absolutely */
+            background: white;
+            /* Set a background color */
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #catlist:hover ul {
+            display: block;
+            /* Show the <ul> on hover */
         }
     </style>
 
@@ -58,7 +74,7 @@
             </button>
 
             <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <div class="collapse navbar-collapse">
                 <!-- Left links -->
                 <ul class="navbar-nav dropdown me-auto mb-2 mb-lg-0">
                     @auth
@@ -66,32 +82,77 @@
                             <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                         <div class="dropdown nav-item dropend">
-                            <a class="nav-link dropdown-toggle dropdown-toggle-split" id="dropdownMenuButton" href=""
+                            <a class="nav-link  dropdown-toggle-split" href=""
+                                data-mdb-toggle="dropdown dropdown-toggle" aria-expanded="false">dash</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="catlist">
+                            </ul>
+                        </div>
+                        <div class="dropdown nav-item dropend ">
+                            <a class="nav-link  dropdown-toggle-split" href=""
                                 data-mdb-toggle="dropdown dropdown-toggle" aria-expanded="false">Categories</a>
 
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {{-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 @foreach ($categories as $cat)
                                     <li>
                                         <div class="dropdown nav-item ">
-                                            <a class="dropdown-item " href="#">{{ $cat->CatName }}</a>
-                                            <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item "  href="#">{{ $cat->CatName }}</a>
+                                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                                 @foreach ($souscategories as $scat)
-                                                    {{-- <div class="">
+                                                    <div class="">
                                                         <li class="">
                                                             <a class="dropdown-item"
                                                                 href="#">{{ $scat->SCatName }}</a>
                                                         </li>
-                                                    </div> --}}
+                                                    </div>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul> --}}
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @foreach ($categories as $cat)
+                                    <li>
+                                        <div class="dropdown nav-item dropright">
+                                            <!-- Added dropright class for the second dropdown -->
+                                            <a class="dropdown-item " href="#" data-mdb-toggle="dropdown"
+                                                aria-expanded="false">
+                                                {{ $cat->CatName }}
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                                                @foreach ($souscategories as $scat)
+                                                    <li>
+                                                        <div class="dropdown nav-item dropright">
+                                                            <!-- Added dropright class for the last dropdown -->
+                                                            <a class="dropdown-item " href="#"
+                                                                id="subCategoryDropdown" data-mdb-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                {{ $scat->SCatName }}
+                                                            </a>
+                                                            <ul class="dropdown-menu "
+                                                                aria-labelledby="subCategoryDropdown">
+                                                                @foreach ($sujets as $sj)
+                                                                    <li>
+                                                                        <div class="dropdown nav-item dropright">
+                                                                            <a class="dropdown-item" href="#"
+                                                                                data-mdb-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                {{ $sj->SjName }}
+                                                                            </a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </div>
                                     </li>
                                 @endforeach
                             </ul>
+
                         </div>
                         @if (auth()->user()->roles->contains('role_name', 'client'))
-                            
-
                             <p>Welcome back ,{{ auth()->user()->FirstName }}</p>
                         @else
                             <!-- Content for regular users -->
@@ -195,5 +256,94 @@
 <script src="https://kit.fontawesome.com/345971220e.js" crossorigin="anonymous"></script>
 <!-- MDB -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+{{-- <script>
+    var catlist = document.getElementById('catlist');
+    var categorie = @json($categories);
+    var souscategorie = @json($souscategories);
+    var sujets = @json($sujets);
+
+    const newUl = document.createElement('ul');
+
+    data.forEach(function(category) {
+        const newLi = document.createElement('li');
+        newLi.textContent = category.CatName;
+        newUl.appendChild(newLi);
+    });
+
+    catlist.appendChild(newUl);
+    console.log(catlist);
+</script> --}}
+<script>
+    var catlist = document.getElementById('catlist');
+
+
+    var categories = @json($categories);
+    var souscategories = @json($souscategories);
+    var sujets = @json($sujets);
+
+
+    categories.forEach(function(categorie) {
+        const catli = document.createElement('li');
+        const catdiv = document.createElement('div');
+        const cata = document.createElement('a');
+        cata.textContent = categorie.CatName;
+        catdiv.id = categorie.id_Cat + categorie.CatName;
+        catdiv.classList.add('dropdown');
+        catdiv.classList.add('nav-item');
+        catdiv.classList.add('dropright');
+        cata.classList.add('dropdown-item');
+
+        // catli.addEventListener('mouseover', function() {
+        //     catdiv.classList.remove('show'); // Show the sub ul
+        // });
+
+        // catli.addEventListener('mouseleave', function() {
+        //     catdiv.classList.add('show'); // Hide the sub ul when leaving
+        // });
+
+        var souscategorieList = document.createElement('ul'); // Rename the variable to avoid conflicts
+        souscategorieList.classList.add('dropdown-menu');
+
+        souscategories.forEach(function(souscategorie) {
+            const souscatLi = document.createElement('li');
+            const souscatdiv = document.createElement('div');
+            const souscata = document.createElement('a');
+            souscata.textContent = souscategorie.SCatName; // Use the correct property
+
+            souscatdiv.id = souscategorie.id_SCat + souscategorie.SCatName;
+
+
+            // souscategorieList.style.display = 'none';
+            souscategorieList.addEventListener('mouseover', function() {
+                souscategorieList.style.display = 'block';
+            });
+            souscategorieList.addEventListener('mouseleave', function() {
+                souscategorieList.style.display = 'none';
+            });
+            // if (souscategorie.id_Cat !== categorie.id_Cat) {
+            //     souscategorieList.classList.add('hide');
+            // }
+            souscatdiv.classList.add('dropdown');
+            souscatdiv.classList.add('nav-item');
+            souscatdiv.classList.add('dropright');
+            souscata.classList.add('dropdown-item');
+
+            souscatdiv.appendChild(souscata);
+            souscatLi.appendChild(souscatdiv);
+            souscategorieList.appendChild(souscatLi);
+        });
+
+
+
+
+        catdiv.appendChild(cata);
+        catdiv.appendChild(souscategorieList);
+        catli.appendChild(
+            catdiv);
+        catlist.appendChild(catli);
+    });
+
+    console.log(catlist);
+</script>
 
 </html>
