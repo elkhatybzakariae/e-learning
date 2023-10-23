@@ -82,7 +82,7 @@
                         </li>
                         <div class="dropdown nav-item dropend">
                             <a class="nav-link  dropdown-toggle-split" href=""
-                                data-mdb-toggle="dropdown dropdown-toggle" aria-expanded="false">dash</a>
+                                data-mdb-toggle="dropdown dropdown-toggle" aria-expanded="false">Categories</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="catlist">
                             </ul>
                         </div>
@@ -244,7 +244,7 @@
     var souscategories = @json($souscategories);
     var sujets = @json($sujets);
 
-
+    // categories dropdown
     categories.forEach(function(categorie) {
         const catli = document.createElement('li');
         const catdiv = document.createElement('div');
@@ -274,18 +274,54 @@
                 souscatdiv.classList.add('dropright');
                 souscata.classList.add('dropdown-item');
 
+
+                souscatLi.addEventListener('mouseover', function() {
+                    var sujetList = document.createElement('ul');
+                    sujetList.classList.add('dropdown-menu');
+                    const sujet = sujets.filter(function(e) {
+                        return e.id_Sj == souscatdiv.id;
+                    })
+                    console.log(sujet);
+                    sujet.forEach(function(sj) {
+                        const sujetLi = document.createElement('li');
+                        const sujetdiv = document.createElement('div');
+                        const sujeta = document.createElement('a');
+                        sujeta.textContent = sj.SjName;
+
+                        sujetdiv.id = sujet.id_Sj;
+                        sujetdiv.classList.add('dropdown');
+                        sujetdiv.classList.add('nav-item');
+                        sujetdiv.classList.add('dropright');
+                        sujeta.classList.add('dropdown-item');
+
+
+                        sujetdiv.appendChild(sujeta);
+                        sujetLi.appendChild(sujetdiv);
+                        sujetList.appendChild(sujetLi);
+
+                        souscatdiv.appendChild(sujetList);
+                    });
+
+                    souscatLi.addEventListener('mouseleave', function() {
+                        sujetList.style.display = 'none';
+                    });
+                    souscatdiv.appendChild(souscata);
+                    souscatLi.appendChild(souscatdiv);
+                    souscategorieList.appendChild(souscatLi);
+
+                    catdiv.appendChild(souscategorieList);
+                });
+                catli.addEventListener('mouseleave', function() {
+                    souscategorieList.style.display = 'none';
+                });
                 souscatdiv.appendChild(souscata);
                 souscatLi.appendChild(souscatdiv);
                 souscategorieList.appendChild(souscatLi);
 
-                catdiv.appendChild(souscategorieList);
             });
 
-            catli.addEventListener('mouseleave', function() {
-                souscategorieList.style.display = 'none';
-            });
+            catdiv.appendChild(souscategorieList);
         });
-
         catdiv.appendChild(cata);
         catli.appendChild(catdiv);
         catlist.appendChild(catli);
@@ -293,5 +329,4 @@
 
     console.log(catlist);
 </script>
-
 </html>

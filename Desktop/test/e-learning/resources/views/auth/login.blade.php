@@ -62,7 +62,8 @@
                             <hr class="my-4">
                             <div class="d-flex justify-content-center">
                                 <button class="btn btn-lg btn-block btn-primary"
-                                    style="background-color: #0c329a; font-style: italic;" type="submit"><i
+                                    style="background-color: #0c329a; font-style: italic;" type="submit">
+                                    <i
                                         class="fab fa-google me-2"></i> Sign in with google</button>
                             </div>
                             {{-- <hr class="my-4">

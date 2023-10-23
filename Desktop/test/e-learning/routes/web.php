@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Home;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,18 @@ Route::get('/signup', [UserController::class, 'registerpage'])->name('registerpa
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/signin', [UserController::class, 'loginpage'])->name('loginpage');
 Route::post('/login', [UserController::class, 'login'])->name('login');
+
+
+Route::get('auth/google', [UserController::class,'redirectToGoogle'])->name('google');
+Route::get('auth/google/callback', [UserController::class,'handleGoogleCallback'])->name('googleregister');
+
+
+// Route::get('auth/google', function () {
+//     return Socialite::driver('google')->redirect();
+// });
+
+// Route::get('auth/google/callback', [UserController::class,'googleregister'])->name('google');
+
 
 
 // Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');

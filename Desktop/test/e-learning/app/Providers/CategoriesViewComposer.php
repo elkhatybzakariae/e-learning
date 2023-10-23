@@ -27,9 +27,9 @@ class CategoriesViewComposer extends ServiceProvider
     public function boot()
     {
         view()->composer('master.layout', function ($view) {
-            $categories = Categorie::take(10)->get();
-            $souscategories = SousCategorie::take(10)->get();
-            $sujets = Sujet::take(10)->get();
+            $categories = Categorie::all();
+            $souscategories = SousCategorie::all();
+            $sujets = Sujet::all();
             $view->with([
                 'categories' => $categories,
                 'souscategories' => $souscategories,

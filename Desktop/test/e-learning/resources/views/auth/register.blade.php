@@ -133,9 +133,11 @@
                             </div>
                             <hr class="my-4">
                             <div class="d-flex justify-content-center">
+                                <a href="{{ url('auth/google') }}" class="btn btn-google">Sign up with Google</a>
+
                                 <button class="btn btn-lg btn-block btn-primary"
                                     style="background-color: #0c329a; font-style: italic;" type="submit"><i
-                                        class="fab fa-google me-2"></i> Sign up with google</button>
+                                        class="fab fa-google me-2"></i><a href="{{route('google')}}"> Sign up with google</a></button>
                             </div>
                             <hr class="my-2">
                             <p class="text-center text-muted mt-2 mb-0" style="font-style: italic;">Have already an

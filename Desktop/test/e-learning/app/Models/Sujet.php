@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Sujet extends Model
 {
     use HasFactory;
-
-    use HasFactory;
     protected $table = 'sujets';
     protected $primaryKey = 'id_Sj';
     public $incrementing=true;
@@ -19,5 +17,8 @@ class Sujet extends Model
     ];
     public function souscategorie(){
         return $this->belongsTo(SousCategorie::class);
+    }
+    public function cours(){
+        return $this->hasMany(Cour::class);
     }
 }

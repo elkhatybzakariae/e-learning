@@ -9,14 +9,47 @@ use App\Models\Role_User;
 use App\Models\Role;
 use App\Models\Categorie;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
 
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        $googleUser = Socialite::driver('google')->user();
+
+        // Check if the user with this email already exists in your database
+        $user = User::where('Email', $googleUser->email)->first();
+        $fruits = explode(",", $googleUser.name);
+        dd($googleUser);
+        if ($user) {
+            // If the user exists, log them in
+            Auth::login($user);
+        } else {
+            $newUser = User::create([
+                'FirstName' => $googleUser->given_name,
+                'LastName' => $googleUser->family_name,
+                'Email' => $googleUser->email,
+                'Password' => bcrypt(Str::random(16)),
+            ]);
+
+            Auth::login($newUser);
+        }
+
+        // Redirect the user to their dashboard or some other page
+        return redirect()->route('dashboard');
+    }
+
     public function registerpage()
     {
-        $roles= Role::all();
-        return view('auth.register',compact('roles'));
+        $roles = Role::all();
+        return view('auth.register', compact('roles'));
     }
     public function dashboard()
     {
@@ -24,24 +57,23 @@ class UserController extends Controller
     }
     public function profile($id)
     {
-        $profile= User::find($id);
-        return view('auth.profile',compact('profile'));
+        $profile = User::find($id);
+        return view('auth.profile', compact('profile'));
     }
-    public function update(Request $req,$id)
+    public function update(Request $req, $id)
     {
-        $validation=$req->validate([
+        $validation = $req->validate([
             'FirstName' => 'required|string|max:50',
             'LastName' => 'required|string|max:50',
             'Phone' => 'required|string|max:50',
         ]);
-        $profile= User::find($id);
-        if($profile){
+        $profile = User::find($id);
+        if ($profile) {
             $profile->update($req->all());
 
-            return redirect()->route('profile',$profile->id_U)->with('success', 'Record updated successfully.');    
-        }
-        else{
-            return redirect()->route('profile',$profile->id_U)->with('error', 'profile not found.');   
+            return redirect()->route('profile', $profile->id_U)->with('success', 'Record updated successfully.');
+        } else {
+            return redirect()->route('profile', $profile->id_U)->with('error', 'profile not found.');
         }
     }
     public function register(Request $request)
@@ -63,9 +95,9 @@ class UserController extends Controller
                 'Phone' => $validation['Phone'],
                 'Password' => Hash::make($validation['Password']),
             ]);
-            $uu=Role_User::create([
-                'id_U'=>$u->id_U,
-                'id_R'=>$validation['type'],
+            $uu = Role_User::create([
+                'id_U' => $u->id_U,
+                'id_R' => $validation['type'],
             ]);
             auth()->login($u);
             return redirect()->route('dashboard');
@@ -73,6 +105,8 @@ class UserController extends Controller
             return redirect()->route('registerpage');
         }
     }
+
+
 
     public function loginpage()
     {
@@ -101,7 +135,7 @@ class UserController extends Controller
     }
     public function logout()
     {
-        Auth::logout(); 
-        return redirect()->route('loginpage'); 
+        Auth::logout();
+        return redirect()->route('loginpage');
     }
 }
