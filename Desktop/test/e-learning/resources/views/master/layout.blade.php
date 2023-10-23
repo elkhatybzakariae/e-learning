@@ -65,32 +65,32 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
-                        
-                        @if (auth()->user()->roles->contains('role_name', 'client'))
-                            <div class="dropdown nav-item dropend">
-                                <a class="nav-link dropdown-toggle dropdown-toggle-split" id="dropdownMenuButton" href=""
-                                    data-mdb-toggle="dropdown dropdown-toggle" aria-expanded="false">Categories</a>
+                        <div class="dropdown nav-item dropend">
+                            <a class="nav-link dropdown-toggle dropdown-toggle-split" id="dropdownMenuButton" href=""
+                                data-mdb-toggle="dropdown dropdown-toggle" aria-expanded="false">Categories</a>
 
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    @foreach ($categories as $cat)
-                                        <li>
-                                            <div class="dropdown nav-item ">
-                                                <a class="dropdown-item " href="#">{{ $cat->CatName }}</a>
-                                                <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                                                    @foreach ($souscategories as $scat)
-                                                        <div class="">
-                                                            <li class="">
-                                                                <a class="dropdown-item"
-                                                                    href="#">{{ $scat->SCatName }}</a>
-                                                            </li>
-                                                        </div>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @foreach ($categories as $cat)
+                                    <li>
+                                        <div class="dropdown nav-item ">
+                                            <a class="dropdown-item " href="#">{{ $cat->CatName }}</a>
+                                            <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                                @foreach ($souscategories as $scat)
+                                                    {{-- <div class="">
+                                                        <li class="">
+                                                            <a class="dropdown-item"
+                                                                href="#">{{ $scat->SCatName }}</a>
+                                                        </li>
+                                                    </div> --}}
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @if (auth()->user()->roles->contains('role_name', 'client'))
+                            
 
                             <p>Welcome back ,{{ auth()->user()->FirstName }}</p>
                         @else
