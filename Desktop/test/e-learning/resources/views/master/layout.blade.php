@@ -80,7 +80,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
-                        <div class="dropdown nav-item dropend">
+                        <div class="dropdown nav-item dropend" id="catlistdiv">
                             <a class="nav-link  dropdown-toggle-split" href=""
                                 data-mdb-toggle="dropdown dropdown-toggle" aria-expanded="false">Categories</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="catlist">
@@ -180,7 +180,7 @@
                             <button type="button" class="btn btn-primary px-3 me-3">
                                 Sign up for free
                             </button></a>
-                        <a class="btn btn-primary px-3" href="{{route('google')}}" role="button">
+                        <a class="btn btn-primary px-3" href="{{ route('google') }}" role="button">
                             <i class="fa fa-google"></i>
                         </a>
                     @endguest
@@ -236,7 +236,7 @@
 <!-- MDB -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 
-<script>
+{{-- <script>
     var catlist = document.getElementById('catlist');
 
 
@@ -256,7 +256,7 @@
         catdiv.classList.add('dropright');
         cata.classList.add('dropdown-item');
 
-        catli.addEventListener('mouseover', function() {
+        catli.addEventListener('mouseenter', function() {
             var souscategorieList = document.createElement('ul');
             souscategorieList.classList.add('dropdown-menu');
             const souscat = souscategories.filter(function(e) {
@@ -328,5 +328,142 @@
     });
 
     console.log(catlist);
+</script> --}}
+
+
+
+<script>
+    var catlist = document.getElementById('catlist');
+    var catlistdiv = document.getElementById('catlistdiv');
+
+
+    var categories = @json($categories);
+    var souscategories = @json($souscategories);
+    var sujets = @json($sujets);
+
+    function categorie() {
+        console.log("enter");
+        // categories dropdown
+        categories.forEach(function(categorie) {
+            const catli = document.createElement('li');
+            var catdiv = document.createElement('div');
+            const cata = document.createElement('a');
+            cata.textContent = categorie.CatName;
+            // catdiv.setAttribute('name', categorie.id_Cat);
+            // console.log(catdiv);
+            catdiv.name = categorie.id_Cat;
+            catdiv.classList.add('dropdown');
+            catdiv.classList.add('nav-item');
+            catdiv.classList.add('dropright');
+            cata.classList.add('dropdown-item');
+
+            // souscategorie();
+            // catdiv.appendChild(souscategorieList);
+
+            catdiv.appendChild(cata);
+            catli.appendChild(catdiv);
+            catlist.appendChild(catli);
+
+
+            //event listener for souscategorie
+            // catdiv.addEventListener('mouseenter', souscategorie);
+            catdiv.addEventListener('mouseenter', function() {
+                // console.log(catdiv);
+                souscategorie(catdiv);
+            });
+            catdiv.addEventListener('mouseleave', function() {
+                catdiv.removeEventListener('mouseenter', souscategorie);
+                // catdiv.removeChild(souscategorieList);
+                souscategorieList.innerHTML = '';
+            });
+
+            // catlistdiv.removeEventListener('mouseenter', categorie);
+        });
+    }
+
+    function souscategorie(catdiv) {
+        var souscategorieList = document.createElement('ul');
+        souscategorieList.classList.add('dropdown-menu');
+        const souscat = souscategories.filter(function(e) {
+            return e.id_Cat == catdiv.name;
+        });
+        souscat.forEach(function(souscategorie) {
+            const souscatLi = document.createElement('li');
+            const souscatdiv = document.createElement('div');
+            const souscata = document.createElement('a');
+            souscata.textContent = souscategorie.SCatName;
+
+            souscatdiv.name = souscategorie.id_SCat;
+            souscatdiv.classList.add('dropdown');
+            souscatdiv.classList.add('nav-item');
+            souscatdiv.classList.add('dropright');
+            souscata.classList.add('dropdown-item');
+
+            // sujet();
+            souscatdiv.appendChild(souscata);
+            souscatLi.appendChild(souscatdiv);
+            souscategorieList.appendChild(souscatLi);
+
+            catdiv.appendChild(souscategorieList);
+            // console.log(souscategorieList);
+
+
+            //event listener for sujet
+            // souscatdiv.addEventListener('mouseenter', function() {
+            //     sujet(souscatdiv);
+            // });
+            // souscatdiv.addEventListener('mouseleave', function() {
+            //     souscatdiv.removeEventListener('mouseenter', sujet);
+
+            // });
+        });
+
+        // souscatdiv.appendChild(souscata); 
+        // souscatLi.appendChild(souscatdiv); 
+        // souscategorieList.appendChild(souscatLi);
+
+    }
+
+
+    function sujet(souscatdiv) {
+        var sujetList = document.createElement('ul');
+        sujetList.classList.add('dropdown-menu');
+        const sujet = sujets.filter(function(e) {
+            return e.id_Sj == souscatdiv.name;
+        })
+        console.log(sujet);
+        sujet.forEach(function(sj) {
+            const sujetLi = document.createElement('li');
+            const sujetdiv = document.createElement('div');
+            const sujeta = document.createElement('a');
+            sujeta.textContent = sj.SjName;
+
+            sujetdiv.id = sujet.id_Sj;
+            sujetdiv.classList.add('dropdown');
+            sujetdiv.classList.add('nav-item');
+            sujetdiv.classList.add('dropright');
+            sujeta.classList.add('dropdown-item');
+            sujetdiv.appendChild(sujeta);
+            sujetLi.appendChild(sujetdiv);
+            sujetList.appendChild(sujetLi);
+
+            souscatdiv.appendChild(sujetList);
+        });
+    }
+
+    // souscatLi.removeEventListener('mouseenter');
+
+
+    //event listener for categorie
+    catlistdiv.addEventListener('mouseenter', categorie);
+    catlistdiv.addEventListener('mouseleave', function() {
+        catlistdiv.removeEventListener('mouseenter', categorie);
+
+    });
+
+
+
+    console.log(catlist);
 </script>
+
 </html>
