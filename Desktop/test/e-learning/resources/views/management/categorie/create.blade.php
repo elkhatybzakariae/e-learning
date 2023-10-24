@@ -2,7 +2,7 @@
 
 @section('title', 'add category')
 
-@section('managementcontent')
+@section('content')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5 rounded">
             <form action="{{ route('categorie.store') }}" method="POST">

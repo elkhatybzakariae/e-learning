@@ -48,7 +48,7 @@ Route::get('auth/google/callback', [UserController::class,'handleGoogleCallback'
 // Route::get('auth/google/callback', [UserController::class,'googleregister'])->name('google');
 
 
-Route::group(['prefix' => 'categories'], function () {
+Route::group(['prefix' => 'categories','middleware' => 'authen'], function () {
     Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
     Route::get('/create', [CategorieController::class, 'create'])->name('categorie.create');
     Route::post('/store', [CategorieController::class, 'store'])->name('categorie.store');

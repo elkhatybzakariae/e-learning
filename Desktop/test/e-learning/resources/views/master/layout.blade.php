@@ -100,8 +100,8 @@
 
                 <div class="d-flex align-items-center ">
                     @auth
-                        <div class="dropdown">
-                            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                        <div class="dropdown dropleft">
+                            <a class=" d-flex align-items-center hidden-arrow" href="#"
                                 id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown"
                                 aria-expanded="false">
                                 <i class="fa-regular fa-user"></i>
@@ -119,13 +119,12 @@
                                 <li>
                                     <a class="dropdown-item" href="#">Settings</a>
                                 </li>
+                                <hr>
                                 <li>
-
                                     <form method="get" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit" class="dropdown-item">Logout</button>
                                     </form>
-
                                 </li>
                             </ul>
                         </div>
@@ -151,11 +150,11 @@
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    <div class="row">
-        <div class="col-4">
+    <div class="d-flex" style="height: 100vh;">
+        <div class="col-3" >
             @yield('sidebar')
         </div>
-        <div class="container col-8">
+        <div class="container col-9">
             {{-- <div class="center-div"> --}}
                 @yield('content')
             {{-- </div> --}}
