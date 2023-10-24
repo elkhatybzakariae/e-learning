@@ -15,6 +15,10 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
 
+    public function management()
+    {
+        return view('management.index');
+    }
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -110,9 +114,6 @@ class UserController extends Controller
             return redirect()->route('registerpage');
         }
     }
-
-
-
     public function loginpage()
     {
         return view('auth.login');

@@ -86,51 +86,6 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="catlist">
                             </ul>
                         </div>
-                        {{-- <div class="dropdown nav-item dropend ">
-                            <a class="nav-link  dropdown-toggle-split" href=""
-                                data-mdb-toggle="dropdown dropdown-toggle" aria-expanded="false">Categories</a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                @foreach ($categories as $cat)
-                                    <li>
-                                        <div class="dropdown nav-item dropright">
-                                            <!-- Added dropright class for the second dropdown -->
-                                            <a class="dropdown-item " href="#" data-mdb-toggle="dropdown"
-                                                aria-expanded="false">
-                                                {{ $cat->CatName }}
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                                                @foreach ($souscategories as $scat)
-                                                    <li>
-                                                        <div class="dropdown nav-item dropright">
-                                                            <!-- Added dropright class for the last dropdown -->
-                                                            <a class="dropdown-item " href="#"
-                                                                id="subCategoryDropdown" data-mdb-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                {{ $scat->SCatName }}
-                                                            </a>
-                                                            <ul class="dropdown-menu "
-                                                                aria-labelledby="subCategoryDropdown">
-                                                                @foreach ($sujets as $sj)
-                                                                    <li>
-                                                                        <div class="dropdown nav-item dropright">
-                                                                            <a class="dropdown-item" href="#"
-                                                                                data-mdb-toggle="dropdown"
-                                                                                aria-expanded="false">
-                                                                                {{ $sj->SjName }}
-                                                                            </a>
-                                                                    </li>
-                                                                @endforeach
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
-
-                        </div> --}}
                         @if (auth()->user()->roles->contains('role_name', 'client'))
                             <p>Welcome back ,{{ auth()->user()->FirstName }}</p>
                         @else
@@ -143,7 +98,7 @@
                 </ul>
                 <!-- Left links -->
 
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center ">
                     @auth
                         <div class="dropdown">
                             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
@@ -151,11 +106,16 @@
                                 aria-expanded="false">
                                 <i class="fa-regular fa-user"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAvatar">
                                 <li>
                                     <a class="dropdown-item" href="{{ route('profile', auth()->user()->id_U) }}">My
                                         profile</a>
                                 </li>
+                                @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('management') }}">e-learning management</a>
+                                    </li>
+                                @endif
                                 <li>
                                     <a class="dropdown-item" href="#">Settings</a>
                                 </li>
@@ -191,7 +151,9 @@
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
+    @yield('sidebar')
     <div class="container">
+
         <div class="center-div">
             <!-- Content to be centered -->
             @yield('content')
@@ -240,7 +202,6 @@
     var catlist = document.getElementById('catlist');
     var catlistdiv = document.getElementById('catlistdiv');
 
-
     var categories = @json($categories);
     var souscategories = @json($souscategories);
     var sujets = @json($sujets);
@@ -268,7 +229,7 @@
             catdiv.addEventListener('mouseenter', function() {
                 souscategorie(catdiv);
             });
-            
+
             catdiv.addEventListener('mouseleave', function() {
                 catdiv.removeEventListener('mouseenter', souscategorie);
                 const ulToRemove = catdiv.querySelector('div > ul');
@@ -316,8 +277,8 @@
                 if (ulToRemove) {
                     souscatdiv.removeChild(ulToRemove);
                 }
-            });            
-            
+            });
+
         });
 
         // souscatdiv.appendChild(souscata); 

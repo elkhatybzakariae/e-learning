@@ -24,6 +24,7 @@ use Laravel\Socialite\Facades\Socialite;
 Route::get('/', [Home::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'authen'], function () {
+    Route::get('/management', [UserController::class, 'management'])->name('management');
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/profile/{id}', [UserController::class, 'profile'])->name('profile');
     Route::put('/profile/{id}/update', [UserController::class, 'update'])->name('update');
@@ -47,10 +48,11 @@ Route::get('auth/google/callback', [UserController::class,'handleGoogleCallback'
 // Route::get('auth/google/callback', [UserController::class,'googleregister'])->name('google');
 
 
-
-// Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
-// Route::get('/create', [CategorieController::class, 'create'])->name('categorie.create');
-// Route::post('/store', [CategorieController::class, 'store'])->name('categorie.store');
-// Route::get('/edit/{id}', [CategorieController::class, 'edit'])->name('categorie.edit');
-// Route::put('/update/{id}', [CategorieController::class, 'update'])->name('categorie.update');
-// Route::delete('/destroy/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
+Route::group(['prefix' => 'categories'], function () {
+    Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
+    Route::get('/create', [CategorieController::class, 'create'])->name('categorie.create');
+    Route::post('/store', [CategorieController::class, 'store'])->name('categorie.store');
+    Route::get('/edit/{id}', [CategorieController::class, 'edit'])->name('categorie.edit');
+    Route::put('/update/{id}', [CategorieController::class, 'update'])->name('categorie.update');
+    Route::delete('/destroy/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
+});
