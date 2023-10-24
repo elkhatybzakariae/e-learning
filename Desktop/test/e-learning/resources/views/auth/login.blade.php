@@ -64,7 +64,7 @@
                                 <button class="btn btn-lg btn-block btn-primary"
                                     style="background-color: #0c329a; font-style: italic;" type="submit">
                                     <i
-                                        class="fab fa-google me-2"></i> Sign in with google</button>
+                                        class="fab fa-google me-2"></i><a href="{{route('google')}}"> Sign in with google </a> </button>
                             </div>
                             {{-- <hr class="my-4">
                         <p class="text-center text-muted mt-3 mb-0" style="font-style: italic;">Have already an account?

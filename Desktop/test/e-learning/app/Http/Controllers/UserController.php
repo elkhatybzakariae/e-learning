@@ -26,17 +26,22 @@ class UserController extends Controller
 
         // Check if the user with this email already exists in your database
         $user = User::where('Email', $googleUser->email)->first();
-        $fruits = explode(",", $googleUser.name);
-        dd($googleUser);
+
+        // dd($fruits);
         if ($user) {
             // If the user exists, log them in
             Auth::login($user);
         } else {
+            $fullname = explode(" ", $googleUser['name']);
             $newUser = User::create([
-                'FirstName' => $googleUser->given_name,
-                'LastName' => $googleUser->family_name,
+                'FirstName' => $fullname[0],
+                'LastName' => $fullname[1],
                 'Email' => $googleUser->email,
                 'Password' => bcrypt(Str::random(16)),
+            ]);
+            $typeuser = Role_User::create([
+                'id_U' => $newUser->id_U,
+                'id_R' => "2",
             ]);
 
             Auth::login($newUser);
@@ -88,18 +93,18 @@ class UserController extends Controller
             'Confirm_password' => 'required|string|min:8',
         ]);
         if ($request->Password === $request->Confirm_password) {
-            $u = User::create([
+            $newuser = User::create([
                 'FirstName' => $validation['FirstName'],
                 'LastName' => $validation['LastName'],
                 'Email' => $validation['Email'],
                 'Phone' => $validation['Phone'],
                 'Password' => Hash::make($validation['Password']),
             ]);
-            $uu = Role_User::create([
-                'id_U' => $u->id_U,
+            $typeuser = Role_User::create([
+                'id_U' => $newuser->id_U,
                 'id_R' => $validation['type'],
             ]);
-            auth()->login($u);
+            auth()->login($newuser);
             return redirect()->route('dashboard');
         } else {
             return redirect()->route('registerpage');

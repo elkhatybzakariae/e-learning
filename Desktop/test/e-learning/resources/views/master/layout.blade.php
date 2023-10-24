@@ -180,7 +180,7 @@
                             <button type="button" class="btn btn-primary px-3 me-3">
                                 Sign up for free
                             </button></a>
-                        <a class="btn btn-primary px-3" href="#" role="button">
+                        <a class="btn btn-primary px-3" href="{{route('google')}}" role="button">
                             <i class="fa fa-google"></i>
                         </a>
                     @endguest
