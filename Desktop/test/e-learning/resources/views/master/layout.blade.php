@@ -151,12 +151,14 @@
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    @yield('sidebar')
-    <div class="container">
-
-        <div class="center-div">
-            <!-- Content to be centered -->
-            @yield('content')
+    <div class="row">
+        <div class="col-4">
+            @yield('sidebar')
+        </div>
+        <div class="container col-8">
+            {{-- <div class="center-div"> --}}
+                @yield('content')
+            {{-- </div> --}}
         </div>
     </div>
     <!-- Footer -->

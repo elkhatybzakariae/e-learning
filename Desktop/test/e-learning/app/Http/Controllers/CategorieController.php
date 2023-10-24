@@ -33,6 +33,12 @@ class CategorieController extends Controller
         $categorie = Categorie::find($id);
         return view('management.categorie.edit', compact('categorie'));
     }
+    // public function souscat($id)
+    // {
+    //     $listchildren = Categorie::all();
+    //     dd($listchildren->sousCategorie);
+    //     return view('management.listchildren', compact('listchildren'));
+    // }
 
     public function update(Request $request, $id)
     {

@@ -3,8 +3,8 @@
 @section('title', 'management')
 
 @section('sidebar')
-    <div class="row">
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark col-4" style="width: 280px;">
+    <div class="">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap" />
@@ -50,9 +50,6 @@
                     <li><a class="dropdown-item" href="#">Sign out</a></li>
                 </ul>
             </div>
-        </div>
-        <div class="col-8">
-            @yield('managementcontent')
         </div>
     </div>
 

@@ -53,6 +53,7 @@ Route::group(['prefix' => 'categories'], function () {
     Route::get('/create', [CategorieController::class, 'create'])->name('categorie.create');
     Route::post('/store', [CategorieController::class, 'store'])->name('categorie.store');
     Route::get('/edit/{id}', [CategorieController::class, 'edit'])->name('categorie.edit');
+    // Route::get('/souscat/{id}', [CategorieController::class, 'souscat'])->name('categorie.souscat');
     Route::put('/update/{id}', [CategorieController::class, 'update'])->name('categorie.update');
     Route::delete('/destroy/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
 });
