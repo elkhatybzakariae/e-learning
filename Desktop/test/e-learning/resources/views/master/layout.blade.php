@@ -166,9 +166,6 @@
     <footer class="bg-light text-center fixed mt-2">
         <!-- Grid container -->
         <div class="container p-4">
-
-
-
             <!-- Section: Text -->
             <section class="mb-4">
                 <p>
@@ -179,15 +176,13 @@
                 </p>
             </section>
             <!-- Section: Text -->
-
-
         </div>
         <!-- Grid container -->
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2020 Copyright:
-            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            © 2023 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">E-Learning.com</a>
         </div>
         <!-- Copyright -->
 

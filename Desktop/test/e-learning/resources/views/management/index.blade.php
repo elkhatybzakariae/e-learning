@@ -16,19 +16,19 @@
                 <li class="nav-item">
                     <a href="{{ route('categorie.index') }}" class="nav-link active" aria-current="page">
                         <i class="fa-solid fa-layer-group"></i>
-                        category
+                        categories
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="nav-link ">
+                <li class="nav-item">
+                    <a href="{{ route('souscategorie.index') }}" class="nav-link" aria-current="page">
                         <i class="fa-solid fa-bars"></i>
-                        sub-category
+                        souscategories
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link ">
+                    <a href="{{route('sujet.index')}}" class="nav-link ">
                         <i class="fa-solid fa-file"></i>
-                        subject
+                        sujets
                     </a>
                 </li>
             </ul>

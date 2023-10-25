@@ -10,7 +10,7 @@
                 @method('put')
                 <div class="form-group row ps-3 pe-3 ">
                     <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="CatName" style="font-style: italic;">Category Name:</label>
+                        <label for="CatName" style="font-style: italic;">Categorie:</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
@@ -21,7 +21,7 @@
 
                     <div class="form-group text-end mt-3">
                         <button type="submit" class="btn btn-outline-primary  gradient-custom-4 text-body"
-                            style="font-style: italic;">modify </button>
+                            style="font-style: italic;">modifier</button>
                     </div>
                 </div>
             </form>

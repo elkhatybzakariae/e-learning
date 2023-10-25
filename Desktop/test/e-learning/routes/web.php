@@ -3,6 +3,8 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Home;
+use App\Http\Controllers\SousCategorieController;
+use App\Http\Controllers\SujetController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -56,4 +58,24 @@ Route::group(['prefix' => 'categories','middleware' => 'authen'], function () {
     // Route::get('/souscat/{id}', [CategorieController::class, 'souscat'])->name('categorie.souscat');
     Route::put('/update/{id}', [CategorieController::class, 'update'])->name('categorie.update');
     Route::delete('/destroy/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
+});
+
+Route::group(['prefix' => 'souscategories','middleware' => 'authen'], function () {
+    Route::get('/', [SousCategorieController::class, 'index'])->name('souscategorie.index');
+    Route::get('/create', [SousCategorieController::class, 'create'])->name('souscategorie.create');
+    Route::post('/store', [SousCategorieController::class, 'store'])->name('souscategorie.store');
+    Route::get('/edit/{id}', [SousCategorieController::class, 'edit'])->name('souscategorie.edit');
+    // Route::get('/souscat/{id}', [SousCategorieController::class, 'souscat'])->name('souscategorie.souscat');
+    Route::put('/update/{id}', [SousCategorieController::class, 'update'])->name('souscategorie.update');
+    Route::delete('/destroy/{id}', [SousCategorieController::class, 'destroy'])->name('souscategorie.destroy');
+});
+
+Route::group(['prefix' => 'sujet','middleware' => 'authen'], function () {
+    Route::get('/', [SujetController::class, 'index'])->name('sujet.index');
+    Route::get('/create', [SujetController::class, 'create'])->name('sujet.create');
+    Route::post('/store', [SujetController::class, 'store'])->name('sujet.store');
+    Route::get('/edit/{id}', [SujetController::class, 'edit'])->name('sujet.edit');
+    // Route::get('/souscat/{id}', [SujetController::class, 'souscat'])->name('sujet.souscat');
+    Route::put('/update/{id}', [SujetController::class, 'update'])->name('sujet.update');
+    Route::delete('/destroy/{id}', [SujetController::class, 'destroy'])->name('sujet.destroy');
 });

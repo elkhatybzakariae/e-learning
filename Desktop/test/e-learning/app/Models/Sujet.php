@@ -13,7 +13,7 @@ class Sujet extends Model
     public $incrementing=true;
     public $timestamps=false;
     protected $fillable = [
-        'SjName',
+        'SjName','id_SCat'
     ];
     public function souscategorie(){
         return $this->belongsTo(SousCategorie::class);

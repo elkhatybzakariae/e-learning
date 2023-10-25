@@ -9,18 +9,18 @@
                 @csrf
                 <div class="form-group row ps-3 pe-3 ">
                     <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="CatName" style="font-style: italic;">Category Name:</label>
+                        <label for="CatName" style="font-style: italic;">Categorie:</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="CatName" id="CatName" class="form-control form-control-lg  "
+                            <input type="text" name="CatName" value="{{old('CatName')}}" id="CatName" class="form-control form-control-lg  "
                                 style="" />
                         </div>
                     </div>
 
                     <div class="form-group text-end mt-3">
                         <button type="submit" class="btn btn-outline-primary  gradient-custom-4 text-body"
-                            style="font-style: italic;">Add </button>
+                            style="font-style: italic;">Ajouter </button>
                     </div>
                 </div>
             </form>

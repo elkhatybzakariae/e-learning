@@ -21,7 +21,7 @@
                 <div class="col-12 col-md-6  flex-fill">
                     <img src="{{ asset('storage/images/e-learning1.jpg') }}" class="img-fluid">
                 </div>
-                <div class="col-12 col-md-6 bg-white flex-fill " >
+                <div class="col-12 col-md-6 bg-white flex-fill ">
                     <div class="col-12">
                         <h2 class="text-uppercase text-center mb-3"
                             style="font-size: 1.5rem; color:#0c329a; font-weight: bold; font-style: italic;">
@@ -91,12 +91,14 @@
                                     </div> --}}
                                     <div class="form-outline mb-2 mt-2">
                                         @foreach ($roles as $role)
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="type"
-                                                    id="{{ $role->id_R }}" value="{{ $role->id_R }}" />
-                                                <label class="form-check-label"
-                                                    for="{{ $role->id_R }}">{{ $role->role_name }}</label>
-                                            </div>
+                                            @if ($role->role_name !== 'moderateur')
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="type"
+                                                        id="{{ $role->id_R }}" value="{{ $role->id_R }}" />
+                                                    <label class="form-check-label"
+                                                        for="{{ $role->id_R }}">{{ $role->role_name }}</label>
+                                                </div>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>
@@ -137,7 +139,8 @@
 
                                 <button class="btn btn-lg btn-block btn-primary"
                                     style="background-color: #0c329a; font-style: italic;" type="submit"><i
-                                        class="fab fa-google me-2"></i><a href="{{route('google')}}"> Sign up with google</a></button>
+                                        class="fab fa-google me-2"></i><a href="{{ route('google') }}"> Sign up with
+                                        google</a></button>
                             </div>
                             <hr class="my-2">
                             <p class="text-center text-muted mt-2 mb-0" style="font-style: italic;">Have already an

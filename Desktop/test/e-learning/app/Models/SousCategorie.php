@@ -13,7 +13,7 @@ class SousCategorie extends Model
     public $incrementing=true;
     public $timestamps=false;
     protected $fillable = [
-        'SCatName',
+        'SCatName','id_Cat'
     ];
     public function categorie(){
         return $this->belongsTo(Categorie::class);
