@@ -70,7 +70,7 @@
                         </div>
                     </div>
 
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
+                    {{-- <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="id_Cat" style="font-style: italic;">Categorie:</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
@@ -96,17 +96,21 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div>--}}
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="id_Sj" style="font-style: italic;">Sujet:</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <select name="id_Sj" id="id_Sj" class="custom-select">
+                            <select name="id_Sj" id="id_Sj" disabled  class="custom-select">
+                                @foreach ($sujets as $sj)
+                                    <option value="{{ $sj->id_Sj }}" @if (old('id_Sj') == $sj->id_Sj) selected @endif>
+                                        {{ $sj->SjName }}</option>
+                                @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="form-group text-end mt-3">
                         <button type="submit" class="btn btn-outline-primary  gradient-custom-4 text-body"

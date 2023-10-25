@@ -21,6 +21,7 @@ class Cour extends Model
         'price',
         'lastmodi',
         'coupon',
+        'valider',
         'id_U',
         'id_Sj',
     ];

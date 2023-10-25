@@ -43,6 +43,9 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('auth/google', [UserController::class,'redirectToGoogle'])->name('google');
 Route::get('auth/google/callback', [UserController::class,'handleGoogleCallback'])->name('googleregister');
 
+Route::get('/login/github', [UserController::class,'redirectToGithub'])->name('github');
+Route::get('/login/github/callback', [UserController::class,'handleGithubCallback'])->name('githubregister');
+
 
 // Route::get('auth/google', function () {
 //     return Socialite::driver('google')->redirect();
@@ -87,6 +90,7 @@ Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
     Route::get('/create', [CourController::class, 'create'])->name('cour.create');
     Route::post('/store', [CourController::class, 'store'])->name('cour.store');
     Route::get('/edit/{id}', [CourController::class, 'edit'])->name('cour.edit');
+    Route::get('/valider/{id}', [CourController::class, 'valider'])->name('cour.valider');
     // Route::get('/souscat/{id}', [CourController::class, 'souscat'])->name('cour.souscat');
     Route::put('/update/{id}', [CourController::class, 'update'])->name('cour.update');
     Route::delete('/destroy/{id}', [CourController::class, 'destroy'])->name('cour.destroy');

@@ -43,6 +43,7 @@ class CourController extends Controller
             'Prerequisites' => $v['Prerequisites'],
             'price' => $v['price'],
             'coupon' => $v['coupon'],
+            'valider'=>false,
             'id_U' => $creator,
             'id_Sj' => $v['id_Sj'],
         ]);
@@ -54,13 +55,14 @@ class CourController extends Controller
     {
         $cour = Cour::find($id);
         // $sujets= Sujet::find($cour->id_Sj); 
-        // $sujets = Sujet::where('id_Sj', $cour->id_Sj)->get();
+        $sujets = Sujet::find($cour->id_Sj)->get();
         // dd($cour->id_Sj);
-        $sujets = Sujet::where('id_Sj', $cour->id_Sj)->get();
+        // $sujets = Sujet::where('id_Sj', $cour->id_Sj)->get();
 
-        dd($sujets);
-        $souscategories = SousCategorie::where('id_SCat', $sujets->id_SCat)->get();
-        dd($souscategories);
+        // dd($sujets);
+        // $souscategories = SousCategorie::find($sujets->id_SCat)->get();
+        $souscategories = SousCategorie::all();
+        // dd($souscategories);
         $categories = Categorie::all();
         // $categories= Categorie::find($souscategories->id_Cat);
         return view('management.cour.edit', compact('cour', 'categories', 'souscategories', 'sujets'));
@@ -72,8 +74,18 @@ class CourController extends Controller
     //     return view('management.listchildren', compact('listchildren'));
     // }
 
+    public function valider($id)
+    {
+        $Cour = Cour::find($id);
+
+        $Cour->update([
+            'valider'=>true,
+        ]);
+        return redirect()->route('cour.index')->with('success', 'Cour updated successfully');
+    }
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $Cour = Cour::find($id);
         $v = $request->validate([
             'title' => 'required|string|max:100',
@@ -82,7 +94,7 @@ class CourController extends Controller
             'Prerequisites' => 'required|string|max:100',
             'price' => 'required|string|max:100',
             'coupon' => 'required|string|max:100',
-            'id_Sj' => 'required|exists:sujets,id_Sj',
+            // 'id_Sj' => 'required|exists:sujets,id_Sj',
         ]);
 
         $Cour->update($v);

@@ -144,6 +144,9 @@
                         <a class="btn btn-primary px-3" href="{{ route('google') }}" role="button">
                             <i class="fa fa-google"></i>
                         </a>
+                        <a class="btn btn-dark px-3" href="{{ route('github') }}" role="button">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
                     @endguest
                 </div>
             </div>

@@ -55,6 +55,39 @@ class UserController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function redirectToGithub()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+    
+    public function handleGithubCallback()
+    {
+        $githubUser = Socialite::driver('github')->user();
+        $user = User::where('Email', $githubUser->email)->first();
+
+        // dd($fruits);
+        if ($user) {
+            // If the user exists, log them in
+            Auth::login($user);
+        } else {
+            $newUser = User::create([
+                'FirstName' => $githubUser->nickname,
+                'LastName' => $githubUser->nickname,
+                'Email' => $githubUser->email,
+                'Password' => bcrypt(Str::random(16)),
+            ]);
+            $typeuser = Role_User::create([
+                'id_U' => $githubUser->id_U,
+                'id_R' => "2",
+            ]);
+
+            Auth::login($user);
+        }
+
+        // Redirect the user to their dashboard or some other page
+        return redirect()->route('dashboard');
+    }
+
     public function registerpage()
     {
         $roles = Role::all();

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->float('price');
             $table->date('lastmodi');
             $table->integer('coupon')->nullable();
+            $table->boolean('valider')->default(false);
             $table->unsignedBigInteger('id_U');
             $table->foreign('id_U')->references('id_U')->on('users');
             $table->unsignedBigInteger('id_Sj');

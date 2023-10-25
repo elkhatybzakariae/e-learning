@@ -134,13 +134,16 @@
                                     style="font-style: italic;">Sign up</button>
                             </div>
                             <hr class="my-4">
-                            <div class="d-flex justify-content-center">
-                                <a href="{{ url('auth/google') }}" class="btn btn-google">Sign up with Google</a>
-
-                                <button class="btn btn-lg btn-block btn-primary"
+                            <div class="d-flex justify-content-center row">
+                                <button class="btn btn-lg btn-block btn-primary col-12"
                                     style="background-color: #0c329a; font-style: italic;" type="submit"><i
                                         class="fab fa-google me-2"></i><a href="{{ route('google') }}"> Sign up with
                                         google</a></button>
+                                <button class="btn btn-lg btn-block btn-dark col-12"
+                                    style="text-color:white;font-style: italic;" type="submit"><i
+                                        class="fa-brands fa-github"></i>
+                                    <a href="{{ route('github') }}"> Sign up with
+                                        github</a></button>
                             </div>
                             <hr class="my-2">
                             <p class="text-center text-muted mt-2 mb-0" style="font-style: italic;">Have already an
