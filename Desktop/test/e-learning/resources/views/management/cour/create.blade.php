@@ -33,8 +33,8 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <textarea name="description" value="{{ old('description') }}" id="description"
-                                class="form-control form-control-lg  " style="" /></textarea>
+                            <textarea name="description" id="description"
+                                class="form-control form-control-lg  " style="" />{{ old('description') }}</textarea>
                         </div>
                     </div>
 
