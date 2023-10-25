@@ -88,8 +88,10 @@
                         </div>
                         @if (auth()->user()->roles->contains('role_name', 'client'))
                             <p>Welcome back ,{{ auth()->user()->FirstName }}</p>
-                        @else
+                        @elseif(auth()->user()->roles->contains('role_name', 'moderateur'))
                             <!-- Content for regular users -->
+                            <p>Welcome, moderateur!</p>
+                        @else
                             <p>Welcome, formateur!</p>
                         @endif
 
@@ -101,9 +103,8 @@
                 <div class="d-flex align-items-center ">
                     @auth
                         <div class="dropdown dropleft">
-                            <a class=" d-flex align-items-center hidden-arrow" href="#"
-                                id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class=" d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+                                role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-regular fa-user"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAvatar">
@@ -151,13 +152,14 @@
     </nav>
     <!-- Navbar -->
     <div class="d-flex" style="height: 100vh;">
-        <div class="col-3" >
-            @yield('sidebar')
-        </div>
+        @if (auth()->user())
+            <div class="col-3">
+                @yield('sidebar')
+            </div>
+        @endif
+
         <div class="container col-9">
-            {{-- <div class="center-div"> --}}
-                @yield('content')
-            {{-- </div> --}}
+            @yield('content')
         </div>
     </div>
     <!-- Footer -->
