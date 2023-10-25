@@ -87,11 +87,11 @@
                             </ul>
                         </div>
                         @if (auth()->user()->roles->contains('role_name', 'client'))
-                            <p>Welcome back ,{{ auth()->user()->FirstName }}</p>
+                            <p>Welcome back ,client</p>
                         @elseif(auth()->user()->roles->contains('role_name', 'moderateur'))
                             <!-- Content for regular users -->
                             <p>Welcome, moderateur!</p>
-                        @else
+                        @elseif(auth()->user()->roles->contains('role_name', 'formateur'))
                             <p>Welcome, formateur!</p>
                         @endif
 
@@ -112,7 +112,8 @@
                                     <a class="dropdown-item" href="{{ route('profile', auth()->user()->id_U) }}">My
                                         profile</a>
                                 </li>
-                                @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                                {{-- @if (auth()->user()->roles->contains('role_name','formateur')) --}}
+                                @if (auth()->user()->roles->whereIn('role_name', ['formateur','moderateur'])->isNotEmpty())
                                     <li>
                                         <a class="dropdown-item" href="{{ route('management') }}">e-learning management</a>
                                     </li>
@@ -316,5 +317,5 @@
         catlistdiv.removeEventListener('mouseenter', categorie);
     });
 </script>
-
+@yield('script')
 </html>

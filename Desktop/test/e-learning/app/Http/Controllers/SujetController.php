@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\SousCategorie;
 use App\Models\Sujet;
 use Illuminate\Http\Request;
@@ -9,36 +10,38 @@ use Illuminate\Http\Request;
 class SujetController extends Controller
 {
     public function index(){
-        $sujets = Sujet::paginate(9); 
+        // $sujets = Sujet::latest()->paginate(9); 
+        $sujets = Sujet::orderBy('id_Sj', 'desc')->paginate(9);
         return view('management.sujet.index', compact('sujets'));
     }
 
 
     public function create()
     {
+        $categories= Categorie::all();
         $souscategorie= SousCategorie::all();
-        return view('management.sujet.create',compact('souscategorie'));
+        return view('management.sujet.create',compact('souscategorie','categories'));
     }
 
     public function store(Request $request)
     {
         $v = $request->validate([
-            'SCatName' => 'required|string|max:100',
-            'id_Cat' => 'required|exists:Sujets,id_Cat',
+            'SjName' => 'required|string|max:100',
+            'id_SCat' => 'required|exists:sous_categories,id_SCat',
         ]);
         Sujet::create([
-            'SCatName'=>$v['SCatName'],
-            'id_Cat'=>$v['id_Cat'],
+            'SjName'=>$v['SjName'],
+            'id_SCat'=>$v['id_SCat'],
         ]);
 
-        return redirect()->route('Sujet.index')->with('success', 'Sujet created successfully');
+        return redirect()->route('sujet.index')->with('success', 'Sujet created successfully');
     }
 
     public function edit($id)
     {
-        $Sujet= Sujet::all();
-        $Sujet = Sujet::find($id);
-        return view('management.Sujet.edit', compact('Sujet','Sujet'));
+        $souscategories= SousCategorie::all();
+        $sujet = Sujet::find($id);
+        return view('management.Sujet.edit', compact('sujet','souscategories'));
     }
     // public function souscat($id)
     // {
@@ -51,12 +54,12 @@ class SujetController extends Controller
     {
         $Sujet = Sujet::find($id);
         $v = $request->validate([
-            'SCatName' => 'required|string|max:100',
-            'id_Cat' => 'required|exists:Sujets,id_Cat',
+            'SjName' => 'required|string|max:100',
+            'id_SCat' => 'required|exists:sous_categories,id_SCat',
         ]);
 
         $Sujet->update($v);
-        return redirect()->route('Sujet.index')->with('success', 'Sujet updated successfully');
+        return redirect()->route('sujet.index')->with('success', 'Sujet updated successfully');
     }
 
     public function destroy($id)

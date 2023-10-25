@@ -13,6 +13,7 @@
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
+                @if (auth()->user()->roles->contains('role_name', 'moderateur'))
                 <li class="nav-item">
                     <a href="{{ route('categorie.index') }}" class="nav-link active" aria-current="page">
                         <i class="fa-solid fa-layer-group"></i>
@@ -31,6 +32,23 @@
                         sujets
                     </a>
                 </li>
+                {{-- valider cours --}}
+                <li>
+                    <a href="{{route('cour.index')}}" class="nav-link ">
+                       <i class="fa-solid fa-paste"></i>
+                        cours
+                    </a>
+                </li>
+                @endif
+                @if (auth()->user()->roles->contains('role_name','formateur'))
+                {{-- creer cours --}}
+                <li>
+                    <a href="{{route('cour.index')}}" class="nav-link ">
+                        <i class="fa-solid fa-paste"></i>
+                        cours
+                    </a>
+                </li>
+                @endif
             </ul>
             <hr>
             <div class="dropdown">

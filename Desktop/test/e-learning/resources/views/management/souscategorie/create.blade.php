@@ -1,6 +1,6 @@
 @extends('management.index')
 
-@section('title', 'add category')
+@section('title', 'add souscategory')
 
 @section('content')
     <div class="container ms-2 d-flex justify-content-center align-items-center">

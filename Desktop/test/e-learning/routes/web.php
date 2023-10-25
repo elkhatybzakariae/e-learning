@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CourController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\SousCategorieController;
 use App\Http\Controllers\SujetController;
@@ -78,4 +79,15 @@ Route::group(['prefix' => 'sujet','middleware' => 'authen'], function () {
     // Route::get('/souscat/{id}', [SujetController::class, 'souscat'])->name('sujet.souscat');
     Route::put('/update/{id}', [SujetController::class, 'update'])->name('sujet.update');
     Route::delete('/destroy/{id}', [SujetController::class, 'destroy'])->name('sujet.destroy');
+});
+
+
+Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
+    Route::get('/', [CourController::class, 'index'])->name('cour.index');
+    Route::get('/create', [CourController::class, 'create'])->name('cour.create');
+    Route::post('/store', [CourController::class, 'store'])->name('cour.store');
+    Route::get('/edit/{id}', [CourController::class, 'edit'])->name('cour.edit');
+    // Route::get('/souscat/{id}', [CourController::class, 'souscat'])->name('cour.souscat');
+    Route::put('/update/{id}', [CourController::class, 'update'])->name('cour.update');
+    Route::delete('/destroy/{id}', [CourController::class, 'destroy'])->name('cour.destroy');
 });
