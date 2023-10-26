@@ -112,8 +112,8 @@
                                     <a class="dropdown-item" href="{{ route('profile', auth()->user()->id_U) }}">My
                                         profile</a>
                                 </li>
-                                {{-- @if (auth()->user()->roles->contains('role_name','formateur')) --}}
-                                @if (auth()->user()->roles->whereIn('role_name', ['formateur','moderateur'])->isNotEmpty())
+                                {{-- @if (auth()->user()->roles->contains('role_name', 'formateur')) --}}
+                                @if (auth()->user()->roles->whereIn('role_name', ['formateur', 'moderateur'])->isNotEmpty())
                                     <li>
                                         <a class="dropdown-item" href="{{ route('management') }}">e-learning management</a>
                                     </li>
@@ -155,14 +155,13 @@
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    <div class="d-flex" style="height: 100vh;">
-        @if (auth()->user())
-            <div class="col-3">
+    <div class="row " style="height: 100vh;">
+        <div class="col-3 ps-0 pe-0">
+            @if (auth()->user())
                 @yield('sidebar')
-            </div>
-        @endif
-
-        <div class="container col-9">
+            @endif
+        </div>
+        <div class=" col-9 row">
             @yield('content')
         </div>
     </div>
@@ -321,4 +320,5 @@
     });
 </script>
 @yield('script')
+
 </html>

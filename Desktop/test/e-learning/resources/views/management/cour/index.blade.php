@@ -3,92 +3,93 @@
 @section('title', 'cours')
 
 @section('content')
-    <div class="container ms-0 row">
-        <div class="text-end p-1">
-            <a href="{{ route('cour.create') }}"class="btn btn-primary" style=" font-style: italic;"> <i
-                    class="fa-regular fa-plus"></i>ajouter cour</a>
+    {{-- <div class="container ms-0 row"> --}}
+    <div class="text-end p-1 col-12">
+        <a href="{{ route('cour.create') }}"class="btn btn-primary" style=" font-style: italic;"> <i
+                class="fa-regular fa-plus"></i>ajouter cour</a>
 
-        </div>
-        <hr>
-        <div class="row" style="display: flex; flex-direction: column; height: 100vh;">
-            <div class="row col-12">
-                @if (auth()->user()->roles->contains('role_name', 'moderateur'))
-                    @foreach ($cours as $cour)
-                        @if ($cour->valider === 0)
-                            <div class="card col-4 mb-1">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $cour->title }}</h5>
-                                    <p class="card-text">{{ $cour->info }}</p>
-                                    <p class="card-text">{{ $cour->Prerequisites }}</p>
-                                    <p class="card-text">{{ $cour->price }}</p>
-                                </div>
-                                    <div class="card-footer text-center row">
-                                        {{-- <a href="{{route('cour.suj',$cat->id_C)}}" class="card-link col-6">sous categories</a> --}}
-                                        <a href="{{ route('cour.valider', $cour->id_C) }}"
-                                            class="card-link col-6">valider</a>
-                                        <form action="{{ route('cour.destroy', $cour->id_C) }}" method="post"
-                                            class="col-6">
-                                            @csrf
-                                            @method('delete')
-                                            <input type="submit" value="supprimer" class="btn btn-danger rounded"
-                                                onclick="return confirm('Are you sure you want to delete this card?')">
-                                        </form>
-                                    </div>
-                            </div>
-                        @endif
-                    @endforeach
-                @elseif(auth()->user()->roles->contains('role_name', 'formateur'))
-                    @foreach ($cours as $cour)
-                        <div class="card col-4 mb-1">
+    </div>
+    <hr>
+    <div class="row col-12" >
+        {{-- <div class="row"> --}}
+            @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                @foreach ($cours as $cour)
+                    @if ($cour->valider === 0)
+                        {{-- <div class="card col-4  mr-1"> --}}
+                        <div class="card mb-1  mr-1" style="width: 18rem;">
+                            
                             <div class="card-body">
-                                <h5 class="card-title">{{ $cour->title }}
-                                    @if ($cour->valider === 1)
-                                        <i class="fa-solid fa-check"></i>
-                                    @elseif($cour->valider === 0)
-                                        <i class="fa-solid fa-xmark"></i>
-                                    @endif
-                                </h5>
+                                <h5 class="card-title">{{ $cour->title }}</h5>
                                 <p class="card-text">{{ $cour->info }}</p>
                                 <p class="card-text">{{ $cour->Prerequisites }}</p>
                                 <p class="card-text">{{ $cour->price }}</p>
                             </div>
                             <div class="card-footer text-center row">
-                                    {{-- <a href="{{route('cour.suj',$cat->id_C)}}" class="card-link col-6">sous categories</a> --}}
-                                    <a href="{{ route('cour.edit', $cour->id_C) }}" class="card-link col-6">modifier</a>
-                                    <form action="{{ route('cour.destroy', $cour->id_C) }}" method="post" class="col-6">
-                                        @csrf
-                                        @method('delete')
-                                        <input type="submit" value="supprimer" class="btn btn-danger rounded"
-                                            onclick="return confirm('Are you sure you want to delete this card?')">
-                                    </form>
-                                </div>
+                                {{-- <a href="{{route('cour.suj',$cat->id_C)}}" class="card-link col-6">sous categories</a> --}}
+                                <a href="{{ route('cour.valider', $cour->id_C) }}" class="card-link col-6">valider</a>
+                                <form action="{{ route('cour.destroy', $cour->id_C) }}" method="post" class="col-6">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="submit" value="supprimer" class="btn btn-danger rounded"
+                                        onclick="return confirm('Are you sure you want to delete this card?')">
+                                </form>
+                            </div>
                         </div>
-                    @endforeach
-                @endif
-            </div>
-            {{-- <div class="col-12 text-center">
+                    @endif
+                @endforeach
+            @elseif(auth()->user()->roles->contains('role_name', 'formateur'))
+                @foreach ($cours as $cour)
+                <div class="card mb-1  mr-1" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $cour->title }}
+                                @if ($cour->valider === 1)
+                                    <i class="fa-solid fa-check"></i>
+                                @elseif($cour->valider === 0)
+                                    <i class="fa-solid fa-xmark"></i>
+                                @endif
+                            </h5>
+                            <p class="card-text">{{ $cour->info }}</p>
+                            <p class="card-text">{{ $cour->Prerequisites }}</p>
+                            <p class="card-text">{{ $cour->price }}</p>
+                        </div>
+                        <div class="card-footer text-center row">
+                            {{-- <a href="{{route('cour.suj',$cat->id_C)}}" class="card-link col-6">sous categories</a> --}}
+                            <a href="{{ route('cour.edit', $cour->id_C) }}" class="card-link col-6">modifier</a>
+                            <form action="{{ route('cour.destroy', $cour->id_C) }}" method="post" class="col-6">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="supprimer" class="btn btn-danger rounded"
+                                    onclick="return confirm('Are you sure you want to delete this card?')">
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        {{-- </div> --}}
+        {{-- <div class="col-12 text-center">
                 {{ $categories->links() }}
-        </div> --}}
-            <div class="col-12 text-center">
-                <ul style="list-style: none; display: flex; justify-content: center; padding: 0;">
-                    @if ($cours->onFirstPage())
-                        <li style="margin-right: 10px;">&laquo;</li>
-                    @else
-                        <li style="margin-right: 10px;"><a href="{{ $cours->previousPageUrl() }}">&laquo;</a></li>
-                    @endif
+            </div> --}}
 
-                    @foreach ($cours as $cour)
-                        <li style="margin-right: 10px;"><a href="{{ $cour->url }}">{{ $cour->name }}</a></li>
-                    @endforeach
 
-                    @if ($cours->hasMorePages())
-                        <li><a href="{{ $cours->nextPageUrl() }}">&raquo;</a></li>
-                    @else
-                        <li>&raquo;</li>
-                    @endif
-                </ul>
-            </div>
-
-        </div>
     </div>
+    <div class="col-12 text-center">
+        <ul style="list-style: none; display: flex; justify-content: center; padding: 0;">
+            @if ($cours->onFirstPage())
+                <li style="margin-right: 10px;">&laquo;</li>
+            @else
+                <li style="margin-right: 10px;"><a href="{{ $cours->previousPageUrl() }}">&laquo;</a></li>
+            @endif
+
+            @foreach ($cours as $cour)
+                <li style="margin-right: 10px;"><a href="{{ $cour->url }}">{{ $cour->name }}</a></li>
+            @endforeach
+
+            @if ($cours->hasMorePages())
+                <li><a href="{{ $cours->nextPageUrl() }}">&raquo;</a></li>
+            @else
+                <li>&raquo;</li>
+            @endif
+        </ul>
+    </div>
+    {{-- </div> --}}
 @endsection
