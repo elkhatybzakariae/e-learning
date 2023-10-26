@@ -65,7 +65,7 @@ class UserController extends Controller
     {
         return Socialite::driver('github')->redirect();
     }
-    
+
     public function handleGithubCallback()
     {
         $githubUser = Socialite::driver('github')->user();
@@ -97,10 +97,21 @@ class UserController extends Controller
     public function teach($id)
     {
         $user = User::find($id);
-        $typeuser = Role_User::create([
-            'id_U' => $user->id_U,
-            'id_R' => "1",
-        ]);
+        // $userrole = Role_User::where('id_U', $id)->where('id_R', 1)->get();
+        $userrole = Role_User::where('id_R', 1)
+                        ->where('id_U', $id)
+                        ->exists();
+        // dd($userrole);
+        if ($userrole) {
+            return view('auth.dashboard');
+        } else {
+            $typeuser = Role_User::create([
+                'id_U' => $user->id_U,
+                'id_R' => "1",
+            ]);
+        }
+
+        // dd($typeuser);
         return view('auth.dashboard');
     }
     public function dashboard()

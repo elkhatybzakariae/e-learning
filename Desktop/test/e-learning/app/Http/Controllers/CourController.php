@@ -15,7 +15,7 @@ class CourController extends Controller
     public function index($id = null)
     {
         if ($id === null) {
-            $cours = Cour::orderBy('id_C', 'desc')->paginate(9);
+            $cours = Cour::where('valider', '0')->orderBy('id_C', 'desc')->paginate(9);
             return view('management.cour.index', compact('cours'));
         } else {
             $cours = Cour::where('id_U', $id)->orderBy('id_C', 'desc')->paginate(9);
@@ -40,8 +40,9 @@ class CourController extends Controller
     }
     public function create()
     {
+        dd('ggg');
         $categories = Categorie::all();
-        return view('management.Cour.create', compact('categories'));
+        return view('management.cour.create', compact('categories'));
     }
 
     public function store(Request $request)

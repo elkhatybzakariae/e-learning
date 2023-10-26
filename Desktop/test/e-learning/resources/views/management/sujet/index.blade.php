@@ -3,18 +3,16 @@
 @section('title', 'sujet')
 
 @section('content')
-    <div class="container ms-0 row">
         <div class="text-end p-1">
             <a href="{{ route('sujet.create') }}"class="btn btn-primary" style=" font-style: italic;"> <i
                     class="fa-regular fa-plus"></i>ajouter sujet</a>
 
         </div>
         <hr>
-        <div class="row" style="display: flex; flex-direction: column; height: 100vh;">
             <div class="row col-12">
                 @foreach ($sujets as $suj)
-                <div class="card col-4 mb-1">
-                        <div class="card-body">
+                <div class="card mb-1  mr-1" style="width: 18rem;">
+                    <div class="card-body">
                             <h5 class="card-title">{{ $suj->SjName }}</h5>
                         </div>
                         <div class="card-footer text-center row">
@@ -53,6 +51,4 @@
                 </ul>
             </div>
 
-        </div>
-    </div>
 @endsection

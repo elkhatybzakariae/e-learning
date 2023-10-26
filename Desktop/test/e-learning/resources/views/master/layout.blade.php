@@ -125,15 +125,15 @@
                                     <li>
                                         <a class="dropdown-item" href="{{ route('management') }}">e-learning management</a>
                                     </li>
-                                @endif
-                                @if (auth()->user()->roles->contains('role_name', 'client'))
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('teach', auth()->user()->id_U) }}">teach</a>
-                                    </li>
                                 @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
                                     <li>
                                         <a class="dropdown-item" href="{{ route('teachdashboard') }}">teach dashboard</a>
                                     </li>
+                                @elseif (auth()->user()->roles->contains('role_name', 'client'))
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('teach', auth()->user()->id_U) }}">teach</a>
+                                    </li>
+                                
                                 @endif
                                 <li>
                                     <a class="dropdown-item" href="#">Settings</a>
