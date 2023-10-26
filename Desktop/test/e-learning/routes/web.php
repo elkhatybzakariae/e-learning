@@ -28,7 +28,7 @@ Route::get('/', [Home::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'authen'], function () {
     Route::get('/teach/{id}', [UserController::class, 'teach'])->name('teach');
-    Route::get('/teachdashboard/{id}', [UserController::class, 'teachdashboard'])->name('teachdashboard');
+    Route::get('/teachdashboard', [UserController::class, 'teachdashboard'])->name('teachdashboard');
     Route::get('/management', [UserController::class, 'management'])->name('management');
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/profile/{id}', [UserController::class, 'profile'])->name('profile');
@@ -47,13 +47,6 @@ Route::get('auth/google/callback', [UserController::class,'handleGoogleCallback'
 
 Route::get('/login/github', [UserController::class,'redirectToGithub'])->name('github');
 Route::get('/login/github/callback', [UserController::class,'handleGithubCallback'])->name('githubregister');
-
-
-// Route::get('auth/google', function () {
-//     return Socialite::driver('google')->redirect();
-// });
-
-// Route::get('auth/google/callback', [UserController::class,'googleregister'])->name('google');
 
 
 Route::group(['prefix' => 'categories','middleware' => 'authen'], function () {
@@ -88,11 +81,13 @@ Route::group(['prefix' => 'sujet','middleware' => 'authen'], function () {
 
 
 Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
-    Route::get('/{id}', [CourController::class, 'index'])->name('cour.index');
+    Route::get('/{id?}', [CourController::class, 'index'])->name('cour.index');
     Route::get('/create', [CourController::class, 'create'])->name('cour.create');
     Route::post('/store', [CourController::class, 'store'])->name('cour.store');
     Route::get('/edit/{id}', [CourController::class, 'edit'])->name('cour.edit');
     Route::get('/valider/{id}', [CourController::class, 'valider'])->name('cour.valider');
+    Route::get('/coursvalider/{id}', [CourController::class, 'coursvalider'])->name('cour.coursvalider');
+    Route::get('/coursnonvalider/{id}', [CourController::class, 'coursnonvalider'])->name('cour.coursnonvalider');
     // Route::get('/souscat/{id}', [CourController::class, 'souscat'])->name('cour.souscat');
     Route::put('/update/{id}', [CourController::class, 'update'])->name('cour.update');
     Route::delete('/destroy/{id}', [CourController::class, 'destroy'])->name('cour.destroy');

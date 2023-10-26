@@ -14,13 +14,13 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             @if (auth()->user()->roles->contains('role_name', 'moderateur'))
-                <li class="nav-item">
+                <li >
                     <a href="{{ route('categorie.index') }}" class="nav-link active" aria-current="page">
                         <i class="fa-solid fa-layer-group"></i>
                         categories
                     </a>
                 </li>
-                <li class="nav-item">
+                <li >
                     <a href="{{ route('souscategorie.index') }}" class="nav-link" aria-current="page">
                         <i class="fa-solid fa-bars"></i>
                         souscategories
@@ -39,14 +39,25 @@
                         cours
                     </a>
                 </li>
-            @endif
-            @if (auth()->user()->roles->contains('role_name', 'formateur'))
+            @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
                 {{-- creer cours --}}
                 <li>
-                    <a href="{{ route('cour.index', auth()->user()->id_U) }}" class="nav-link ">
+                    <a href="{{ route('cour.index', auth()->user()->id_U) }}" class="nav-link " id="courslien">
                         <i class="fa-solid fa-paste"></i>
                         cours
                     </a>
+                    <ul id="submenu"{{--  style="display: none" --}}>
+                        <li><a href="{{ route('cour.coursvalider', auth()->user()->id_U) }}" class="nav-link ">
+                            <i class="fa-solid fa-check"></i>
+                                valider
+                            </a>
+                        </li>
+                        <li><a href="{{ route('cour.coursnonvalider', auth()->user()->id_U) }}" class="nav-link ">
+                            <i class="fa-solid fa-xmark"></i>
+                                non valider
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             @endif
         </ul>
@@ -70,4 +81,14 @@
         </div>
     </div>
     {{-- </div> --}}
+@endsection
+@section('script')
+{{-- <script>
+    document.querySelector('#courslien').addEventListener('click', function(event) {
+      event.preventDefault();
+      const submenu = document.getElementById('submenu');
+      submenu.style.display = submenu.style.display === 'none' ? 'block' : 'none';
+    });
+  </script> --}}
+  
 @endsection

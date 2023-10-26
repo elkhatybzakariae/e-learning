@@ -42,11 +42,11 @@
                 <div class="card mb-1  mr-1" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $cour->title }}
-                                @if ($cour->valider === 1)
+                                {{-- @if ($cour->valider === 1)
                                     <i class="fa-solid fa-check"></i>
                                 @elseif($cour->valider === 0)
                                     <i class="fa-solid fa-xmark"></i>
-                                @endif
+                                @endif --}}
                             </h5>
                             <p class="card-text">{{ $cour->info }}</p>
                             <p class="card-text">{{ $cour->Prerequisites }}</p>

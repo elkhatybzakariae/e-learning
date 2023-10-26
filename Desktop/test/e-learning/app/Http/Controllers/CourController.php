@@ -12,9 +12,30 @@ use Illuminate\Http\Request;
 
 class CourController extends Controller
 {
-    public function index($id)
+    public function index($id = null)
     {
-        $cours = Cour::where('id_U', $id)->orderBy('id_C', 'desc')->paginate(9);
+        if ($id === null) {
+            $cours = Cour::orderBy('id_C', 'desc')->paginate(9);
+            return view('management.cour.index', compact('cours'));
+        } else {
+            $cours = Cour::where('id_U', $id)->orderBy('id_C', 'desc')->paginate(9);
+            return view('management.cour.index', compact('cours'));
+        }
+    }
+    public function coursvalider($id)
+    {
+        $cours = Cour::where('id_U', $id)
+            ->where('valider', '1')
+            ->orderBy('id_C', 'desc')
+            ->paginate(9);
+        return view('management.cour.index', compact('cours'));
+    }
+    public function coursnonvalider($id)
+    {
+        $cours = Cour::where('id_U', $id)
+            ->where('valider', '0')
+            ->orderBy('id_C', 'desc')
+            ->paginate(9);
         return view('management.cour.index', compact('cours'));
     }
     public function create()
@@ -43,7 +64,7 @@ class CourController extends Controller
             'Prerequisites' => $v['Prerequisites'],
             'price' => $v['price'],
             'coupon' => $v['coupon'],
-            'valider'=>false,
+            'valider' => false,
             'id_U' => $creator,
             'id_Sj' => $v['id_Sj'],
         ]);
@@ -79,7 +100,7 @@ class CourController extends Controller
         $Cour = Cour::find($id);
 
         $Cour->update([
-            'valider'=>true,
+            'valider' => true,
         ]);
         return redirect()->route('cour.index')->with('success', 'Cour updated successfully');
     }

@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         return view('management.index');
     }
-    public function teachdashboard($id)
+    public function teachdashboard()
     {
         // $cours = Cour::where('id_U',$id)->get();,compact('cours')
         return view('management.index');
@@ -94,11 +94,6 @@ class UserController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function registerpage()
-    {
-        $roles = Role::all();
-        return view('auth.register', compact('roles'));
-    }
     public function teach($id)
     {
         $user = User::find($id);
@@ -132,6 +127,11 @@ class UserController extends Controller
         } else {
             return redirect()->route('profile', $profile->id_U)->with('error', 'profile not found.');
         }
+    }
+    public function registerpage()
+    {
+        $roles = Role::all();
+        return view('auth.register', compact('roles'));
     }
     public function register(Request $request)
     {
