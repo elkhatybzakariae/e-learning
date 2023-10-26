@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Role_User;
 use App\Models\Role;
 use App\Models\Categorie;
+use App\Models\Cour;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
@@ -17,6 +18,11 @@ class UserController extends Controller
 
     public function management()
     {
+        return view('management.index');
+    }
+    public function teachdashboard($id)
+    {
+        // $cours = Cour::where('id_U',$id)->get();,compact('cours')
         return view('management.index');
     }
     public function redirectToGoogle()
@@ -93,6 +99,15 @@ class UserController extends Controller
         $roles = Role::all();
         return view('auth.register', compact('roles'));
     }
+    public function teach($id)
+    {
+        $user = User::find($id);
+        $typeuser = Role_User::create([
+            'id_U' => $user->id_U,
+            'id_R' => "1",
+        ]);
+        return view('auth.dashboard');
+    }
     public function dashboard()
     {
         return view('auth.dashboard');
@@ -139,7 +154,8 @@ class UserController extends Controller
             ]);
             $typeuser = Role_User::create([
                 'id_U' => $newuser->id_U,
-                'id_R' => $validation['type'],
+                'id_R' => "2",
+                // 'id_R' => $validation['type'],
             ]);
             auth()->login($newuser);
             return redirect()->route('dashboard');

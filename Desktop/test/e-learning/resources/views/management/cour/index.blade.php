@@ -64,6 +64,7 @@
                         </div>
                     </div>
                 @endforeach
+            @elseif(auth()->user()->roles->contains('role_name', 'client'))
             @endif
         {{-- </div> --}}
         {{-- <div class="col-12 text-center">

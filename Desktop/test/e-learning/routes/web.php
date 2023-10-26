@@ -27,6 +27,8 @@ use Laravel\Socialite\Facades\Socialite;
 Route::get('/', [Home::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'authen'], function () {
+    Route::get('/teach/{id}', [UserController::class, 'teach'])->name('teach');
+    Route::get('/teachdashboard/{id}', [UserController::class, 'teachdashboard'])->name('teachdashboard');
     Route::get('/management', [UserController::class, 'management'])->name('management');
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/profile/{id}', [UserController::class, 'profile'])->name('profile');
@@ -86,7 +88,7 @@ Route::group(['prefix' => 'sujet','middleware' => 'authen'], function () {
 
 
 Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
-    Route::get('/', [CourController::class, 'index'])->name('cour.index');
+    Route::get('/{id}', [CourController::class, 'index'])->name('cour.index');
     Route::get('/create', [CourController::class, 'create'])->name('cour.create');
     Route::post('/store', [CourController::class, 'store'])->name('cour.store');
     Route::get('/edit/{id}', [CourController::class, 'edit'])->name('cour.edit');

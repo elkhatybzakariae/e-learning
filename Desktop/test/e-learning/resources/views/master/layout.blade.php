@@ -85,6 +85,7 @@
                                 data-mdb-toggle="dropdown dropdown-toggle" aria-expanded="false">Categories</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="catlist">
                             </ul>
+
                         </div>
                         @if (auth()->user()->roles->contains('role_name', 'client'))
                             <p>Welcome back ,client</p>
@@ -113,9 +114,23 @@
                                         profile</a>
                                 </li>
                                 {{-- @if (auth()->user()->roles->contains('role_name', 'formateur')) --}}
-                                @if (auth()->user()->roles->whereIn('role_name', ['formateur', 'moderateur'])->isNotEmpty())
+                                {{-- @if (auth()->user()->roles->whereIn('role_name', ['formateur', 'moderateur'])->isNotEmpty())
                                     <li>
                                         <a class="dropdown-item" href="{{ route('management') }}">e-learning management</a>
+                                    </li>
+                                @endif --}}
+                                @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('management')}}">e-learning management</a>
+                                    </li>
+                                @endif
+                                @if (auth()->user()->roles->contains('role_name', 'client'))
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('teach', auth()->user()->id_U) }}">teach</a>
+                                    </li>
+                                @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('teachdashboard', auth()->user()->id_U) }}">teach dashboard</a>
                                     </li>
                                 @endif
                                 <li>
@@ -155,15 +170,24 @@
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    <div class="row " style="height: 100vh;">
-        <div class="col-3 ps-0 pe-0">
-            @if (auth()->user())
-                @yield('sidebar')
+    {{-- <div class="row " style="height: 100vh;"> --}}
+    <div class="row " style="height: 100vh;margin-right: 0px;margin-left: 0px;">
+        @if (auth()->user())
+            @if (auth()->user()->roles->contains('role_name', 'formateur') ||
+                    auth()->user()->roles->contains('role_name', 'formateur'))
+                <div class="col-3 ps-0 pe-0">
+                    @yield('sidebar')
+                </div>
+                <div class=" col-9 row">
+                    @yield('content')
+                </div>
+                {{-- @elseif(auth()->user()->roles->contains('role_name', 'client'))
+                <div class=" col-12 row">
+                    @yield('content')
+                </div> --}}
             @endif
-        </div>
-        <div class=" col-9 row">
-            @yield('content')
-        </div>
+        @endif
+        @yield('authentification')
     </div>
     <!-- Footer -->
     <footer class="bg-light text-center fixed mt-2">
@@ -199,6 +223,126 @@
 <!-- MDB -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 
+{{-- <script>
+    var catlist = document.getElementById('catlist');
+    var catlistdiv = document.getElementById('catlistdiv');
+
+    var categories = @json($categories);
+    var souscategories = @json($souscategories);
+    var sujets = @json($sujets);
+
+    function categorie() {
+        // categories dropdown
+        categories.forEach(function(categorie) {
+            const catli = document.createElement('li');
+            const catdiv = document.createElement('div');
+            const cata = document.createElement('a');
+            cata.textContent = categorie.CatName;
+            // catdiv.setAttribute('name', categorie.id_Cat);
+            catdiv.name = categorie.id_Cat;
+            catdiv.classList.add('dropdown');
+            catdiv.classList.add('nav-item');
+            catdiv.classList.add('dropright');
+            cata.classList.add('dropdown-item');
+
+            catdiv.appendChild(cata);
+            catli.appendChild(catdiv);
+            catlist.appendChild(catli);
+
+
+            //event listener for souscategorie
+            catdiv.addEventListener('mouseenter', function() {
+                souscategorie(catdiv);
+            });
+
+            catdiv.addEventListener('mouseleave', function() {
+                catdiv.removeEventListener('mouseenter', souscategorie);
+                const ulToRemove = catdiv.querySelector('div > ul');
+                if (ulToRemove) {
+                    catdiv.removeChild(ulToRemove);
+                }
+
+            });
+        });
+    }
+
+    function souscategorie(catdiv) {
+        var souscategorieList = document.createElement('ul');
+        souscategorieList.classList.add('dropdown-menu');
+        const souscat = souscategories.filter(function(e) {
+            return e.id_Cat == catdiv.name;
+        });
+        souscat.forEach(function(souscategorie) {
+            const souscatLi = document.createElement('li');
+            const souscatdiv = document.createElement('div');
+            const souscata = document.createElement('a');
+            souscata.textContent = souscategorie.SCatName;
+
+            souscatdiv.name = souscategorie.id_SCat;
+            souscatdiv.classList.add('dropdown');
+            souscatdiv.classList.add('nav-item');
+            souscatdiv.classList.add('dropright');
+            souscata.classList.add('dropdown-item');
+
+            souscatdiv.appendChild(souscata);
+            souscatLi.appendChild(souscatdiv);
+            souscategorieList.appendChild(souscatLi);
+
+            catdiv.appendChild(souscategorieList);
+
+
+            // event listener for sujet
+            souscatdiv.addEventListener('mouseenter', function() {
+                sujet(souscatdiv);
+
+            });
+            souscatdiv.addEventListener('mouseleave', function() {
+                souscatdiv.removeEventListener('mouseenter', sujet);
+                const ulToRemove = souscatdiv.querySelector('div > ul');
+                if (ulToRemove) {
+                    souscatdiv.removeChild(ulToRemove);
+                }
+            });
+
+        });
+
+        // souscatdiv.appendChild(souscata); 
+        // souscatLi.appendChild(souscatdiv); 
+        // souscategorieList.appendChild(souscatLi);
+
+    }
+
+    function sujet(souscatdiv) {
+        var sujetList = document.createElement('ul');
+        sujetList.classList.add('dropdown-menu');
+        const sujet = sujets.filter(function(e) {
+            return e.id_Sj == souscatdiv.name;
+        })
+        sujet.forEach(function(sj) {
+            const sujetLi = document.createElement('li');
+            const sujetdiv = document.createElement('div');
+            const sujeta = document.createElement('a');
+            sujeta.textContent = sj.SjName;
+
+            sujetdiv.id = sujet.id_Sj;
+            sujetdiv.classList.add('dropdown');
+            sujetdiv.classList.add('nav-item');
+            sujetdiv.classList.add('dropright');
+            sujeta.classList.add('dropdown-item');
+            sujetdiv.appendChild(sujeta);
+            sujetLi.appendChild(sujetdiv);
+            sujetList.appendChild(sujetLi);
+
+            souscatdiv.appendChild(sujetList);
+        });
+    }
+
+    //event listener for categorie
+    catlistdiv.addEventListener('mouseenter', categorie);
+    catlistdiv.addEventListener('mouseleave', function() {
+        catlistdiv.removeEventListener('mouseenter', categorie);
+    });
+</script> --}}
 <script>
     var catlist = document.getElementById('catlist');
     var catlistdiv = document.getElementById('catlistdiv');

@@ -1,6 +1,6 @@
 @extends('master.layout')
 @section('title', 'Register')
-@section('content')
+@section('authentification')
     <section class="">
         <div class="container ">
             {{-- <div class="row">
@@ -77,7 +77,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row ps-5 pe-5">
+                            {{-- <div class="form-group row ps-5 pe-5">
                                 <div class="col-6 col-sm-3 col-form-label d-inline">
                                     <label for="form3Example5cg" style="font-style: italic;">type :</label>
                                 </div>
@@ -88,21 +88,21 @@
                                         <input type="radio" name="type" id="form3Example5cg" style=""
                                             class="form-control form-control-lg" />
 
-                                    </div> --}}
+                                    </div> 
                                     <div class="form-outline mb-2 mt-2">
                                         @foreach ($roles as $role)
                                             @if ($role->role_name !== 'moderateur')
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="type"
-                                                        id="{{ $role->id_R }}" value="{{ $role->id_R }}" />
                                                     <label class="form-check-label"
                                                         for="{{ $role->id_R }}">{{ $role->role_name }}</label>
+                                                    <input class="form-check-input" type="radio" name="type"
+                                                        id="{{ $role->id_R }}" value="{{ $role->id_R }}" />
                                                 </div>
                                             @endif
                                         @endforeach
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group row ps-5 pe-5">
                                 <div class="col-6 col-sm-3 col-form-label d-inline">

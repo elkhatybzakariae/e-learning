@@ -2,7 +2,7 @@
 
 @section('title', 'login')
 
-@section('content')
+@section('authentification')
     <section>
         <div class="container">
             {{-- <div class="row">

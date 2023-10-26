@@ -12,9 +12,9 @@ use Illuminate\Http\Request;
 
 class CourController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $cours = Cour::orderBy('id_C', 'desc')->paginate(9);
+        $cours = Cour::where('id_U', $id)->orderBy('id_C', 'desc')->paginate(9);
         return view('management.cour.index', compact('cours'));
     }
     public function create()
