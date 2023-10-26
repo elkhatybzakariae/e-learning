@@ -16,6 +16,9 @@
                             <input type="text" name="title" value="{{ old('title') }}" id="title"
                                 class="form-control form-control-lg  " style="" />
                         </div>
+                        @error('title')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
@@ -26,6 +29,9 @@
                             <input type="text" name="info" value="{{ old('info') }}" id="info"
                                 class="form-control form-control-lg  " style="" />
                         </div>
+                        @error('info')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
@@ -57,6 +63,9 @@
                             <input type="number" name="price" value="{{ old('price') }}" id="price"
                                 class="form-control form-control-lg  " style="" />
                         </div>
+                        @error('price')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
@@ -104,6 +113,9 @@
                                 <option selected>select Sujet</option>
                             </select>
                         </div>
+                        @error('id_Sj')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group text-end mt-3">

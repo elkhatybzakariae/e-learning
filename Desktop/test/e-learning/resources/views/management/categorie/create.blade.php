@@ -13,9 +13,12 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="CatName" value="{{old('CatName')}}" id="CatName" class="form-control form-control-lg  "
-                                style="" />
-                        </div>
+                            <input type="text" name="CatName" value="{{ old('CatName') }}" id="CatName"
+                                class="form-control form-control-lg  " style="" />
+                            
+                        </div>@error('CatName')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                     </div>
 
                     <div class="form-group text-end mt-3">

@@ -13,9 +13,12 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="SCatName" value="{{old('SCatName')}}" id="SCatName" class="form-control form-control-lg  "
-                                style="" />
+                            <input type="text" name="SCatName" value="{{ old('SCatName') }}" id="SCatName"
+                                class="form-control form-control-lg  " style="" />
                         </div>
+                        @error('SCatName')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
@@ -26,10 +29,13 @@
                             <select name="id_Cat" id="id_Cat" class="custom-select">
                                 <option selected>select Categorie</option>
                                 @foreach ($categorie as $cat)
-                                    <option value="{{$cat->id_Cat}}">{{$cat->CatName}}</option>
+                                    <option value="{{ $cat->id_Cat }}">{{ $cat->CatName }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        @error('id_Cat')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group text-end mt-3">

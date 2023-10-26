@@ -17,6 +17,9 @@
                             <input type="text" name="SCatName" value="{{old('SCatName', $souscategorie->SCatName) }}" id="SCatName"
                                 class="form-control form-control-lg  " style="" />
                         </div>
+                        @error('SCatName')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
@@ -31,6 +34,9 @@
                                 @endforeach
                             </select>
                         </div>
+                        @error('id_Cat')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     </div>
 
                     <div class="form-group text-end mt-3">

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategorieRequest;
 use Illuminate\Http\Request;
 use App\Models\Categorie;
+
 class CategorieController extends Controller
 {
-    public function index(){
-        $categories = Categorie::orderBy('id_Cat', 'desc')->paginate(9); 
+    public function index()
+    {
+        $categories = Categorie::orderBy('id_Cat', 'desc')->paginate(9);
         return view('management.categorie.index', compact('categories'));
     }
 
@@ -17,14 +20,10 @@ class CategorieController extends Controller
         return view('management.categorie.create');
     }
 
-    public function store(Request $request)
+    public function store(CategorieRequest $request)
     {
-        $v = $request->validate([
-            'CatName' => 'required|string|max:100',
-        ]);
-
-        Categorie::create($v);
-
+        $validatedData = $request->validated();
+        Categorie::create($validatedData);
         return redirect()->route('categorie.index')->with('success', 'Categorie created successfully');
     }
 
@@ -40,14 +39,14 @@ class CategorieController extends Controller
     //     return view('management.listchildren', compact('listchildren'));
     // }
 
-    public function update(Request $request, $id)
+    public function update(CategorieRequest $request, $id)
     {
-        $Categorie = Categorie::find($id);
-        $v = $request->validate([
-            'CatName' => 'required|string|max:100',
-        ]);
 
-        $Categorie->update($v);
+        $Categorie = Categorie::find($id);
+        if (!$Categorie) {
+            return redirect()->route('categorie.index')->with('error', 'Categorie not found');
+        }
+        $Categorie->update($request->validated());
         return redirect()->route('categorie.index')->with('success', 'Categorie updated successfully');
     }
 

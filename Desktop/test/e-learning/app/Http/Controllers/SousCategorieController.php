@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SousCategorieRequest;
 use App\Models\Categorie;
 use App\Models\SousCategorie;
 use Illuminate\Http\Request;
@@ -20,17 +21,11 @@ class SousCategorieController extends Controller
         return view('management.souscategorie.create',compact('categorie'));
     }
 
-    public function store(Request $request)
+    public function store(SousCategorieRequest $request)
     {
-        $v = $request->validate([
-            'SCatName' => 'required|string|max:100',
-            'id_Cat' => 'required|exists:categories,id_Cat',
-        ]);
-        SousCategorie::create([
-            'SCatName'=>$v['SCatName'],
-            'id_Cat'=>$v['id_Cat'],
-        ]);
-
+        
+        $validatedData = $request->validated();
+        SousCategorie::create($validatedData);
         return redirect()->route('souscategorie.index')->with('success', 'SousCategorie created successfully');
     }
 
@@ -47,16 +42,15 @@ class SousCategorieController extends Controller
     //     return view('management.listchildren', compact('listchildren'));
     // }
 
-    public function update(Request $request, $id)
+    public function update(SousCategorieRequest $request, $id)
     {
-        $souscategorie = SousCategorie::find($id);
-        $v = $request->validate([
-            'SCatName' => 'required|string|max:100',
-            'id_Cat' => 'required|exists:categories,id_Cat',
-        ]);
-
-        $souscategorie->update($v);
-        return redirect()->route('souscategorie.index')->with('success', 'sousCategorie updated successfully');
+        
+        $SousCategorie = SousCategorie::find($id);
+        if (!$SousCategorie) {
+            return redirect()->route('souscategorie.index')->with('error', 'SousCategorie not found');
+        }
+        $SousCategorie->update($request->validated());
+        return redirect()->route('souscategorie.index')->with('success', 'SousCategorie updated successfully');
     }
 
     public function destroy($id)

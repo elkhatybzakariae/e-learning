@@ -47,28 +47,11 @@ class CourController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        $v = $request->validate([
-            'title' => 'required|string|max:100',
-            'info' => 'required|string|max:100',
-            'description' => 'required|string|max:100',
-            'Prerequisites' => 'required|string|max:100',
-            'price' => 'required|string|max:100',
-            'coupon' => 'required|string|max:100',
-            'id_Sj' => 'required|exists:sujets,id_Sj',
-        ]);
         $creator = Auth::id();
-        Cour::create([
-            'title' => $v['title'],
-            'info' => $v['info'],
-            'description' => $v['description'],
-            'Prerequisites' => $v['Prerequisites'],
-            'price' => $v['price'],
-            'coupon' => $v['coupon'],
-            'valider' => false,
-            'id_U' => $creator,
-            'id_Sj' => $v['id_Sj'],
-        ]);
+        $validatedData = $request->validated();
+        $validatedData['id_U'] = $creator;
+
+        Cour::create($validatedData);
 
         return redirect()->route('cour.index')->with('success', 'Cour created successfully');
     }
@@ -107,19 +90,12 @@ class CourController extends Controller
     }
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        
         $Cour = Cour::find($id);
-        $v = $request->validate([
-            'title' => 'required|string|max:100',
-            'info' => 'required|string|max:100',
-            'description' => 'required|string|max:100',
-            'Prerequisites' => 'required|string|max:100',
-            'price' => 'required|string|max:100',
-            'coupon' => 'required|string|max:100',
-            // 'id_Sj' => 'required|exists:sujets,id_Sj',
-        ]);
-
-        $Cour->update($v);
+        if (!$Cour) {
+            return redirect()->route('cour.index')->with('error', 'Cour not found');
+        }
+        $Cour->update($request->validated());
         return redirect()->route('cour.index')->with('success', 'Cour updated successfully');
     }
 

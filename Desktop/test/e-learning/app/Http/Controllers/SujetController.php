@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SujetRequest;
 use App\Models\Categorie;
 use App\Models\SousCategorie;
 use App\Models\Sujet;
@@ -23,17 +24,10 @@ class SujetController extends Controller
         return view('management.sujet.create',compact('souscategorie','categories'));
     }
 
-    public function store(Request $request)
+    public function store(SujetRequest $request)
     {
-        $v = $request->validate([
-            'SjName' => 'required|string|max:100',
-            'id_SCat' => 'required|exists:sous_categories,id_SCat',
-        ]);
-        Sujet::create([
-            'SjName'=>$v['SjName'],
-            'id_SCat'=>$v['id_SCat'],
-        ]);
-
+        $validatedData = $request->validated();
+        Sujet::create($validatedData);
         return redirect()->route('sujet.index')->with('success', 'Sujet created successfully');
     }
 
@@ -50,15 +44,13 @@ class SujetController extends Controller
     //     return view('management.listchildren', compact('listchildren'));
     // }
 
-    public function update(Request $request, $id)
+    public function update(SujetRequest $request, $id)
     {
         $Sujet = Sujet::find($id);
-        $v = $request->validate([
-            'SjName' => 'required|string|max:100',
-            'id_SCat' => 'required|exists:sous_categories,id_SCat',
-        ]);
-
-        $Sujet->update($v);
+        if (!$Sujet) {
+            return redirect()->route('sujet.index')->with('error', 'Sujet not found');
+        }
+        $Sujet->update($request->validated());
         return redirect()->route('sujet.index')->with('success', 'Sujet updated successfully');
     }
 
