@@ -79,13 +79,16 @@ Route::group(['prefix' => 'sujet','middleware' => 'authen'], function () {
     Route::delete('/destroy/{id}', [SujetController::class, 'destroy'])->name('sujet.destroy');
 });
 
+    Route::get('/create', [CourController::class, 'create'])->name('cour.create');
 
 Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
     Route::get('/{id?}', [CourController::class, 'index'])->name('cour.index');
+
         // Route::get('/create', function(){
         //     return view('welcome');
         // })->name('cour.create');
-    Route::get('/create', [CourController::class, 'create'])->name('cour.create');
+    // Route::get('/create', [CourController::class, 'create'])->name('cour.create');
+    // Route::get('/create', [CourController::class, 'edit'])->name('cour.create');
     Route::post('/store', [CourController::class, 'store'])->name('cour.store');
     Route::get('/edit/{id}', [CourController::class, 'edit'])->name('cour.edit');
     Route::get('/valider/{id}', [CourController::class, 'valider'])->name('cour.valider');

@@ -12,7 +12,7 @@ class Cour extends Model
     protected $table = 'cours';
     protected $primaryKey = 'id_C';
     public $incrementing=true;
-    public $timestamps=false;
+    public $timestamps=true;
     protected $fillable = [
         'title',
         'info',
@@ -29,6 +29,6 @@ class Cour extends Model
         return $this->hasMany(User::class);
     }
     public function sujet(){
-        return $this->belongsTo(Sujet::class);
+        return $this->belongsTo(Sujet::class, 'id_Sj');
     }
 }

@@ -46,7 +46,7 @@
                         <i class="fa-solid fa-paste"></i>
                         cours
                     </a>
-                    <ul id="submenu"{{--  style="display: none" --}}>
+                    <ul class="list-unstyled  pl-5" id="submenu"{{--  style="display: none" --}}>
                         <li><a href="{{ route('cour.coursvalider', auth()->user()->id_U) }}" class="nav-link ">
                             <i class="fa-solid fa-check"></i>
                                 valider

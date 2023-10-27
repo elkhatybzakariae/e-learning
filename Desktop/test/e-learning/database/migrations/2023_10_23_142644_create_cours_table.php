@@ -20,13 +20,15 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('Prerequisites')->nullable();
             $table->float('price');
-            $table->date('lastmodi');
+            $table->date('lastmodi')->nullable();
             $table->integer('coupon')->nullable();
+            $table->boolean('valider')->default(false);
             // $table->boolean('valider')->default(false);
             $table->unsignedBigInteger('id_U');
             $table->foreign('id_U')->references('id_U')->on('users');
             $table->unsignedBigInteger('id_Sj');
             $table->foreign('id_Sj')->references('id_Sj')->on('sujets');
+            $table->timestamps();
         });
     }
 

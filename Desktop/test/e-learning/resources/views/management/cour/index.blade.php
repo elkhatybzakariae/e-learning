@@ -3,13 +3,12 @@
 @section('title', 'cours')
 
 @section('content')
-    @if (auth()->user()->roles->contains('role_name', 'formateur'))
+    {{-- @if (auth()->user()->roles->contains('role_name', 'formateur')) --}}
         <div class="text-end p-1 col-12">
-            <a href="{{ route('cour.create') }}"class="btn btn-primary" style=" font-style: italic;"> <i
+            <a href="{{ route('cour.create') }}" class="btn btn-primary" style=" font-style: italic;"> <i
                     class="fa-regular fa-plus"></i>ajouter cour</a>
-
         </div>
-    @endif
+    {{-- @endif --}}
     
     <hr>
     <div class="row col-12">

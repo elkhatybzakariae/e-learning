@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
-        <div class="text center bg-white p-5 pb-3 mt-5 rounded">
+        <div class="text center bg-white p-5 pb-3 mt-5 rounded mb-5">
             <form action="{{ route('cour.update', $cour->id_C) }}" method="POST">
                 @csrf
                 @method('put')
@@ -16,7 +16,9 @@
                         <div class="form-outline mb-2">
                             <input type="text" name="title" value="{{ old('title',$cour->title) }}" id="title"
                                 class="form-control form-control-lg  " style="" />
-                        </div>
+                        </div>@error('title')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
@@ -27,6 +29,9 @@
                             <input type="text" name="info" value="{{ old('info',$cour->info) }}" id="info"
                                 class="form-control form-control-lg  " style="" />
                         </div>
+                        @error('info')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
@@ -58,6 +63,9 @@
                             <input type="number" name="price" value="{{ old('price',$cour->price) }}" id="price"
                                 class="form-control form-control-lg  " style="" />
                         </div>
+                        @error('price')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
@@ -104,13 +112,27 @@
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
                             <select name="id_Sj" id="id_Sj" disabled  class="custom-select">
+                                    <option value="{{ $cour->id_Sj }}" >
+                                        {{ $cour->sujet->SjName }}</option>
+                            </select>
+                        </div>
+                        @error('id_Sj')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div> 
+                    {{-- <div class="col-6 col-sm-9 d-inline  ">
+                        <div class="form-outline mb-2">
+                            <select name="id_Sj" id="id_Sj" disabled  class="custom-select">
                                 @foreach ($sujets as $sj)
                                     <option value="{{ $sj->id_Sj }}" @if (old('id_Sj') == $sj->id_Sj) selected @endif>
                                         {{ $sj->SjName }}</option>
                                 @endforeach
                             </select>
                         </div>
-                    </div> 
+                        @error('id_Sj')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>  --}}
 
                     <div class="form-group text-end mt-3">
                         <button type="submit" class="btn btn-outline-primary  gradient-custom-4 text-body"

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CourRequest;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Categorie;
@@ -40,12 +41,12 @@ class CourController extends Controller
     }
     public function create()
     {
-        dd('ggg');
+        // dd('ggg');
         $categories = Categorie::all();
         return view('management.cour.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(CourRequest $request)
     {
         $creator = Auth::id();
         $validatedData = $request->validated();
@@ -58,19 +59,20 @@ class CourController extends Controller
 
     public function edit($id)
     {
-        $cour = Cour::find($id);
+        // $cour = Cour::find($id);
+        $cour = Cour::with('sujet')->find($id);
         // $sujets= Sujet::find($cour->id_Sj); 
-        $sujets = Sujet::find($cour->id_Sj)->get();
+        // $sujets = Sujet::find($cour->id_Sj)->get();
         // dd($cour->id_Sj);
         // $sujets = Sujet::where('id_Sj', $cour->id_Sj)->get();
 
         // dd($sujets);
         // $souscategories = SousCategorie::find($sujets->id_SCat)->get();
-        $souscategories = SousCategorie::all();
+        // $souscategories = SousCategorie::all();
         // dd($souscategories);
-        $categories = Categorie::all();
+        // $categories = Categorie::all();, 'categories', 'souscategories', 'sujets'
         // $categories= Categorie::find($souscategories->id_Cat);
-        return view('management.cour.edit', compact('cour', 'categories', 'souscategories', 'sujets'));
+        return view('management.cour.edit', compact('cour'));
     }
     // public function souscat($id)
     // {
@@ -88,9 +90,9 @@ class CourController extends Controller
         ]);
         return redirect()->route('cour.index')->with('success', 'Cour updated successfully');
     }
-    public function update(Request $request, $id)
+    public function update(CourRequest $request, $id)
     {
-        
+        dd($request->all());
         $Cour = Cour::find($id);
         if (!$Cour) {
             return redirect()->route('cour.index')->with('error', 'Cour not found');
