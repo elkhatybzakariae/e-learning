@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CourRequest extends FormRequest
 {
+    
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,6 +24,7 @@ class CourRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($_REQUEST);
         return [
             'title' => 'required|string|max:100',
             'info' => 'required|string|max:100',
@@ -30,7 +32,7 @@ class CourRequest extends FormRequest
             'Prerequisites' => 'nullable|string|max:100',
             'price' => 'required|string|max:100',
             'coupon' => 'nullable|string|max:100',
-            'id_Sj' => 'required|exists:sujets,id_Sj',
+            'id_Sj' => 'required|integer|exists:sujets,id_Sj',
         ];
     }
     public function messages()

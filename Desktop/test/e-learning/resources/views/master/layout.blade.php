@@ -173,14 +173,14 @@
     </nav>
     <!-- Navbar -->
     {{-- <div class="row " style="height: 100vh;"> --}}
-    <div class="row " style="height: 100vh;margin-right: 0px;margin-left: 0px;">
+    <div class="row mb-5 " style="height: 100vh;margin-right: 0px;margin-left: 0px;">
         @if (auth()->user())
             @if (auth()->user()->roles->contains('role_name', 'formateur') ||
                     auth()->user()->roles->contains('role_name', 'moderateur'))
                 <div class="col-3 ps-0 pe-0">
                     @yield('sidebar')
                 </div>
-                <div class=" col-9 row">
+                <div class=" col-9 row ">
                     @yield('content')
                 </div>
                 {{-- @elseif(auth()->user()->roles->contains('role_name', 'client'))

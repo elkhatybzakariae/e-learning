@@ -64,15 +64,15 @@ class CourController extends Controller
         // $sujets= Sujet::find($cour->id_Sj); 
         // $sujets = Sujet::find($cour->id_Sj)->get();
         // dd($cour->id_Sj);
-        // $sujets = Sujet::where('id_Sj', $cour->id_Sj)->get();
+        $sujets = Sujet::where('id_Sj', $cour->id_Sj)->get();
 
-        // dd($sujets);
+        // dd($cour->id_Sj);
         // $souscategories = SousCategorie::find($sujets->id_SCat)->get();
         // $souscategories = SousCategorie::all();
         // dd($souscategories);
-        // $categories = Categorie::all();, 'categories', 'souscategories', 'sujets'
+        // $categories = Categorie::all();, 'categories', 'souscategories'
         // $categories= Categorie::find($souscategories->id_Cat);
-        return view('management.cour.edit', compact('cour'));
+        return view('management.cour.edit', compact('cour', 'sujets'));
     }
     // public function souscat($id)
     // {
@@ -92,7 +92,6 @@ class CourController extends Controller
     }
     public function update(CourRequest $request, $id)
     {
-        dd($request->all());
         $Cour = Cour::find($id);
         if (!$Cour) {
             return redirect()->route('cour.index')->with('error', 'Cour not found');

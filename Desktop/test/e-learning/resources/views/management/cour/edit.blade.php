@@ -14,11 +14,12 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="title" value="{{ old('title',$cour->title) }}" id="title"
+                            <input type="text" name="title" value="{{ old('title', $cour->title) }}" id="title"
                                 class="form-control form-control-lg  " style="" />
-                        </div>@error('title')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                        </div>
+                        @error('title')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
@@ -26,7 +27,7 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="info" value="{{ old('info',$cour->info) }}" id="info"
+                            <input type="text" name="info" value="{{ old('info', $cour->info) }}" id="info"
                                 class="form-control form-control-lg  " style="" />
                         </div>
                         @error('info')
@@ -39,8 +40,7 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <textarea name="description" id="description"
-                                class="form-control form-control-lg  " style="" />{{ old('description',$cour->description) }}</textarea>
+                            <textarea name="description" id="description" class="form-control form-control-lg  " style="" />{{ old('description', $cour->description) }}</textarea>
                         </div>
                     </div>
 
@@ -49,7 +49,8 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="Prerequisites" value="{{ old('Prerequisites',$cour->Prerequisites) }}" id="Prerequisites"
+                            <input type="text" name="Prerequisites"
+                                value="{{ old('Prerequisites', $cour->Prerequisites) }}" id="Prerequisites"
                                 class="form-control form-control-lg  " style="" />
                         </div>
                     </div>
@@ -60,7 +61,7 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="number" name="price" value="{{ old('price',$cour->price) }}" id="price"
+                            <input type="number" name="price" value="{{ old('price', $cour->price) }}" id="price"
                                 class="form-control form-control-lg  " style="" />
                         </div>
                         @error('price')
@@ -73,7 +74,7 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="number" name="coupon" value="{{ old('coupon',$cour->coupon) }}" id="coupon"
+                            <input type="number" name="coupon" value="{{ old('coupon', $cour->coupon) }}" id="coupon"
                                 class="form-control form-control-lg  " style="" />
                         </div>
                     </div>
@@ -104,35 +105,36 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>--}}
+                    </div> --}}
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="id_Sj" style="font-style: italic;">Sujet:</label>
                     </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
+                    {{-- <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <select name="id_Sj" id="id_Sj" disabled  class="custom-select">
-                                    <option value="{{ $cour->id_Sj }}" >
-                                        {{ $cour->sujet->SjName }}</option>
+                            <select name="id_Sj" id="id_Sj" disabled class="custom-select">
+                                <option value="{{ $cour->id_Sj }}" @if (old('id_Sj') == $cour->id_Sj) selected @endif>
+                                    {{ $cour->sujet->SjName }}</option>
                             </select>
                         </div>
                         @error('id_Sj')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div> 
-                    {{-- <div class="col-6 col-sm-9 d-inline  ">
+                    </div> --}}
+                    <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <select name="id_Sj" id="id_Sj" disabled  class="custom-select">
+                            <select name="id_Sj" id="id_Sj" class="custom-select">
                                 @foreach ($sujets as $sj)
                                     <option value="{{ $sj->id_Sj }}" @if (old('id_Sj') == $sj->id_Sj) selected @endif>
                                         {{ $sj->SjName }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        
                         @error('id_Sj')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>  --}}
+                    </div> 
 
                     <div class="form-group text-end mt-3">
                         <button type="submit" class="btn btn-outline-primary  gradient-custom-4 text-body"
@@ -144,7 +146,7 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     {{-- <script>
         $(document).ready(function() {
 
@@ -219,5 +221,8 @@
             });
         });
     </script> --}}
-    
+<script>
+    var id=document.getElementById('id_Sj').value;
+    console.log(id);
+</script>
 @endsection

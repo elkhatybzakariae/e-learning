@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
-        <div class="text center bg-white p-5 pb-3 mt-5 rounded">
+        <div class="text center bg-white p-5 pb-3 mt-5  rounded">
             <form action="{{ route('cour.store') }}" method="POST">
                 @csrf
                 <div class="form-group row ps-3 pe-3 ">
