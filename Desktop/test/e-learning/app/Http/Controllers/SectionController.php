@@ -11,25 +11,9 @@ class SectionController extends Controller
     public function index($id)
     {
         $sections = Section::where('id_C', $id)->get();
-        // $courid=$id;
         return view('management.section.index', compact('sections','id'));
     }
-    // public function coursvalider($id)
-    // {
-    //     $cours = Cour::where('id_U', $id)
-    //         ->where('valider', '1')
-    //         ->orderBy('id_C', 'desc')
-    //         ->paginate(9);
-    //     return view('management.cour.index', compact('cours'));
-    // }
-    // public function coursnonvalider($id)
-    // {
-    //     $cours = Cour::where('id_U', $id)
-    //         ->where('valider', '0')
-    //         ->orderBy('id_C', 'desc')
-    //         ->paginate(9);
-    //     return view('management.cour.index', compact('cours'));
-    // }
+    
     public function create($id)
     {
         return view('management.section.create', compact('id'));

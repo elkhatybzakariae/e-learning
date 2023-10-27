@@ -4,7 +4,7 @@
 
 @section('content')
     @if (auth()->user()->roles->contains('role_name', 'formateur'))
-        <div class="text-end p-1 pb-0 col-12">
+        <div class="text-end col-12" style="height: 60px">
             <a href="{{ route('section.create', $id) }}" class="btn btn-primary" style=" font-style: italic;"> <i
                     class="fa-regular fa-plus"></i>ajouter section</a>
         </div>
