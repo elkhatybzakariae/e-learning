@@ -1,123 +1,25 @@
 @extends('management.index')
 
-@section('title', 'add cour')
+@section('title', 'add section')
 
 @section('content')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5  rounded">
-            <form action="{{ route('cour.store') }}" method="POST">
+            <form action="{{ route('section.store',$id) }}" method="POST">
                 @csrf
-                <div class="form-group row ps-3 pe-3 ">
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="title" style="font-style: italic;">title:</label>
+                <div class="form-group row  ">
+                    <div class="col-6 col-sm-4 col-form-label d-inline">
+                        <label for="Sec_Name" style="font-style: italic;">Section Name:</label>
                     </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
+                    <div class="col-6 col-sm-8 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="title" value="{{ old('title') }}" id="title"
+                            <input type="text" name="Sec_Name" value="{{ old('Sec_Name') }}" id="Sec_Name"
                                 class="form-control form-control-lg  " style="" />
                         </div>
-                        @error('title')
+                        @error('Sec_Name')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="info" style="font-style: italic;">info:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <input type="text" name="info" value="{{ old('info') }}" id="info"
-                                class="form-control form-control-lg  " style="" />
-                        </div>
-                        @error('info')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="description" style="font-style: italic;">description:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <textarea name="description" id="description"
-                                class="form-control form-control-lg  " style="" />{{ old('description') }}</textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="Prerequisites" style="font-style: italic;">Prerequisites:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <input type="text" name="Prerequisites" value="{{ old('Prerequisites') }}" id="Prerequisites"
-                                class="form-control form-control-lg  " style="" />
-                        </div>
-                    </div>
-
-
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="price" style="font-style: italic;">price:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <input type="number" name="price" value="{{ old('price') }}" id="price"
-                                class="form-control form-control-lg  " style="" />
-                        </div>
-                        @error('price')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="coupon" style="font-style: italic;">coupon:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <input type="number" name="coupon" value="{{ old('coupon') }}" id="coupon"
-                                class="form-control form-control-lg  " style="" />
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="id_Cat" style="font-style: italic;">Categorie:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <select name="id_Cat" id="id_Cat" class="custom-select">
-                                <option selected>select Categorie</option>
-                                @foreach ($categories as $cat)
-                                    <option value="{{ $cat->id_Cat }}" @if (old('id_Cat') == $cat->id_Cat) selected @endif>
-                                        {{ $cat->CatName }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="id_SCat" style="font-style: italic;">SousCategorie:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <select name="id_SCat" id="id_SCat" class="custom-select">
-                                <option selected>select SousCategorie</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="id_Sj" style="font-style: italic;">Sujet:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <select name="id_Sj" id="id_Sj" class="custom-select">
-                                <option selected>select Sujet</option>
-                            </select>
-                        </div>
-                        @error('id_Sj')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
                     <div class="form-group text-end mt-3">
                         <button type="submit" class="btn btn-outline-primary  gradient-custom-4 text-body"
                             style="font-style: italic;">Ajouter </button>
@@ -127,7 +29,7 @@
         </div>
     </div>
 @endsection
-@section('script')
+{{-- @section('script')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -164,4 +66,4 @@
             });
         });
     </script>
-@endsection
+@endsection --}}

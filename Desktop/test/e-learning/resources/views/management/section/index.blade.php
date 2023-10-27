@@ -1,16 +1,14 @@
 @extends('management.index')
 
-@section('title', 'cours')
+@section('title', 'sections')
 
 @section('content')
     @if (auth()->user()->roles->contains('role_name', 'formateur'))
-        <div class="text-end p-1 col-12">
-            <a href="{{ route('section.create',$id) }}" class="btn btn-primary" style=" font-style: italic;"> <i
+        <div class="text-end p-1 pb-0 col-12">
+            <a href="{{ route('section.create', $id) }}" class="btn btn-primary" style=" font-style: italic;"> <i
                     class="fa-regular fa-plus"></i>ajouter section</a>
         </div>
     @endif
-
-    <hr>
     <div class="row col-12">
         {{-- @if (auth()->user()->roles->contains('role_name', 'moderateur'))
             @foreach ($cours as $cour)
@@ -34,7 +32,33 @@
             @endforeach --}}
         @if (auth()->user()->roles->contains('role_name', 'formateur'))
             @if ($sections)
-                <table>
+                <ul class="list-group">
+                    @foreach ($sections as $sec)
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ $sec->Sec_Name }}
+                            {{-- <span >
+                                <a href="{{ route('section.edit', $sec->id_Sec) }}"
+                                    class="card-link">modifier</a>
+                                <form action="{{ route('section.destroy', $sec->id_Sec) }}" method="post" >
+                                    @csrf
+                                    @method('delete')
+                                    <input type="submit" value="supprimer" class="btn btn-danger rounded"
+                                        onclick="return confirm('Are you sure you want to delete this section?')">
+                                </form>
+                            </span> --}}
+                            <span>
+                                <a href="{{ route('section.edit',['idSec' => $sec->id_Sec, 'id' => $id]) }}" class="card-link" style="display: inline-block; margin-right: 10px;">modifier</a>
+                                <form action="{{ route('section.destroy',['idSec' => $sec->id_Sec, 'id' => $id]) }}" method="post" style="display: inline-block;">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="submit" value="supprimer" class="btn btn-danger rounded" onclick="return confirm('Are you sure you want to delete this section?')">
+                                </form>
+                            </span>
+                            
+                        </li>
+                    @endforeach
+                </ul>
+                {{-- <table class="table border-dark bg-light rounded">
                     <thead>
                         <tr>
                             <th>Section Name</th>
@@ -46,6 +70,7 @@
                             <tr>
                                 <td>{{ $sec->Sec_Name }}</td>
                                 <td>
+                                    <div class="text-center row">
                                     <a href="{{ route('section.edit', $sec->id_Sec) }}" class="card-link col-6">modifier</a>
                                     <form action="{{ route('section.destroy', $sec->id_Sec) }}" method="post" class="col-6">
                                         @csrf
@@ -53,11 +78,12 @@
                                         <input type="submit" value="supprimer" class="btn btn-danger rounded"
                                             onclick="return confirm('Are you sure you want to delete this section?')">
                                     </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
-                </table>
+                </table> --}}
             @endif
         @elseif(auth()->user()->roles->contains('role_name', 'client'))
         @endif

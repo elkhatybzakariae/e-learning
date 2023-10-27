@@ -92,8 +92,8 @@ Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
 Route::group(['prefix' => 'section','middleware' => 'authen'], function () {
     Route::get('/create/{id}', [SectionController::class, 'create'])->name('section.create');
     Route::get('/{id}', [SectionController::class, 'index'])->name('section.index');
-    Route::post('/store', [SectionController::class, 'store'])->name('section.store');
-    Route::get('/edit/{id}', [SectionController::class, 'edit'])->name('section.edit');
-    Route::put('/update/{id}', [SectionController::class, 'update'])->name('section.update');
-    Route::delete('/destroy/{id}', [SectionController::class, 'destroy'])->name('section.destroy');
+    Route::post('/store/{id}', [SectionController::class, 'store'])->name('section.store');
+    Route::get('/edit/{idSec}/{id}', [SectionController::class, 'edit'])->name('section.edit');
+    Route::put('/update/{idSec}/{id}', [SectionController::class, 'update'])->name('section.update');
+    Route::delete('/destroy/{idSec}/{id}', [SectionController::class, 'destroy'])->name('section.destroy');
 });
