@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CourController;
 use App\Http\Controllers\Home;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SousCategorieController;
 use App\Http\Controllers\SujetController;
 use Illuminate\Support\Facades\Route;
@@ -85,4 +86,14 @@ Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
     // Route::get('/souscat/{id}', [CourController::class, 'souscat'])->name('cour.souscat');
     Route::put('/update/{id}', [CourController::class, 'update'])->name('cour.update');
     Route::delete('/destroy/{id}', [CourController::class, 'destroy'])->name('cour.destroy');
+});
+
+
+Route::group(['prefix' => 'section','middleware' => 'authen'], function () {
+    Route::get('/create/{id}', [SectionController::class, 'create'])->name('section.create');
+    Route::get('/{id}', [SectionController::class, 'index'])->name('section.index');
+    Route::post('/store', [SectionController::class, 'store'])->name('section.store');
+    Route::get('/edit/{id}', [SectionController::class, 'edit'])->name('section.edit');
+    Route::put('/update/{id}', [SectionController::class, 'update'])->name('section.update');
+    Route::delete('/destroy/{id}', [SectionController::class, 'destroy'])->name('section.destroy');
 });

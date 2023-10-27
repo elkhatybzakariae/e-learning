@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('lastmodi')->nullable();
             $table->integer('coupon')->nullable();
             $table->boolean('valider')->default(false);
+            $table->boolean('terminer')->default(false);
             // $table->boolean('valider')->default(false);
             $table->unsignedBigInteger('id_U');
             $table->foreign('id_U')->references('id_U')->on('users');

@@ -9,7 +9,7 @@
                     class="fa-regular fa-plus"></i>ajouter cour</a>
         </div>
     @endif
-    
+
     <hr>
     <div class="row col-12">
         @if (auth()->user()->roles->contains('role_name', 'moderateur'))
@@ -37,7 +37,9 @@
             @foreach ($cours as $cour)
                 <div class="card mb-1  mr-1" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $cour->title }}</h5>
+                        <a href="{{ route('section.index',$cour->id_C) }}">
+                            <h5 class="card-title">{{ $cour->title }}</h5>
+                        </a>
                         <p class="card-text">{{ $cour->info }}</p>
                         <p class="card-text">{{ $cour->Prerequisites }}</p>
                         <p class="card-text">{{ $cour->price }}</p>

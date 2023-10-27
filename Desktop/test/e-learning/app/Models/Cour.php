@@ -25,8 +25,11 @@ class Cour extends Model
         'id_U',
         'id_Sj',
     ];
-    public function user(){
-        return $this->hasMany(User::class);
+    // public function user(){
+    //     return $this->hasMany(User::class);
+    // }
+    public function section(){
+        return $this->hasMany(Section::class);
     }
     public function sujet(){
         return $this->belongsTo(Sujet::class, 'id_Sj');

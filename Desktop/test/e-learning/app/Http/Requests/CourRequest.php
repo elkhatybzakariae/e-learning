@@ -24,7 +24,6 @@ class CourRequest extends FormRequest
      */
     public function rules()
     {
-        // dd($_REQUEST);
         return [
             'title' => 'required|string|max:100',
             'info' => 'required|string|max:100',
