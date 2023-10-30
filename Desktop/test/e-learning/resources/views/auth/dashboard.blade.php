@@ -13,7 +13,7 @@
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('storage/images/logo.png') }}" alt="">
                 </div>
-                <div class="sidebar-brand-text mx-3">E-Learning</div>
+                <div class="sidebar-brand-text mx-2">E-Learning</div>
             </a>
 
             <!-- Divider -->

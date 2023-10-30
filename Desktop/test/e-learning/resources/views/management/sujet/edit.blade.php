@@ -1,6 +1,6 @@
 @extends('auth.dashboard')
 
-@section('title', 'add category')
+@section('title', 'edit sujet')
 
 @section('container-fluid')
     <div class="container ms-2 d-flex justify-content-center align-items-center">

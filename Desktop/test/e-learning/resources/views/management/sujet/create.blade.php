@@ -66,24 +66,20 @@
     </div>
 @endsection
 @section('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
     $('#id_Cat').on('change', function() {
-        var categoryId = $(this).val(); // Get the selected category ID
+        var categoryId = $(this).val();
         if (categoryId) {
-            // Clear the subcategory dropdown
             $('#id_SCat').empty();
             $('#id_SCat').append('<option selected>select SousCategorie</option>');
 
-            // Filter and populate the subcategory dropdown based on the selected category
             $.each(souscategories, function(index, souscat) {
                 if (souscat.id_Cat == categoryId) {
                     $('#id_SCat').append('<option value="' + souscat.id_SCat + '">' + souscat.SCatName + '</option>');
                 }
             });
         } else {
-            // Clear the subcategory dropdown if no category is selected
             $('#id_SCat').empty();
             $('#id_SCat').append('<option selected>select SousCategorie</option>');
         }

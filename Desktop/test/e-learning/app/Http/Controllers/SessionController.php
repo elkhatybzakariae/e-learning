@@ -33,7 +33,6 @@ class SessionController extends Controller
     {
         $id = Auth::id();
         $validatedData = $request->validated();
-        // $validatedData['id_C'] = $id;
         Session::create($validatedData);
         return redirect()->route('session.index', compact('id'))->with('success', 'session created successfully');
     }

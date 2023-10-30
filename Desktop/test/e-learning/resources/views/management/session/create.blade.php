@@ -60,24 +60,20 @@
     </div>
 @endsection
 @section('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
     $('#id_C').on('change', function() {
-        var courId = $(this).val(); // Get the selected category ID
+        var courId = $(this).val(); 
         if (courId) {
-            // Clear the subcategory dropdown
             $('#id_Sec').empty();
             $('#id_Sec').append('<option selected>select Session</option>');
 
-            // Filter and populate the subcategory dropdown based on the selected category
             $.each(sections, function(index, section) {
                 if (section.id_C == courId) {
                     $('#id_Sec').append('<option value="' + section.id_Sec + '">' + section.Sec_Name + '</option>');
                 }
             });
         } else {
-            // Clear the subcategory dropdown if no category is selected
             $('#id_Sec').empty();
             $('#id_Sec').append('<option selected>select Session</option>');
         }

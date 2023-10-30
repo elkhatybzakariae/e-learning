@@ -121,13 +121,6 @@
                                             </button>
                                             <div class="dropdown-menu animated--fade-in"
                                                 aria-labelledby="dropdownMenuButton">
-                                                {{-- <a href="{{ route('section.index', $cour->id_C) }}"
-                                                     class="btn btn-info btn-icon-split ml-4">
-                                                    <span class="icon text-white-50">
-                                                        <i class="fas fa-info-circle"></i>
-                                                    </span>
-                                                    <span class="text">Cour Info</span>
-                                                </a> --}}
                                                 <a href="{{ route('cour.edit', $cour->id_C) }}"
                                                     class="btn btn-warning btn-icon-split ml-4 ">
                                                     <span class="icon text-white-50">
