@@ -153,27 +153,49 @@
                         Pro!</a>
                 </div> --}}
             @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
-             <!-- Heading -->
-             <div class="sidebar-heading">
-                gestion des cours
-            </div>
-
-            <!-- Nav Item  -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecours"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fa-solid fa-paste"></i>
-                    <span>cours</span>
-                </a>
-                <div id="collapsecours" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                        <a class="collapse-item" href="{{ route('cour.create') }}">Ajouter cour</a>
-                        <a class="collapse-item" href="{{ route('cour.index', auth()->user()->id_U) }}">Table cours</a>
-                    </div>
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    gestion des cours
                 </div>
-            </li>
+
+                <!-- Nav Item  -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecours"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-solid fa-paste"></i>
+                        <span>cours</span>
+                    </a>
+                    <div id="collapsecours" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+
+                            <a class="collapse-item" href="{{ route('cour.create') }}">Ajouter cour</a>
+                            <a class="collapse-item" href="{{ route('cour.index', auth()->user()->id_U) }}">Table cours</a>
+                            <a class="collapse-item" href="{{ route('cour.coursvalider', auth()->user()->id_U) }}">
+                                Table cours valider<i class="fa-solid fa-check ml-1"></i>
+                            </a>
+                            <a class="collapse-item" href="{{ route('cour.coursnonvalider', auth()->user()->id_U) }}">
+                                Table cours non valider<i class="fa-solid fa-xmark ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                {{-- <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesections"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-solid fa-paste"></i>
+                        <span>sections</span>
+                    </a>
+                    <div id="collapsesections" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+
+                            {{-- <a class="collapse-item" href="{{ route('section.create') }}">Ajouter section</a>
+                            <a class="collapse-item" href="{{ route('cour.index', auth()->user()->id_U) }}">Table sections</a>
+                        </div>
+                    </div>
+                </li> --}}
             @endif
         </ul>
         {{-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -319,8 +341,8 @@
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small"
+                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -849,7 +871,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; E-Learning {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>

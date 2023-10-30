@@ -4,7 +4,7 @@
 @section('container-fluid')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-2 text-gray-800">Sujets</h1>
+        <h1 class="h3 mb-2 text-gray-800">Cours</h1>
         @if (auth()->user()->roles->contains('role_name', 'formateur'))
             <a href="{{ route('cour.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fa-regular fa-plus"></i> Ajouter Cour</a>
@@ -23,6 +23,8 @@
                             <th>Prerequisites</th>
                             <th>price</th>
                             <th>coupon</th>
+                            <th>valider</th>
+                            <th>terminer</th>
                             <th>Sujet</th>
                             <th>SousCategorie</th>
                             <th>Categorie</th>
@@ -37,6 +39,8 @@
                             <th>Prerequisites</th>
                             <th>price</th>
                             <th>coupon</th>
+                            <th>valider</th>
+                            <th>terminer</th>
                             <th>Sujet</th>
                             <th>SousCategorie</th>
                             <th>Categorie</th>
@@ -53,7 +57,8 @@
                                     <td>{{ $cour->Prerequisites }}</td>
                                     <td>{{ $cour->price }}</td>
                                     <td>{{ $cour->coupon }}</td>
-                                    <td>{{ $cour->valider }}</td>
+                                    <td>{{ $cour->valider ? "Oui" : "No"; }}</td>
+                                    <td>{{ $cour->terminer ? "Oui" : "No"; }}</td>
                                     <td>{{ $cour->sujet->SjName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->SCatName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
@@ -102,6 +107,8 @@
                                     <td>{{ $cour->Prerequisites }}</td>
                                     <td>{{ $cour->price }}</td>
                                     <td>{{ $cour->coupon }}</td>
+                                    <td>{{ $cour->valider ? "Oui" : "No"; }}</td>
+                                    <td>{{ $cour->terminer ? "Oui" : "No"; }}</td>
                                     <td>{{ $cour->sujet->SjName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->SCatName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
@@ -114,6 +121,12 @@
                                             </button>
                                             <div class="dropdown-menu animated--fade-in"
                                                 aria-labelledby="dropdownMenuButton">
+                                                <a href="{{ route('section.index', $cour->id_C) }}" class="btn btn-info btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-info-circle"></i>
+                                                    </span>
+                                                    <span class="text">Cour Info</span>
+                                                </a>
                                                 <a href="{{ route('cour.edit', $cour->id_C) }}"
                                                     class="btn btn-warning btn-icon-split ">
                                                     <span class="icon text-white-50">

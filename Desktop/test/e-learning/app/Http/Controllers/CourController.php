@@ -28,7 +28,7 @@ class CourController extends Controller
         $cours = Cour::where('id_U', $id)
             ->where('valider', '1')
             ->orderBy('id_C', 'desc')
-            ->paginate(9);
+            ->get();
         return view('management.cour.index', compact('cours'));
     }
     public function coursnonvalider($id)
@@ -36,7 +36,7 @@ class CourController extends Controller
         $cours = Cour::where('id_U', $id)
             ->where('valider', '0')
             ->orderBy('id_C', 'desc')
-            ->paginate(9);
+            ->get();
         return view('management.cour.index', compact('cours'));
     }
     public function create()
