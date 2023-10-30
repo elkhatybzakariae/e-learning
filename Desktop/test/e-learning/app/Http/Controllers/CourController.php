@@ -16,10 +16,10 @@ class CourController extends Controller
     public function index($id = null)
     {
         if ($id === null) {
-            $cours = Cour::where('valider', '0')->orderBy('id_C', 'desc')->paginate(9);
+            $cours = Cour::where('valider', '0')->orderBy('id_C', 'desc')->get();
             return view('management.cour.index', compact('cours'));
         } else {
-            $cours = Cour::where('id_U', $id)->orderBy('id_C', 'desc')->paginate(9);
+            $cours = Cour::where('id_U', $id)->orderBy('id_C', 'desc')->get();
             return view('management.cour.index', compact('cours'));
         }
     }

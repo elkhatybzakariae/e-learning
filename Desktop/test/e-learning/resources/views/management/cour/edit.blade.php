@@ -1,8 +1,8 @@
-@extends('management.index')
+@extends('auth.dashboard')
 
 @section('title', 'modify category')
+@section('container-fluid')
 
-@section('content')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5 rounded mb-5">
             <form action="{{ route('cour.update', $cour->id_C) }}" method="POST">

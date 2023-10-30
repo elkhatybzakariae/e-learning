@@ -64,7 +64,12 @@
     <!-- End of Page Wrapper -->
     
 </body>
-
+<script>
+    
+    var categories = @json($categories);
+    var souscategories = @json($souscategories);
+    var sujets = @json($sujets);
+</script>
 <!-- Bootstrap core JavaScript-->
 <script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>
 <script src=" {{ asset('storage/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

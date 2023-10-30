@@ -71,30 +71,4 @@
             </div>
         </div>
     </div>
-    {{-- <div class="text-end p-1 col-12">
-            <a href="{{ route('categorie.create') }}"class="btn btn-primary" style=" font-style: italic;"> <i
-                    class="fa-regular fa-plus"></i>ajouter categorie</a>
-
-        </div>
-        <hr>
-        <div class="row col-12">
-            @foreach ($categories as $cat)
-                <div class="card mb-1  mr-1" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $cat->CatName }}</h5>
-                    </div>
-                    <div class="card-footer text-center row">
-                        {{-- <a href="{{route('categorie.souscat',$cat->id_Cat)}}" class="card-link col-6">sous categories</a> 
-                        <a href="{{ route('categorie.edit', $cat->id_Cat) }}" class="card-link col-6">modifier</a>
-                        <form action="{{ route('categorie.destroy', $cat->id_Cat) }}" method="post" class="col-6">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" value="supprimer" class="btn btn-danger rounded"
-                                onclick="return confirm('Are you sure you want to delete this card?')">
-                        </form>
-                    </div>
-                </div>
-            @endforeach
-        </div> --}}
-
 @endsection

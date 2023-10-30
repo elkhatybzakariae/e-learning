@@ -12,7 +12,7 @@ class SujetController extends Controller
 {
     public function index(){
         // $sujets = Sujet::latest()->paginate(9); 
-        $sujets = Sujet::orderBy('id_Sj', 'desc')->paginate(9);
+        $sujets = Sujet::orderBy('id_Sj', 'desc')->get();
         return view('management.sujet.index', compact('sujets'));
     }
 

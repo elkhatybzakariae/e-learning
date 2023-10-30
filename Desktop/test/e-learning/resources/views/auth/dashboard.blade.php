@@ -18,17 +18,17 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
             @if (auth()->user()->roles->contains('role_name', 'moderateur'))
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span></a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
                 <!-- Heading -->
                 <div class="sidebar-heading">
                     e-learning management
@@ -58,7 +58,7 @@
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="#">Ajouter souscategorie</a>
+                            <a class="collapse-item" href="{{ route('souscategorie.create') }}">Ajouter souscategorie</a>
                             <a class="collapse-item" href="{{ route('souscategorie.index') }}">Table souscategorie</a>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                     <div id="collapsesujets" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="#">Ajouter sujet</a>
+                            <a class="collapse-item" href="{{ route('sujet.create') }}">Ajouter sujet</a>
                             <a class="collapse-item" href="{{ route('sujet.index') }}">Table sujets</a>
                         </div>
                     </div>
@@ -88,7 +88,6 @@
                     <div id="collapsecours" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="#">Ajouter cour</a>
                             <a class="collapse-item" href="{{ route('cour.index') }}">Table cours</a>
                         </div>
                     </div>
@@ -153,9 +152,30 @@
                     <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
                         Pro!</a>
                 </div> --}}
+            @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
+             <!-- Heading -->
+             <div class="sidebar-heading">
+                gestion des cours
+            </div>
 
+            <!-- Nav Item  -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecours"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fa-solid fa-paste"></i>
+                    <span>cours</span>
+                </a>
+                <div id="collapsecours" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="{{ route('cour.create') }}">Ajouter cour</a>
+                        <a class="collapse-item" href="{{ route('cour.index', auth()->user()->id_U) }}">Table cours</a>
+                    </div>
+                </div>
+            </li>
+            @endif
         </ul>
-        @endif
         {{-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->

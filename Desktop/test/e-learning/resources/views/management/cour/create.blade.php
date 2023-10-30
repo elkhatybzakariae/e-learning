@@ -1,8 +1,7 @@
-@extends('management.index')
-
+@extends('auth.dashboard')
 @section('title', 'add cour')
+@section('container-fluid')
 
-@section('content')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5  rounded">
             <form action="{{ route('cour.store') }}" method="POST">
@@ -128,10 +127,8 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-
             $('#id_Cat').on('change', function() {
                 var categoryId = $(this).val(); // Get the selected category ID
                 if (categoryId) {

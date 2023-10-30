@@ -16,7 +16,7 @@ class Sujet extends Model
         'SjName','id_SCat'
     ];
     public function souscategorie(){
-        return $this->belongsTo(SousCategorie::class);
+        return $this->belongsTo(SousCategorie::class,'id_SCat');
     }
     public function cours(){
         return $this->hasMany(Cour::class);

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class SousCategorieController extends Controller
 {
     public function index(){
-        $souscategories = SousCategorie::orderBy('id_SCat', 'desc')->paginate(9); 
+        $souscategories = SousCategorie::orderBy('id_SCat', 'desc')->get(); 
         return view('management.souscategorie.index', compact('souscategories'));
     }
 
