@@ -1,15 +1,83 @@
-@extends('management.index')
+@extends('auth.dashboard')
 
 @section('title', 'sections')
+@section('container-fluid')
 
-@section('content')
-    @if (auth()->user()->roles->contains('role_name', 'formateur'))
-        <div class="text-end col-12" style="height: 60px">
-            <a href="{{ route('section.create', $id) }}" class="btn btn-primary" style=" font-style: italic;"> <i
-                    class="fa-regular fa-plus"></i>ajouter section</a>
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-2 text-gray-800">Sections</h1>
+        {{-- @if (auth()->user()->roles->contains('role_name', 'formateur')) --}}
+            <a href="{{ route('section.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fa-regular fa-plus"></i> Ajouter Section</a>
+        {{-- @endif --}}
+    </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Cour</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Cour</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach ($sections as $sec)
+                            <tr>
+                                <td>{{ $sec->Sec_Name }}</td>
+                                <td>{{ $sec->cour->title }}</td>
+                                <td class="d-flex justify-content-center">
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Actions
+                                        </button>
+                                        <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                                            <a href="{{ route('section.edit',$sec->id_Sec) }}"
+                                                class="btn btn-warning btn-icon-split ">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                </span>
+                                                <span class="text">modifier</span>
+                                            </a>
+                                            <div class="dropdown-item">
+                                                <form action="{{ route('section.destroy',$sec->id_Sec) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-danger btn-icon-split"
+                                                        onclick="return confirm('Are you sure you want to delete this card?')">
+                                                        {{-- <i class="fas fa-trash"></i>class="btn btn-danger btn-circle" --}}
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-trash"></i>
+                                                        </span>
+                                                        <span class="text">supprimer</span>
+
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    @endif
-    <div class="row col-12">
+    </div>
+
+    {{-- <div class="row col-12">
         {{-- @if (auth()->user()->roles->contains('role_name', 'moderateur'))
             @foreach ($cours as $cour)
                 <div class="card mb-1  mr-1" style="width: 18rem;">
@@ -30,34 +98,8 @@
             </div>
             </div>
             @endforeach --}}
-        @if (auth()->user()->roles->contains('role_name', 'formateur'))
-            @if ($sections)
-                <ul class="list-group">
-                    @foreach ($sections as $sec)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            {{ $sec->Sec_Name }}
-                            {{-- <span >
-                                <a href="{{ route('section.edit', $sec->id_Sec) }}"
-                                    class="card-link">modifier</a>
-                                <form action="{{ route('section.destroy', $sec->id_Sec) }}" method="post" >
-                                    @csrf
-                                    @method('delete')
-                                    <input type="submit" value="supprimer" class="btn btn-danger rounded"
-                                        onclick="return confirm('Are you sure you want to delete this section?')">
-                                </form>
-                            </span> --}}
-                            <span>
-                                <a href="{{ route('section.edit',['idSec' => $sec->id_Sec, 'id' => $id]) }}" class="card-link" style="display: inline-block; margin-right: 10px;">modifier</a>
-                                <form action="{{ route('section.destroy',['idSec' => $sec->id_Sec, 'id' => $id]) }}" method="post" style="display: inline-block;">
-                                    @csrf
-                                    @method('delete')
-                                    <input type="submit" value="supprimer" class="btn btn-danger rounded" onclick="return confirm('Are you sure you want to delete this section?')">
-                                </form>
-                            </span>
-                            
-                        </li>
-                    @endforeach
-                </ul>
+        {{-- @if (auth()->user()->roles->contains('role_name', 'formateur')) --}}
+              
                 {{-- <table class="table border-dark bg-light rounded">
                     <thead>
                         <tr>
@@ -83,28 +125,9 @@
                             </tr>
                         @endforeach
                     </tbody>
-                </table> --}}
+                </table> 
             @endif
         @elseif(auth()->user()->roles->contains('role_name', 'client'))
         @endif
-    </div>
-    {{-- <div class="col-12 text-center">
-        <ul style="list-style: none; display: flex; justify-content: center; padding: 0;">
-            @if ($cours->onFirstPage())
-                <li style="margin-right: 10px;">&laquo;</li>
-            @else
-                <li style="margin-right: 10px;"><a href="{{ $cours->previousPageUrl() }}">&laquo;</a></li>
-            @endif
-
-            @foreach ($cours as $cour)
-                <li style="margin-right: 10px;"><a href="{{ $cour->url }}">{{ $cour->name }}</a></li>
-            @endforeach
-
-            @if ($cours->hasMorePages())
-                <li><a href="{{ $cours->nextPageUrl() }}">&raquo;</a></li>
-            @else
-                <li>&raquo;</li>
-            @endif
-        </ul>
     </div> --}}
 @endsection

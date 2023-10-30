@@ -69,6 +69,7 @@
     var categories = @json($categories);
     var souscategories = @json($souscategories);
     var sujets = @json($sujets);
+    var sections = @json($sections);
 </script>
 <!-- Bootstrap core JavaScript-->
 <script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>

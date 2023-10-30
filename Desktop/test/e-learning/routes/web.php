@@ -5,6 +5,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CourController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SousCategorieController;
 use App\Http\Controllers\SujetController;
 use Illuminate\Support\Facades\Route;
@@ -90,10 +91,19 @@ Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
 
 
 Route::group(['prefix' => 'section','middleware' => 'authen'], function () {
-    Route::get('/create/{id}', [SectionController::class, 'create'])->name('section.create');
+    Route::get('/create', [SectionController::class, 'create'])->name('section.create');
     Route::get('/{id}', [SectionController::class, 'index'])->name('section.index');
-    Route::post('/store/{id}', [SectionController::class, 'store'])->name('section.store');
-    Route::get('/edit/{idSec}/{id}', [SectionController::class, 'edit'])->name('section.edit');
-    Route::put('/update/{idSec}/{id}', [SectionController::class, 'update'])->name('section.update');
-    Route::delete('/destroy/{idSec}/{id}', [SectionController::class, 'destroy'])->name('section.destroy');
+    Route::post('/store', [SectionController::class, 'store'])->name('section.store');
+    Route::get('/edit/{id}', [SectionController::class, 'edit'])->name('section.edit');
+    Route::put('/update/{id}', [SectionController::class, 'update'])->name('section.update');
+    Route::delete('/destroy/{id}', [SectionController::class, 'destroy'])->name('section.destroy');
+});
+
+Route::group(['prefix' => 'session','middleware' => 'authen'], function () {
+    Route::get('/create', [SessionController::class, 'create'])->name('session.create');
+    Route::get('/{id}', [SessionController::class, 'index'])->name('session.index');
+    Route::post('/store', [SessionController::class, 'store'])->name('session.store');
+    Route::get('/edit/{id}', [SessionController::class, 'edit'])->name('session.edit');
+    Route::put('/update/{id}', [SessionController::class, 'update'])->name('session.update');
+    Route::delete('/destroy/{id}', [SessionController::class, 'destroy'])->name('session.destroy');
 });

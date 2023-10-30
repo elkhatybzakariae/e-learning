@@ -43,7 +43,7 @@
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('categorie.create') }}">Ajouter Categorie</a>
+                            {{-- <a class="collapse-item" href="{{ route('categorie.create') }}">Ajouter Categorie</a> --}}
                             <a class="collapse-item" href="{{ route('categorie.index') }}">Table Categories</a>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('souscategorie.create') }}">Ajouter souscategorie</a>
+                            {{-- <a class="collapse-item" href="{{ route('souscategorie.create') }}">Ajouter souscategorie</a> --}}
                             <a class="collapse-item" href="{{ route('souscategorie.index') }}">Table souscategorie</a>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                     <div id="collapsesujets" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('sujet.create') }}">Ajouter sujet</a>
+                            {{-- <a class="collapse-item" href="{{ route('sujet.create') }}">Ajouter sujet</a> --}}
                             <a class="collapse-item" href="{{ route('sujet.index') }}">Table sujets</a>
                         </div>
                     </div>
@@ -169,7 +169,7 @@
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
 
-                            <a class="collapse-item" href="{{ route('cour.create') }}">Ajouter cour</a>
+                            {{-- <a class="collapse-item" href="{{ route('cour.create') }}">Ajouter cour</a> --}}
                             <a class="collapse-item" href="{{ route('cour.index', auth()->user()->id_U) }}">Table cours</a>
                             <a class="collapse-item" href="{{ route('cour.coursvalider', auth()->user()->id_U) }}">
                                 Table cours valider<i class="fa-solid fa-check ml-1"></i>
@@ -181,7 +181,7 @@
                     </div>
                 </li>
 
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesections"
                         aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fa-solid fa-paste"></i>
@@ -191,8 +191,48 @@
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
 
-                            {{-- <a class="collapse-item" href="{{ route('section.create') }}">Ajouter section</a>
-                            <a class="collapse-item" href="{{ route('cour.index', auth()->user()->id_U) }}">Table sections</a>
+                            {{-- <a class="collapse-item" href="{{ route('section.create') }}">Ajouter section</a> --}}
+                            <a class="collapse-item" href="{{ route('section.index', auth()->user()->id_U) }}">Table sections</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesessions"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-solid fa-paste"></i>
+                        <span>sessions</span>
+                    </a>
+                    <div id="collapsesessions" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('session.index', auth()->user()->id_U) }}">Table sessions</a>
+                        </div>
+                    </div>
+                </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsevideos"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-solid fa-paste"></i>
+                        <span>videos</span>
+                    </a>
+                    <div id="collapsevideos" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('video.index', auth()->user()->id_U) }}">Table videos</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemedia"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-solid fa-paste"></i>
+                        <span>media</span>
+                    </a>
+                    <div id="collapsemedia" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('media.index', auth()->user()->id_U) }}">Table media</a>
                         </div>
                     </div>
                 </li> --}}
