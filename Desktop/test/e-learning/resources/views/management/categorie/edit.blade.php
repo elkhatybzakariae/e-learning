@@ -1,8 +1,8 @@
-@extends('management.index')
+@extends('auth.dashboard')
 
 @section('title', 'edit category')
 
-@section('content')
+@section('container-fluid')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5 rounded">
             <form action="{{ route('categorie.update', $categorie->id_Cat) }}" method="POST">

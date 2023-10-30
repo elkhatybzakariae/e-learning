@@ -33,13 +33,8 @@ class UserController extends Controller
     public function handleGoogleCallback()
     {
         $googleUser = Socialite::driver('google')->user();
-
-        // Check if the user with this email already exists in your database
         $user = User::where('Email', $googleUser->email)->first();
-
-        // dd($fruits);
         if ($user) {
-            // If the user exists, log them in
             Auth::login($user);
         } else {
             $fullname = explode(" ", $googleUser['name']);
@@ -57,7 +52,6 @@ class UserController extends Controller
             Auth::login($newUser);
         }
 
-        // Redirect the user to their dashboard or some other page
         return redirect()->route('dashboard');
     }
 
