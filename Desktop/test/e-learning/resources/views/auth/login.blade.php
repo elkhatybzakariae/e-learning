@@ -1,96 +1,118 @@
-@extends('master.layout')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('title', 'login')
+<head>
 
-@section('authentification')
-    <section>
-        <div class="container">
-            {{-- <div class="row">
-                <div class="col-12 d-flex justify-content-end align-items-center mt-1  pe-5">
-                    <div class="d-inline pe-1 me-1">
-                        <a class="link-offset-2 link-underline link-underline-opacity-0" style="font-style: italic;">You
-                            dont't
-                            have an account ?</a>
-                    </div>
-                    <div class="d-inline mt-1 ">
-                        <a href="{{ route('registerpage') }}" class="d-inline text-decoration-none ">
-                            <button type="button" class="btn btn-outline-primary" style="font-style: italic;">Sign
-                                up</button>
-                        </a>
-                    </div>
-                </div>
-            </div> --}}
-            <div class="row pt-2 ">
-                <div class="col-12 col-md-6">
-                    <img src="{{ asset('storage/images/e-learning1.jpg') }}" class="img-fluid">
-                </div>
-                <div class="col-12 col-md-6 bg-white ">
-                    <div class="col-12">
-                        <h2 class="text-uppercase text-center mb-3"
-                            style="font-size: 1.5rem; color: #007BFF; font-weight: bold; font-style: italic;">
-                            Welcome back
-                        </h2>
-                    </div>
-                    <div class="col-12">
-                        <form action="{{ route('login') }}" method="POST">
-                            @csrf
-                            <div class="form-group row mt-5">
-                                <label for="form3Example3cg" class="col-sm-2 col-form-label"
-                                    style="font-style: italic;">Email:</label>
-                                <div class="col-sm-10">
-                                    <div class="form-outline mb-3">
-                                        <input type="email" name="Email" id="form3Example3cg"
-                                            class="form-control form-control-lg" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin 2 - Login</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ asset('storage/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ asset('storage/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <style>
+        .bg-login-image {
+            background: url("{{ asset('storage/img/e-learning.jpg') }}");
+            background-position: end;
+            background-size: cover;
+        }
+
+        .btn-github {
+            color: #fff;
+            background-color: #333;
+            border-color: #fff;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div>
+                                    <form class="user" action="{{ route('login') }}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <input type="email" name="Email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="Password"
+                                                class="form-control form-control-user" id="exampleInputPassword"
+                                                placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Login
+                                        </button>
+
+                                        <hr>
+                                        <a href="{{ route('google') }}" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a>
+                                        <a href="{{ route('github') }}" class="btn btn-github btn-user btn-block">
+                                            <i class="fab fa-github fa-fw"></i> Login with Github
+                                        </a>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="{{ route('registerpage') }}">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="form3Example4cg" class="col-sm-2 col-form-label"
-                                    style="font-style: italic;">Password:</label>
-                                <div class="col-sm-10">
-                                    <div class="form-outline mb-3">
-                                        <input type="password" name="Password" id="form3Example4cg"
-                                            class="form-control form-control-lg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <button type="submit"
-                                    class="btn btn-outline-primary btn-block btn-lg gradient-custom-4 text-body"
-                                    style="font-style: italic;">Sign in</button>
-                            </div>
-                            <hr class="my-4">
-                            {{-- <div class="d-flex justify-content-center">
-                                <button class="btn btn-lg btn-block btn-primary"
-                                    style="background-color: #0c329a; font-style: italic;" type="submit">
-                                    <i
-                                        class="fab fa-google me-2"></i><a href="{{route('google')}}"> Sign in with google </a> </button>
-
-                            </div> --}}
-                            <div class="d-flex justify-content-center row">
-                                <button class="btn btn-lg btn-block btn-primary col-12"
-                                    style="background-color: #0c329a; font-style: italic;" type="submit"><i
-                                        class="fab fa-google me-2"></i><a href="{{ route('google') }}"> Sign up with
-                                        google</a></button>
-                                <button class="btn btn-lg btn-block btn-dark col-12"
-                                    style="text-color:white;font-style: italic;" type="submit"><i
-                                        class="fa-brands fa-github"></i>
-                                    <a href="{{ route('github') }}"> Sign up with
-                                        github</a></button>
-                            </div>
-                            {{-- <hr class="my-4">
-                        <p class="text-center text-muted mt-3 mb-0" style="font-style: italic;">Have already an account?
-                            <a href="#!" class="fw-bold text-body"><u>Login here</u></a>
-                        </p> --}}
-
-                            <hr class="my-2">
-                            <p class="text-center text-muted mt-2 pb-0" style="font-style: italic;">Create an account?
-                                <a href="{{ route('registerpage') }}" class="fw-bold text-body"><u>register here</u></a>
-                            </p>
-                        </form>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
-    </section>
-@endsection
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>
+    <script src=" {{ asset('storage/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src=" {{ asset('storage/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src=" {{ asset('storage/js/sb-admin-2.min.js') }}"></script>
+
+</body>
+
+</html>

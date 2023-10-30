@@ -150,8 +150,8 @@ class UserController extends Controller
             'FirstName' => 'required|string|max:50',
             'LastName' => 'required|string|max:50',
             'Email' => 'required|email|max:50',
-            'type' => 'required',
-            'Phone' => 'required|string|max:50',
+            // 'type' => 'required',
+            // 'Phone' => 'required|string|max:50',
             'Password' => 'required|string|min:8',
             'Confirm_password' => 'required|string|min:8',
         ]);
@@ -160,7 +160,7 @@ class UserController extends Controller
                 'FirstName' => $validation['FirstName'],
                 'LastName' => $validation['LastName'],
                 'Email' => $validation['Email'],
-                'Phone' => $validation['Phone'],
+                // 'Phone' => $validation['Phone'],
                 'Password' => Hash::make($validation['Password']),
             ]);
             $typeuser = Role_User::create([

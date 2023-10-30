@@ -1,159 +1,116 @@
-@extends('master.layout')
-@section('title', 'Register')
-@section('authentification')
-    <section class="">
-        <div class="container ">
-            {{-- <div class="row">
-                <div class="col-12 d-flex justify-content-end align-items-center mt-1  pe-5">
-                    <div class="d-inline pe-1 me-1">
-                        <a class="link-offset-2 link-underline link-underline-opacity-0" style="font-style: italic;">Already
-                            have an account ?</a>
-                    </div>
-                    <div class="d-inline mt-1 ">
-                        <a href="{{ route('loginpage') }}" class="d-inline text-decoration-none ">
-                            <button type="button" class="btn btn-outline-primary" style="font-style: italic;">Sign
-                                in</button>
-                        </a>
-                    </div>
-                </div>
-            </div> --}}
-            <div class="row  pt-2 d-flex">
-                <div class="col-12 col-md-6  flex-fill">
-                    <img src="{{ asset('storage/images/e-learning1.jpg') }}" class="img-fluid">
-                </div>
-                <div class="col-12 col-md-6 bg-white flex-fill ">
-                    <div class="col-12">
-                        <h2 class="text-uppercase text-center mb-3"
-                            style="font-size: 1.5rem; color:#0c329a; font-weight: bold; font-style: italic;">
-                            Welcome to our website
-                        </h2>
-                    </div>
-                    <div class="pt-3">
-                        <form action="{{ route('register') }}" method="POST">
-                            @csrf
-                            <div class="form-group row ps-5 pe-5 ">
-                                <div class="col-6 col-sm-3 col-form-label d-inline">
-                                    <label for="form3Example1cg" style="font-style: italic;">First Name:</label>
-                                </div>
-                                <div class="col-6 col-sm-9 d-inline  ">
-                                    <div class="form-outline mb-2">
-                                        <input type="text" name="FirstName" id="form3Example1cg"
-                                            class="form-control form-control-lg  " style="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row ps-5 pe-5">
-                                <div class="col-6 col-sm-3 col-form-label d-inline">
-                                    <label for="form3Example2cg" style="font-style: italic;">Last Name:</label>
-                                </div>
-                                <div class="col-6 col-sm-9 d-inline  ">
-                                    <div class="form-outline mb-2">
-                                        <input type="text" name="LastName" id="form3Example2cg" style=""
-                                            class="form-control form-control-lg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row ps-5 pe-5">
-                                <div class="col-6 col-sm-3 col-form-label d-inline">
-                                    <label for="form3Example3cg" style="font-style: italic;">Email:</label>
-                                </div>
-                                <div class="col-6 col-sm-9 d-inline  ">
-                                    <div class="form-outline mb-2">
-                                        <input type="email" name="Email" id="form3Example3cg" style=""
-                                            class="form-control form-control-lg" />
-                                    </div>
-                                </div>
-                            </div>
+<!DOCTYPE html>
+<html lang="en">
 
-                            <div class="form-group row ps-5 pe-5">
-                                <div class="col-6 col-sm-3 col-form-label d-inline">
-                                    <label for="form3Example4cg" style="font-style: italic;">Phone:</label>
-                                </div>
-                                <div class="col-6 col-sm-9 d-inline  ">
-                                    <div class="form-outline mb-2">
-                                        <input type="text" name="Phone" id="form3Example4cg" style=""
-                                            class="form-control form-control-lg" />
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Register</title>
+
+     <!-- Custom fonts for this template-->
+     <link href="{{ asset('storage/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+     <link
+         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+         rel="stylesheet">
+ 
+     <!-- Custom styles for this template-->
+     <link href="{{ asset('storage/css/sb-admin-2.min.css') }}" rel="stylesheet">
+     <style>
+        .bg-register-image {
+            background: url("{{ asset('storage/img/e-learning.jpg') }}");
+            background-position: end;
+            background-size: cover;
+        }
+
+        .btn-github {
+            color: #fff;
+            background-color: #333;
+            border-color: #fff;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <form class="user" action="{{ route('register') }}" method="POST">
+                                @csrf
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text"  name="FirstName" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="First Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="LastName" class="form-control form-control-user" id="exampleLastName"
+                                            placeholder="Last Name">
                                     </div>
                                 </div>
-                            </div>
-
-                            {{-- <div class="form-group row ps-5 pe-5">
-                                <div class="col-6 col-sm-3 col-form-label d-inline">
-                                    <label for="form3Example5cg" style="font-style: italic;">type :</label>
+                                <div class="form-group">
+                                    <input type="email" name="Email" class="form-control form-control-user" id="exampleInputEmail"
+                                        placeholder="Email Address">
                                 </div>
-                                <div class="col-6 col-sm-9 d-inline  ">
-                                    {{-- <div class="form-outline mb-2">
-                                        <input type="radio" name="type" id="form3Example5cg" style=""
-                                            class="form-control form-control-lg" />
-                                        <input type="radio" name="type" id="form3Example5cg" style=""
-                                            class="form-control form-control-lg" />
-
-                                    </div> 
-                                    <div class="form-outline mb-2 mt-2">
-                                        @foreach ($roles as $role)
-                                            @if ($role->role_name !== 'moderateur')
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label"
-                                                        for="{{ $role->id_R }}">{{ $role->role_name }}</label>
-                                                    <input class="form-check-input" type="radio" name="type"
-                                                        id="{{ $role->id_R }}" value="{{ $role->id_R }}" />
-                                                </div>
-                                            @endif
-                                        @endforeach
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" name="Password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" name="Confirm_password"  class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Repeat Password">
                                     </div>
                                 </div>
-                            </div> --}}
-
-                            <div class="form-group row ps-5 pe-5">
-                                <div class="col-6 col-sm-3 col-form-label d-inline">
-                                    <label for="form3Example6cg" style="font-style: italic;">Password:</label>
-                                </div>
-                                <div class="col-6 col-sm-9 d-inline  ">
-                                    <div class="form-outline mb-2">
-                                        <input type="password" name="Password" id="form3Example6cg" style=""
-                                            class="form-control form-control-lg" />
-                                    </div>
-                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </button>
+                                <hr>
+                                <a href="{{ route('google') }}" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="{{ route('github') }}" class="btn btn-github btn-user btn-block">
+                                    <i class="fab fa-github fa-fw"></i> Register with Github
+                                </a>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
-
-                            <div class="form-group row ps-5 pe-5">
-                                <div class="col-6 col-sm-3 col-form-label d-inline">
-                                    <label for="form3Example7cdg" style="font-style: italic;">Repeat
-                                        Password:</label>
-                                </div>
-                                <div class="col-6 col-sm-9 d-inline  ">
-                                    <div class="form-outline mb-2">
-                                        <input type="password" name="Confirm_password" id="form3Example7cdg" style=""
-                                            class="form-control form-control-lg" />
-                                    </div>
-                                </div>
+                            <div class="text-center">
+                                <a class="small" href="{{ route('loginpage') }}">Already have an account? Login!</a>
                             </div>
-                            <div class="d-flex justify-content-center">
-                                <button type="submit"
-                                    class="btn btn-outline-primary btn-block btn-lg gradient-custom-4 text-body"
-                                    style="font-style: italic;">Sign up</button>
-                            </div>
-                            <hr class="my-4">
-                            <div class="d-flex justify-content-center row">
-                                <button class="btn btn-lg btn-block btn-primary col-12"
-                                    style="background-color: #0c329a; font-style: italic;" type="submit"><i
-                                        class="fab fa-google me-2"></i><a href="{{ route('google') }}"> Sign up with
-                                        google</a></button>
-                                <button class="btn btn-lg btn-block btn-dark col-12"
-                                    style="text-color:white;font-style: italic;" type="submit"><i
-                                        class="fa-brands fa-github"></i>
-                                    <a href="{{ route('github') }}"> Sign up with
-                                        github</a></button>
-                            </div>
-                            <hr class="my-2">
-                            <p class="text-center text-muted mt-2 mb-0" style="font-style: italic;">Have already an
-                                account?
-                                <a href="{{ route('loginpage') }}" class="fw-bold text-body"><u>Login here</u></a>
-                            </p>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-@endsection
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>
+    <script src=" {{ asset('storage/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src=" {{ asset('storage/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src=" {{ asset('storage/js/sb-admin-2.min.js') }}"></script>
+
+</body>
+
+</html>
