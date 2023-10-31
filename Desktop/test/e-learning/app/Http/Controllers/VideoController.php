@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Http\Requests\VideoRequest;
 use App\Models\Cour;
 use App\Models\Section;
@@ -12,8 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
 {
-    public function index($id)
+    public function index()
     {
+        $id = Auth::id();
         $cours = Cour::where('id_U', $id)->get();
         $idsC = $cours->pluck('id_C')->all();
 
@@ -24,7 +26,7 @@ class VideoController extends Controller
         $idsSess = $sessions->pluck('id_Sess')->all();
 
         $videos = Video::whereIn('id_Sess', $idsSess)->get();
-        return view('management.video.index', compact('videos', 'id'));
+        return view('management.video.index', compact('videos'));
     }
 
     public function create()
@@ -36,40 +38,48 @@ class VideoController extends Controller
 
     public function store(VideoRequest $request)
     {
-        $id = Auth::id();
+        $customIdV = Helpers::generateIdv();
         $validatedData = $request->validated();
+        $validatedData['id_V'] = $customIdV;
+        $url=$validatedData['lien'];
+        $url1=explode('?v=', $url);
+        $lien=explode('&', $url1[1]);
+        $validatedData['lien']=$lien[0];
         Video::create($validatedData);
-        return redirect()->route('video.index', compact('id'))->with('success', 'video created successfully');
+        return redirect()->route('video.index')->with('success', 'video created successfully');
     }
 
     public function show($idV)
     {
+        $video = Video::find($idV);
+        if(!$video){
+            return view('404');
+        }
+        return view('management.video.show', compact('video'));
+    }
+    public function edit($idV)
+    {
         $id=Auth::id();
         $video = Video::find($idV);
-        return view('management.video.show', compact('video', 'id'));
-    }
-    public function edit($idSess)
-    {
-        $id=Auth::id();
-        $session = Session::find($idSess);
-        return view('management.session.edit', compact('session', 'id'));
-    }
-
-    public function update(VideoRequest $request, $idSec)
-    {
-        $id=Auth::id();
-        $session = Session::find($idSec);
-        if (!$session) {
-            return redirect()->route('session.index')->with('error', 'session not found');
+        if(!$video){
+            return view('404');
         }
-        $session->update($request->validated());
-        return redirect()->route('session.index', compact('id'))->with('success', 'session updated successfully');
+        return view('management.video.edit', compact('video'));
     }
 
-    public function destroy($idSec)
+    public function update(VideoRequest $request, $idV)
     {
-        $id = Auth::id();
-        Section::find($idSec)->delete();
-        return redirect()->route('section.index', compact('id'))->with('success', 'Cour deleted successfully');
+        $video = Video::find($idV);
+        if (!$video) {
+            return redirect()->route('video.index')->with('error', 'video not found');
+        }
+        $video->update($request->validated());
+        return redirect()->route('video.index')->with('success', 'video updated successfully');
+    }
+
+    public function destroy($idV)
+    {
+        Section::find($idV)->delete();
+        return redirect()->route('section.index')->with('success', 'Cour deleted successfully');
     }
 }

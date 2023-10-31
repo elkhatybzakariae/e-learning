@@ -10,7 +10,7 @@ class Video extends Model
     use HasFactory;
     protected $table = 'videos';
     protected $primaryKey = 'id_V';
-    public $incrementing=true;
+    public $incrementing=false;
     public $timestamps=true;
     protected $fillable = [
         'id_V',

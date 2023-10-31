@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CourController;
 use App\Http\Controllers\Home;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SousCategorieController;
@@ -113,6 +114,16 @@ Route::group(['prefix' => 'video','middleware' => 'authen'], function () {
     Route::get('/show/{id}', [VideoController::class, 'show'])->name('video.show');
     Route::put('/update/{id}', [VideoController::class, 'update'])->name('video.update');
     Route::delete('/destroy/{id}', [VideoController::class, 'destroy'])->name('video.destroy');
+});
+
+
+Route::group(['prefix' => 'media','middleware' => 'authen'], function () {
+    Route::get('/', [MediaController::class, 'index'])->name('media.index');
+    Route::get('/create', [MediaController::class, 'create'])->name('media.create');
+    Route::post('/store', [MediaController::class, 'store'])->name('media.store');
+    Route::get('/edit/{id}', [MediaController::class, 'edit'])->name('media.edit');
+    Route::put('/update/{id}', [MediaController::class, 'update'])->name('media.update');
+    Route::delete('/destroy/{id}', [MediaController::class, 'destroy'])->name('media.destroy');
 });
 
 Route::fallback(function () {

@@ -1,14 +1,14 @@
 @extends('auth.dashboard')
 
-@section('title', 'videos')
+@section('title', 'media')
 
 @section('container-fluid')
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-2 text-gray-800">Video</h1>
-        <a href="{{ route('video.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fa-regular fa-plus"></i> Ajouter video</a>
+        <h1 class="h3 mb-2 text-gray-800">media</h1>
+        <a href="{{ route('media.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fa-regular fa-plus"></i> Ajouter media</a>
     </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -17,9 +17,9 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>title</th>
-                            <th>aboutVideo</th>
-                            <th>lien</th>
+                            <th>name</th>
+                            <th>src</th>
+                            <th>video</th>
                             <th>Session</th>
                             <th>Section</th>
                             <th>Cour</th>
@@ -28,9 +28,9 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>title</th>
-                            <th>aboutVideo</th>
-                            <th>lien</th>
+                            <th>name</th>
+                            <th>src</th>
+                            <th>video</th>
                             <th>Session</th>
                             <th>Section</th>
                             <th>Cour</th>
@@ -38,14 +38,14 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($videos as $vid)
+                        @foreach ($media as $media)
                             <tr>
-                                <td>{{ $vid->title }}</td>
-                                <td>{{ $vid->aboutVideo }}</td>
-                                <td><a href="{{ route('video.show',$vid->id_V) }}">lien</a></td>
-                                <td>{{ $vid->session->Sess_Name }}</td>
-                                <td>{{ $vid->session->section->Sec_Name }}</td>
-                                <td>{{ $vid->session->section->cour->title }}</td>
+                                <td>{{ $media->mediaName }}</td>
+                                <td>{{ $media->src }}</td>
+                                <td>{{ $media->video->title }}</td>
+                                <td>{{ $media->video->session->Sess_Name }}</td>
+                                <td>{{ $media->video->session->section->Sec_Name }}</td>
+                                <td>{{ $media->video->session->section->cour->title }}</td>
                                 <td class="d-flex justify-content-center">
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle" type="button"
@@ -54,7 +54,7 @@
                                             Actions
                                         </button>
                                         <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                            <a href="{{ route('video.edit', $vid->id_V) }}"
+                                            <a href="{{ route('media.edit', $media->id_M) }}"
                                                 class="btn btn-warning btn-icon-split ">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-exclamation-triangle"></i>
@@ -62,7 +62,7 @@
                                                 <span class="text">modifier</span>
                                             </a>
                                             <div class="dropdown-item">
-                                                <form action="{{ route('video.destroy', $vid->id_V) }}"
+                                                <form action="{{ route('media.destroy', $media->id_M) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('delete')

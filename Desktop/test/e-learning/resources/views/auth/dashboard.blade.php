@@ -226,10 +226,10 @@
                         </div>
                     </div>
                 </li>
-                {{--  <li class="nav-item">
+                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemedia"
                         aria-expanded="true" aria-controls="collapseUtilities">
-                        <i class="fa-solid fa-paste"></i>
+                        <i class="fa-regular fa-file-zipper"></i>
                         <span>media</span>
                     </a>
                     <div id="collapsemedia" class="collapse" aria-labelledby="headingUtilities"
@@ -238,7 +238,7 @@
                             <a class="collapse-item" href="{{ route('media.index')}}">Table media</a>
                         </div>
                     </div>
-                </li> --}}
+                </li>
             @endif
         </ul>
         {{-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">

@@ -27,7 +27,7 @@ class VideoRequest extends FormRequest
             'title' => 'required|string|max:100',
             'aboutVideo' => 'required|string|max:100',
             'lien' => 'required|string|max:100',
-            'id_Sess' => 'required|integer|exists:sessions,id_Sess',
+            'id_Sess' => 'required|exists:sessions,id_Sess',
         ];
     }
     public function messages()

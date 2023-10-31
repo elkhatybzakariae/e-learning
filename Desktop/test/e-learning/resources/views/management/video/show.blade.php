@@ -13,9 +13,8 @@
         <div class="card-body">
             <div class="table-responsive">
                 <iframe width="560" height="315" 
-                src="{{$video->lien}}" 
-                title="YouTube video player" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                src="https://www.youtube.com/embed/{{$video->lien}}" 
+                frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </div>

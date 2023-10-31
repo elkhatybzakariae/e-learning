@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SessionRequest extends FormRequest
+class MediaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,15 @@ class SessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'Sess_Name' => 'required|string|max:100',
-            'id_Sec' => 'required|exists:sections,id_Sec',
+            'mediaName' => 'required|string|max:100',
+            'id_V' => 'required|exists:Videos,id_V',
         ];
     }
     public function messages()
     {
         return [
-            'Sess_Name.required' => 'The title  is required.',
-            'id_Sec.required' => 'The Section select is required.',
+            'mediaName.required' => 'The media Name  is required.',
+            'id_V.required' => 'The video select is required.',
         ];
     }
 }

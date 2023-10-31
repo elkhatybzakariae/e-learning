@@ -4,9 +4,12 @@ namespace App\Helpers;
 
 use App\Models\Categorie;
 use App\Models\Cour;
+use App\Models\Media;
 use App\Models\Section;
+use App\Models\Session;
 use App\Models\SousCategorie;
 use App\Models\Sujet;
+use App\Models\Video;
 use Illuminate\Support\Str;
 class Helpers
 {
@@ -49,5 +52,29 @@ class Helpers
             $idSec = Str::random(15);
         }
         return $idSec;
+    }
+    public static function generateIdSess()
+    {
+        $idSess = Str::random(15);
+        while (Session::where('id_Sess', $idSess)->exists()) {
+            $idSess = Str::random(15);
+        }
+        return $idSess;
+    }
+    public static function generateIdv()
+    {
+        $idV = Str::random(15);
+        while (Video::where('id_V', $idV)->exists()) {
+            $idV = Str::random(15);
+        }
+        return $idV;
+    }
+    public static function generateIdM()
+    {
+        $idM = Str::random(15);
+        while (Media::where('id_M', $idM)->exists()) {
+            $idM = Str::random(15);
+        }
+        return $idM;
     }
 }
