@@ -14,20 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cours', function (Blueprint $table) {
-            $table->id('id_C');
+            $table->string('id_C')->primary();
             $table->string('title');
             $table->text('info');
             $table->text('description')->nullable();
             $table->text('Prerequisites')->nullable();
             $table->float('price');
-            $table->date('lastmodi')->nullable();
             $table->integer('coupon')->nullable();
             $table->boolean('valider')->default(false);
             $table->boolean('terminer')->default(false);
-            // $table->boolean('valider')->default(false);
             $table->unsignedBigInteger('id_U');
             $table->foreign('id_U')->references('id_U')->on('users');
-            $table->unsignedBigInteger('id_Sj');
+            $table->string('id_Sj');
             $table->foreign('id_Sj')->references('id_Sj')->on('sujets');
             $table->timestamps();
         });

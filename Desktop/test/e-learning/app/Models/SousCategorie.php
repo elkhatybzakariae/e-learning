@@ -10,10 +10,10 @@ class SousCategorie extends Model
     use HasFactory;
     protected $table = 'sous_categories';
     protected $primaryKey = 'id_SCat';
-    public $incrementing=true;
-    public $timestamps=false;
+    public $incrementing=false;
+    public $timestamps=true;
     protected $fillable = [
-        'SCatName','id_Cat'
+        'id_SCat','SCatName','id_Cat'
     ];
     public function categorie(){
         return $this->belongsTo(Categorie::class,'id_Cat');

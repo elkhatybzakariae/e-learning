@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('videos', function (Blueprint $table) {
-            $table->id('id_V');
+            $table->string('id_V')->primary();
             $table->string('title');
             $table->text('aboutVideo');
             $table->text('lien');
-            $table->unsignedBigInteger('id_Sess');
+            $table->string('id_Sess');
             $table->foreign('id_Sess')->references('id_Sess')->on('sessions');
             $table->timestamps();
         });

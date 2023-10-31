@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategorieRequest;
 use Illuminate\Http\Request;
 use App\Models\Categorie;
+use App\Helpers\Helpers;
+
 
 class CategorieController extends Controller
 {
@@ -20,9 +22,14 @@ class CategorieController extends Controller
         return view('management.categorie.create');
     }
 
+
+
     public function store(CategorieRequest $request)
     {
+        $customIdCat = Helpers::generateIdCat();
         $validatedData = $request->validated();
+
+        $validatedData['id_Cat'] = $customIdCat;
         Categorie::create($validatedData);
         return redirect()->route('categorie.index')->with('success', 'Categorie created successfully');
     }
@@ -30,15 +37,11 @@ class CategorieController extends Controller
     public function edit($id)
     {
         $categorie = Categorie::find($id);
+        if (!$categorie) {
+            return view('404');
+        }
         return view('management.categorie.edit', compact('categorie'));
     }
-    // public function souscat($id)
-    // {
-    //     $listchildren = Categorie::all();
-    //     dd($listchildren->sousCategorie);
-    //     return view('management.listchildren', compact('listchildren'));
-    // }
-
     public function update(CategorieRequest $request, $id)
     {
 

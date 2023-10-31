@@ -24,12 +24,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Home::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'authen'], function () {
-    Route::get('/teach/{id}', [UserController::class, 'teach'])->name('teach');
+    Route::get('/teach', [UserController::class, 'teach'])->name('teach');
     Route::get('/teachdashboard', [UserController::class, 'teachdashboard'])->name('teachdashboard')->middleware('formateur');
     Route::get('/management', [UserController::class, 'management'])->name('management')->middleware('moderateur');
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-    Route::get('/profile/{id}', [UserController::class, 'profile'])->name('profile');
-    Route::put('/profile/{id}/update', [UserController::class, 'update'])->name('update');
+    Route::get('/profile/', [UserController::class, 'profile'])->name('profile');
+    Route::put('/profile/update', [UserController::class, 'update'])->name('update');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
 
@@ -51,7 +51,6 @@ Route::group(['prefix' => 'categories','middleware' => 'authen'], function () {
     Route::get('/create', [CategorieController::class, 'create'])->name('categorie.create');
     Route::post('/store', [CategorieController::class, 'store'])->name('categorie.store');
     Route::get('/edit/{id}', [CategorieController::class, 'edit'])->name('categorie.edit');
-    // Route::get('/souscat/{id}', [CategorieController::class, 'souscat'])->name('categorie.souscat');
     Route::put('/update/{id}', [CategorieController::class, 'update'])->name('categorie.update');
     Route::delete('/destroy/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
 });
@@ -61,7 +60,6 @@ Route::group(['prefix' => 'souscategories','middleware' => 'authen'], function (
     Route::get('/create', [SousCategorieController::class, 'create'])->name('souscategorie.create');
     Route::post('/store', [SousCategorieController::class, 'store'])->name('souscategorie.store');
     Route::get('/edit/{id}', [SousCategorieController::class, 'edit'])->name('souscategorie.edit');
-    // Route::get('/souscat/{id}', [SousCategorieController::class, 'souscat'])->name('souscategorie.souscat');
     Route::put('/update/{id}', [SousCategorieController::class, 'update'])->name('souscategorie.update');
     Route::delete('/destroy/{id}', [SousCategorieController::class, 'destroy'])->name('souscategorie.destroy');
 });
@@ -71,29 +69,27 @@ Route::group(['prefix' => 'sujet','middleware' => 'authen'], function () {
     Route::get('/create', [SujetController::class, 'create'])->name('sujet.create');
     Route::post('/store', [SujetController::class, 'store'])->name('sujet.store');
     Route::get('/edit/{id}', [SujetController::class, 'edit'])->name('sujet.edit');
-    // Route::get('/souscat/{id}', [SujetController::class, 'souscat'])->name('sujet.souscat');
     Route::put('/update/{id}', [SujetController::class, 'update'])->name('sujet.update');
     Route::delete('/destroy/{id}', [SujetController::class, 'destroy'])->name('sujet.destroy');
 });
 
 
 Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
+    Route::get('/', [CourController::class, 'index'])->name('cour.index');
     Route::get('/create', [CourController::class, 'create'])->name('cour.create');
-    Route::get('/{id?}', [CourController::class, 'index'])->name('cour.index');
     Route::post('/store', [CourController::class, 'store'])->name('cour.store');
     Route::get('/edit/{id}', [CourController::class, 'edit'])->name('cour.edit');
     Route::get('/valider/{id}', [CourController::class, 'valider'])->name('cour.valider');
-    Route::get('/coursvalider/{id}', [CourController::class, 'coursvalider'])->name('cour.coursvalider');
-    Route::get('/coursnonvalider/{id}', [CourController::class, 'coursnonvalider'])->name('cour.coursnonvalider');
-    // Route::get('/souscat/{id}', [CourController::class, 'souscat'])->name('cour.souscat');
+    Route::get('/coursvalider', [CourController::class, 'coursvalider'])->name('cour.coursvalider');
+    Route::get('/coursnonvalider', [CourController::class, 'coursnonvalider'])->name('cour.coursnonvalider');
     Route::put('/update/{id}', [CourController::class, 'update'])->name('cour.update');
     Route::delete('/destroy/{id}', [CourController::class, 'destroy'])->name('cour.destroy');
 });
 
 
 Route::group(['prefix' => 'section','middleware' => 'authen'], function () {
+    Route::get('/', [SectionController::class, 'index'])->name('section.index');
     Route::get('/create', [SectionController::class, 'create'])->name('section.create');
-    Route::get('/{id}', [SectionController::class, 'index'])->name('section.index');
     Route::post('/store', [SectionController::class, 'store'])->name('section.store');
     Route::get('/edit/{id}', [SectionController::class, 'edit'])->name('section.edit');
     Route::put('/update/{id}', [SectionController::class, 'update'])->name('section.update');
@@ -101,8 +97,8 @@ Route::group(['prefix' => 'section','middleware' => 'authen'], function () {
 });
 
 Route::group(['prefix' => 'session','middleware' => 'authen'], function () {
+    Route::get('/', [SessionController::class, 'index'])->name('session.index');
     Route::get('/create', [SessionController::class, 'create'])->name('session.create');
-    Route::get('/{id}', [SessionController::class, 'index'])->name('session.index');
     Route::post('/store', [SessionController::class, 'store'])->name('session.store');
     Route::get('/edit/{id}', [SessionController::class, 'edit'])->name('session.edit');
     Route::put('/update/{id}', [SessionController::class, 'update'])->name('session.update');
@@ -110,11 +106,16 @@ Route::group(['prefix' => 'session','middleware' => 'authen'], function () {
 });
 
 Route::group(['prefix' => 'video','middleware' => 'authen'], function () {
+    Route::get('/', [VideoController::class, 'index'])->name('video.index');
     Route::get('/create', [VideoController::class, 'create'])->name('video.create');
-    Route::get('/{id}', [VideoController::class, 'index'])->name('video.index');
     Route::post('/store', [VideoController::class, 'store'])->name('video.store');
     Route::get('/edit/{id}', [VideoController::class, 'edit'])->name('video.edit');
     Route::get('/show/{id}', [VideoController::class, 'show'])->name('video.show');
     Route::put('/update/{id}', [VideoController::class, 'update'])->name('video.update');
     Route::delete('/destroy/{id}', [VideoController::class, 'destroy'])->name('video.destroy');
 });
+
+Route::fallback(function () {
+    return view('404');
+});
+

@@ -170,11 +170,11 @@
                         <div class="bg-white py-2 collapse-inner rounded">
 
                             {{-- <a class="collapse-item" href="{{ route('cour.create') }}">Ajouter cour</a> --}}
-                            <a class="collapse-item" href="{{ route('cour.index', auth()->user()->id_U) }}">Table cours</a>
-                            <a class="collapse-item" href="{{ route('cour.coursvalider', auth()->user()->id_U) }}">
+                            <a class="collapse-item" href="{{ route('cour.index')}}">Table cours</a>
+                            <a class="collapse-item" href="{{ route('cour.coursvalider')}}">
                                 Table cours valider<i class="fa-solid fa-check ml-1"></i>
                             </a>
-                            <a class="collapse-item" href="{{ route('cour.coursnonvalider', auth()->user()->id_U) }}">
+                            <a class="collapse-item" href="{{ route('cour.coursnonvalider')}}">
                                 Table cours non valider<i class="fa-solid fa-xmark ml-1"></i>
                             </a>
                         </div>
@@ -192,7 +192,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
 
                             {{-- <a class="collapse-item" href="{{ route('section.create') }}">Ajouter section</a> --}}
-                            <a class="collapse-item" href="{{ route('section.index', auth()->user()->id_U) }}">Table
+                            <a class="collapse-item" href="{{ route('section.index') }}">Table
                                 sections</a>
                         </div>
                     </div>
@@ -207,7 +207,7 @@
                     <div id="collapsesessions" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('session.index', auth()->user()->id_U) }}">Table
+                            <a class="collapse-item" href="{{ route('session.index')}}">Table
                                 sessions</a>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                     <div id="collapsevideos" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('video.index', auth()->user()->id_U) }}">Table
+                            <a class="collapse-item" href="{{ route('video.index')}}">Table
                                 videos</a>
                         </div>
                     </div>
@@ -235,7 +235,7 @@
                     <div id="collapsemedia" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('media.index', auth()->user()->id_U) }}">Table media</a>
+                            <a class="collapse-item" href="{{ route('media.index')}}">Table media</a>
                         </div>
                     </div>
                 </li> --}}
@@ -551,7 +551,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('profile', auth()->user()->id_U) }}">
+                                <a class="dropdown-item" href="{{ route('profile')}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

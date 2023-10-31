@@ -11,9 +11,10 @@ class Categorie extends Model
     use HasFactory;
     protected $table = 'categories';
     protected $primaryKey = 'id_Cat';
-    public $incrementing=true;
-    public $timestamps=false;
+    public $incrementing=false;
+    public $timestamps=true;
     protected $fillable = [
+        'id_Cat',
         'CatName',
     ];
     public function sousCategorie(){

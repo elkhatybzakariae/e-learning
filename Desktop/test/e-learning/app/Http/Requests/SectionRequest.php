@@ -25,7 +25,7 @@ class SectionRequest extends FormRequest
     {
         return [
             'Sec_Name' => 'required|string|max:100',
-            'id_C' => 'required|integer|exists:cours,id_C',
+            'id_C' => 'required|exists:cours,id_C',
         ];
     }
     public function messages()

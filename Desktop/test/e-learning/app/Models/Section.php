@@ -10,9 +10,10 @@ class Section extends Model
     use HasFactory;
     protected $table = 'sections';
     protected $primaryKey = 'id_Sec';
-    public $incrementing=true;
+    public $incrementing=false;
     public $timestamps=true;
     protected $fillable = [
+        'id_Sec',
         'Sec_Name',
         'id_C',
     ];

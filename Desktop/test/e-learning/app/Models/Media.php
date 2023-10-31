@@ -10,9 +10,10 @@ class Media extends Model
     use HasFactory;
     protected $table = 'media';
     protected $primaryKey = 'id_M';
-    public $incrementing=true;
+    public $incrementing=false;
     public $timestamps=true;
     protected $fillable = [
+        'id_M',
         'mediaName',
         'id_V',
     ];

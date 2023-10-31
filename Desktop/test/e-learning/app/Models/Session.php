@@ -11,9 +11,10 @@ class Session extends Model
 
     protected $table = 'sessions';
     protected $primaryKey = 'id_Sess';
-    public $incrementing=true;
+    public $incrementing=false;
     public $timestamps=true;
     protected $fillable = [
+        'id_Sess',
         'Sess_Name',
         'id_Sec',
     ];

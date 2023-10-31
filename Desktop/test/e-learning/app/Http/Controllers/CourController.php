@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Http\Requests\CourRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,8 +14,9 @@ use Illuminate\Http\Request;
 
 class CourController extends Controller
 {
-    public function index($id = null)
+    public function index()
     {
+        $id=Auth::id();
         if ($id === null) {
             $cours = Cour::where('valider', '0')->orderBy('id_C', 'desc')->get();
             return view('management.cour.index', compact('cours'));
@@ -23,16 +25,18 @@ class CourController extends Controller
             return view('management.cour.index', compact('cours'));
         }
     }
-    public function coursvalider($id)
+    public function coursvalider()
     {
+        $id=Auth::id();
         $cours = Cour::where('id_U', $id)
             ->where('valider', '1')
             ->orderBy('id_C', 'desc')
             ->get();
         return view('management.cour.index', compact('cours'));
     }
-    public function coursnonvalider($id)
+    public function coursnonvalider()
     {
+        $id=Auth::id();
         $cours = Cour::where('id_U', $id)
             ->where('valider', '0')
             ->orderBy('id_C', 'desc')
@@ -41,45 +45,33 @@ class CourController extends Controller
     }
     public function create()
     {
-        // dd('ggg');
         $categories = Categorie::all();
         return view('management.cour.create', compact('categories'));
     }
 
     public function store(CourRequest $request)
     {
+        
         $creator = Auth::id();
+        $customIdC = Helpers::generateIdC();
         $validatedData = $request->validated();
+
+        $validatedData['id_C'] = $customIdC;
         $validatedData['id_U'] = $creator;
 
         Cour::create($validatedData);
-
         return redirect()->route('cour.index')->with('success', 'Cour created successfully');
     }
 
     public function edit($id)
     {
-        // $cour = Cour::find($id);
         $cour = Cour::with('sujet')->find($id);
-        // $sujets= Sujet::find($cour->id_Sj); 
-        // $sujets = Sujet::find($cour->id_Sj)->get();
-        // dd($cour->id_Sj);
+        if (!$cour) {
+            return view('404');
+        }
         $sujets = Sujet::where('id_Sj', $cour->id_Sj)->get();
-
-        // dd($cour->id_Sj);
-        // $souscategories = SousCategorie::find($sujets->id_SCat)->get();
-        // $souscategories = SousCategorie::all();
-        // dd($souscategories);
-        // $categories = Categorie::all();, 'categories', 'souscategories'
-        // $categories= Categorie::find($souscategories->id_Cat);
         return view('management.cour.edit', compact('cour', 'sujets'));
     }
-    // public function souscat($id)
-    // {
-    //     $listchildren = Cour::all();
-    //     dd($listchildren->Cour);
-    //     return view('management.listchildren', compact('listchildren'));
-    // }
 
     public function valider($id)
     {

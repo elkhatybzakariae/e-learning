@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('media', function (Blueprint $table) {
-            $table->id('id_M');
+            $table->string('id_M')->primary();
             $table->string('mediaName');
-            $table->unsignedBigInteger('id_V');
+            $table->string('id_V');
             $table->foreign('id_V')->references('id_V')->on('videos');
             $table->timestamps();
         });

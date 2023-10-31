@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('FirstName');
             $table->string('LastName');
             $table->string('Email')->unique();
-            $table->string('Phone');
+            $table->string('Phone')->nullable();
             $table->string('Password');
             // $table->unsignedBigInteger('id_R'); // Foreign key column
 

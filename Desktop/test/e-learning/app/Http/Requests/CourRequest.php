@@ -31,7 +31,7 @@ class CourRequest extends FormRequest
             'Prerequisites' => 'nullable|string|max:100',
             'price' => 'required|string|max:100',
             'coupon' => 'nullable|string|max:100',
-            'id_Sj' => 'required|integer|exists:sujets,id_Sj',
+            'id_Sj' => 'required|exists:sujets,id_Sj',
         ];
     }
     public function messages()

@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sujets', function (Blueprint $table) {
-            $table->id('id_Sj');
+            $table->string('id_Sj')->primary();
             $table->string('SjName');
-            $table->unsignedBigInteger('id_SCat');
+            $table->string('id_SCat');
             $table->foreign('id_SCat')->references('id_SCat')->on('sous_categories');
+            $table->timestamps();
         });
     }
 

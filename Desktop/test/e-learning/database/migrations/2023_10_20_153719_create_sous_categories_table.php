@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sous_categories', function (Blueprint $table) {
-            $table->id('id_SCat');
+            $table->string('id_SCat')->primary();
             $table->string('SCatName');
-            $table->unsignedBigInteger('id_Cat');
-            $table->foreign('id_Cat')->references('id_Cat')->on('categories');
+            $table->string('id_Cat'); 
+            $table->foreign('id_Cat')->references('id_cat')->on('categories');
+            $table->timestamps();
         });
     }
 

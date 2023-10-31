@@ -25,7 +25,7 @@ class SujetRequest extends FormRequest
     {
         return [
             'SjName' => 'required|string|max:100',
-            'id_SCat' => 'required|exists:categories,id_Cat',
+            'id_SCat' => 'required|exists:sous_categories,id_SCat',
         ];
     }
     public function messages()

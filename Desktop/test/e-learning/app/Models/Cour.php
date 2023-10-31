@@ -11,9 +11,10 @@ class Cour extends Model
 
     protected $table = 'cours';
     protected $primaryKey = 'id_C';
-    public $incrementing=true;
+    public $incrementing=false;
     public $timestamps=true;
     protected $fillable = [
+        'id_C',
         'title',
         'info',
         'description',

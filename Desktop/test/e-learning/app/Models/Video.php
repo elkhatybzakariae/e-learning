@@ -13,6 +13,7 @@ class Video extends Model
     public $incrementing=true;
     public $timestamps=true;
     protected $fillable = [
+        'id_V',
         'title',
         'aboutVideo',
         'lien',

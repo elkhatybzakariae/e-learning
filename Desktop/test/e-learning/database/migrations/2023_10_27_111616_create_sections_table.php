@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sections', function (Blueprint $table) {
-            $table->id('id_Sec');
+            $table->string('id_Sec')->primary();
             $table->string('Sec_Name');
-            $table->unsignedBigInteger('id_C');
+            $table->string('id_C');
             $table->foreign('id_C')->references('id_C')->on('cours');
             $table->timestamps();
         });

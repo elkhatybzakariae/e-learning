@@ -44,9 +44,9 @@ class UserController extends Controller
                 'Email' => $googleUser->email,
                 'Password' => bcrypt(Str::random(16)),
             ]);
-            $typeuser = Role_User::create([
+            Role_User::create([
                 'id_U' => $newUser->id_U,
-                'id_R' => "2",
+                'id_R' => "3",
             ]);
 
             Auth::login($newUser);
@@ -78,7 +78,7 @@ class UserController extends Controller
             ]);
             $typeuser = Role_User::create([
                 'id_U' => $githubUser->id_U,
-                'id_R' => "2",
+                'id_R' => "3",
             ]);
 
             Auth::login($user);
@@ -88,20 +88,20 @@ class UserController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function teach($id)
+    public function teach()
     {
+        $id=Auth::id();
         $user = User::find($id);
-        // $userrole = Role_User::where('id_U', $id)->where('id_R', 1)->get();
-        $userrole = Role_User::where('id_R', 1)
+        $userrole = Role_User::where('id_R', 2)
                         ->where('id_U', $id)
                         ->exists();
-        // dd($userrole);
+        dd($userrole);
         if ($userrole) {
             return view('auth.dashboard');
         } else {
             $typeuser = Role_User::create([
                 'id_U' => $user->id_U,
-                'id_R' => "1",
+                'id_R' => "2",
             ]);
         }
 
@@ -112,18 +112,20 @@ class UserController extends Controller
     {
         return view('auth.dashboard');
     }
-    public function profile($id)
+    public function profile()
     {
+        $id=Auth::id();
         $profile = User::find($id);
         return view('auth.profile', compact('profile'));
     }
-    public function update(Request $req, $id)
+    public function update(Request $req)
     {
         $validation = $req->validate([
             'FirstName' => 'required|string|max:50',
             'LastName' => 'required|string|max:50',
             'Phone' => 'required|string|max:50',
         ]);
+        $id=Auth::id();
         $profile = User::find($id);
         if ($profile) {
             $profile->update($req->all());
@@ -157,9 +159,9 @@ class UserController extends Controller
                 // 'Phone' => $validation['Phone'],
                 'Password' => Hash::make($validation['Password']),
             ]);
-            $typeuser = Role_User::create([
+            Role_User::create([
                 'id_U' => $newuser->id_U,
-                'id_R' => "2",
+                'id_R' => "3",
                 // 'id_R' => $validation['type'],
             ]);
             auth()->login($newuser);

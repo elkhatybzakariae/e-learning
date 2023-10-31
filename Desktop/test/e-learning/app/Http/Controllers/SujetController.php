@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Http\Requests\SujetRequest;
 use App\Models\Categorie;
 use App\Models\SousCategorie;
@@ -26,7 +27,10 @@ class SujetController extends Controller
 
     public function store(SujetRequest $request)
     {
+        $customIdSj = Helpers::generateIdSj();
         $validatedData = $request->validated();
+
+        $validatedData['id_Sj'] = $customIdSj;
         Sujet::create($validatedData);
         return redirect()->route('sujet.index')->with('success', 'Sujet created successfully');
     }
@@ -35,6 +39,9 @@ class SujetController extends Controller
     {
         $souscategories= SousCategorie::all();
         $sujet = Sujet::find($id);
+        if (!$sujet) {
+            return view('404');
+        }
         return view('management.Sujet.edit', compact('sujet','souscategories'));
     }
     // public function souscat($id)

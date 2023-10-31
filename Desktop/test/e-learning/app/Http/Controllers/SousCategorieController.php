@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SousCategorieRequest;
 use App\Models\Categorie;
 use App\Models\SousCategorie;
-use Illuminate\Http\Request;
+use App\Helpers\Helpers;
 
 class SousCategorieController extends Controller
 {
@@ -23,8 +23,10 @@ class SousCategorieController extends Controller
 
     public function store(SousCategorieRequest $request)
     {
-        
+        $customIdSCat = Helpers::generateIdSCat();
         $validatedData = $request->validated();
+
+        $validatedData['id_SCat'] = $customIdSCat;
         SousCategorie::create($validatedData);
         return redirect()->route('souscategorie.index')->with('success', 'SousCategorie created successfully');
     }
@@ -33,6 +35,9 @@ class SousCategorieController extends Controller
     {
         $categorie= Categorie::all();
         $souscategorie = SousCategorie::find($id);
+        if (!$souscategorie) {
+            return view('404');
+        }
         return view('management.souscategorie.edit', compact('souscategorie','categorie'));
     }
     // public function souscat($id)

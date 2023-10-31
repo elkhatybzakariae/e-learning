@@ -10,9 +10,10 @@ class Sujet extends Model
     use HasFactory;
     protected $table = 'sujets';
     protected $primaryKey = 'id_Sj';
-    public $incrementing=true;
+    public $incrementing=false;
     public $timestamps=false;
     protected $fillable = [
+        'id_Sj',
         'SjName','id_SCat'
     ];
     public function souscategorie(){
