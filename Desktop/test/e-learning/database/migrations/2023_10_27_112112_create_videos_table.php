@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id_V');
             $table->string('title');
             $table->text('aboutVideo');
+            $table->text('lien');
             $table->unsignedBigInteger('id_Sess');
             $table->foreign('id_Sess')->references('id_Sess')->on('sessions');
             $table->timestamps();

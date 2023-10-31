@@ -184,7 +184,7 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesections"
                         aria-expanded="true" aria-controls="collapseUtilities">
-                        <i class="fa-solid fa-paste"></i>
+                        <i class="fa-solid fa-list"></i>
                         <span>sections</span>
                     </a>
                     <div id="collapsesections" class="collapse" aria-labelledby="headingUtilities"
@@ -192,7 +192,8 @@
                         <div class="bg-white py-2 collapse-inner rounded">
 
                             {{-- <a class="collapse-item" href="{{ route('section.create') }}">Ajouter section</a> --}}
-                            <a class="collapse-item" href="{{ route('section.index', auth()->user()->id_U) }}">Table sections</a>
+                            <a class="collapse-item" href="{{ route('section.index', auth()->user()->id_U) }}">Table
+                                sections</a>
                         </div>
                     </div>
                 </li>
@@ -200,30 +201,32 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesessions"
                         aria-expanded="true" aria-controls="collapseUtilities">
-                        <i class="fa-solid fa-paste"></i>
+                        <i class="fa-solid fa-bars"></i>
                         <span>sessions</span>
                     </a>
                     <div id="collapsesessions" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('session.index', auth()->user()->id_U) }}">Table sessions</a>
+                            <a class="collapse-item" href="{{ route('session.index', auth()->user()->id_U) }}">Table
+                                sessions</a>
                         </div>
                     </div>
                 </li>
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsevideos"
                         aria-expanded="true" aria-controls="collapseUtilities">
-                        <i class="fa-solid fa-paste"></i>
+                        <i class="fa-solid fa-video"></i>
                         <span>videos</span>
                     </a>
                     <div id="collapsevideos" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('video.index', auth()->user()->id_U) }}">Table videos</a>
+                            <a class="collapse-item" href="{{ route('video.index', auth()->user()->id_U) }}">Table
+                                videos</a>
                         </div>
                     </div>
                 </li>
-                <li class="nav-item">
+                {{--  <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemedia"
                         aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fa-solid fa-paste"></i>

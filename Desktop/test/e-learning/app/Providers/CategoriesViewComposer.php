@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Categorie;
 use App\Models\Section;
+use App\Models\Session;
 use App\Models\SousCategorie;
 use App\Models\Sujet;
 use Illuminate\Support\ServiceProvider;
@@ -32,11 +33,13 @@ class CategoriesViewComposer extends ServiceProvider
             $souscategories = SousCategorie::all();
             $sujets = Sujet::all();
             $sections = Section::all();
+            $sessions = Session::all();
             $view->with([
                 'categories' => $categories,
                 'souscategories' => $souscategories,
                 'sujets' => $sujets,
                 'sections' => $sections,
+                'sessions' => $sessions,
             ]);
         });
     }

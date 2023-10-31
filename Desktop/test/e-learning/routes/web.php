@@ -8,6 +8,7 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SousCategorieController;
 use App\Http\Controllers\SujetController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -106,4 +107,14 @@ Route::group(['prefix' => 'session','middleware' => 'authen'], function () {
     Route::get('/edit/{id}', [SessionController::class, 'edit'])->name('session.edit');
     Route::put('/update/{id}', [SessionController::class, 'update'])->name('session.update');
     Route::delete('/destroy/{id}', [SessionController::class, 'destroy'])->name('session.destroy');
+});
+
+Route::group(['prefix' => 'video','middleware' => 'authen'], function () {
+    Route::get('/create', [VideoController::class, 'create'])->name('video.create');
+    Route::get('/{id}', [VideoController::class, 'index'])->name('video.index');
+    Route::post('/store', [VideoController::class, 'store'])->name('video.store');
+    Route::get('/edit/{id}', [VideoController::class, 'edit'])->name('video.edit');
+    Route::get('/show/{id}', [VideoController::class, 'show'])->name('video.show');
+    Route::put('/update/{id}', [VideoController::class, 'update'])->name('video.update');
+    Route::delete('/destroy/{id}', [VideoController::class, 'destroy'])->name('video.destroy');
 });

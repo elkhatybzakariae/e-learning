@@ -70,6 +70,7 @@
     var souscategories = @json($souscategories);
     var sujets = @json($sujets);
     var sections = @json($sections);
+    var sessions = @json($sessions);
 </script>
 <!-- Bootstrap core JavaScript-->
 <script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>
