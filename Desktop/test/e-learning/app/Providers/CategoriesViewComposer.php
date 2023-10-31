@@ -7,6 +7,7 @@ use App\Models\Section;
 use App\Models\Session;
 use App\Models\SousCategorie;
 use App\Models\Sujet;
+use App\Models\Video;
 use Illuminate\Support\ServiceProvider;
 
 class CategoriesViewComposer extends ServiceProvider
@@ -34,12 +35,14 @@ class CategoriesViewComposer extends ServiceProvider
             $sujets = Sujet::all();
             $sections = Section::all();
             $sessions = Session::all();
+            $video = Video::all();
             $view->with([
                 'categories' => $categories,
                 'souscategories' => $souscategories,
                 'sujets' => $sujets,
                 'sections' => $sections,
                 'sessions' => $sessions,
+                'video' => $video,
             ]);
         });
     }

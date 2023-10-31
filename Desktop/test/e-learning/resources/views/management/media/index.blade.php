@@ -18,7 +18,6 @@
                     <thead>
                         <tr>
                             <th>name</th>
-                            <th>src</th>
                             <th>video</th>
                             <th>Session</th>
                             <th>Section</th>
@@ -29,7 +28,6 @@
                     <tfoot>
                         <tr>
                             <th>name</th>
-                            <th>src</th>
                             <th>video</th>
                             <th>Session</th>
                             <th>Section</th>
@@ -41,7 +39,6 @@
                         @foreach ($media as $media)
                             <tr>
                                 <td>{{ $media->mediaName }}</td>
-                                <td>{{ $media->src }}</td>
                                 <td>{{ $media->video->title }}</td>
                                 <td>{{ $media->video->session->Sess_Name }}</td>
                                 <td>{{ $media->video->session->section->Sec_Name }}</td>

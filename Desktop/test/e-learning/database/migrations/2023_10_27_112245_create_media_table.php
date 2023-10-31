@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('media', function (Blueprint $table) {
             $table->string('id_M')->primary();
             $table->string('mediaName');
-            $table->string('src');
+            $table->string('path');
             $table->string('id_V');
             $table->foreign('id_V')->references('id_V')->on('videos');
             $table->timestamps();

@@ -25,6 +25,7 @@ class MediaRequest extends FormRequest
     {
         return [
             'mediaName' => 'required|string|max:100',
+            'path' => 'required',
             'id_V' => 'required|exists:Videos,id_V',
         ];
     }
@@ -32,6 +33,7 @@ class MediaRequest extends FormRequest
     {
         return [
             'mediaName.required' => 'The media Name  is required.',
+            'path.required' => 'The file  is required.',
             'id_V.required' => 'The video select is required.',
         ];
     }

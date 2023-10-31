@@ -1,53 +1,41 @@
 @extends('auth.dashboard')
 
-@section('title', 'add video')
+@section('title', 'add media')
 
 @section('container-fluid')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5 rounded">
-            <form action="{{ route('video.store') }}" method="POST">
+            <form action="{{ route('media.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row ps-3 pe-3 ">
                     <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="title" style="font-style: italic;">Video title:</label>
+                        <label for="mediaName" style="font-style: italic;">media name:</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="title" value="{{ old('title') }}" id="title"
+                            <input type="text" name="mediaName" value="{{ old('mediaName') }}" id="mediaName"
                                 class="form-control form-control-lg  " style="" />
                         </div>
-                        @error('title')
+                        @error('mediaName')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    
+                    <div class="col-6 col-sm-3 col-form-label d-inline ">
+                        <label for="path"  style="font-style: italic;">Choose file :</label>
+                    </div>
+                    <div class="col-6 col-sm-9 d-inline">
+                        <div class="col-6 col-sm-9 d-inline custom-file">
+                            <input type="file" name="path" id="path" class="form-control form-control-lg custom-file-input">
+                        </div>
+                        
+                        @error('path')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
 
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="aboutVideo" style="font-style: italic;">about Video:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <input type="text" name="aboutVideo" value="{{ old('aboutVideo') }}" id="aboutVideo"
-                                class="form-control form-control-lg  " style="" />
-                        </div>
-                        @error('aboutVideo')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="lien" style="font-style: italic;">Video lien:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <input type="text" name="lien" value="{{ old('lien') }}" id="lien"
-                                class="form-control form-control-lg  " style="" />
-                        </div>
-                        @error('lien')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="id_C" style="font-style: italic;">Cours :</label>
@@ -77,12 +65,23 @@
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="id_SCass" style="font-style: italic;">Sessions :</label>
+                        <label for="id_Sess" style="font-style: italic;">Sessions :</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
                             <select name="id_Sess" id="id_Sess" class="custom-select">
                                 <option selected>select Session</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-3 col-form-label d-inline">
+                        <label for="id_V" style="font-style: italic;">Video :</label>
+                    </div>
+                    <div class="col-6 col-sm-9 d-inline  ">
+                        <div class="form-outline mb-2">
+                            <select name="id_V" id="id_V" class="custom-select">
+                                <option selected>select Video</option>
                             </select>
                         </div>
                     </div>
@@ -124,9 +123,24 @@
 
                 var sessionsSelect = $('#id_Sess');
                 sessionsSelect.empty();
-                sessionsSelect.append('<option value="" selected>select Subject</option>');
+                sessionsSelect.append('<option value="" selected>select Session</option>');
                 filteredsessions.forEach(function(session) {
-                    sessionsSelect.append('<option value="' + session.id_Sess + '">' + session.Sess_Name + '</option>');
+                    sessionsSelect.append('<option value="' + session.id_Sess + '">' + session
+                        .Sess_Name + '</option>');
+                });
+            });
+            $('#id_Sess').on('change', function() {
+                var selectedSubSess = $(this).val();
+                var filteredvideos = video.filter(function(vid) {
+                    return vid.id_Sess == selectedSubSess;
+                });
+
+                var videosSelect = $('#id_V');
+                videosSelect.empty();
+                videosSelect.append('<option value="" selected>select Video</option>');
+                filteredvideos.forEach(function(vid) {
+                    videosSelect.append('<option value="' + vid.id_V + '">' + vid
+                        .title + '</option>');
                 });
             });
         });

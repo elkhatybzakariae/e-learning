@@ -15,7 +15,7 @@ class Media extends Model
     protected $fillable = [
         'id_M',
         'mediaName',
-        'src',
+        'path',
         'id_V',
     ];
     public function video(){

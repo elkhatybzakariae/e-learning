@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="id_SCass" style="font-style: italic;">Sessions :</label>
+                        <label for="id_Sess" style="font-style: italic;">Sessions :</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
@@ -124,7 +124,7 @@
 
                 var sessionsSelect = $('#id_Sess');
                 sessionsSelect.empty();
-                sessionsSelect.append('<option value="" selected>select Subject</option>');
+                sessionsSelect.append('<option value="" selected>select Session</option>');
                 filteredsessions.forEach(function(session) {
                     sessionsSelect.append('<option value="' + session.id_Sess + '">' + session.Sess_Name + '</option>');
                 });

@@ -1,38 +1,51 @@
 @extends('auth.dashboard')
 
-@section('title', 'edit session')
+@section('title', 'edit media')
 
 @section('container-fluid')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5 rounded">
-            <form action="{{ route('session.update', $session->id_Sess) }}" method="POST">
+            <form action="{{ route('media.update', $media->id_M) }}" method="POST">
                 @csrf
                 @method('put')
                 <div class="form-group row ps-3 pe-3 ">
                     <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="Sess_Name" style="font-style: italic;">session:</label>
+                        <label for="mediaName" style="font-style: italic;">media:</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="Sess_Name" value="{{old('Sess_Name', $session->Sess_Name) }}" id="Sess_Name"
+                            <input type="text" name="mediaName" value="{{old('mediaName', $media->mediaName) }}" id="mediaName"
                                 class="form-control form-control-lg  " style="" />
                         </div>
-                        @error('Sess_Name')
+                        @error('mediaName')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-6 col-sm-3 col-form-label d-inline ">
+                        <label for="path"  style="font-style: italic;">Choose file :</label>
+                    </div>
+                    <div class="col-6 col-sm-9 d-inline">
+                        <div class="col-6 col-sm-9 d-inline custom-file">
+                            <input type="file" name="path" id="path" class="form-control form-control-lg custom-file-input">
+                        </div>
+                        
+                        @error('path')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="id_Sec" style="font-style: italic;">Section :</label>
+                        <label for="id_V" style="font-style: italic;">Video :</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <select name="id_Sec" id="id_Sec" class="custom-select">
-                                    <option value="{{ $session->id_Sec }}" @if ($session->id_Sec === $session->section->id_Sec) selected @endif>
-                                        {{ $session->section->Sec_Name }}</option>
+                            <select name="id_V" id="id_V" class="custom-select">
+                                    <option value="{{ $media->id_V }}" >
+                                        {{ $media->video->title }}</option>
                             </select>
                         </div>
-                        @error('id_Sec')
+                        @error('id_V')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

@@ -44,29 +44,37 @@ class MediaController extends Controller
 
     public function store(MediaRequest $request)
     {
+        // dd($request->hasFile('path'));
+        // dd($request);
+        // $request->validate([
+        //     'mediaName' => 'required|string|max:100',
+        //     'path' => 'required', 
+        //     'id_V' => 'required|exists:Videos,id_V',
+        // ]);
         $customIdM = Helpers::generateIdM();
         $validatedData = $request->validated();
-        $validatedData['id_V'] = $customIdM;
-        $url=$validatedData['lien'];
-        $url1=explode('?v=', $url);
-        $lien=explode('&', $url1[1]);
-        $validatedData['lien']=$lien[0];
-        Video::create($validatedData);
-        return redirect()->route('video.index')->with('success', 'video created successfully');
+        $file = $request->file('path');
+        $path = $file->store('uploads', 'public');
+        // dd($path);
+        $validatedData['id_M'] = $customIdM;
+        $validatedData['path'] = $path;
+        
+        // $validatedData['lien']=$lien[0];
+        Media::create($validatedData);
+        return redirect()->route('media.index')->with('success', 'media created successfully');
     }
 
     
     public function edit($idV)
     {
-        $id=Auth::id();
-        $video = Video::find($idV);
-        if(!$video){
+        $media = Media::find($idV);
+        if(!$media){
             return view('404');
         }
-        return view('management.video.edit', compact('video'));
+        return view('management.media.edit', compact('media'));
     }
 
-    public function update(VideoRequest $request, $idV)
+    public function update(MediaRequest $request, $idV)
     {
         $video = Video::find($idV);
         if (!$video) {
