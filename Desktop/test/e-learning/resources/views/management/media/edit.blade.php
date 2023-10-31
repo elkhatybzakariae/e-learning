@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline">
                         <div class="col-6 col-sm-9 d-inline custom-file">
-                            <input type="file" name="path" id="path" class="form-control form-control-lg custom-file-input">
+                            <input type="file" name="path" value="{{old('path', $media->path)}}" id="path" class="form-control form-control-lg custom-file-input">
                         </div>
                         
                         @error('path')

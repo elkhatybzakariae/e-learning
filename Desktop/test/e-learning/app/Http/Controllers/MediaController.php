@@ -11,6 +11,7 @@ use App\Models\Session;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MediaController extends Controller
 {
@@ -44,13 +45,6 @@ class MediaController extends Controller
 
     public function store(MediaRequest $request)
     {
-        // dd($request->hasFile('path'));
-        // dd($request);
-        // $request->validate([
-        //     'mediaName' => 'required|string|max:100',
-        //     'path' => 'required', 
-        //     'id_V' => 'required|exists:Videos,id_V',
-        // ]);
         $customIdM = Helpers::generateIdM();
         $validatedData = $request->validated();
         $file = $request->file('path');
@@ -76,12 +70,16 @@ class MediaController extends Controller
 
     public function update(MediaRequest $request, $idV)
     {
-        $video = Video::find($idV);
-        if (!$video) {
-            return redirect()->route('video.index')->with('error', 'video not found');
+        $media = Media::find($idV);
+        if (!$media) {
+            return redirect()->route('media.index')->with('error', 'media not found');
         }
-        $video->update($request->validated());
-        return redirect()->route('video.index')->with('success', 'video updated successfully');
+        Storage::delete($media->path);
+        $file = $request->file('path');
+        dd($file);
+        $path = $file->store('uploads', 'public');
+        $media->update($request->validated());
+        return redirect()->route('media.index')->with('success', 'media updated successfully');
     }
 
     public function destroy($idV)
