@@ -64,22 +64,34 @@ class VideoController extends Controller
         if(!$video){
             return view('404');
         }
-        return view('management.video.edit', compact('video'));
+        $url='https://www.youtube.com/watch?v=';
+        return view('management.video.edit', compact('video','url'));
     }
 
     public function update(VideoRequest $request, $idV)
     {
         $video = Video::find($idV);
         if (!$video) {
-            return redirect()->route('video.index')->with('error', 'video not found');
+            return redirect()->route('video.index')->with('error', 'Video not found');
         }
-        $video->update($request->validated());
-        return redirect()->route('video.index')->with('success', 'video updated successfully');
+
+        $validatedData = $request->validated();
+
+        $url = $validatedData['lien'];
+        $url1 = explode('?v=', $url);
+        $lien = explode('&', $url1[1]);
+        $videoId = $lien[0];
+        $validatedData['lien'] = $videoId;
+
+        $video->update($validatedData);
+
+        return redirect()->route('video.index')->with('success', 'Video updated successfully');
+    
     }
 
     public function destroy($idV)
     {
-        Section::find($idV)->delete();
-        return redirect()->route('section.index')->with('success', 'Cour deleted successfully');
+        Video::find($idV)->delete();
+        return redirect()->route('video.index')->with('success', 'video deleted successfully');
     }
 }

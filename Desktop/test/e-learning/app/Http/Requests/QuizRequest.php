@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VideoRequest extends FormRequest
+class QuizRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,15 @@ class VideoRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:100',
-            'aboutVideo' => 'required|string|max:100',
-            'lien' => 'required|string|max:100',
-            'id_V' => 'required|exists:videos,id_V',
+            'quizName' => 'required|string|max:100',
+            'id_Sec' => 'required|exists:sections,id_Sec',
         ];
-        
     }
     public function messages()
     {
         return [
-            'title.required' => 'The title  is required.',
-            'aboutVideo.required' => 'required.',
-            'lien.required' => 'required.',
-            'id_Sess.required' => 'The Session select is required.',
+            'quizName.required' => 'The certificate Name  is required.',
+            'id_Sec.required' => 'The Cour select is required.',
         ];
     }
 }

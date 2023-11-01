@@ -5,7 +5,7 @@
 @section('container-fluid')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5 rounded">
-            <form action="{{ route('media.update', $media->id_M) }}" method="POST">
+            <form action="{{ route('media.update', $media->id_M) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group row ps-3 pe-3 ">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline">
                         <div class="col-6 col-sm-9 d-inline custom-file">
-                            <input type="file" name="path" value="{{old('path', $media->path)}}" id="path" class="form-control form-control-lg custom-file-input">
+                            <input type="file" name="path" value="{{old('path', $media->path)}}" id="path" >
                         </div>
                         
                         @error('path')

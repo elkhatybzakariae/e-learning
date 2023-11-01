@@ -1,38 +1,65 @@
 @extends('auth.dashboard')
 
-@section('title', 'edit session')
+@section('title', 'edit video')
 
 @section('container-fluid')
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5 rounded">
-            <form action="{{ route('session.update', $session->id_Sess) }}" method="POST">
+            <form action="{{ route('video.update', $video->id_V) }}" method="POST">
                 @csrf
                 @method('put')
                 <div class="form-group row ps-3 pe-3 ">
                     <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="Sess_Name" style="font-style: italic;">session:</label>
+                        <label for="title" style="font-style: italic;">video:</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="Sess_Name" value="{{old('Sess_Name', $session->Sess_Name) }}" id="Sess_Name"
+                            <input type="text" name="title" value="{{old('title', $video->title) }}" id="title"
                                 class="form-control form-control-lg  " style="" />
                         </div>
-                        @error('Sess_Name')
+                        @error('title')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="id_Sec" style="font-style: italic;">Section :</label>
+                        <label for="aboutVideo" style="font-style: italic;">about Video:</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <select name="id_Sec" id="id_Sec" class="custom-select">
-                                    <option value="{{ $session->id_Sec }}" @if ($session->id_Sec === $session->section->id_Sec) selected @endif>
-                                        {{ $session->section->Sec_Name }}</option>
+                            <input type="text" name="aboutVideo" value="{{ old('aboutVideo', $video->aboutVideo) }}" id="aboutVideo"
+                                class="form-control form-control-lg  " style="" />
+                        </div>
+                        @error('aboutVideo')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="col-6 col-sm-3 col-form-label d-inline">
+                        <label for="lien" style="font-style: italic;">Video lien:</label>
+                    </div>
+                    <div class="col-6 col-sm-9 d-inline  ">
+                        <div class="form-outline mb-2">
+                            <input type="text" name="lien" value="{{ old('lien', $url.$video->lien) }}" id="lien"
+                                class="form-control form-control-lg  " style="" />
+                        </div>
+                        @error('lien')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-6 col-sm-3 col-form-label d-inline">
+                        <label for="id_V" style="font-style: italic;">Section :</label>
+                    </div>
+                    <div class="col-6 col-sm-9 d-inline  ">
+                        <div class="form-outline mb-2">
+                            <select name="id_V" id="id_V" class="custom-select">
+                                    <option value="{{ $video->id_V }}">
+                                        {{ $video->session->Sess_Name }}</option>
                             </select>
                         </div>
-                        @error('id_Sec')
+                        @error('id_V')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

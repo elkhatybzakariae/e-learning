@@ -51,13 +51,13 @@
                                             Actions
                                         </button>
                                         <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                            <a href="{{ route('media.edit', $media->id_M) }}"
+                                            {{-- <a href="{{ route('media.edit', $media->id_M) }}"
                                                 class="btn btn-warning btn-icon-split ">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-exclamation-triangle"></i>
                                                 </span>
                                                 <span class="text">modifier</span>
-                                            </a>
+                                            </a> --}}
                                             <div class="dropdown-item">
                                                 <form action="{{ route('media.destroy', $media->id_M) }}"
                                                     method="post">

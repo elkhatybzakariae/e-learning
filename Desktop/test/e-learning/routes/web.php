@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CourController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SousCategorieController;
@@ -121,9 +123,21 @@ Route::group(['prefix' => 'media','middleware' => 'authen'], function () {
     Route::get('/', [MediaController::class, 'index'])->name('media.index');
     Route::get('/create', [MediaController::class, 'create'])->name('media.create');
     Route::post('/store', [MediaController::class, 'store'])->name('media.store');
-    Route::get('/edit/{id}', [MediaController::class, 'edit'])->name('media.edit');
-    Route::put('/update/{id}', [MediaController::class, 'update'])->name('media.update');
+    // Route::get('/edit/{id}', [MediaController::class, 'edit'])->name('media.edit');
+    // Route::put('/update/{id}', [MediaController::class, 'update'])->name('media.update');
     Route::delete('/destroy/{id}', [MediaController::class, 'destroy'])->name('media.destroy');
+});
+Route::group(['prefix' => 'certificate','middleware' => 'authen'], function () {
+    Route::get('/', [CertificateController::class, 'index'])->name('certificate.index');
+    Route::get('/create', [CertificateController::class, 'create'])->name('certificate.create');
+    Route::post('/store', [CertificateController::class, 'store'])->name('certificate.store');
+    Route::delete('/destroy/{id}', [CertificateController::class, 'destroy'])->name('certificate.destroy');
+});
+Route::group(['prefix' => 'quiz','middleware' => 'authen'], function () {
+Route::get('/', [QuizController::class, 'index'])->name('quiz.index');
+    Route::get('/create', [QuizController::class, 'create'])->name('quiz.create');
+    Route::post('/store', [QuizController::class, 'store'])->name('quiz.store');
+    Route::delete('/destroy/{id}', [QuizController::class, 'destroy'])->name('quiz.destroy');
 });
 
 Route::fallback(function () {

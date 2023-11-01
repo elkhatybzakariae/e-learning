@@ -5,26 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model
+class Certificate extends Model
 {
     use HasFactory;
-    protected $table = 'sections';
-    protected $primaryKey = 'id_Sec';
+    protected $table = 'certificates';
+    protected $primaryKey = 'id_Cert';
     public $incrementing=false;
     public $timestamps=true;
     protected $fillable = [
-        'id_Sec',
-        'Sec_Name',
+        'id_Cert',
+        'certificateName',
         'id_C',
     ];
-
-    public function session(){
-        return $this->hasMany(Session::class);
-    }
     public function cour(){
         return $this->belongsTo(Cour::class, 'id_C');
-    }
-    public function quiz(){
-        return $this->hasOne(Quiz::class);
     }
 }

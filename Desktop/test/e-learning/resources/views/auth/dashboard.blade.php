@@ -170,11 +170,11 @@
                         <div class="bg-white py-2 collapse-inner rounded">
 
                             {{-- <a class="collapse-item" href="{{ route('cour.create') }}">Ajouter cour</a> --}}
-                            <a class="collapse-item" href="{{ route('cour.index')}}">Table cours</a>
-                            <a class="collapse-item" href="{{ route('cour.coursvalider')}}">
+                            <a class="collapse-item" href="{{ route('cour.index') }}">Table cours</a>
+                            <a class="collapse-item" href="{{ route('cour.coursvalider') }}">
                                 Table cours valider<i class="fa-solid fa-check ml-1"></i>
                             </a>
-                            <a class="collapse-item" href="{{ route('cour.coursnonvalider')}}">
+                            <a class="collapse-item" href="{{ route('cour.coursnonvalider') }}">
                                 Table cours non valider<i class="fa-solid fa-xmark ml-1"></i>
                             </a>
                         </div>
@@ -207,7 +207,7 @@
                     <div id="collapsesessions" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('session.index')}}">Table
+                            <a class="collapse-item" href="{{ route('session.index') }}">Table
                                 sessions</a>
                         </div>
                     </div>
@@ -221,12 +221,12 @@
                     <div id="collapsevideos" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('video.index')}}">Table
+                            <a class="collapse-item" href="{{ route('video.index') }}">Table
                                 videos</a>
                         </div>
                     </div>
                 </li>
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemedia"
                         aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fa-regular fa-file-zipper"></i>
@@ -235,14 +235,45 @@
                     <div id="collapsemedia" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('media.index')}}">Table media</a>
+                            <a class="collapse-item" href="{{ route('media.index') }}">Table media</a>
+                        </div>
+                    </div>
+                </li>
+                <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Test
+                </div>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecert"
+                        aria-expanded="true" aria-controls="collapsecert">
+                        <i class="fa-solid fa-certificate"></i>
+                        <span>Certificates</span>
+                    </a>
+                    <div id="collapsecert" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{route('certificate.index')}}">Table Certificates</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQuiz"
+                        aria-expanded="true" aria-controls="collapseQuiz">
+                        <i class="fa-solid fa-question"></i>
+                        <span>Quiz</span>
+                    </a>
+                    <div id="collapseQuiz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{route('quiz.index')}}">Table Quiz</a>
                         </div>
                     </div>
                 </li>
             @endif
         </ul>
-        {{-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+        {{-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> --}}
+        {{-- 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div class="sidebar-brand-icon">
@@ -262,13 +293,9 @@
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
-
+        
+--}}
+        {{--
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -551,7 +578,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('profile')}}">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

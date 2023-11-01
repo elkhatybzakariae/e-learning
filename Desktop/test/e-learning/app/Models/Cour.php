@@ -32,6 +32,9 @@ class Cour extends Model
     public function section(){
         return $this->hasMany(Section::class);
     }
+    public function certificate(){
+        return $this->hasOne(Certificate::class);
+    }
     public function sujet(){
         return $this->belongsTo(Sujet::class, 'id_Sj');
     }

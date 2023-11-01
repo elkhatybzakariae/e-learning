@@ -49,7 +49,6 @@ class MediaController extends Controller
         $validatedData = $request->validated();
         $file = $request->file('path');
         $path = $file->store('uploads', 'public');
-        // dd($path);
         $validatedData['id_M'] = $customIdM;
         $validatedData['path'] = $path;
         
@@ -59,21 +58,22 @@ class MediaController extends Controller
     }
 
     
-    public function edit($idV)
+    public function edit($idM)
     {
-        $media = Media::find($idV);
+        $media = Media::find($idM);
         if(!$media){
             return view('404');
         }
         return view('management.media.edit', compact('media'));
     }
 
-    public function update(MediaRequest $request, $idV)
+    public function update(MediaRequest $request, $idM)
     {
-        $media = Media::find($idV);
+        $media = Media::find($idM);
         if (!$media) {
             return redirect()->route('media.index')->with('error', 'media not found');
         }
+        
         Storage::delete($media->path);
         $file = $request->file('path');
         dd($file);
@@ -82,9 +82,9 @@ class MediaController extends Controller
         return redirect()->route('media.index')->with('success', 'media updated successfully');
     }
 
-    public function destroy($idV)
+    public function destroy($idM)
     {
-        Section::find($idV)->delete();
-        return redirect()->route('section.index')->with('success', 'Cour deleted successfully');
+        Media::find($idM)->delete();
+        return redirect()->route('media.index')->with('success', 'media deleted successfully');
     }
 }

@@ -3,8 +3,10 @@
 namespace App\Helpers;
 
 use App\Models\Categorie;
+use App\Models\Certificate;
 use App\Models\Cour;
 use App\Models\Media;
+use App\Models\Quiz;
 use App\Models\Section;
 use App\Models\Session;
 use App\Models\SousCategorie;
@@ -76,5 +78,21 @@ class Helpers
             $idM = Str::random(15);
         }
         return $idM;
+    }
+    public static function generateIdCert()
+    {
+        $idCert = Str::random(15);
+        while (Certificate::where('id_Cert', $idCert)->exists()) {
+            $idCert = Str::random(15);
+        }
+        return $idCert;
+    }
+    public static function generateIdQ()
+    {
+        $idQ = Str::random(15);
+        while (Quiz::where('id_Q', $idQ)->exists()) {
+            $idQ = Str::random(15);
+        }
+        return $idQ;
     }
 }
