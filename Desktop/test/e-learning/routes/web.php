@@ -11,6 +11,7 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SousCategorieController;
 use App\Http\Controllers\SujetController;
+use App\Http\Controllers\TestQuestionController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,14 +43,14 @@ Route::get('/signin', [UserController::class, 'loginpage'])->name('loginpage');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
 
-Route::get('auth/google', [UserController::class,'redirectToGoogle'])->name('google');
-Route::get('auth/google/callback', [UserController::class,'handleGoogleCallback'])->name('googleregister');
+Route::get('auth/google', [UserController::class, 'redirectToGoogle'])->name('google');
+Route::get('auth/google/callback', [UserController::class, 'handleGoogleCallback'])->name('googleregister');
 
-Route::get('/login/github', [UserController::class,'redirectToGithub'])->name('github');
-Route::get('/login/github/callback', [UserController::class,'handleGithubCallback'])->name('githubregister');
+Route::get('/login/github', [UserController::class, 'redirectToGithub'])->name('github');
+Route::get('/login/github/callback', [UserController::class, 'handleGithubCallback'])->name('githubregister');
 
 
-Route::group(['prefix' => 'categories','middleware' => 'authen'], function () {
+Route::group(['prefix' => 'categories', 'middleware' => 'authen'], function () {
     Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
     Route::get('/create', [CategorieController::class, 'create'])->name('categorie.create');
     Route::post('/store', [CategorieController::class, 'store'])->name('categorie.store');
@@ -58,7 +59,7 @@ Route::group(['prefix' => 'categories','middleware' => 'authen'], function () {
     Route::delete('/destroy/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
 });
 
-Route::group(['prefix' => 'souscategories','middleware' => 'authen'], function () {
+Route::group(['prefix' => 'souscategories', 'middleware' => 'authen'], function () {
     Route::get('/', [SousCategorieController::class, 'index'])->name('souscategorie.index');
     Route::get('/create', [SousCategorieController::class, 'create'])->name('souscategorie.create');
     Route::post('/store', [SousCategorieController::class, 'store'])->name('souscategorie.store');
@@ -67,7 +68,7 @@ Route::group(['prefix' => 'souscategories','middleware' => 'authen'], function (
     Route::delete('/destroy/{id}', [SousCategorieController::class, 'destroy'])->name('souscategorie.destroy');
 });
 
-Route::group(['prefix' => 'sujet','middleware' => 'authen'], function () {
+Route::group(['prefix' => 'sujet', 'middleware' => 'authen'], function () {
     Route::get('/', [SujetController::class, 'index'])->name('sujet.index');
     Route::get('/create', [SujetController::class, 'create'])->name('sujet.create');
     Route::post('/store', [SujetController::class, 'store'])->name('sujet.store');
@@ -77,7 +78,7 @@ Route::group(['prefix' => 'sujet','middleware' => 'authen'], function () {
 });
 
 
-Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
+Route::group(['prefix' => 'cour', 'middleware' => 'authen'], function () {
     Route::get('/', [CourController::class, 'index'])->name('cour.index');
     Route::get('/create', [CourController::class, 'create'])->name('cour.create');
     Route::post('/store', [CourController::class, 'store'])->name('cour.store');
@@ -90,7 +91,7 @@ Route::group(['prefix' => 'cour','middleware' => 'authen'], function () {
 });
 
 
-Route::group(['prefix' => 'section','middleware' => 'authen'], function () {
+Route::group(['prefix' => 'section', 'middleware' => 'authen'], function () {
     Route::get('/', [SectionController::class, 'index'])->name('section.index');
     Route::get('/create', [SectionController::class, 'create'])->name('section.create');
     Route::post('/store', [SectionController::class, 'store'])->name('section.store');
@@ -99,7 +100,7 @@ Route::group(['prefix' => 'section','middleware' => 'authen'], function () {
     Route::delete('/destroy/{id}', [SectionController::class, 'destroy'])->name('section.destroy');
 });
 
-Route::group(['prefix' => 'session','middleware' => 'authen'], function () {
+Route::group(['prefix' => 'session', 'middleware' => 'authen'], function () {
     Route::get('/', [SessionController::class, 'index'])->name('session.index');
     Route::get('/create', [SessionController::class, 'create'])->name('session.create');
     Route::post('/store', [SessionController::class, 'store'])->name('session.store');
@@ -108,7 +109,7 @@ Route::group(['prefix' => 'session','middleware' => 'authen'], function () {
     Route::delete('/destroy/{id}', [SessionController::class, 'destroy'])->name('session.destroy');
 });
 
-Route::group(['prefix' => 'video','middleware' => 'authen'], function () {
+Route::group(['prefix' => 'video', 'middleware' => 'authen'], function () {
     Route::get('/', [VideoController::class, 'index'])->name('video.index');
     Route::get('/create', [VideoController::class, 'create'])->name('video.create');
     Route::post('/store', [VideoController::class, 'store'])->name('video.store');
@@ -119,7 +120,7 @@ Route::group(['prefix' => 'video','middleware' => 'authen'], function () {
 });
 
 
-Route::group(['prefix' => 'media','middleware' => 'authen'], function () {
+Route::group(['prefix' => 'media', 'middleware' => 'authen'], function () {
     Route::get('/', [MediaController::class, 'index'])->name('media.index');
     Route::get('/create', [MediaController::class, 'create'])->name('media.create');
     Route::post('/store', [MediaController::class, 'store'])->name('media.store');
@@ -127,20 +128,25 @@ Route::group(['prefix' => 'media','middleware' => 'authen'], function () {
     // Route::put('/update/{id}', [MediaController::class, 'update'])->name('media.update');
     Route::delete('/destroy/{id}', [MediaController::class, 'destroy'])->name('media.destroy');
 });
-Route::group(['prefix' => 'certificate','middleware' => 'authen'], function () {
+Route::group(['prefix' => 'certificate', 'middleware' => 'authen'], function () {
     Route::get('/', [CertificateController::class, 'index'])->name('certificate.index');
     Route::get('/create', [CertificateController::class, 'create'])->name('certificate.create');
     Route::post('/store', [CertificateController::class, 'store'])->name('certificate.store');
     Route::delete('/destroy/{id}', [CertificateController::class, 'destroy'])->name('certificate.destroy');
 });
-Route::group(['prefix' => 'quiz','middleware' => 'authen'], function () {
-Route::get('/', [QuizController::class, 'index'])->name('quiz.index');
+Route::group(['prefix' => 'quiz', 'middleware' => 'authen'], function () {
+    Route::get('/', [QuizController::class, 'index'])->name('quiz.index');
     Route::get('/create', [QuizController::class, 'create'])->name('quiz.create');
     Route::post('/store', [QuizController::class, 'store'])->name('quiz.store');
     Route::delete('/destroy/{id}', [QuizController::class, 'destroy'])->name('quiz.destroy');
+});
+Route::group(['prefix' => 'testquestion', 'middleware' => 'authen'], function () {
+    Route::get('/', [TestQuestionController::class, 'index'])->name('testquestion.index');
+    Route::get('/create/{id}', [TestQuestionController::class, 'create'])->name('testquestion.create');
+    Route::post('/store', [TestQuestionController::class, 'store'])->name('testquestion.store');
+    Route::delete('/destroy/{id}', [TestQuestionController::class, 'destroy'])->name('testquestion.destroy');
 });
 
 Route::fallback(function () {
     return view('404');
 });
-

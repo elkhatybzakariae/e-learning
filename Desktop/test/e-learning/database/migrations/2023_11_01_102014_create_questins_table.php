@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('id_Que')->primary();
             $table->string('question');
             $table->string('questable_id');
-            $table->string('questable_type');
             $table->timestamps();
         });
     }

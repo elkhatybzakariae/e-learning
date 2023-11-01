@@ -8,17 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-    protected $table = 'quiz';
-    protected $primaryKey = 'id_Q';
+    protected $table = 'questions';
+    protected $primaryKey = 'id_Que';
     public $incrementing=false;
     public $timestamps=true;
     protected $fillable = [
-        'id_Q',
-        'quizName',
-        'id_Sec',
+        'id_Que ',
+        'question',
+        'questable_id',
+        'questable_type',
     ];
-    public function commentable()
+    public function questable()
     {
         return $this->morphTo();
+    }
+    public function reponse(){
+        return $this->hasMany(Reponse::class);
     }
 }

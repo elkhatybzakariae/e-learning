@@ -21,4 +21,9 @@ class Quiz extends Model
     public function section(){
         return $this->belongsTo(Section::class, 'id_Sec');
     }
+    
+    public function questions()
+    {
+        return $this->morphMany(Question::class, 'questable');
+    }
 }

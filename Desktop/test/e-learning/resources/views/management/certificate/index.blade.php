@@ -94,7 +94,7 @@
                                             </button>
                                             <div class="dropdown-menu animated--fade-in"
                                                 aria-labelledby="dropdownMenuButton">
-                                                <a href="#"
+                                                <a href="{{route('testquestion.create', $cert->id_Cert )}}"
                                                     class="btn btn-warning btn-icon-split ml-4 ">
                                                     <span class="icon text-white-50">
                                                         <i class="fas fa-exclamation-triangle"></i>

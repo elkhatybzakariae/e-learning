@@ -20,4 +20,8 @@ class Certificate extends Model
     public function cour(){
         return $this->belongsTo(Cour::class, 'id_C');
     }
+    public function questions()
+    {
+        return $this->morphMany(Question::class, 'questable');
+    }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('reponses', function (Blueprint $table) {
             $table->string('id_R')->primary();
-            $table->string('reponses');
+            $table->string('reponse');
             $table->boolean('statusrep');
             $table->string('id_Que');
             $table->foreign('id_Que')->references('id_Que')->on('questions');
