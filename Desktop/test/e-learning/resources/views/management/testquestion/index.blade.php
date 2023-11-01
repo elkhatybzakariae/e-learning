@@ -1,14 +1,14 @@
 @extends('auth.dashboard')
 
-@section('title', 'categorie')
+@section('title', 'questions')
 
 @section('container-fluid')
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-2 text-gray-800">Categories</h1>
-        <a href="{{ route('categorie.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fa-regular fa-plus"></i> Ajouter Categorie</a>
+        <h1 class="h3 mb-2 text-gray-800">Questions</h1>
+        <a href="{{ route('testquestion.create',$id) }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fa-regular fa-plus"></i> Ajouter Question</a>
     </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -17,20 +17,20 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>question</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Name</th>
+                            <th>question</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($categories as $cat)
+                        @foreach ($questions as $ques)
                             <tr>
-                                <td>{{ $cat->CatName }}</td>
+                                <td>{{ $ques->question }}</td>
                                 <td class="d-flex justify-content-center">
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle" type="button"
@@ -39,14 +39,8 @@
                                             Actions
                                         </button>                                       
                                         <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                            <a  href="{{ route('categorie.edit', $cat->id_Cat) }}" class="btn btn-warning btn-icon-split ">
-                                                <span class="icon text-white-50">
-                                                    <i class="fas fa-exclamation-triangle"></i>
-                                                </span>
-                                                <span class="text">modifier</span>
-                                            </a>
                                             <div class="dropdown-item">
-                                                <form action="{{ route('categorie.destroy', $cat->id_Cat) }}"
+                                                <form action="{{ route('testquestion.destroy', $ques->id_Que) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('delete')

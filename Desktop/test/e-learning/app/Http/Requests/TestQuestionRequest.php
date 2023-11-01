@@ -13,7 +13,7 @@ class TestQuestionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,18 @@ class TestQuestionRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($_REQUEST);
         return [
-            //
+            'question' => 'required|string|max:100',
+            // 'questable_id' => 'required',
+            'responses.*.response_text' => 'required|string',
+            'responses.*.is_true' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'question.required' => 'The question is required.',
         ];
     }
 }

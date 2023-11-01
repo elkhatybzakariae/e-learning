@@ -94,12 +94,12 @@
                                             </button>
                                             <div class="dropdown-menu animated--fade-in"
                                                 aria-labelledby="dropdownMenuButton">
-                                                <a href="{{route('testquestion.create', $cert->id_Cert )}}"
+                                                <a href="{{route('testquestion.index', $cert->id_Cert )}}"
                                                     class="btn btn-warning btn-icon-split ml-4 ">
                                                     <span class="icon text-white-50">
-                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                        <i class="fa-solid fa-question"></i>
                                                     </span>
-                                                    <span class="text">Ajouter Question</span>
+                                                    <span class="text">Questions</span>
                                                 </a>
                                                 <div class="dropdown-item">
                                                     <form action="{{ route('certificate.destroy', $cert->id_Cert ) }}" method="post">

@@ -2,25 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
+use App\Http\Requests\TestQuestionRequest;
+use App\Models\Question;
+use App\Models\Reponse;
 use Illuminate\Http\Request;
 
 class TestQuestionController extends Controller
 {
-    public function create()
+    public function index($id)
     {
-        return view('management.testquestion.create');
+        $questions= Question::where('questable_id',$id)->get();
+        return view('management.testquestion.index', compact('questions','id'));
+    }
+    public function create($id)
+    {
+        return view('management.testquestion.create', compact('id'));
     }
 
-    public function store(Request $request)
+    public function store(TestQuestionRequest $request, $id)
     {
-        $request->validate([
-            'comment' => 'required',
-            'commentable_id' => 'required',
-            'commentable_type' => 'required|in:Post,Video',
-        ]);
 
-        Comment::create($request->all());
+        $customIdQues = Helpers::generateIdQues();
+        $validatedData = $request->validated();
+        $validatedData['id_Que'] = $customIdQues;
+        $validatedData['questable_id'] = $id;
 
-        return redirect()->back()->with('success', 'Comment added successfully');
+        Question::create($validatedData);
+
+        foreach ($validatedData['responses'] as $response) {
+            Reponse::create([
+                'id_R' => Helpers::generateIdQR(),
+                'reponse' => $response['response_text'],
+                'statusrep' => $response['is_true'],
+                'id_Que' => $customIdQues,
+            ]);
+        }
+        $url = url()->previous();
+        // dd($url);
+        return redirect()->to(url()->previous())->with('success', 'Question added successfully');
+
+        // return redirect()->route('sujet.index')->with('success', 'Sujet created successfully');
+
+        // return redirect()->back()->with('success', 'Question added successfully');
+    }
+    public function destroy($id){
+        Question::find($id)->delete();
+        return redirect()->to(url()->previous())->with('success', 'Question deleted successfully');
     }
 }

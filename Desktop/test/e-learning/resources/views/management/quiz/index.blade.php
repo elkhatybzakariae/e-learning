@@ -47,12 +47,12 @@
                                             </button>
                                             <div class="dropdown-menu animated--fade-in"
                                                 aria-labelledby="dropdownMenuButton">
-                                                <a href="{{route('testquestion.create', $quiz->id_Q )}}"
+                                                <a href="{{route('testquestion.index', $quiz->id_Q )}}"
                                                     class="btn btn-warning btn-icon-split ml-4 ">
                                                     <span class="icon text-white-50">
-                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                        <i class="fa-solid fa-question"></i>
                                                     </span>
-                                                    <span class="text">Ajouter Question</span>
+                                                    <span class="text">Questions</span>
                                                 </a>
                                                 <div class="dropdown-item">
                                                     <form action="{{ route('quiz.destroy', $quiz->id_Q ) }}" method="post">

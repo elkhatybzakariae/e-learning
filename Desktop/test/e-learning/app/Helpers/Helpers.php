@@ -6,7 +6,9 @@ use App\Models\Categorie;
 use App\Models\Certificate;
 use App\Models\Cour;
 use App\Models\Media;
+use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\Reponse;
 use App\Models\Section;
 use App\Models\Session;
 use App\Models\SousCategorie;
@@ -94,5 +96,21 @@ class Helpers
             $idQ = Str::random(15);
         }
         return $idQ;
+    }
+    public static function generateIdQues()
+    {
+        $idQue = Str::random(15);
+        while (Question::where('id_Que', $idQue)->exists()) {
+            $idQue = Str::random(15);
+        }
+        return $idQue;
+    }
+    public static function generateIdQR()
+    {
+        $idR = Str::random(15);
+        while (Reponse::where('id_R', $idR)->exists()) {
+            $idR = Str::random(15);
+        }
+        return $idR;
     }
 }

@@ -13,10 +13,9 @@ class Question extends Model
     public $incrementing=false;
     public $timestamps=true;
     protected $fillable = [
-        'id_Que ',
+        'id_Que',
         'question',
         'questable_id',
-        'questable_type',
     ];
     public function questable()
     {

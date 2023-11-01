@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('reponse');
             $table->boolean('statusrep');
             $table->string('id_Que');
-            $table->foreign('id_Que')->references('id_Que')->on('questions');
+            $table->foreign('id_Que')->references('id_Que')->on('questions')->onDelete('cascade');;
             $table->timestamps();
         });
     }

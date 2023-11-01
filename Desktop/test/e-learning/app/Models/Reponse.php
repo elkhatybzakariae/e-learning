@@ -13,10 +13,10 @@ class Reponse extends Model
     public $incrementing=false;
     public $timestamps=true;
     protected $fillable = [
-        'id_R ',
+        'id_R',
         'reponse',
         'statusrep',
-        'id_Que ',
+        'id_Que',
     ];
    
     public function question(){
