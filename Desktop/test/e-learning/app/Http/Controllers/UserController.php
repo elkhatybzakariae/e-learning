@@ -15,6 +15,11 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function index2()
+    {
+        
+        return view('auth.dashboard2');
+    }
 
     public function management()
     {

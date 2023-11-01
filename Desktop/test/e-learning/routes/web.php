@@ -32,6 +32,7 @@ Route::group(['middleware' => 'authen'], function () {
     Route::get('/teachdashboard', [UserController::class, 'teachdashboard'])->name('teachdashboard')->middleware('formateur');
     Route::get('/management', [UserController::class, 'management'])->name('management')->middleware('moderateur');
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/home', [UserController::class, 'index2'])->name('home2');
     Route::get('/profile/', [UserController::class, 'profile'])->name('profile');
     Route::put('/profile/update', [UserController::class, 'update'])->name('update');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');

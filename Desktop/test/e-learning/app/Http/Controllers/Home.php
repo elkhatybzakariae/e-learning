@@ -12,4 +12,5 @@ class Home extends Controller
         // $categories= Categorie::all();,compact('categories')
         return view('welcome');
     }
+    
 }
