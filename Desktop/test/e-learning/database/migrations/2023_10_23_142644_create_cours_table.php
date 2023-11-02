@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('coupon')->nullable();
             $table->boolean('valider')->default(false);
             $table->boolean('terminer')->default(false);
-            $table->unsignedBigInteger('id_U');
+            $table->string('id_U');
             $table->foreign('id_U')->references('id_U')->on('users');
             $table->string('id_Sj');
             $table->foreign('id_Sj')->references('id_Sj')->on('sujets');

@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'authen' => \App\Http\Middleware\AuthMiddleware::class,
         'moderateur' => \App\Http\Middleware\ModerateurMiddleware::class,
         'formateur' => \App\Http\Middleware\FormateurMiddleware::class,
+        'superadmin' => \App\Http\Middleware\SuperAdminMiddleware::class,
 
     ];
 }

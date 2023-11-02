@@ -10,8 +10,8 @@ class Role_User extends Model
     use HasFactory;
     protected $table = 'role_user';
     protected $primaryKey = 'id';
-    public $incrementing = true;
+    public $incrementing = false;
     public $timestamps = false;
-    protected $fillable = ['id_U','id_R'];
+    protected $fillable = ['id','id_U','id_R'];
     
 }

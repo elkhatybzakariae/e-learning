@@ -71,6 +71,7 @@
     var sections = @json($sections);
     var sessions = @json($sessions);
     var video = @json($video);
+    
 </script>
 <!-- Bootstrap core JavaScript-->
 <script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>

@@ -9,14 +9,32 @@ use App\Models\Media;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\Reponse;
+use App\Models\Role_User;
 use App\Models\Section;
 use App\Models\Session;
 use App\Models\SousCategorie;
 use App\Models\Sujet;
+use App\Models\User;
 use App\Models\Video;
 use Illuminate\Support\Str;
 class Helpers
 {
+    public static function generateIdU()
+    {
+        $idU = Str::random(15);
+        while (User::where('id_U', $idU)->exists()) {
+            $idU = Str::random(15);
+        }
+        return $idU;
+    }
+    public static function generateIdUR()
+    {
+        $id = Str::random(15);
+        while (Role_User::where('id', $id)->exists()) {
+            $id = Str::random(15);
+        }
+        return $id;
+    }
     public static function generateIdCat()
     {
         $idCat = Str::random(15);

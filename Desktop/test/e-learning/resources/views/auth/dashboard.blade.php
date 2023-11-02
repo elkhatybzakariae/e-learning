@@ -28,7 +28,27 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+            @if (auth()->user()->roles->contains('role_name', 'superadmin'))
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    e-learning management
+                </div>
+
+                <!-- Nav Item  -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Gestion des comptes</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('gestiondescomptes') }}">Table Des Comptes</a>
+                        </div>
+                    </div>
+                </li>
+
+            @elseif (auth()->user()->roles->contains('role_name', 'moderateur'))
                 <!-- Heading -->
                 <div class="sidebar-heading">
                     e-learning management
@@ -273,6 +293,13 @@
                     </div>
                 </li>
             @endif
+             <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div> 
         </ul>
         {{-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> --}}
         {{-- 
@@ -375,16 +402,16 @@
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tables</span></a>
         </li>
-
-        <!-- Divider -->
+--}}
+        {{-- <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+        </div>  --}}
 
-        <!-- Sidebar Message -->
+      {{--   <!-- Sidebar Message -->
         <div class="sidebar-card d-none d-lg-flex">
             <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
             <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,

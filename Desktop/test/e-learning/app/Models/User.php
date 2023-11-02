@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     protected $table = 'users';
     protected $primaryKey = 'id_U';
-    public $incrementing = true;
+    public $incrementing = false;
     public $timestamps = false;
 
 
@@ -24,6 +24,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id_U',
         'FirstName',
         'LastName',
         'Email',

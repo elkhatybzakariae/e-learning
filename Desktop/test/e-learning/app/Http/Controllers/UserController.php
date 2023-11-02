@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -37,6 +38,8 @@ class UserController extends Controller
 
     public function handleGoogleCallback()
     {
+        $id_U=Helpers::generateIdU();
+        $id=Helpers::generateIdUR();
         $googleUser = Socialite::driver('google')->user();
         $user = User::where('Email', $googleUser->email)->first();
         if ($user) {
@@ -44,12 +47,15 @@ class UserController extends Controller
         } else {
             $fullname = explode(" ", $googleUser['name']);
             $newUser = User::create([
+                'id_U' => $id_U,
                 'FirstName' => $fullname[0],
                 'LastName' => $fullname[1],
                 'Email' => $googleUser->email,
                 'Password' => bcrypt(Str::random(16)),
             ]);
+            // dd($newUser);
             Role_User::create([
+                'id' => $id,
                 'id_U' => $newUser->id_U,
                 'id_R' => "3",
             ]);
@@ -204,5 +210,24 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect()->route('loginpage');
+    }
+
+
+    public function gestiondescomptes(){
+        $users = User::where('id_U', '!=', auth()->id())->get();
+        return view('auth.superadmin.index',compact('users'));
+    }
+    public function edituser($id){
+        // $user = User::find($id);
+        $user = Role_User::where('id_U',$id)->first();
+        $roles = Role::all();
+        return view('auth.superadmin.edit',compact('user','roles'));
+    }
+    public function updateuser(Request $req,$id){
+        $user = Role_User::where('id_U',$id);
+        $user->update([
+            'id_R'=>$req->id_R,
+        ]);
+        return redirect()->route('gestiondescomptes');
     }
 }

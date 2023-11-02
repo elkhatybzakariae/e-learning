@@ -56,18 +56,18 @@
                         {{-- <a class="nav-link  dropdown-toggle-split" href="#" data-mdb-toggle="dropdown dropdown-toggle"
                           aria-expanded="false"></a> --}}
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                            aria-haspopup="true" aria-expanded="false" id="cat">
                             Categories
                         </a>
                         <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
-                                id="catlist">
-                                {{-- <h6 id="catlistDropdown">Categories</h6> --}}
-                            </div>
-                            <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
-                                id="scatlist">
-                                {{-- <h6 id="scatlistDropdown">Subcategories</h6> --}}
-                            </div>
+                        <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
+                            id="catlist">
+                            {{-- <h6 id="catlistDropdown">Categories</h6> --}}
+                        </div>
+                        {{-- <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
+                            id="scatlist">
+                            {{-- <h6 id="scatlistDropdown">Subcategories</h6> 
+                        </div> --}}
 
                         {{-- </li> --}}
                     </div>
@@ -317,28 +317,38 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            var cat = document.getElementById('cat');
             var catlistdiv = document.getElementById('catlistdiv');
             var catlist = document.getElementById('catlist');
             var scatlist = document.getElementById('scatlist');
 
-            categories.forEach(categorie => {
-                const catli = document.createElement('li');
-                const cata = document.createElement('a');
-                cata.textContent = categorie.CatName;
-                catli.name = categorie.id_Cat;
-                cata.id = categorie.id_Cat;
-                cata.classList.add('dropdown-item');
-                catli.appendChild(cata);
-                catlist.appendChild(catli);
-                cata.addEventListener('mouseenter', function() {
-                    souscategorie(cata);
-                    scatlist.classList.toggle('show');
+            function categorie() {
+                categories.forEach(categorie => {
+                    const catli = document.createElement('li');
+                    const cata = document.createElement('a');
+                    cata.textContent = categorie.CatName;
+                    catli.name = categorie.id_Cat;
+                    cata.id = categorie.id_Cat;
+                    cata.classList.add('dropdown-item');
+                    catli.appendChild(cata);
+                    catlist.appendChild(catli);
 
-                    // console.log('eee');
+                    cata.addEventListener('mouseenter', function() {
+                        souscategorie(cata);
+                        scatlist.classList.toggle('show');
+                    });
+                    cata.addEventListener('mouseleave', function() {
+                        cata.removeEventListener('mouseenter', souscategorie);
+                        const ulToRemove = cata.querySelector('a > li');
+                        if (ulToRemove) {
+                            cata.removeChild(ulToRemove);
+                        }
+
+                    });
+
+
                 });
-
-
-            });
+            }
             // function categorie() {
             //     // categories dropdown
             //     categories.forEach(function(categorie) {
@@ -376,11 +386,13 @@
             function souscategorie(cata) {
                 // var scatlist = document.createElement('ul');
                 // scatlist.classList.add('dropdown-menu');
+
                 const souscat = souscategories.filter(function(e) {
-                    console.log(e.id_Cat);
-                    return e.id_Cat = cata.id;
+                    // console.log(e);
+                    // console.log(cata.id);
+                    return e.id_Cat === cata.id;
                 });
-                // console.log(souscat);
+                console.log(souscat);
                 souscat.forEach(function(souscategorie) {
                     const souscatLi = document.createElement('li');
                     const souscata = document.createElement('a');
@@ -389,7 +401,7 @@
                     souscata.classList.add('dropdown-item');
 
                     souscatLi.appendChild(souscata);
-                    scatlist.appendChild(souscatLi);
+                    cata.appendChild(souscatLi);
                     console.log(scatlist);
                     // catdiv.appendChild(scatlist);
 
@@ -441,11 +453,10 @@
             // }
 
             // //event listener for categorie
-            // catlistdiv.addEventListener('mouseenter', categorie);
-            // catlistdiv.addEventListener('mouseleave', function() {
-            //     console.log('bbb');
-            //     catlistdiv.removeEventListener('mouseenter', categorie);
-            // });
+            cat.addEventListener('mouseenter', categorie);
+            cat.addEventListener('mouseleave', function() {
+                cat.removeEventListener('mouseenter', categorie);
+            });
         });
     </script>
 @endsection

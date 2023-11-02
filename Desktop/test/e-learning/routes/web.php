@@ -27,6 +27,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Home::class, 'index'])->name('home');
 
+Route::group(['middleware' => 'superadmin'], function () {
+    Route::get('/gestiondescomptes', [UserController::class, 'gestiondescomptes'])->name('gestiondescomptes');
+    Route::get('/edit/user/{id}', [UserController::class, 'edituser'])->name('edituser');
+    Route::put('/update/user/{id}', [UserController::class, 'updateuser'])->name('updateuser');
+});
 Route::group(['middleware' => 'authen'], function () {
     Route::get('/teach', [UserController::class, 'teach'])->name('teach');
     Route::get('/teachdashboard', [UserController::class, 'teachdashboard'])->name('teachdashboard')->middleware('formateur');
