@@ -65,7 +65,6 @@
     
 </body>
 <script>
-    
     var categories = @json($categories);
     var souscategories = @json($souscategories);
     var sujets = @json($sujets);

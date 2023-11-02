@@ -20,7 +20,7 @@
             <hr class="sidebar-divider my-0">
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('home2')}}">
+                <a class="nav-link" href="{{ route('home2') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -251,9 +251,10 @@
                         <i class="fa-solid fa-certificate"></i>
                         <span>Certificates</span>
                     </a>
-                    <div id="collapsecert" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapsecert" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{route('certificate.index')}}">Table Certificates</a>
+                            <a class="collapse-item" href="{{ route('certificate.index') }}">Table Certificates</a>
                         </div>
                     </div>
                 </li>
@@ -264,9 +265,10 @@
                         <i class="fa-solid fa-question"></i>
                         <span>Quiz</span>
                     </a>
-                    <div id="collapseQuiz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseQuiz" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{route('quiz.index')}}">Table Quiz</a>
+                            <a class="collapse-item" href="{{ route('quiz.index') }}">Table Quiz</a>
                         </div>
                     </div>
                 </li>
