@@ -51,22 +51,24 @@
                         </ul>
 
                     </div> --}}
-                    <div class="dropdown align-items-center">
+                    <div class="dropdown align-items-center row">
                         {{-- <li class="nav-item dropdown "id="catlistdiv"> --}}
-                            {{-- <a class="nav-link  dropdown-toggle-split" href="#" data-mdb-toggle="dropdown dropdown-toggle"
+                        {{-- <a class="nav-link  dropdown-toggle-split" href="#" data-mdb-toggle="dropdown dropdown-toggle"
                           aria-expanded="false"></a> --}}
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                Categories
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu  shadow animated--grow-in"
-                                aria-labelledby="userDropdown" id="catlist">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Categories
+                        </a>
+                        <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
+                                id="catlist">
+                                {{-- <h6 id="catlistDropdown">Categories</h6> --}}
                             </div>
-                            <div class="dropdown-menu  shadow animated--grow-in"
-                                aria-labelledby="userDropdown" id="scatlist">
-                                
+                            <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
+                                id="scatlist">
+                                {{-- <h6 id="scatlistDropdown">Subcategories</h6> --}}
                             </div>
+
                         {{-- </li> --}}
                     </div>
 
@@ -324,9 +326,18 @@
                 const cata = document.createElement('a');
                 cata.textContent = categorie.CatName;
                 catli.name = categorie.id_Cat;
+                cata.id = categorie.id_Cat;
                 cata.classList.add('dropdown-item');
                 catli.appendChild(cata);
                 catlist.appendChild(catli);
+                cata.addEventListener('mouseenter', function() {
+                    souscategorie(cata);
+                    scatlist.classList.toggle('show');
+
+                    // console.log('eee');
+                });
+
+
             });
             // function categorie() {
             //     // categories dropdown
@@ -337,7 +348,8 @@
             //         cata.textContent = categorie.CatName;
             //         // cata.setAttribute('href', '#');
             //         // catdiv.setAttribute('name', categorieid_Cat
-          //         catdiv.name = categorieid_Cat          //         catdiv.classList.add('dropdown');
+            //         catdiv.name = categorieid_Cat          
+            //         catdiv.classList.add('dropdown');
             //         catdiv.classList.add('nav-item');
             //         catdiv.classList.add('dropright');
             //         cata.classList.add('dropdown-item');
@@ -361,51 +373,47 @@
             //     });
             // }
 
-            // function souscategorie(catdiv) {
-            //     // var scatlist = document.createElement('ul');
-            //     scatlist.classList.add('dropdown-menu');
-            //     const souscat = souscategories.filter(function(e) {
-            //         return eid_Cat=catdiv.ame;
-            //     });
-            //     souscat.forEach(function(souscategorie) {
-            //         const souscatLi = document.createElement('li');
-            //         const souscatdiv = document.createElement('div');
-            //         const souscata = document.createElement('a');
-            //         souscata.textContent = souscategorie.SCatName;
+            function souscategorie(cata) {
+                // var scatlist = document.createElement('ul');
+                // scatlist.classList.add('dropdown-menu');
+                const souscat = souscategories.filter(function(e) {
+                    console.log(e.id_Cat);
+                    return e.id_Cat = cata.id;
+                });
+                // console.log(souscat);
+                souscat.forEach(function(souscategorie) {
+                    const souscatLi = document.createElement('li');
+                    const souscata = document.createElement('a');
+                    souscata.textContent = souscategorie.SCatName;
+                    souscatLi.name = souscategorie.id_SCat;
+                    souscata.classList.add('dropdown-item');
 
-            //         souscatdiv.name = souscategorie.id_SCat;
-            //         souscatdiv.classList.add('dropdown');
-            //         souscatdiv.classList.add('nav-item');
-            //         souscatdiv.classList.add('dropright');
-            //         souscata.classList.add('dropdown-item');
-
-            //         souscatdiv.appendChild(souscata);
-            //         souscatLi.appendChild(souscatdiv);
-            //         scatlist.appendChild(souscatLi);
-            //         console.log(scatlist);
-            //         // catdiv.appendChild(scatlist);
+                    souscatLi.appendChild(souscata);
+                    scatlist.appendChild(souscatLi);
+                    console.log(scatlist);
+                    // catdiv.appendChild(scatlist);
 
 
-            //         // event listener for sujet
-            //         souscatdiv.addEventListener('mouseenter', function() {
-            //             sujet(souscatdiv);
+                    // event listener for sujet
+                    // souscatdiv.addEventListener('mouseenter', function() {
+                    //     sujet(souscatdiv);
 
-            //         });
-            //         souscatdiv.addEventListener('mouseleave', function() {
-            //             souscatdiv.removeEventListener('mouseenter', sujet);
-            //             const ulToRemove = souscatdiv.querySelector('div > ul');
-            //             if (ulToRemove) {
-            //                 souscatdiv.removeChild(ulToRemove);
-            //             }
-            //         });
+                    // });
+                    // souscatdiv.addEventListener('mouseleave', function() {
+                    //     souscatdiv.removeEventListener('mouseenter', sujet);
+                    //     const ulToRemove = souscatdiv.querySelector('div > ul');
+                    //     if (ulToRemove) {
+                    //         souscatdiv.removeChild(ulToRemove);
+                    //     }
+                    // });
 
-            //     });
+                });
 
-            //     // souscatdiv.appendChild(souscata); 
-            //     // souscatLi.appendChild(souscatdiv); 
-            //     // scatlist.appendChild(souscatLi);
+                // souscatdiv.appendChild(souscata); 
+                // souscatLi.appendChild(souscatdiv); 
+                // scatlist.appendChild(souscatLi);
 
-            // }
+            }
 
             // function sujet(souscatdiv) {
             //     var sujetList = document.createElement('ul');
@@ -441,4 +449,3 @@
         });
     </script>
 @endsection
-
