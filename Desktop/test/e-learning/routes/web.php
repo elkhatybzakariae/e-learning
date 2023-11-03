@@ -6,6 +6,7 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CourController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\PanierController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectionController;
@@ -157,6 +158,9 @@ Route::group(['prefix' => 'testquestion', 'middleware' => 'authen'], function ()
     Route::get('/create/{id}', [TestQuestionController::class, 'create'])->name('testquestion.create');
     Route::post('/store/{id}', [TestQuestionController::class, 'store'])->name('testquestion.store');
     Route::delete('/destroy/{id}', [TestQuestionController::class, 'destroy'])->name('testquestion.destroy');
+});
+Route::group(['prefix' => 'panier', 'middleware' => 'authen'], function () {
+    Route::get('/', [PanierController::class, 'index'])->name('panier.index');
 });
 
 Route::fallback(function () {

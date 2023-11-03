@@ -111,23 +111,24 @@ class UserController extends Controller
 
     public function teach()
     {
+        $idRole = Helpers::generateIdRole();
         $id = Auth::id();
         $user = User::find($id);
-        $userrole = Role_User::where('id_R', 2)
+        $role=Role::where('role_name','formateur')->first();
+        $userrole = Role_User::where('id_R', $role->id_R)
             ->where('id_U', $id)
             ->exists();
-        dd($userrole);
+        // dd($userrole);
         if ($userrole) {
             return view('auth.dashboard');
         } else {
-            $typeuser = Role_User::create([
+            Role_User::create([
+                'id' => $idRole,
                 'id_U' => $user->id_U,
-                'id_R' => "2",
+                'id_R' => $role->id_R,
             ]);
+            return view('auth.dashboard');
         }
-
-        // dd($typeuser);
-        return view('auth.dashboard');
     }
     public function dashboard()
     {

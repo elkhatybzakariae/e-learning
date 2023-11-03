@@ -312,7 +312,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
         </ul>
-    {{-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> --}}
+        {{-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> --}}
         {{-- 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -622,10 +622,17 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
+                                @if (auth()->user()->roles->contains('role_name', 'formateur'))
+                                    <a class="dropdown-item" href="{{route('index')}}">
+                                        <i class="fa-solid fa-laptop"></i>
+                                        Participant
+                                    </a>
+                                {{-- @elseif (auth()->user()->roles->contains('role_name', 'client'))
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Settings
+                                    </a> --}}
+                                @endif
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
