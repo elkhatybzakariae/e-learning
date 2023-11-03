@@ -7,6 +7,7 @@ use App\Http\Controllers\CourController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SousCategorieController;
@@ -29,10 +30,15 @@ Route::get('/', [Home::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'superadmin'], function () {
     Route::get('/gestiondescomptes', [UserController::class, 'gestiondescomptes'])->name('gestiondescomptes');
+    Route::get('/roleindex', [RoleController::class, 'roleindex'])->name('roleindex');
+    Route::get('/role/create', [RoleController::class, 'rolecreate'])->name('rolecreate');
+    Route::post('/role/store', [RoleController::class, 'rolestore'])->name('rolestore');
+    Route::delete('/delete/role/{id}', [RoleController::class, 'deleterole'])->name('deleterole');
     Route::get('/edit/user/{id}', [UserController::class, 'edituser'])->name('edituser');
     Route::put('/update/user/{id}', [UserController::class, 'updateuser'])->name('updateuser');
 });
 Route::group(['middleware' => 'authen'], function () {
+    Route::get('/index', [UserController::class, 'index'])->name('index');
     Route::get('/teach', [UserController::class, 'teach'])->name('teach');
     Route::get('/teachdashboard', [UserController::class, 'teachdashboard'])->name('teachdashboard')->middleware('formateur');
     Route::get('/management', [UserController::class, 'management'])->name('management')->middleware('moderateur');

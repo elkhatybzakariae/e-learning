@@ -318,9 +318,9 @@
     <script>
         $(document).ready(function() {
             var cat = document.getElementById('cat');
-            var catlistdiv = document.getElementById('catlistdiv');
+            // var catlistdiv = document.getElementById('catlistdiv');
             var catlist = document.getElementById('catlist');
-            var scatlist = document.getElementById('scatlist');
+            // var scatlist = document.getElementById('scatlist');
 
             function categorie() {
                 categories.forEach(categorie => {
@@ -335,18 +335,23 @@
 
                     cata.addEventListener('mouseenter', function() {
                         souscategorie(cata);
-                        scatlist.classList.toggle('show');
+                        // scatlist.classList.toggle('show');
                     });
+                    // cata.removeEventListener('mouseleave', souscategorie);
+
                     cata.addEventListener('mouseleave', function() {
                         cata.removeEventListener('mouseenter', souscategorie);
-                        const ulToRemove = cata.querySelector('a > li');
-                        if (ulToRemove) {
-                            cata.removeChild(ulToRemove);
-                        }
-
+                        const ulToRemove = cata.querySelectorAll('li');
+                        //     // const ulToRemove = cata.querySelector(`[name='${catli.name}']`);
+                        //     // const ulToRemove = cata.querySelectorAll('li');
+                        // console.log(ulToRemove);
+                        // if (ulToRemove) {
+                        //     cata.removeChild(ulToRemove);
+                        // }
+                        ulToRemove.forEach(li => {
+                            cata.removeChild(li);
+                        });
                     });
-
-
                 });
             }
             // function categorie() {
@@ -384,12 +389,10 @@
             // }
 
             function souscategorie(cata) {
-                // var scatlist = document.createElement('ul');
-                // scatlist.classList.add('dropdown-menu');
+                var scatlist = document.createElement('ul');
+                scatlist.classList.add('dropdown-menu');
 
                 const souscat = souscategories.filter(function(e) {
-                    // console.log(e);
-                    // console.log(cata.id);
                     return e.id_Cat === cata.id;
                 });
                 console.log(souscat);
@@ -401,8 +404,10 @@
                     souscata.classList.add('dropdown-item');
 
                     souscatLi.appendChild(souscata);
-                    cata.appendChild(souscatLi);
-                    console.log(scatlist);
+                    // cata.appendChild(souscatLi);
+                    scatlist.appendChild(souscatLi);
+                    cata.appendChild(scatlist);
+                    // console.log(scatlist);
                     // catdiv.appendChild(scatlist);
 
 

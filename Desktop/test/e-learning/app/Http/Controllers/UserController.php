@@ -16,9 +16,14 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+
+        return view('index');
+    }
     public function index2()
     {
-        
+
         return view('auth.dashboard2');
     }
 
@@ -38,8 +43,8 @@ class UserController extends Controller
 
     public function handleGoogleCallback()
     {
-        $id_U=Helpers::generateIdU();
-        $id=Helpers::generateIdUR();
+        $id_U = Helpers::generateIdU();
+        $id = Helpers::generateIdUR();
         $googleUser = Socialite::driver('google')->user();
         $user = User::where('Email', $googleUser->email)->first();
         if ($user) {
@@ -73,6 +78,9 @@ class UserController extends Controller
 
     public function handleGithubCallback()
     {
+
+        $id_U = Helpers::generateIdU();
+        $id = Helpers::generateIdUR();
         $githubUser = Socialite::driver('github')->user();
         $user = User::where('Email', $githubUser->email)->first();
 
@@ -82,12 +90,14 @@ class UserController extends Controller
             Auth::login($user);
         } else {
             $newUser = User::create([
+                'id_U' => $id_U,
                 'FirstName' => $githubUser->nickname,
                 'LastName' => $githubUser->nickname,
                 'Email' => $githubUser->email,
                 'Password' => bcrypt(Str::random(16)),
             ]);
             $typeuser = Role_User::create([
+                'id' => $id,
                 'id_U' => $githubUser->id_U,
                 'id_R' => "3",
             ]);
@@ -101,11 +111,11 @@ class UserController extends Controller
 
     public function teach()
     {
-        $id=Auth::id();
+        $id = Auth::id();
         $user = User::find($id);
         $userrole = Role_User::where('id_R', 2)
-                        ->where('id_U', $id)
-                        ->exists();
+            ->where('id_U', $id)
+            ->exists();
         dd($userrole);
         if ($userrole) {
             return view('auth.dashboard');
@@ -125,7 +135,7 @@ class UserController extends Controller
     }
     public function profile()
     {
-        $id=Auth::id();
+        $id = Auth::id();
         $profile = User::find($id);
         return view('auth.profile', compact('profile'));
     }
@@ -136,7 +146,7 @@ class UserController extends Controller
             'LastName' => 'required|string|max:50',
             'Phone' => 'required|string|max:50',
         ]);
-        $id=Auth::id();
+        $id = Auth::id();
         $profile = User::find($id);
         if ($profile) {
             $profile->update($req->all());
@@ -153,27 +163,27 @@ class UserController extends Controller
     }
     public function register(Request $request)
     {
+        $id_U = Helpers::generateIdU();
+        $id = Helpers::generateIdUR();
         $validation = $request->validate([
             'FirstName' => 'required|string|max:50',
             'LastName' => 'required|string|max:50',
             'Email' => 'required|email|max:50',
-            // 'type' => 'required',
-            // 'Phone' => 'required|string|max:50',
             'Password' => 'required|string|min:8',
             'Confirm_password' => 'required|string|min:8',
         ]);
         if ($request->Password === $request->Confirm_password) {
             $newuser = User::create([
+                'id_U' => $id_U,
                 'FirstName' => $validation['FirstName'],
                 'LastName' => $validation['LastName'],
                 'Email' => $validation['Email'],
-                // 'Phone' => $validation['Phone'],
                 'Password' => Hash::make($validation['Password']),
             ]);
             Role_User::create([
+                'id' => $id,
                 'id_U' => $newuser->id_U,
                 'id_R' => "3",
-                // 'id_R' => $validation['type'],
             ]);
             auth()->login($newuser);
             return redirect()->route('dashboard');
@@ -213,20 +223,23 @@ class UserController extends Controller
     }
 
 
-    public function gestiondescomptes(){
+    public function gestiondescomptes()
+    {
         $users = User::where('id_U', '!=', auth()->id())->get();
-        return view('auth.superadmin.index',compact('users'));
+        return view('auth.superadmin.index', compact('users'));
     }
-    public function edituser($id){
+    public function edituser($id)
+    {
         // $user = User::find($id);
-        $user = Role_User::where('id_U',$id)->first();
+        $user = Role_User::where('id_U', $id)->first();
         $roles = Role::all();
-        return view('auth.superadmin.edit',compact('user','roles'));
+        return view('auth.superadmin.edit', compact('user', 'roles'));
     }
-    public function updateuser(Request $req,$id){
-        $user = Role_User::where('id_U',$id);
+    public function updateuser(Request $req, $id)
+    {
+        $user = Role_User::where('id_U', $id);
         $user->update([
-            'id_R'=>$req->id_R,
+            'id_R' => $req->id_R,
         ]);
         return redirect()->route('gestiondescomptes');
     }

@@ -9,6 +9,7 @@ use App\Models\Media;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\Reponse;
+use App\Models\Role;
 use App\Models\Role_User;
 use App\Models\Section;
 use App\Models\Session;
@@ -34,6 +35,14 @@ class Helpers
             $id = Str::random(15);
         }
         return $id;
+    }
+    public static function generateIdRole()
+    {
+        $id_R = Str::random(15);
+        while (Role::where('id_R', $id_R)->exists()) {
+            $id_R = Str::random(15);
+        }
+        return $id_R;
     }
     public static function generateIdCat()
     {

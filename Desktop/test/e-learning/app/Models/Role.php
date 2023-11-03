@@ -13,11 +13,7 @@ class Role extends Model
     protected $primaryKey = 'id_R';
     public $incrementing = false;
     public $timestamps = false;
-    protected $fillable = ['role_name'];
-    // public function users()
-    // {
-    //     return $this->belongsToMany(User::class);
-    // }
+    protected $fillable = ['id_R','role_name'];
     public function users()
     {
         return $this->belongsToMany(User::class, 'role_user', 'id_R', 'id_U');
