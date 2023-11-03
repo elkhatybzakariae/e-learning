@@ -13,12 +13,13 @@ use App\Models\Cour;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Password;
+
 
 class UserController extends Controller
 {
     public function index()
     {
-
         return view('index');
     }
     public function index2()
@@ -114,7 +115,7 @@ class UserController extends Controller
         $idRole = Helpers::generateIdRole();
         $id = Auth::id();
         $user = User::find($id);
-        $role=Role::where('role_name','formateur')->first();
+        $role = Role::where('role_name', 'formateur')->first();
         $userrole = Role_User::where('id_R', $role->id_R)
             ->where('id_U', $id)
             ->exists();
@@ -243,5 +244,43 @@ class UserController extends Controller
             'id_R' => $req->id_R,
         ]);
         return redirect()->route('gestiondescomptes');
+    }
+
+
+
+
+    public function showLinkRequestForm()
+    {
+        return view('auth.forgot-password');
+    }
+    public function sendResetLinkEmail(Request $request)
+    {
+        // $this->validateEmail($request);
+        $this->broker()->sendResetLink(
+            $request->only('email')
+        );
+        return back()->with('status', 'Password reset link sent!');
+    }
+    public function showResetForm(Request $request, $token = null)
+    {
+        return view('auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
+    }
+    public function reset(Request $request)
+    {
+        $this->validate($request, $this->rules(), $this->validationErrorMessages());
+        $credentials = $request->only(
+            'email',
+            'password',
+            'password_confirmation',
+            'token'
+        );
+        $response = $this->broker()->reset($credentials, function ($user, $password) {
+            $this->resetPassword($user, $password);
+        });
+        return $response == Password::PASSWORD_RESET
+            ? $this->sendResetResponse($response)
+            : $this->sendResetFailedResponse($request, $response);
     }
 }

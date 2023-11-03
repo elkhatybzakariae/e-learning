@@ -55,6 +55,11 @@ Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/signin', [UserController::class, 'loginpage'])->name('loginpage');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
+Route::get('password/reset', [UserController::class,'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [UserController::class,'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [UserController::class,'showResetForm'])->name('password.reset');
+Route::post('password/reset', [UserController::class,'reset']);
+
 
 Route::get('auth/google', [UserController::class, 'redirectToGoogle'])->name('google');
 Route::get('auth/google/callback', [UserController::class, 'handleGoogleCallback'])->name('googleregister');

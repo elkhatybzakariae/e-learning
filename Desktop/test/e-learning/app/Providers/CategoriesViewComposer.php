@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Categorie;
+use App\Models\Cour;
 use App\Models\Section;
 use App\Models\Session;
 use App\Models\SousCategorie;
@@ -33,6 +34,7 @@ class CategoriesViewComposer extends ServiceProvider
             $categories = Categorie::all();
             $souscategories = SousCategorie::all();
             $sujets = Sujet::all();
+            $cours = Cour::all();
             $sections = Section::all();
             $sessions = Session::all();
             $video = Video::all();
@@ -40,6 +42,7 @@ class CategoriesViewComposer extends ServiceProvider
                 'categories' => $categories,
                 'souscategories' => $souscategories,
                 'sujets' => $sujets,
+                'cours' => $cours,
                 'sections' => $sections,
                 'sessions' => $sessions,
                 'video' => $video,

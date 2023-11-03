@@ -13,12 +13,12 @@
         rel="stylesheet">
 
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
     <!-- Custom styles for this template-->
     <link href="{{ asset('storage/css/sb-admin-2.min.css') }}" rel="stylesheet">
-     <!-- Custom styles for this page -->
-     <link href="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link href="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
     {{-- <style>
         body {
@@ -62,7 +62,7 @@
     <!-- Page Wrapper -->
     @yield('content')
     <!-- End of Page Wrapper -->
-    
+
 </body>
 <script>
     var categories = @json($categories);
@@ -71,7 +71,6 @@
     var sections = @json($sections);
     var sessions = @json($sessions);
     var video = @json($video);
-    
 </script>
 <!-- Bootstrap core JavaScript-->
 <script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>
@@ -83,13 +82,14 @@
 <!-- Custom scripts for all pages-->
 <script src=" {{ asset('storage/js/sb-admin-2.min.js') }}"></script>
 
- <!-- Page level plugins -->
- <script src="{{ asset('storage/vendor/datatables/jquery.dataTables.min.js') }}"></script>
- <script src="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<!-- Page level plugins -->
+<script src="{{ asset('storage/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
- <!-- Page level custom scripts -->
- <script src="{{ asset('storage/js/demo/datatables-demo.js') }}"></script>
-
-@yield('script')
+<!-- Page level custom scripts -->
+<script src="{{ asset('storage/js/demo/datatables-demo.js') }}"></script>
+<script>
+    @yield('script')
+</script>
 
 </html>

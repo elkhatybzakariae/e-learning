@@ -64,9 +64,8 @@
                             </div>
                         </li>
 
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="{{route('panier.index')}}" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li class="nav-item no-arrow mx-1">
+                            <a class="nav-link" href="{{route('panier.index')}}"  role="button">
                                 <i class="fa-solid fa-basket-shopping"></i>
                             </a>
                         </li>
