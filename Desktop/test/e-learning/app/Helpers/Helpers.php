@@ -6,6 +6,7 @@ use App\Models\Categorie;
 use App\Models\Certificate;
 use App\Models\Cour;
 use App\Models\Media;
+use App\Models\Panier;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\Reponse;
@@ -139,5 +140,13 @@ class Helpers
             $idR = Str::random(15);
         }
         return $idR;
+    }
+    public static function generateIdP()
+    {
+        $id = Str::random(15);
+        while (Panier::where('id', $id)->exists()) {
+            $id = Str::random(15);
+        }
+        return $id;
     }
 }

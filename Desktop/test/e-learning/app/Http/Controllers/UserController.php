@@ -20,7 +20,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $coursList= Cour::where('valider',1)->get();
+        return view('index',compact('coursList'));
     }
     public function index2()
     {

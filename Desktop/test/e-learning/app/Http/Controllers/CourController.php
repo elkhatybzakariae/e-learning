@@ -16,8 +16,9 @@ class CourController extends Controller
 {
     public function index()
     {
+        $admin=auth()->user()->roles->contains('role_name', 'moderateur');
         $id=Auth::id();
-        if ($id === null) {
+        if ($admin) {
             $cours = Cour::where('valider', '0')->orderBy('id_C', 'desc')->get();
             return view('management.cour.index', compact('cours'));
         } else {

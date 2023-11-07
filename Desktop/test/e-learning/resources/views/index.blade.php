@@ -27,8 +27,8 @@
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -52,8 +52,7 @@
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                            placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -65,12 +64,12 @@
                         </li>
 
                         <li class="nav-item no-arrow mx-1">
-                            <a class="nav-link" href="{{route('panier.index')}}"  role="button">
+                            <a class="nav-link" href="{{ route('panier.index') }}" role="button">
                                 <i class="fa-solid fa-basket-shopping"></i>
                             </a>
                         </li>
                         <li class="nav-item no-arrow mx-1">
-                            <a class="nav-link" href="{{route('wishlist.index')}}"  role="button">
+                            <a class="nav-link" href="{{ route('wishlist.index') }}" role="button">
                                 <i class="fa-regular fa-heart"></i>
                             </a>
                         </li>
@@ -183,15 +182,45 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
+                        @foreach ($coursList as $cour)
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card shadow h-100 py-2">
+                                    <img class="card-img-top" src="{{ asset('storage/images/logo.png') }}"
+                                        alt="Card image cap">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                    {{ $cour->title }}</h5>
+                                                    {{-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Earnings (Monthly)</div> --}}
+                                                    <p class="card-text">{{ $cour->user->FirstName }}
+                                                        {{ $cour->user->LastName }}</p>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        {{ $cour->price }}$</div>
+                                                    <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                                                        class="btn btn-primary"
+                                                        data-route="{{ route('panier.store') }}">Ajouter au panier</a>
+                                                    <a href="#" id="wishlist" data-id="{{ $cour->id_C }}"
+                                                        class="btn btn-white"
+                                                        data-route="{{ route('wishlist.store') }}"><i
+                                                            class="fa-regular fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+
+
+                    </div>
+                    <!-- Earnings (Monthly) Card Example -->
+                    {{-- <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -271,12 +300,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
+                        </div> --}}
                     <!-- Content Row -->
 
-                    <div class="row">
+                    {{-- <div class="row">
 
                         <!-- Area Chart -->
                         <div class="col-xl-8 col-lg-7">
@@ -348,10 +375,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- Content Row -->
-                    <div class="row">
+                    {{-- <div class="row">
 
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
@@ -503,7 +530,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <!-- /.container-fluid -->
@@ -525,4 +552,72 @@
         <!-- End of Content Wrapper -->
 
     </div>
+@endsection
+@section('script')
+    {{-- $(document).ready(function () {
+        $('#panier').on('click', function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            var id = $(this).data('id');
+            var url = $(this).data('route');
+            $.ajax({
+            method: 'POST',
+            url: url,
+            data: { id: id, _token: '{{ csrf_token() }}' },
+            success: function (data) {
+                console.log('ffff');
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+            });
+        });
+    }); --}}
+    $(document).ready(function () {
+    $('a[name="panier"]').on('click', function (event) {
+    event.preventDefault(); // Prevent the default link behavior
+    var $panierLink = $(this);
+    var id = $(this).data('id');
+    var url = $(this).data('route');
+    $.ajax({
+    method: 'POST',
+    url: url,
+    data: { id: id, _token: '{{ csrf_token() }}' },
+    success: function (data) {
+        $panierLink.text('Acceder au panier');
+        $panierLink.attr('href', '{{route('panier.index')}}');
+        
+    },
+    error: function (xhr, status, error) {
+    console.error(error);
+    }
+    });
+    });
+    });
+    {{-- $(document).ready(function () {
+        $('#panier').on('click', function (event) {
+            event.preventDefault(); 
+    
+            var id = $(this).data('id');
+            var url = $(this).data('route');
+            var jsonData = JSON.stringify({ id: id });
+    
+            $.ajax({
+                method: 'POST',
+                url: url,
+                contentType: 'application/json', // Set the content type to JSON
+                data: jsonData, // Send JSON data
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function (data) {
+                    console.log(JSON.stringify(data));
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    }); --}}
+
 @endsection

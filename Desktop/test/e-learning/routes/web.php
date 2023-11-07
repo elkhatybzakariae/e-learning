@@ -168,9 +168,11 @@ Route::group(['prefix' => 'testquestion', 'middleware' => 'authen'], function ()
 });
 Route::group(['prefix' => 'panier', 'middleware' => 'authen'], function () {
     Route::get('/', [PanierController::class, 'index'])->name('panier.index');
+    Route::post('/store', [PanierController::class, 'store'])->name('panier.store');
 });
 Route::group(['prefix' => 'wishlist', 'middleware' => 'authen'], function () {
     Route::get('/', [WishListController::class, 'index'])->name('wishlist.index');
+    Route::post('/store', [WishListController::class, 'store'])->name('wishlist.store');
 });
 
 Route::fallback(function () {
