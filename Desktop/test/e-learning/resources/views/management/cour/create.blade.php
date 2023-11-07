@@ -127,7 +127,6 @@
     </div>
 @endsection
 @section('script')
-    <script>
         $(document).ready(function() {
             $('#id_Cat').on('change', function() {
                 var categoryId = $(this).val(); // Get the selected category ID
@@ -160,5 +159,4 @@
                 });
             });
         });
-    </script>
 @endsection

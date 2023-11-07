@@ -18,7 +18,17 @@ class AuthMiddleware
     public function handle($request, Closure $next)
     {
         if (auth()->check()) {
-            return $next($request);
+            // if (
+            //     auth()->user()->roles->contains('role_name', 'superadmin') ||
+            //     auth()->user()->roles->contains('role_name', 'moderateur')
+            //     || auth()->user()->roles->contains('role_name', 'formateur')
+            // ) {
+
+                return $next($request);
+            // }
+            // else{
+            //     return redirect()->route('index');
+            // }
         }
 
         return redirect()->route('loginpage'); // Redirect to the login page if not authenticated

@@ -24,8 +24,13 @@ class UserController extends Controller
     }
     public function index2()
     {
-
-        return view('auth.dashboard2');
+        if (auth()->user()->roles->contains('role_name', 'superadmin')) {
+            $coursN = Cour::count();
+            return view('auth.dashboard2', compact('coursN'));
+        }elseif(auth()->user()->roles->contains('role_name', 'formateur')){
+            $coursN = Cour::where('id_U',Auth::id())->count();
+            return view('auth.dashboard2', compact('coursN'));
+        }
     }
 
     public function management()

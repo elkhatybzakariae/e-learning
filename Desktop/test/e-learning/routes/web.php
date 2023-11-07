@@ -15,6 +15,7 @@ use App\Http\Controllers\SousCategorieController;
 use App\Http\Controllers\SujetController;
 use App\Http\Controllers\TestQuestionController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,6 +55,7 @@ Route::get('/signup', [UserController::class, 'registerpage'])->name('registerpa
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/signin', [UserController::class, 'loginpage'])->name('loginpage');
 Route::post('/login', [UserController::class, 'login'])->name('login');
+
 
 Route::get('password/reset', [UserController::class,'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [UserController::class,'sendResetLinkEmail'])->name('password.email');
@@ -166,6 +168,9 @@ Route::group(['prefix' => 'testquestion', 'middleware' => 'authen'], function ()
 });
 Route::group(['prefix' => 'panier', 'middleware' => 'authen'], function () {
     Route::get('/', [PanierController::class, 'index'])->name('panier.index');
+});
+Route::group(['prefix' => 'wishlist', 'middleware' => 'authen'], function () {
+    Route::get('/', [WishListController::class, 'index'])->name('wishlist.index');
 });
 
 Route::fallback(function () {

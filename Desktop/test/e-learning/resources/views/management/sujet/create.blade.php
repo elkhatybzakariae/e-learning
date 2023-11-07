@@ -13,8 +13,8 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="SjName" value="{{old('SjName')}}" id="SjName" class="form-control form-control-lg  "
-                                style="" />
+                            <input type="text" name="SjName" value="{{ old('SjName') }}" id="SjName"
+                                class="form-control form-control-lg  " style="" />
                         </div>
                         @error('SjName')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -29,13 +29,14 @@
                             <select name="id_Cat" id="id_Cat" class="custom-select">
                                 <option selected>select Categorie</option>
                                 @foreach ($categories as $cat)
-                                    <option value="{{$cat->id_Cat}}" @if(old('id_Cat') == $cat->id_Cat) selected @endif>{{$cat->CatName}}</option>
+                                    <option value="{{ $cat->id_Cat }}" @if (old('id_Cat') == $cat->id_Cat) selected @endif>
+                                        {{ $cat->CatName }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
 
-                    
+
                     <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="id_SCat" style="font-style: italic;">SousCategorie:</label>
                     </div>
@@ -49,7 +50,7 @@
                             </select> --}}
                             <select name="id_SCat" id="id_SCat" class="custom-select">
                                 <option selected>select SousCategorie</option>
-                            </select>                            
+                            </select>
                         </div>
                         @error('id_SCat')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -66,25 +67,23 @@
     </div>
 @endsection
 @section('script')
-<script>
-$(document).ready(function() {
+    $(document).ready(function() {
     $('#id_Cat').on('change', function() {
-        var categoryId = $(this).val();
-        if (categoryId) {
-            $('#id_SCat').empty();
-            $('#id_SCat').append('<option selected>select SousCategorie</option>');
-
-            $.each(souscategories, function(index, souscat) {
-                if (souscat.id_Cat == categoryId) {
-                    $('#id_SCat').append('<option value="' + souscat.id_SCat + '">' + souscat.SCatName + '</option>');
-                }
-            });
-        } else {
-            $('#id_SCat').empty();
-            $('#id_SCat').append('<option selected>select SousCategorie</option>');
-        }
+    var categoryId = $(this).val();
+    if (categoryId) {
+    $('#id_SCat').empty();
+    $('#id_SCat').append('<option selected>select SousCategorie</option>');
+    console.log(souscategories);
+    $.each(souscategories, function(index, souscat) {
+    if (souscat.id_Cat == categoryId) {
+    $('#id_SCat').append('<option value="' + souscat.id_SCat + '">' +
+        souscat.SCatName + '</option>');
+    }
     });
-});
-</script>
-
+    } else {
+    $('#id_SCat').empty();
+    $('#id_SCat').append('<option selected>select SousCategorie</option>');
+    }
+    });
+    });
 @endsection

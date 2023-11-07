@@ -96,7 +96,6 @@
     </div>
 @endsection
 @section('script')
-    <script>
         $(document).ready(function() {
             $('#id_C').on('change', function() {
                 var courId = $(this).val();
@@ -144,5 +143,4 @@
                 });
             });
         });
-    </script>
 @endsection
