@@ -20,24 +20,26 @@ class PanierController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request);
         $id = Auth::id();
         $idP = Helpers::generateIdP();
         $idC = $request->input('id');
-        // $response =Panier::created([
-        //     'id' => $idP,
-        //     'id_U' => $id,
-        //     'id_C' => $idC,
-        // ]);
-        // // $response = ['message' => 'Data received successfully'];
-        // return response()->json($response);
-        $response = Panier::create([
-            'id' => $idP,
-            'id_U' => $id,
-            'id_C' => $idC,
-        ]);
-
-        // Return a JSON response with the created record (or appropriate response data)
+        $inpanier = Panier::where('id_C', $idC)->where('id_U', $id)->first();
+        if (!$inpanier) {
+            $response = Panier::create([
+                'id' => $idP,
+                'id_U' => $id,
+                'id_C' => $idC,
+            ]);
+        }
         return response()->json($response);
+    }
+    public function delete(Request $request,$idC)
+    {
+        $id = Auth::id();
+        $inpanier = Panier::where('id_C', $idC)->where('id_U', $id)->first();
+        if ($inpanier) {
+            $inpanier->delete();
+        }
+        return redirect()->back();
     }
 }

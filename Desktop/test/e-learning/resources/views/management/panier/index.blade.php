@@ -17,7 +17,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
                         <div class="sidebar-brand-icon">
                             <img src="{{ asset('storage/images/logo.png') }}" alt="">
                         </div>
@@ -63,12 +63,12 @@
                         </li>
 
                         <li class="nav-item no-arrow mx-1">
-                            <a class="nav-link" href="{{route('panier.index')}}"  role="button">
+                            <a class="nav-link" href="{{ route('panier.index') }}" role="button">
                                 <i class="fa-solid fa-basket-shopping"></i>
                             </a>
                         </li>
                         <li class="nav-item no-arrow mx-1">
-                            <a class="nav-link" href="{{route('wishlist.index')}}"  role="button">
+                            <a class="nav-link" href="{{ route('wishlist.index') }}" role="button">
                                 <i class="fa-regular fa-heart"></i>
                             </a>
                         </li>
@@ -148,29 +148,35 @@
                                                             aria-haspopup="true" aria-expanded="false">
                                                             Actions
                                                         </button>
-                                                        {{-- <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                            <a  href="{{ route('itemegorie.edit', $item->id_item) }}" class="btn btn-warning btn-icon-split ">
-                                                <span class="icon text-white-50">
-                                                    <i class="fas fa-exclamation-triangle"></i>
-                                                </span>
-                                                <span class="text">modifier</span>
-                                            </a>
-                                            <div class="dropdown-item">
-                                                <form action="{{ route('itemegorie.destroy', $item->id_item) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-danger btn-icon-split"
-                                                        onclick="return confirm('Are you sure you want to delete this card?')">
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-trash"></i>
-                                                        </span>
-                                                        <span class="text">supprimer</span>
-                                                        
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div> --}}
+                                                        <div class="dropdown-menu animated--fade-in"
+                                                            aria-labelledby="dropdownMenuButton">
+                                                            {{-- <a href="{{ route('itemegorie.edit', $item->id_item) }}"
+                                                                class="btn btn-warning btn-icon-split ">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                                </span>
+                                                                <span class="text">modifier</span>
+                                                            </a> --}}
+                                                            <div class="dropdown-item">
+                                                                <form id="delete-form"
+                                                                    action="{{ route('panier.delete', $item->id_C) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <button type="submit"
+                                                                    {{-- id="delete" data-id="{{ $item->id }}" data-route="{{ route('panier.delete', $item->id) }}" --}}
+                                                                   
+                                                                        class="btn btn-danger btn-icon-split"
+                                                                        onclick="return confirm('Are you sure you want to delete this card?')">
+                                                                        <span class="icon text-white-50">
+                                                                            <i class="fas fa-trash"></i>
+                                                                        </span>
+                                                                        <span class="text">supprimer</span>
+
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
