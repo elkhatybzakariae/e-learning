@@ -37,11 +37,9 @@ class UserController extends Controller
             $consommer = Panier::whereIn('id_C', $idsC)->count();
             return view('auth.dashboard2', compact('coursN', 'consommer'));
         } elseif (auth()->user()->roles->contains('role_name', 'moderateur')) {
-
             $coursN = Cour::count();
             $coursNo = Cour::where('valider', '0')->count();
             $coursV = Cour::where('valider', '1')->count();
-
             return view('auth.dashboard2', compact('coursNo', 'coursV', 'coursN'));
         }
     }
