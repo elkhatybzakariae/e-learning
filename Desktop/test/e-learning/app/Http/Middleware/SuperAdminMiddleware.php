@@ -18,9 +18,7 @@ class SuperAdminMiddleware
     {
         if (auth()->check()) {
             $user = auth()->user();
-    
-            // Check if the user has the 'superadmin' role (you may need to adjust this to match your role system)
-            if ($user->roles->contains('role_name', 'superadmin')) {
+                if ($user->roles->contains('role_name', 'superadmin')) {
                 return $next($request);
             }
         }

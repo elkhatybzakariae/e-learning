@@ -10,6 +10,7 @@ use App\Models\Role_User;
 use App\Models\Role;
 use App\Models\Categorie;
 use App\Models\Cour;
+use App\Models\Panier;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
@@ -20,18 +21,28 @@ class UserController extends Controller
 {
     public function index()
     {
-        $coursList= Cour::where('valider',1)->get();
-        return view('index',compact('coursList'));
+        $coursList = Cour::where('valider', 1)->get();
+        return view('index', compact('coursList'));
     }
     public function index2()
     {
         if (auth()->user()->roles->contains('role_name', 'superadmin')) {
             $coursN = Cour::count();
             $users = User::count();
-            return view('auth.dashboard2', compact('coursN','users'));
-        }elseif(auth()->user()->roles->contains('role_name', 'formateur')){
-            $coursN = Cour::where('id_U',Auth::id())->count();
-            return view('auth.dashboard2', compact('coursN'));
+            return view('auth.dashboard2', compact('coursN', 'users'));
+        } elseif (auth()->user()->roles->contains('role_name', 'formateur')) {
+            $coursN = Cour::where('id_U', Auth::id())->count();
+            $cours = Cour::where('id_U', Auth::id())->get();
+            $idsC = $cours->pluck('id_C')->all();
+            $consommer = Panier::whereIn('id_C', $idsC)->count();
+            return view('auth.dashboard2', compact('coursN', 'consommer'));
+        } elseif (auth()->user()->roles->contains('role_name', 'moderateur')) {
+
+            $coursN = Cour::count();
+            $coursNo = Cour::where('valider', '0')->count();
+            $coursV = Cour::where('valider', '1')->count();
+
+            return view('auth.dashboard2', compact('coursNo', 'coursV', 'coursN'));
         }
     }
 
@@ -42,7 +53,7 @@ class UserController extends Controller
     public function teachdashboard()
     {
         // $cours = Cour::where('id_U',$id)->get();,compact('cours')
-        return view('management.index');
+        return redirect()->route('home2');
     }
     public function redirectToGoogle()
     {
@@ -56,7 +67,14 @@ class UserController extends Controller
         $googleUser = Socialite::driver('google')->user();
         $user = User::where('Email', $googleUser->email)->first();
         if ($user) {
-            Auth::login($user);
+            if ($user->roles->contains('role_name', 'client')) {
+                Auth::login($user);
+                return redirect()->route('index');
+            } else {
+                Auth::login($user);
+                return redirect()->route('home2');
+            }
+            // dd($user->roles->contains('role_name', 'client'));
         } else {
             $fullname = explode(" ", $googleUser['name']);
             $newUser = User::create([
@@ -73,7 +91,14 @@ class UserController extends Controller
                 'id_R' => "3",
             ]);
 
-            Auth::login($newUser);
+            // Auth::login($newUser);
+
+            if ($newUser->roles->contains('role_name', 'client')) {
+                Auth::login($newUser);
+                return redirect()->route('index');
+            } else {
+                Auth::login($newUser);
+            }
         }
 
         return redirect()->route('dashboard');
@@ -92,10 +117,14 @@ class UserController extends Controller
         $githubUser = Socialite::driver('github')->user();
         $user = User::where('Email', $githubUser->email)->first();
 
-        // dd($fruits);
         if ($user) {
-            // If the user exists, log them in
-            Auth::login($user);
+            if ($user->roles->contains('role_name', 'client')) {
+                Auth::login($user);
+                return redirect()->route('index');
+            } else {
+                Auth::login($user);
+                return redirect()->route('home2');
+            }
         } else {
             $newUser = User::create([
                 'id_U' => $id_U,
@@ -110,7 +139,14 @@ class UserController extends Controller
                 'id_R' => "3",
             ]);
 
-            Auth::login($user);
+            // Auth::login($user);
+
+            if ($newUser->roles->contains('role_name', 'client')) {
+                Auth::login($newUser);
+                return redirect()->route('index');
+            } else {
+                Auth::login($newUser);
+            }
         }
 
         // Redirect the user to their dashboard or some other page
@@ -128,14 +164,16 @@ class UserController extends Controller
             ->exists();
         // dd($userrole);
         if ($userrole) {
-            return view('auth.dashboard');
+
+            return redirect()->route('home2');
         } else {
             Role_User::create([
                 'id' => $idRole,
                 'id_U' => $user->id_U,
                 'id_R' => $role->id_R,
             ]);
-            return view('auth.dashboard');
+
+            return redirect()->route('home2');
         }
     }
     public function dashboard()
@@ -195,7 +233,8 @@ class UserController extends Controller
                 'id_R' => "3",
             ]);
             auth()->login($newuser);
-            return redirect()->route('dashboard');
+            // return redirect()->route('dashboard');
+            return redirect()->route('index');
         } else {
             return redirect()->route('registerpage');
         }
@@ -216,8 +255,14 @@ class UserController extends Controller
         if ($u) {
             if (Hash::check($request->Password, $u->Password)) {
                 // Authentication was successful
-                auth()->login($u);
-                return redirect()->route('dashboard'); // Redirect to the intended page after login
+                // auth()->login($u);
+                // return redirect()->route('dashboard'); // Redirect to the intended page after login
+                if ($u->roles->contains('role_name', 'client')) {
+                    Auth::login($u);
+                    return redirect()->route('index');
+                } else {
+                    Auth::login($u);
+                }
             }
             return redirect()->route('loginpage');
         } else {
