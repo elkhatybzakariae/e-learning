@@ -107,6 +107,9 @@ Route::group(['prefix' => 'cour', 'middleware' => 'authen'], function () {
     Route::get('/coursnonvalider', [CourController::class, 'coursnonvalider'])->name('cour.coursnonvalider');
     Route::put('/update/{id}', [CourController::class, 'update'])->name('cour.update');
     Route::delete('/destroy/{id}', [CourController::class, 'destroy'])->name('cour.destroy');
+    Route::get('/{name}', [CourController::class, 'filterparcat'])->name('cour.filterparcat');
+    Route::get('/{name}', [CourController::class, 'filterparscat'])->name('cour.filterparscat');
+    Route::get('/{name}', [CourController::class, 'filterparsj'])->name('cour.filterparsj');
 });
 
 Route::group(['prefix' => 'section', 'middleware' => 'authen'], function () {

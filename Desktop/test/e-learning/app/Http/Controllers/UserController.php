@@ -11,6 +11,8 @@ use App\Models\Role;
 use App\Models\Categorie;
 use App\Models\Cour;
 use App\Models\Panier;
+use App\Models\SousCategorie;
+use App\Models\Sujet;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
@@ -21,8 +23,11 @@ class UserController extends Controller
 {
     public function index()
     {
+        $categorie=Categorie::all();
+        $souscategorie=SousCategorie::all();
+        $sujets=Sujet::all();
         $coursList = Cour::where('valider', 1)->get();
-        return view('index', compact('coursList'));
+        return view('index', compact('coursList','categorie','souscategorie','sujets'));
     }
     public function index2()
     {

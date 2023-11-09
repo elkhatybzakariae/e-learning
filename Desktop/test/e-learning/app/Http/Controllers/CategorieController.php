@@ -58,4 +58,5 @@ class CategorieController extends Controller
         Categorie::find($id)->delete();
         return redirect()->route('categorie.index')->with('success', 'Categorie deleted successfully');
     }
+    
 }

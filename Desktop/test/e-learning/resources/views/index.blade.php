@@ -18,7 +18,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
                         <div class="sidebar-brand-icon">
                             <img src="{{ asset('storage/images/logo.png') }}" alt="">
                         </div>
@@ -202,11 +202,35 @@
                                         <div class="form-outline mb-2">
                                             <select id="categorie" name="categorie" class="custom-select">
                                                 <option selected>select Categorie</option>
+                                                @foreach ($categorie as $cat)
+                                                    <option value="" name='{{ $cat->id_Cat }}'>
+                                                        {{-- <a href="{{ route('cour.filterparcat', ['name' => $cat->CatName]) }}">
+                                                            {{ $cat->CatName }}
+                                                        </a> --}}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-outline mb-2">
                                             <select id="souscategorie" name="souscategorie" class="custom-select">
                                                 <option selected>select SousCategorie</option>
+                                                @foreach ($souscategorie as $scat)
+                                                    <option value="" name='{{ $scat->id_SCat }}'>
+                                                        {{ $scat->SCatName }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-outline mb-2">
+                                            <select id="sujet" name="sujet" class="custom-select">
+                                                <option selected>select Sujet</option>
+                                                @foreach ($sujets as $suj)
+                                                    <option name='{{ $suj->id_Sj }}'>
+                                                        <a href="{{ route('cour.filterparsj',$suj->SjName) }}">
+                                                            {{ $suj->SjName }}
+                                                        </a>
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         {{-- <div class="form-outline mb-2">
