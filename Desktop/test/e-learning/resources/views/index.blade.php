@@ -201,7 +201,7 @@
                                     <div class="col-6 col-sm-9 d-inline  ">
                                         <div class="form-outline mb-2">
                                             <select id="categorie" name="categorie" class="custom-select">
-                                                <option selected>select Categorie</option>
+                                                <option selected>Filtrer par Categorie</option>
                                                 {{-- @foreach ($categorie as $cat)
                                                     <option value="" name='{{ $cat->id_Cat }}'>
                                                         {{-- <a href="{{ route('cour.filterparcat', ['name' => $cat->CatName]) }}">
@@ -213,7 +213,7 @@
                                         </div>
                                         <div class="form-outline mb-2">
                                             <select id="souscategorie" name="souscategorie" class="custom-select">
-                                                <option selected>select SousCategorie</option>
+                                                <option selected>Filtrer par SousCategorie</option>
                                                 {{-- @foreach ($souscategorie as $scat)
                                                     <option value="" name='{{ $scat->id_SCat }}'>
                                                         {{ $scat->SCatName }}
@@ -224,7 +224,7 @@
 
                                         <div class="form-outline mb-2">
                                             <select id="sujet" name="sujet" class="custom-select">
-                                                <option selected>select Sujet</option>
+                                                <option selected>Filtrer par Sujet</option>
                                                 {{-- @foreach ($sujets as $suj)
                                                     <option name='{{ $suj->id_Sj }}'>
                                                         <a href="{{ route('cour.filterparsj',$suj->SjName) }}">
@@ -478,7 +478,7 @@
             //     });
             // })
             $('#categorie').on('change', function(e) {
-                $('#souscategorie').html('<option selected>select SousCategorie</option>')
+                $('#souscategorie').html('<option selected>Filtrer par SousCategorie</option>')
                 var vl = $('#categorie').children(':selected').prop('name')
                 var souscat = souscategories.filter(e => e.id_Cat === vl)
                 souscat.forEach(ele => {
@@ -547,7 +547,7 @@
                 // console.log(souscat);
             })
             $('#souscategorie').on('change', function(e) {
-                $('#sujet').html('<option selected>select Sujet</option>')
+                $('#sujet').html('<option selected>Filtrer par Sujet</option>')
                 var vl = $('#souscategorie').children(':selected').prop('name')
                 var sjlist = sujets.filter(e => e.id_SCat === vl)
                 sjlist.forEach(ele => {
@@ -584,7 +584,7 @@
                         $('#result').html('');
                         console.log(data);
                         if (data.length === 0) {
-                            $('#result').html(`<div class="col-xl-12 text-center col-md-12 mb-4">
+                            $('#result').html(`<div class="col-xl-12 text-center col-md-12 mb-4 mt-5">
                                     <div class="card shadow text-center h-100 py-2">
                                         <div class="card-body text-center">
                                             <div class="row text-center no-gutters align-items-center">
