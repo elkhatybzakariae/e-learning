@@ -177,47 +177,140 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid row main-content-wrap gutter-lg">
                     {{-- @yield('container-fluid') --}}
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    {{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    </div>
+                    </div> --}}
+                    <aside
+                        class="col-lg-3 right-sidebar sidebar-fixed sidebar-toggle-remain shop-sidebar sticky-sidebar-wrapper">
+                        <div class="sidebar-overlay">
+                            <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
+                        </div>
+                        <div class="sidebar-content">
+                            <div class="sticky-sidebar" data-sticky-options="{'top': 10}">
+                                {{-- <div class="filter-actions">
+                                    <a href="#"
+                                        class="sidebar-toggle-btn toggle-remain btn btn-sm btn-outline btn-primary">Filters<i
+                                            class="d-icon-arrow-right"></i></a>
+                                    <a href="#" class="filter-clean text-primary">Clean All</a>
+                                </div> --}}
+                                <div class="widget widget-collapsible">
+                                    {{-- <h3 class="widget-title">All Categories</h3> --}}
+                                    <div class="col-6 col-sm-9 d-inline  ">
+                                        <div class="form-outline mb-2">
+                                            <select id="categorie" name="categorie" class="custom-select">
+                                                <option selected>select Categorie</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-outline mb-2">
+                                            <select id="souscategorie" name="souscategorie" class="custom-select">
+                                                <option selected>select SousCategorie</option>
+                                            </select>
+                                        </div>
+                                        {{-- <div class="form-outline mb-2">
+                                            <select id="categorie" name="categorie" class="custom-select">
+                                                <option selected>select Categorie</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-outline mb-2">
+                                            <select id="souscategorie" name="souscategorie" class="custom-select">
+                                                <option selected>select SousCategorie</option>
+                                            </select>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                                <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">Price</h3>
+                                    <div class="widget-body">
+                                        <form action="#">
+                                            <div class="filter-price-slider"></div>
 
+                                            <div class="filter-actions">
+                                                <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+
+                                                <div class="filter-price-text">Price:
+                                                    <span class="filter-price-range"></span>
+                                                </div>
+                                            </div>
+                                        </form><!-- End Filter Price Form -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </aside>
                     <!-- Content Row -->
-                    <div class="row">
-                        @foreach ($coursList as $cour)
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card shadow h-100 py-2">
-                                    <img class="card-img-top" src="{{ asset('storage/images/logo.png') }}"
-                                        alt="Card image cap">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                    {{ $cour->title }}</h5>
-                                                    <p class="card-text">{{ $cour->user->FirstName }}
-                                                        {{ $cour->user->LastName }}</p>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                        {{ $cour->price }}$</div>
-                                                    <a href="#" name="panier" data-id="{{ $cour->id_C }}"
-                                                        class="btn btn-primary"
-                                                        data-route="{{ route('panier.store') }}">Ajouter
-                                                        au panier</a>
-                                                    <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
-                                                        class="btn btn-white"
-                                                        data-route="{{ route('wishlist.store') }}"><i
-                                                            class="fa-regular fa-heart"></i></a>
+                    <div class="col-lg-9 main-content">
+                        <div class="row" id="result">
+                            @foreach ($coursList as $cour)
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2">
+                                        <div class="text-center">
+                                            <img class="card-img-top" style="width: 200px;"
+                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                        {{ $cour->title }}</h5>
+                                                        <p class="card-text">{{ $cour->user->FirstName }}
+                                                            {{ $cour->user->LastName }}</p>
+                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
+                                                            {{ $cour->price }}$</div>
+                                                        <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                                                            class="btn btn-primary"
+                                                            data-route="{{ route('panier.store') }}">Ajouter
+                                                            au panier</a>
+                                                        <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
+                                                            class="btn btn-white"
+                                                            data-route="{{ route('wishlist.store') }}"><i
+                                                                class="fa-regular fa-heart"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
 
+                {{-- <div>
+                    <nav class="g-mb-100" aria-label="Page Navigation">
+                        <ul class="list-inline mb-0">
+                          <li class="list-inline-item hidden-down">
+                            <a class="active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5" href="#!">1</a>
+                          </li>
+                          <li class="list-inline-item hidden-down">
+                            <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5" href="#!">2</a>
+                          </li>
+                          <li class="list-inline-item g-hidden-xs-down">
+                            <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5" href="#!">3</a>
+                          </li>
+                          <li class="list-inline-item hidden-down">
+                            <span class="g-width-30 g-height-30 g-color-gray-dark-v5 g-font-size-12 rounded-circle g-pa-5">...</span>
+                          </li>
+                          <li class="list-inline-item g-hidden-xs-down">
+                            <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5" href="#!">15</a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="#!" aria-label="Next">
+                              <span aria-hidden="true">
+                                <i class="fa fa-angle-right"></i>
+                              </span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </li>
+                          <li class="list-inline-item float-right">
+                            <span class="u-pagination-v1__item-info g-color-gray-dark-v4 g-font-size-12 g-pa-5">Page 1 of 15</span>
+                          </li>
+                        </ul>
+                      </nav>
+                </div> --}}
             </div>
             <!-- End of Main Content -->
 
@@ -237,9 +330,13 @@
     </div>
 @endsection
 @section('script')
+    <script>
+        var result = document.getElementById('result')
+        var categorieselect = document.getElementById('categorie')
+        var souscategorieselect = document.getElementById('souscategorie')
         $(document).ready(function() {
             $('a[name="panier"]').on('click', function(event) {
-                event.preventDefault(); 
+                event.preventDefault();
                 var $panierLink = $(this);
                 var id = $(this).data('id');
                 var url = $(this).data('route');
@@ -262,7 +359,7 @@
                 });
             });
             $('a[name="wishlist"]').on('click', function(event) {
-                event.preventDefault(); 
+                event.preventDefault();
                 var $wishlistLink = $(this);
                 var id = $(this).data('id');
                 var url = $(this).data('route');
@@ -284,5 +381,129 @@
                     }
                 });
             });
+            // $('#categorie').one('click', function(e) {
+            //     categories.forEach(categorie => {
+            //         const catoption = document.createElement('option');
+            //         const cata = document.createElement('a');
+            //         cata.textContent = categorie.CatName;
+            //         catoption.name = categorie.id_Cat;
+            //         // catoption.id = categorie.id_Cat;
+            //         cata.id = categorie.id_Cat;
+            //         // cata.classList.add('dropdown-item');
+            //         catoption.appendChild(cata);
+            //         categorieselect.appendChild(catoption);
+            //         // console.log(categorieselect);
+            //         // $('#souscategorie').one('click', function(e) {
+            //         // if ($(this).children('option:selected')) {
+            //         //     var souscat = souscategories.filter(e => e.id_C === $(this).children(
+            //         //         'option:selected').attr('name'))
+            //         // }
+            //         // // souscategories.forEach(souscategorie => {
+            //         // //     if (souscategorie.id_C === $(this).children('option:selected').attr(
+            //         // //             'name')) {
+            //         // //         console.log("gut");
+            //         // //     }
+            //         // // });
+            //         // console.log(souscat);
+            //         // const souscatoption = document.createElement('option');
+            //         // const souscata = document.createElement('a');
+            //         // souscata.textContent = souscategorie.SCatName;
+            //         // souscatoption.name = souscategorie.id_SCat;
+            //         // // souscatoption.id = souscategorie.id_SCat;
+            //         // souscata.id = souscategorie.id_SCat;
+            //         // // souscata.classList.add('dropdown-item');
+            //         // souscatoption.appendChild(souscata);
+            //         // souscategorieselect.appendChild(souscatoption);
+            //         // // console.log(categorieselect);
+            //         // });
+            //         // })
+            //     });
+            // })
+            // $('#souscategorie').one('click', function(e) {
+            //     souscategories.forEach(souscategorie => {
+            //         // if (souscategorie.id_C === $('#categorie').children('option:selected').attr('name');) {
+            //         //     console.log("gut");
+            //         // }
+            //         const souscatoption = document.createElement('option');
+            //         const souscata = document.createElement('a');
+            //         souscata.textContent = souscategorie.SCatName;
+            //         souscatoption.name = souscategorie.id_SCat;
+            //         // souscatoption.id = souscategorie.id_SCat;
+            //         souscata.id = souscategorie.id_SCat;
+            //         // souscata.classList.add('dropdown-item');
+            //         souscatoption.appendChild(souscata);
+            //         souscategorieselect.appendChild(souscatoption);
+            //         // console.log(categorieselect);
+            //     });
+            // })
+            // $('#categorie').on('change', function(e) {
+            //     var vl = $('#categorie').children(':selected').prop('name')
+            //     var souscat = souscategories.filter(e => e.id_Cat === vl)
+            //     souscat.forEach(ele => {
+            //         const scatoption = document.createElement('option');
+            //         const cata = document.createElement('a');
+            //         cata.textContent = ele.SCatName;
+            //         scatoption.name = ele.id_SCat;
+            //         // scatoption.id = categorie.id_Cat;
+            //         cata.id = ele.id_SCat;
+            //         scatoption.appendChild(cata);
+            //         souscategorieselect.appendChild(scatoption);
+
+
+            //         const Parentdiv= document.createElement('div')
+            //         Parentdiv.classList.add("col-xl-3 col-md-6 mb-4");
+            //         const cardtdiv= document.createElement('div')
+            //         cardtdiv.classList.add("card shadow h-100 py-2");
+            //         const imgdiv= document.createElement('div')
+            //         imgdiv.classList.add("text-center");
+            //         const img= document.createElement('img')
+            //         img.classList.add("card-img-top");
+            //         img.src = "{{ asset('storage/images/logo.png') }}";
+            //         img.alt = "Card image cap";
+            //         img.style = "width: 200px;";
+            //         const bodydiv= document.createElement('div')
+            //         bodydiv.classList.add("card-body");
+            //         const rowdiv= document.createElement('div')
+            //         rowdiv.classList.add("row no-gutters align-items-center");
+            //         const rowchilddiv= document.createElement('div')
+            //         rowchilddiv.classList.add("col mr-2");
+            //         const h6= document.createElement('h6')
+            //         h6.classList.add("card-title font-weight-bold text-dark text-uppercase mb-1");
+            //         h6.textContent = ele.SCatName;
+            //         const p= document.createElement('p')
+            //         p.classList.add("card-text");
+            //         p.textContent = ele.SCatName;
+            //                         <div class="">
+            //                             <div class="text-center">
+            //                                 <img class="card-img-top" =""
+            //                                     src="" alt="">
+            //                             </div>
+            //                             <div class="">
+            //                                 <div class="row no-gutters align-items-center">
+            //                                     <div class="col mr-2">
+            //                                         <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+            //                                             {{ $cour->title }}
+            //                                         </h6>
+            //                                             <p class="card-text">{{ $cour->user->FirstName }}
+            //                                                 {{ $cour->user->LastName }}
+            //                                                 </p>
+            //                                             <div class="h5 mb-1 font-weight-bold text-gray-800">
+            //                                                 {{ $cour->price }}$</div>
+            //                                             <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+            //                                                 class="btn btn-primary"
+            //                                                 data-route="{{ route('panier.store') }}">Ajouter
+            //                                                 au panier</a>
+            //                                             <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
+            //                                                 class="btn btn-white"
+            //                                                 data-route="{{ route('wishlist.store') }}"><i
+            //                                                     class="fa-regular fa-heart"></i></a>
+            //                                     </div>
+            //                                 </div>
+            //                             </div>
+            //                         </div>
+            //     });
+            //     // console.log(souscat);
+            // })
         });
+    </script>
 @endsection

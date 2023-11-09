@@ -89,8 +89,8 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset('storage/js/demo/datatables-demo.js') }}"></script>
     
-<script>
+{{-- <script> --}}
     @yield('script')
-</script>
+{{-- </script> --}}
 
 </html>
