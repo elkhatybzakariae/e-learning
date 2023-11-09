@@ -123,14 +123,16 @@ class CourController extends Controller
     }
     public function filterparsj($name)
     {
-        dd($name);
         $categorie=Categorie::all();
         $souscategorie=SousCategorie::all();
         $sujets=Sujet::all();
         // $coursList = Cour::where('valider', 1)->get();
         $coursList = Cour::whereHas('sujet', function ($query) use ($name) {
             $query->where('SjName', $name);
-        })->get();
-        return view('index', compact('coursList','categorie','souscategorie','sujets'));
+        })->where('valider', 1)->with('user')->get();
+        // dd($coursList);
+        // return view('index', compact('coursList','categorie','souscategorie','sujets'));
+        // return Json('coursList','categorie','souscategorie','sujets');
+        return response()->json($coursList);
     }
 }

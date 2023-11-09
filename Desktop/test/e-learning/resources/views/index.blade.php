@@ -18,7 +18,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
                         <div class="sidebar-brand-icon">
                             <img src="{{ asset('storage/images/logo.png') }}" alt="">
                         </div>
@@ -184,7 +184,7 @@
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     </div> --}}
                     <aside
-                        class="col-lg-3 right-sidebar sidebar-fixed sidebar-toggle-remain shop-sidebar sticky-sidebar-wrapper">
+                        class="col-lg-2 right-sidebar sidebar-fixed sidebar-toggle-remain shop-sidebar sticky-sidebar-wrapper">
                         <div class="sidebar-overlay">
                             <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
                         </div>
@@ -197,42 +197,56 @@
                                     <a href="#" class="filter-clean text-primary">Clean All</a>
                                 </div> --}}
                                 <div class="widget widget-collapsible">
-                                    {{-- <h3 class="widget-title">All Categories</h3> --}}
+                                    <h3 class="widget-title">Filter</h3>
                                     <div class="col-6 col-sm-9 d-inline  ">
                                         <div class="form-outline mb-2">
                                             <select id="categorie" name="categorie" class="custom-select">
                                                 <option selected>select Categorie</option>
-                                                @foreach ($categorie as $cat)
+                                                {{-- @foreach ($categorie as $cat)
                                                     <option value="" name='{{ $cat->id_Cat }}'>
                                                         {{-- <a href="{{ route('cour.filterparcat', ['name' => $cat->CatName]) }}">
                                                             {{ $cat->CatName }}
-                                                        </a> --}}
+                                                        </a> 
                                                     </option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
                                         <div class="form-outline mb-2">
                                             <select id="souscategorie" name="souscategorie" class="custom-select">
                                                 <option selected>select SousCategorie</option>
-                                                @foreach ($souscategorie as $scat)
+                                                {{-- @foreach ($souscategorie as $scat)
                                                     <option value="" name='{{ $scat->id_SCat }}'>
                                                         {{ $scat->SCatName }}
                                                     </option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
+
                                         <div class="form-outline mb-2">
                                             <select id="sujet" name="sujet" class="custom-select">
                                                 <option selected>select Sujet</option>
-                                                @foreach ($sujets as $suj)
+                                                {{-- @foreach ($sujets as $suj)
                                                     <option name='{{ $suj->id_Sj }}'>
                                                         <a href="{{ route('cour.filterparsj',$suj->SjName) }}">
                                                             {{ $suj->SjName }}
                                                         </a>
                                                     </option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
+                                        {{-- <div class="form-outline mb-2">
+                                            <select id="sujet" name="sujet" class="custom-select">
+                                                <option selected>select Sujet</option>
+                                                @foreach ($sujets as $suj)
+                                                    <option value='{{ $suj->id_Sj }}'>
+                                                        <a href="{{ route('cour.filterparsj', $suj->SjName) }}">
+                                                            {{ $suj->SjName }}
+                                                        </a>
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div> --}}
+
                                         {{-- <div class="form-outline mb-2">
                                             <select id="categorie" name="categorie" class="custom-select">
                                                 <option selected>select Categorie</option>
@@ -244,7 +258,7 @@
                                             </select>
                                         </div> --}}
                                     </div>
-                                </div>
+                                    {{-- </div>
                                 <div class="widget widget-collapsible">
                                     <h3 class="widget-title">Price</h3>
                                     <div class="widget-body">
@@ -260,13 +274,15 @@
                                             </div>
                                         </form><!-- End Filter Price Form -->
                                     </div>
-                                </div>
+                                </div> --}}
 
+                                </div>
                             </div>
-                        </div>
                     </aside>
                     <!-- Content Row -->
-                    <div class="col-lg-9 main-content">
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <div class="col-lg-10 main-content">
                         <div class="row" id="result">
                             @foreach ($coursList as $cour)
                                 <div class="col-xl-3 col-md-6 mb-4">
@@ -358,6 +374,7 @@
         var result = document.getElementById('result')
         var categorieselect = document.getElementById('categorie')
         var souscategorieselect = document.getElementById('souscategorie')
+        var sujetselect = document.getElementById('sujet')
         $(document).ready(function() {
             $('a[name="panier"]').on('click', function(event) {
                 event.preventDefault();
@@ -405,44 +422,44 @@
                     }
                 });
             });
-            // $('#categorie').one('click', function(e) {
-            //     categories.forEach(categorie => {
-            //         const catoption = document.createElement('option');
-            //         const cata = document.createElement('a');
-            //         cata.textContent = categorie.CatName;
-            //         catoption.name = categorie.id_Cat;
-            //         // catoption.id = categorie.id_Cat;
-            //         cata.id = categorie.id_Cat;
-            //         // cata.classList.add('dropdown-item');
-            //         catoption.appendChild(cata);
-            //         categorieselect.appendChild(catoption);
-            //         // console.log(categorieselect);
-            //         // $('#souscategorie').one('click', function(e) {
-            //         // if ($(this).children('option:selected')) {
-            //         //     var souscat = souscategories.filter(e => e.id_C === $(this).children(
-            //         //         'option:selected').attr('name'))
-            //         // }
-            //         // // souscategories.forEach(souscategorie => {
-            //         // //     if (souscategorie.id_C === $(this).children('option:selected').attr(
-            //         // //             'name')) {
-            //         // //         console.log("gut");
-            //         // //     }
-            //         // // });
-            //         // console.log(souscat);
-            //         // const souscatoption = document.createElement('option');
-            //         // const souscata = document.createElement('a');
-            //         // souscata.textContent = souscategorie.SCatName;
-            //         // souscatoption.name = souscategorie.id_SCat;
-            //         // // souscatoption.id = souscategorie.id_SCat;
-            //         // souscata.id = souscategorie.id_SCat;
-            //         // // souscata.classList.add('dropdown-item');
-            //         // souscatoption.appendChild(souscata);
-            //         // souscategorieselect.appendChild(souscatoption);
-            //         // // console.log(categorieselect);
-            //         // });
-            //         // })
-            //     });
-            // })
+            $('#categorie').one('click', function(e) {
+                categories.forEach(categorie => {
+                    const catoption = document.createElement('option');
+                    const cata = document.createElement('a');
+                    cata.textContent = categorie.CatName;
+                    catoption.name = categorie.id_Cat;
+                    // catoption.id = categorie.id_Cat;
+                    cata.id = categorie.id_Cat;
+                    // cata.classList.add('dropdown-item');
+                    catoption.appendChild(cata);
+                    categorieselect.appendChild(catoption);
+                    // console.log(categorieselect);
+                    // $('#souscategorie').one('click', function(e) {
+                    // if ($(this).children('option:selected')) {
+                    //     var souscat = souscategories.filter(e => e.id_C === $(this).children(
+                    //         'option:selected').attr('name'))
+                    // }
+                    // // souscategories.forEach(souscategorie => {
+                    // //     if (souscategorie.id_C === $(this).children('option:selected').attr(
+                    // //             'name')) {
+                    // //         console.log("gut");
+                    // //     }
+                    // // });
+                    // console.log(souscat);
+                    // const souscatoption = document.createElement('option');
+                    // const souscata = document.createElement('a');
+                    // souscata.textContent = souscategorie.SCatName;
+                    // souscatoption.name = souscategorie.id_SCat;
+                    // // souscatoption.id = souscategorie.id_SCat;
+                    // souscata.id = souscategorie.id_SCat;
+                    // // souscata.classList.add('dropdown-item');
+                    // souscatoption.appendChild(souscata);
+                    // souscategorieselect.appendChild(souscatoption);
+                    // // console.log(categorieselect);
+                    // });
+                    // })
+                });
+            })
             // $('#souscategorie').one('click', function(e) {
             //     souscategories.forEach(souscategorie => {
             //         // if (souscategorie.id_C === $('#categorie').children('option:selected').attr('name');) {
@@ -460,73 +477,191 @@
             //         // console.log(categorieselect);
             //     });
             // })
-            // $('#categorie').on('change', function(e) {
-            //     var vl = $('#categorie').children(':selected').prop('name')
-            //     var souscat = souscategories.filter(e => e.id_Cat === vl)
-            //     souscat.forEach(ele => {
-            //         const scatoption = document.createElement('option');
-            //         const cata = document.createElement('a');
-            //         cata.textContent = ele.SCatName;
-            //         scatoption.name = ele.id_SCat;
-            //         // scatoption.id = categorie.id_Cat;
-            //         cata.id = ele.id_SCat;
-            //         scatoption.appendChild(cata);
-            //         souscategorieselect.appendChild(scatoption);
+            $('#categorie').on('change', function(e) {
+                $('#souscategorie').html('<option selected>select SousCategorie</option>')
+                var vl = $('#categorie').children(':selected').prop('name')
+                var souscat = souscategories.filter(e => e.id_Cat === vl)
+                souscat.forEach(ele => {
+                    const scatoption = document.createElement('option');
+                    const cata = document.createElement('a');
+                    cata.textContent = ele.SCatName;
+                    scatoption.name = ele.id_SCat;
+                    // scatoption.id = categorie.id_Cat;
+                    cata.id = ele.id_SCat;
+                    scatoption.appendChild(cata);
+                    souscategorieselect.appendChild(scatoption);
 
 
-            //         const Parentdiv= document.createElement('div')
-            //         Parentdiv.classList.add("col-xl-3 col-md-6 mb-4");
-            //         const cardtdiv= document.createElement('div')
-            //         cardtdiv.classList.add("card shadow h-100 py-2");
-            //         const imgdiv= document.createElement('div')
-            //         imgdiv.classList.add("text-center");
-            //         const img= document.createElement('img')
-            //         img.classList.add("card-img-top");
-            //         img.src = "{{ asset('storage/images/logo.png') }}";
-            //         img.alt = "Card image cap";
-            //         img.style = "width: 200px;";
-            //         const bodydiv= document.createElement('div')
-            //         bodydiv.classList.add("card-body");
-            //         const rowdiv= document.createElement('div')
-            //         rowdiv.classList.add("row no-gutters align-items-center");
-            //         const rowchilddiv= document.createElement('div')
-            //         rowchilddiv.classList.add("col mr-2");
-            //         const h6= document.createElement('h6')
-            //         h6.classList.add("card-title font-weight-bold text-dark text-uppercase mb-1");
-            //         h6.textContent = ele.SCatName;
-            //         const p= document.createElement('p')
-            //         p.classList.add("card-text");
-            //         p.textContent = ele.SCatName;
-            //                         <div class="">
-            //                             <div class="text-center">
-            //                                 <img class="card-img-top" =""
-            //                                     src="" alt="">
-            //                             </div>
-            //                             <div class="">
-            //                                 <div class="row no-gutters align-items-center">
-            //                                     <div class="col mr-2">
-            //                                         <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-            //                                             {{ $cour->title }}
-            //                                         </h6>
-            //                                             <p class="card-text">{{ $cour->user->FirstName }}
-            //                                                 {{ $cour->user->LastName }}
-            //                                                 </p>
-            //                                             <div class="h5 mb-1 font-weight-bold text-gray-800">
-            //                                                 {{ $cour->price }}$</div>
-            //                                             <a href="#" name="panier" data-id="{{ $cour->id_C }}"
-            //                                                 class="btn btn-primary"
-            //                                                 data-route="{{ route('panier.store') }}">Ajouter
-            //                                                 au panier</a>
-            //                                             <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
-            //                                                 class="btn btn-white"
-            //                                                 data-route="{{ route('wishlist.store') }}"><i
-            //                                                     class="fa-regular fa-heart"></i></a>
-            //                                     </div>
-            //                                 </div>
-            //                             </div>
-            //                         </div>
-            //     });
-            //     // console.log(souscat);
+                    // const Parentdiv= document.createElement('div')
+                    // Parentdiv.classList.add("col-xl-3 col-md-6 mb-4");
+                    // const cardtdiv= document.createElement('div')
+                    // cardtdiv.classList.add("card shadow h-100 py-2");
+                    // const imgdiv= document.createElement('div')
+                    // imgdiv.classList.add("text-center");
+                    // const img= document.createElement('img')
+                    // img.classList.add("card-img-top");
+                    // img.src = "{{ asset('storage/images/logo.png') }}";
+                    // img.alt = "Card image cap";
+                    // img.style = "width: 200px;";
+                    // const bodydiv= document.createElement('div')
+                    // bodydiv.classList.add("card-body");
+                    // const rowdiv= document.createElement('div')
+                    // rowdiv.classList.add("row no-gutters align-items-center");
+                    // const rowchilddiv= document.createElement('div')
+                    // rowchilddiv.classList.add("col mr-2");
+                    // const h6= document.createElement('h6')
+                    // h6.classList.add("card-title font-weight-bold text-dark text-uppercase mb-1");
+                    // h6.textContent = ele.SCatName;
+                    // const p= document.createElement('p')
+                    // p.classList.add("card-text");
+                    // p.textContent = ele.SCatName;
+                    // <div class="">
+                    //     <div class="text-center">
+                    //         <img class="card-img-top" =""
+                    //             src="" alt="">
+                    //     </div>
+                    //     <div class="">
+                    //         <div class="row no-gutters align-items-center">
+                    //             <div class="col mr-2">
+                    //                 <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                    //                     {{ $cour->title }}
+                    //                 </h6>
+                    //                     <p class="card-text">{{ $cour->user->FirstName }}
+                    //                         {{ $cour->user->LastName }}
+                    //                         </p>
+                    //                     <div class="h5 mb-1 font-weight-bold text-gray-800">
+                    //                         {{ $cour->price }}$</div>
+                    //                     <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                    //                         class="btn btn-primary"
+                    //                         data-route="{{ route('panier.store') }}">Ajouter
+                    //                         au panier</a>
+                    //                     <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
+                    //                         class="btn btn-white"
+                    //                         data-route="{{ route('wishlist.store') }}"><i
+                    //                             class="fa-regular fa-heart"></i></a>
+                    //             </div>
+                    //         </div>
+                    //     </div>
+                    // </div>
+                });
+                // console.log(souscat);
+            })
+            $('#souscategorie').on('change', function(e) {
+                $('#sujet').html('<option selected>select Sujet</option>')
+                var vl = $('#souscategorie').children(':selected').prop('name')
+                var sjlist = sujets.filter(e => e.id_SCat === vl)
+                sjlist.forEach(ele => {
+                    const sjoption = document.createElement('option');
+                    const sja = document.createElement('a');
+                    sja.textContent = ele.SjName;
+                    sjoption.name = ele.id_Sj;
+                    // sjoption.id = categorie.id_Sj;
+                    const id = ele.id_Sj;
+                    sja.id = ele.id_Sj;
+                    sjoption.appendChild(sja);
+                    sujetselect.appendChild(sjoption);
+                });
+            })
+
+            $('#sujet').on('change', function(e) {
+                // console.log($('#sujet').children(':selected').prop('name'));
+                var $panierLink = $(this);
+                // var id = $(this).children(':selected').prop('name');
+                var name = $(this).children(':selected').val();
+                var url = $(this).data('route');
+                var url = "{{ route('cour.filterparsj', ':name') }}".replace(':name', name);
+                $.ajax({
+                    method: 'GET',
+                    url: url,
+                    // headers: {
+                    //     'Authorization': '{{ csrf_token() }}'
+                    // },
+                    data: {
+                        name: name,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        $('#result').html('');
+                        console.log(data);
+                        if (data.length === 0) {
+                            $('#result').html(`<div class="col-xl-12 text-center col-md-12 mb-4">
+                                    <div class="card shadow text-center h-100 py-2">
+                                        <div class="card-body text-center">
+                                            <div class="row text-center no-gutters align-items-center">
+                                                <div class="col text-center mr-2">
+                                                    <h5 class="card-title text-center font-weight-bold text-dark text-uppercase mb-1">
+                                                      nothing found
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`);
+                        } else {
+                            $.each(data, function(index, cour) {
+                                var Item = `<div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2">
+                                        <div class="text-center">
+                                            <img class="card-img-top" style="width: 200px;"
+                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                        ` + cour.title + `</h5>
+                                                        <p class="card-text"> ` + cour.user.FirstName + `
+                                                            ` + cour.user.LastName + `</p>
+                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
+                                                            ` + cour.price + `$</div>
+                                                        <a href="#" name="panier" data-id="` + cour.id_C + `"
+                                                            class="btn btn-primary"
+                                                            data-route="{{ route('panier.store') }}">Ajouter
+                                                            au panier</a>
+                                                        <a href="#" name="wishlist" data-id="` + cour.id_C + `"
+                                                            class="btn btn-white"
+                                                            data-route="{{ route('wishlist.store') }}"><i
+                                                                class="fa-regular fa-heart"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                                $('#result').append(Item);
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            })
+            // $('#sujet').children(':selected').on('click', function(e) {
+            //     console.log('ffff');
+            //     var $panierLink = $(this);
+            //     // var id = $(this).data('id');
+            //     var url = $(this).data('route');
+
+            //     var id = $(this).id();
+            //     var url = "{{ route('cour.filterparsj', ':id') }}".replace(':id', id);;
+            //     console.log(url);
+            //     // $.ajax({
+            //     //     method: 'POST',
+            //     //     url: url,
+            //     //     data: {
+            //     //         id: id,
+            //     //         _token: '{{ csrf_token() }}'
+            //     //     },
+            //     //     success: function(data) {
+            //     //         $panierLink.text('Acceder au panier');
+            //     //         $panierLink.attr('href', '{{ route('panier.index') }}');
+            //     //         $panierLink.off('click');
+
+            //     //     },
+            //     //     error: function(xhr, status, error) {
+            //     //         console.error(error);
+            //     //     }
+            //     // });
             // })
         });
     </script>
