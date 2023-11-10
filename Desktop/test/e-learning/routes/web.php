@@ -57,10 +57,10 @@ Route::get('/signin', [UserController::class, 'loginpage'])->name('loginpage');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
 
-Route::get('password/reset', [UserController::class,'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [UserController::class,'sendResetLinkEmail'])->name('password.email');
-Route::get('password/reset/{token}', [UserController::class,'showResetForm'])->name('password.reset');
-Route::post('password/reset', [UserController::class,'reset']);
+Route::get('password/reset', [UserController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [UserController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [UserController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [UserController::class, 'reset']);
 
 
 Route::get('auth/google', [UserController::class, 'redirectToGoogle'])->name('google');
@@ -107,9 +107,10 @@ Route::group(['prefix' => 'cour', 'middleware' => 'authen'], function () {
     Route::get('/coursnonvalider', [CourController::class, 'coursnonvalider'])->name('cour.coursnonvalider');
     Route::put('/update/{id}', [CourController::class, 'update'])->name('cour.update');
     Route::delete('/destroy/{id}', [CourController::class, 'destroy'])->name('cour.destroy');
-    Route::get('/{name}', [CourController::class, 'filterparcat'])->name('cour.filterparcat');
-    Route::get('/{name}', [CourController::class, 'filterparscat'])->name('cour.filterparscat');
-    Route::get('/{name}', [CourController::class, 'filterparsj'])->name('cour.filterparsj');
+
+    Route::get('/category/{name}', [CourController::class, 'filterparcat'])->name('cour.filterparcat');
+    Route::get('/subcategory/{name}', [CourController::class, 'filterparsouscat'])->name('cour.filterparsouscat');
+    Route::get('/subject/{name}', [CourController::class, 'filterparsj'])->name('cour.filterparsj');
 });
 
 Route::group(['prefix' => 'section', 'middleware' => 'authen'], function () {

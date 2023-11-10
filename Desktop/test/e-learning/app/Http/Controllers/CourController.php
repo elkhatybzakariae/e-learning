@@ -104,22 +104,25 @@ class CourController extends Controller
         $categorie=Categorie::all();
         $souscategorie=SousCategorie::all();
         $sujets=Sujet::all();
-        // $coursList = Cour::where('valider', 1)->get();
-        $coursList = Cour::whereHas('sujet', function ($query) use ($name) {
-            $query->where('SjName', $name);
-        })->get();
-        return view('index', compact('coursList','categorie','souscategorie','sujets'));
+        $coursList = Cour::whereHas('sujet.souscategorie.categorie', function ($query) use ($name) {
+            $query->where('CatName', $name);
+        })->where('valider', 1)->with('user')->get();
+        
+        return response()->json($coursList);
+        // return view('index', compact('coursList','categorie','souscategorie','sujets'));
     }
-    public function filterparscat($name)
+    public function filterparsouscat($name)
     {
         $categorie=Categorie::all();
         $souscategorie=SousCategorie::all();
         $sujets=Sujet::all();
         // $coursList = Cour::where('valider', 1)->get();
-        $coursList = Cour::whereHas('sujet', function ($query) use ($name) {
-            $query->where('SjName', $name);
-        })->get();
-        return view('index', compact('coursList','categorie','souscategorie','sujets'));
+        $coursList = Cour::whereHas('sujet.souscategorie', function ($query) use ($name) {
+            $query->where('SCatName', $name);
+        })->where('valider', 1)->with('user')->get();
+        
+        return response()->json($coursList);
+        // return view('index', compact('coursList','categorie','souscategorie','sujets'));
     }
     public function filterparsj($name)
     {

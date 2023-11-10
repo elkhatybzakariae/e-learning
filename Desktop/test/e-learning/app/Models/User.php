@@ -16,6 +16,8 @@ class User extends Authenticatable
     protected $primaryKey = 'id_U';
     public $incrementing = false;
     public $timestamps = false;
+    protected $hidden = ['Password'];
+
 
 
     /**
