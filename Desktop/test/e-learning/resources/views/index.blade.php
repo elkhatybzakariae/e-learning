@@ -839,6 +839,7 @@
                 if (max === null || max == undefined || max == '') {
                     max = 10000;
                 }
+                console.log(responseData);
                 const filteredCourses = responseData.filter(function(cour) {
                     const courPrice = parseFloat(cour.price);
                     return courPrice >= parseFloat(min) && courPrice <= parseFloat(max);
