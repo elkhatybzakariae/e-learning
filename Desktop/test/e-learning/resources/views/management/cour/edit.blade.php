@@ -146,78 +146,81 @@
     </div>
 @endsection
 @section('script')
-    {{-- <script>
-        $(document).ready(function() {
+<script>
+    // {{-- <script>
+    //     $(document).ready(function() {
 
-            $('#id_Cat').on('change', function() {
-                var categoryId = $(this).val(); // Get the selected category ID
-                if (categoryId) {
-                    $('#id_SCat').empty();
-                    $('#id_SCat').append('<option selected>select SousCategorie</option>');
+    //         $('#id_Cat').on('change', function() {
+    //             var categoryId = $(this).val(); // Get the selected category ID
+    //             if (categoryId) {
+    //                 $('#id_SCat').empty();
+    //                 $('#id_SCat').append('<option selected>select SousCategorie</option>');
 
-                    $.each(souscategories, function(index, souscat) {
-                        if (souscat.id_Cat == categoryId) {
-                            $('#id_SCat').append('<option value="' + souscat.id_SCat + '" >' +
-                                souscat.SCatName + '</option>');
-                        }
-                    });
-                } else {
-                    $('#id_SCat').empty();
-                    $('#id_SCat').append('<option selected>select SousCategorie</option>');
-                }
-            });
-            $('#id_SCat').on('change', function() {
-                var selectedSubcategoryId = $(this).val();
-                var filteredSujets = sujets.filter(function(sujet) {
-                    return sujet.id_SCat == selectedSubcategoryId;
-                });
+    //                 $.each(souscategories, function(index, souscat) {
+    //                     if (souscat.id_Cat == categoryId) {
+    //                         $('#id_SCat').append('<option value="' + souscat.id_SCat + '" >' +
+    //                             souscat.SCatName + '</option>');
+    //                     }
+    //                 });
+    //             } else {
+    //                 $('#id_SCat').empty();
+    //                 $('#id_SCat').append('<option selected>select SousCategorie</option>');
+    //             }
+    //         });
+    //         $('#id_SCat').on('change', function() {
+    //             var selectedSubcategoryId = $(this).val();
+    //             var filteredSujets = sujets.filter(function(sujet) {
+    //                 return sujet.id_SCat == selectedSubcategoryId;
+    //             });
 
-                var subjectsSelect = $('#id_Sj');
-                subjectsSelect.empty();
-                subjectsSelect.append('<option value="" selected>select Subject</option>');
-                filteredSujets.forEach(function(sujet) {
-                    subjectsSelect.append('<option value="' + sujet.id_Sj + '">' + sujet.SjName + '</option>');
-                });
-            });
-        });
-    </script> --}}
-    {{-- <script>
-        $(document).ready(function() {
-            $('#id_Cat').on('change', function() {
-                var categoryId = $(this).val(); // Get the selected category ID
-                if (categoryId) {
-                    $('#id_SCat').empty();
-                    $('#id_SCat').append('<option selected>select SousCategorie</option>');
+    //             var subjectsSelect = $('#id_Sj');
+    //             subjectsSelect.empty();
+    //             subjectsSelect.append('<option value="" selected>select Subject</option>');
+    //             filteredSujets.forEach(function(sujet) {
+    //                 subjectsSelect.append('<option value="' + sujet.id_Sj + '">' + sujet.SjName + '</option>');
+    //             });
+    //         });
+    //     });
+    //  --}}
+    // {{-- <script>
+    //     $(document).ready(function() {
+    //         $('#id_Cat').on('change', function() {
+    //             var categoryId = $(this).val(); // Get the selected category ID
+    //             if (categoryId) {
+    //                 $('#id_SCat').empty();
+    //                 $('#id_SCat').append('<option selected>select SousCategorie</option>');
     
-                    // Define the selected subcategory ID
-                    var selectedSCatId = @json($categories); // Replace with the actual variable name from your controller
+    //                 // Define the selected subcategory ID
+    //                 var selectedSCatId = @json($categories); // Replace with the actual variable name from your controller
     
-                    $.each(souscategories, function(index, souscat) {
-                        if (souscat.id_Cat == categoryId) {
-                            var selected = selectedSCatId === souscat.id_SCat ? 'selected' : '';
-                            $('#id_SCat').append('<option value="' + souscat.id_SCat + '" ' + selected + '>' +
-                                souscat.SCatName + '</option>');
-                        }
-                    });
-                } else {
-                    $('#id_SCat').empty();
-                    $('#id_SCat').append('<option selected>select SousCategorie</option>');
-                }
-            });
+    //                 $.each(souscategories, function(index, souscat) {
+    //                     if (souscat.id_Cat == categoryId) {
+    //                         var selected = selectedSCatId === souscat.id_SCat ? 'selected' : '';
+    //                         $('#id_SCat').append('<option value="' + souscat.id_SCat + '" ' + selected + '>' +
+    //                             souscat.SCatName + '</option>');
+    //                     }
+    //                 });
+    //             } else {
+    //                 $('#id_SCat').empty();
+    //                 $('#id_SCat').append('<option selected>select SousCategorie</option>');
+    //             }
+    //         });
     
-            $('#id_SCat').on('change', function() {
-                var selectedSubcategoryId = $(this).val();
-                var filteredSujets = sujets.filter(function(sujet) {
-                    return sujet.id_SCat == selectedSubcategoryId;
-                });
+    //         $('#id_SCat').on('change', function() {
+    //             var selectedSubcategoryId = $(this).val();
+    //             var filteredSujets = sujets.filter(function(sujet) {
+    //                 return sujet.id_SCat == selectedSubcategoryId;
+    //             });
     
-                var subjectsSelect = $('#id_Sj');
-                subjectsSelect.empty();
-                subjectsSelect.append('<option value="" selected>select Subject</option>');
-                filteredSujets.forEach(function(sujet) {
-                    subjectsSelect.append('<option value="' + sujet.id_Sj + '">' + sujet.SjName + '</option>');
-                });
-            });
-        });
-    </script> --}}
+    //             var subjectsSelect = $('#id_Sj');
+    //             subjectsSelect.empty();
+    //             subjectsSelect.append('<option value="" selected>select Subject</option>');
+    //             filteredSujets.forEach(function(sujet) {
+    //                 subjectsSelect.append('<option value="' + sujet.id_Sj + '">' + sujet.SjName + '</option>');
+    //             });
+    //         });
+    //     });
+    // --}}
+
+</script>
 @endsection

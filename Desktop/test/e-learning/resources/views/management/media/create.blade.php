@@ -21,15 +21,16 @@
                         @enderror
                     </div>
 
-                    
+
                     <div class="col-6 col-sm-3 col-form-label d-inline ">
-                        <label for="path"  style="font-style: italic;">Choose file :</label>
+                        <label for="path" style="font-style: italic;">Choose file :</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline">
                         <div class="col-6 col-sm-9 d-inline custom-file">
-                            <input type="file" name="path" id="path" class="form-control form-control-lg custom-file-input">
+                            <input type="file" name="path" id="path"
+                                class="form-control form-control-lg custom-file-input">
                         </div>
-                        
+
                         @error('path')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -96,6 +97,7 @@
     </div>
 @endsection
 @section('script')
+    <script>
         $(document).ready(function() {
             $('#id_C').on('change', function() {
                 var courId = $(this).val();
@@ -143,4 +145,5 @@
                 });
             });
         });
+    </script>
 @endsection

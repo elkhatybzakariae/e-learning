@@ -67,23 +67,25 @@
     </div>
 @endsection
 @section('script')
-    $(document).ready(function() {
-    $('#id_Cat').on('change', function() {
-    var categoryId = $(this).val();
-    if (categoryId) {
-    $('#id_SCat').empty();
-    $('#id_SCat').append('<option selected>select SousCategorie</option>');
-    console.log(souscategories);
-    $.each(souscategories, function(index, souscat) {
-    if (souscat.id_Cat == categoryId) {
-    $('#id_SCat').append('<option value="' + souscat.id_SCat + '">' +
-        souscat.SCatName + '</option>');
-    }
-    });
-    } else {
-    $('#id_SCat').empty();
-    $('#id_SCat').append('<option selected>select SousCategorie</option>');
-    }
-    });
-    });
+    <script>
+        $(document).ready(function() {
+            $('#id_Cat').on('change', function() {
+                var categoryId = $(this).val();
+                if (categoryId) {
+                    $('#id_SCat').empty();
+                    $('#id_SCat').append('<option selected>select SousCategorie</option>');
+                    console.log(souscategories);
+                    $.each(souscategories, function(index, souscat) {
+                        if (souscat.id_Cat == categoryId) {
+                            $('#id_SCat').append('<option value="' + souscat.id_SCat + '">' +
+                                souscat.SCatName + '</option>');
+                        }
+                    });
+                } else {
+                    $('#id_SCat').empty();
+                    $('#id_SCat').append('<option selected>select SousCategorie</option>');
+                }
+            });
+        });
+    </script>
 @endsection

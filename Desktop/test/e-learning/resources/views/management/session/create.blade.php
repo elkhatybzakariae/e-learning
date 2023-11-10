@@ -13,8 +13,8 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <input type="text" name="Sess_Name" value="{{old('Sess_Name')}}" id="Sess_Name" class="form-control form-control-lg  "
-                                style="" />
+                            <input type="text" name="Sess_Name" value="{{ old('Sess_Name') }}" id="Sess_Name"
+                                class="form-control form-control-lg  " style="" />
                         </div>
                         @error('Sess_Name')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -29,13 +29,14 @@
                             <select name="id_C" id="id_C" class="custom-select">
                                 <option selected>select Cour </option>
                                 @foreach ($cours as $cour)
-                                    <option value="{{$cour->id_C}}" @if(old('id_C') == $cour->id_C) selected @endif>{{$cour->title}}</option>
+                                    <option value="{{ $cour->id_C }}" @if (old('id_C') == $cour->id_C) selected @endif>
+                                        {{ $cour->title }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
 
-                    
+
                     <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="id_SCat" style="font-style: italic;">Sections :</label>
                     </div>
@@ -43,7 +44,7 @@
                         <div class="form-outline mb-2">
                             <select name="id_Sec" id="id_Sec" class="custom-select">
                                 <option selected>select section</option>
-                            </select>                            
+                            </select>
                         </div>
                         @error('id_Sec')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -60,22 +61,25 @@
     </div>
 @endsection
 @section('script')
-$(document).ready(function() {
-    $('#id_C').on('change', function() {
-        var courId = $(this).val(); 
-        if (courId) {
-            $('#id_Sec').empty();
-            $('#id_Sec').append('<option selected>select Session</option>');
+    <script>
+        $(document).ready(function() {
+            $('#id_C').on('change', function() {
+                var courId = $(this).val();
+                if (courId) {
+                    $('#id_Sec').empty();
+                    $('#id_Sec').append('<option selected>select Session</option>');
 
-            $.each(sections, function(index, section) {
-                if (section.id_C == courId) {
-                    $('#id_Sec').append('<option value="' + section.id_Sec + '">' + section.Sec_Name + '</option>');
+                    $.each(sections, function(index, section) {
+                        if (section.id_C == courId) {
+                            $('#id_Sec').append('<option value="' + section.id_Sec + '">' + section
+                                .Sec_Name + '</option>');
+                        }
+                    });
+                } else {
+                    $('#id_Sec').empty();
+                    $('#id_Sec').append('<option selected>select Session</option>');
                 }
             });
-        } else {
-            $('#id_Sec').empty();
-            $('#id_Sec').append('<option selected>select Session</option>');
-        }
-    });
-});
+        });
+    </script>
 @endsection

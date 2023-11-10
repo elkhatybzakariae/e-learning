@@ -16,8 +16,8 @@ class CourController extends Controller
 {
     public function index()
     {
-        $admin=auth()->user()->roles->contains('role_name', 'moderateur');
-        $id=Auth::id();
+        $admin = auth()->user()->roles->contains('role_name', 'moderateur');
+        $id = Auth::id();
         if ($admin) {
             $cours = Cour::where('valider', '0')->orderBy('id_C', 'desc')->get();
             return view('management.cour.index', compact('cours'));
@@ -28,7 +28,7 @@ class CourController extends Controller
     }
     public function coursvalider()
     {
-        $id=Auth::id();
+        $id = Auth::id();
         $cours = Cour::where('id_U', $id)
             ->where('valider', '1')
             ->orderBy('id_C', 'desc')
@@ -37,7 +37,7 @@ class CourController extends Controller
     }
     public function coursnonvalider()
     {
-        $id=Auth::id();
+        $id = Auth::id();
         $cours = Cour::where('id_U', $id)
             ->where('valider', '0')
             ->orderBy('id_C', 'desc')
@@ -52,7 +52,7 @@ class CourController extends Controller
 
     public function store(CourRequest $request)
     {
-        
+
         $creator = Auth::id();
         $customIdC = Helpers::generateIdC();
         $validatedData = $request->validated();
@@ -101,34 +101,34 @@ class CourController extends Controller
 
     public function filterparcat($name)
     {
-        $categorie=Categorie::all();
-        $souscategorie=SousCategorie::all();
-        $sujets=Sujet::all();
+        $categorie = Categorie::all();
+        $souscategorie = SousCategorie::all();
+        $sujets = Sujet::all();
         $coursList = Cour::whereHas('sujet.souscategorie.categorie', function ($query) use ($name) {
             $query->where('CatName', $name);
         })->where('valider', 1)->with('user')->get();
-        
+
         return response()->json($coursList);
         // return view('index', compact('coursList','categorie','souscategorie','sujets'));
     }
     public function filterparsouscat($name)
     {
-        $categorie=Categorie::all();
-        $souscategorie=SousCategorie::all();
-        $sujets=Sujet::all();
+        $categorie = Categorie::all();
+        $souscategorie = SousCategorie::all();
+        $sujets = Sujet::all();
         // $coursList = Cour::where('valider', 1)->get();
         $coursList = Cour::whereHas('sujet.souscategorie', function ($query) use ($name) {
             $query->where('SCatName', $name);
         })->where('valider', 1)->with('user')->get();
-        
+
         return response()->json($coursList);
         // return view('index', compact('coursList','categorie','souscategorie','sujets'));
     }
     public function filterparsj($name)
     {
-        $categorie=Categorie::all();
-        $souscategorie=SousCategorie::all();
-        $sujets=Sujet::all();
+        $categorie = Categorie::all();
+        $souscategorie = SousCategorie::all();
+        $sujets = Sujet::all();
         // $coursList = Cour::where('valider', 1)->get();
         $coursList = Cour::whereHas('sujet', function ($query) use ($name) {
             $query->where('SjName', $name);
@@ -137,5 +137,16 @@ class CourController extends Controller
         // return view('index', compact('coursList','categorie','souscategorie','sujets'));
         // return Json('coursList','categorie','souscategorie','sujets');
         return response()->json($coursList);
+    }
+
+    public function search(Request $request)
+    {
+        $searchQuery = $request->input('query');
+        $searchResults = Cour::where('title', 'like', '%' . $searchQuery . '%')
+            ->where('valider', 1)
+            ->with('user')
+            ->get();
+
+        return response()->json($searchResults);
     }
 }

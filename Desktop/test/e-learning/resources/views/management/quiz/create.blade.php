@@ -44,7 +44,7 @@
                         <div class="form-outline mb-2">
                             <select name="id_Sec" id="id_Sec" class="custom-select">
                                 <option selected>select section</option>
-                            </select>                            
+                            </select>
                         </div>
                         @error('id_Sec')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -61,24 +61,25 @@
     </div>
 @endsection
 @section('script')
-$(document).ready(function() {
-    $('#id_C').on('change', function() {
-        var courId = $(this).val(); 
-        if (courId) {
-            $('#id_Sec').empty();
-            $('#id_Sec').append('<option selected>select Section</option>');
+    <script>
+        $(document).ready(function() {
+            $('#id_C').on('change', function() {
+                var courId = $(this).val();
+                if (courId) {
+                    $('#id_Sec').empty();
+                    $('#id_Sec').append('<option selected>select Section</option>');
 
-            $.each(sections, function(index, section) {
-                if (section.id_C == courId) {
-                    $('#id_Sec').append('<option value="' + section.id_Sec + '">' + section.Sec_Name + '</option>');
+                    $.each(sections, function(index, section) {
+                        if (section.id_C == courId) {
+                            $('#id_Sec').append('<option value="' + section.id_Sec + '">' + section
+                                .Sec_Name + '</option>');
+                        }
+                    });
+                } else {
+                    $('#id_Sec').empty();
+                    $('#id_Sec').append('<option selected>select Section</option>');
                 }
             });
-        } else {
-            $('#id_Sec').empty();
-            $('#id_Sec').append('<option selected>select Section</option>');
-        }
-    });
-});
-
+        });
+    </script>
 @endsection
-

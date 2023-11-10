@@ -14,13 +14,13 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             @if (auth()->user()->roles->contains('role_name', 'moderateur'))
-                <li >
+                <li>
                     <a href="{{ route('categorie.index') }}" class="nav-link active" aria-current="page">
                         <i class="fa-solid fa-layer-group"></i>
                         categories
                     </a>
                 </li>
-                <li >
+                <li>
                     <a href="{{ route('souscategorie.index') }}" class="nav-link" aria-current="page">
                         <i class="fa-solid fa-bars"></i>
                         souscategories
@@ -48,12 +48,12 @@
                     </a>
                     <ul class="list-unstyled  pl-5" id="submenu"{{--  style="display: none" --}}>
                         <li><a href="{{ route('cour.coursvalider', auth()->user()->id_U) }}" class="nav-link ">
-                            <i class="fa-solid fa-check"></i>
+                                <i class="fa-solid fa-check"></i>
                                 valider
                             </a>
                         </li>
                         <li><a href="{{ route('cour.coursnonvalider', auth()->user()->id_U) }}" class="nav-link ">
-                            <i class="fa-solid fa-xmark"></i>
+                                <i class="fa-solid fa-xmark"></i>
                                 non valider
                             </a>
                         </li>
@@ -83,12 +83,13 @@
     {{-- </div> --}}
 @endsection
 @section('script')
-{{-- <script>
-    document.querySelector('#courslien').addEventListener('click', function(event) {
-      event.preventDefault();
-      const submenu = document.getElementById('submenu');
-      submenu.style.display = submenu.style.display === 'none' ? 'block' : 'none';
-    });
-  </script> --}}
-  
+    <script>
+        // {{-- 
+//     document.querySelector('#courslien').addEventListener('click', function(event) {
+//       event.preventDefault();
+//       const submenu = document.getElementById('submenu');
+//       submenu.style.display = submenu.style.display === 'none' ? 'block' : 'none';
+//     });
+//   < --}}
+    </script>
 @endsection

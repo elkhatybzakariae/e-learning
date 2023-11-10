@@ -97,6 +97,7 @@
     </div>
 @endsection
 @section('script')
+    <script>
         $(document).ready(function() {
             $('#id_C').on('change', function() {
                 var courId = $(this).val();
@@ -125,8 +126,10 @@
                 sessionsSelect.empty();
                 sessionsSelect.append('<option value="" selected>select Session</option>');
                 filteredsessions.forEach(function(session) {
-                    sessionsSelect.append('<option value="' + session.id_Sess + '">' + session.Sess_Name + '</option>');
+                    sessionsSelect.append('<option value="' + session.id_Sess + '">' + session
+                        .Sess_Name + '</option>');
                 });
             });
         });
+    </script>
 @endsection

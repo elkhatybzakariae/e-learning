@@ -111,6 +111,9 @@ Route::group(['prefix' => 'cour', 'middleware' => 'authen'], function () {
     Route::get('/category/{name}', [CourController::class, 'filterparcat'])->name('cour.filterparcat');
     Route::get('/subcategory/{name}', [CourController::class, 'filterparsouscat'])->name('cour.filterparsouscat');
     Route::get('/subject/{name}', [CourController::class, 'filterparsj'])->name('cour.filterparsj');
+
+    Route::get('/cour/search', [CourController::class, 'search'])->name('cour.search');
+
 });
 
 Route::group(['prefix' => 'section', 'middleware' => 'authen'], function () {
