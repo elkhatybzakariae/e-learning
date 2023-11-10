@@ -113,6 +113,7 @@ Route::group(['prefix' => 'cour', 'middleware' => 'authen'], function () {
     Route::get('/subject/{name}', [CourController::class, 'filterparsj'])->name('cour.filterparsj');
 
     Route::get('/cour/search', [CourController::class, 'search'])->name('cour.search');
+    Route::get('/show/{id}', [CourController::class, 'show'])->name('video.show');
 
 });
 
@@ -135,8 +136,8 @@ Route::group(['prefix' => 'session', 'middleware' => 'authen'], function () {
 });
 
 Route::group(['prefix' => 'video', 'middleware' => 'authen'], function () {
-    Route::get('/', [VideoController::class, 'index'])->name('video.index');
     Route::get('/create', [VideoController::class, 'create'])->name('video.create');
+    Route::get('/', [VideoController::class, 'index'])->name('video.index');
     Route::post('/store', [VideoController::class, 'store'])->name('video.store');
     Route::get('/edit/{id}', [VideoController::class, 'edit'])->name('video.edit');
     Route::get('/show/{id}', [VideoController::class, 'show'])->name('video.show');

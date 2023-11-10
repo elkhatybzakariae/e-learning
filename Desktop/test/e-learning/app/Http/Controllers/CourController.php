@@ -26,6 +26,11 @@ class CourController extends Controller
             return view('management.cour.index', compact('cours'));
         }
     }
+    public function show($id)
+    {
+            $cour = Cour::where('id_C', $id)->get();
+            return view('management.cour.show', compact('cours'));
+    }
     public function coursvalider()
     {
         $id = Auth::id();

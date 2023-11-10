@@ -275,10 +275,10 @@
 
                                 <div class="widget widget-collapsible">
                                     <h3 class="widget-title">
-                                        <a data-toggle="collapse" class="text-black-50" href="#filterSection"
+                                        <a data-toggle="collapse" class="text-black-50 text-sm" href="#filterSection"
                                             role="button" aria-expanded="false" aria-controls="filterSection"
                                             id="filterToggle" class="d-flex justify-content-between align-items-center">
-                                            <span class="mr-2">Filter</span>
+                                            <span class="mr-2 ">Filter</span>
                                             <i class="fas fa-plus plus-icon float-right"></i>
                                         </a>
                                     </h3>
