@@ -55,15 +55,18 @@
                         {{-- <li class="nav-item dropdown "id="catlistdiv"> --}}
                         {{-- <a class="nav-link  dropdown-toggle-split" href="#" data-mdb-toggle="dropdown dropdown-toggle"
                           aria-expanded="false"></a> --}}
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+
+
+                        {{-- <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" id="cat">
                             Categories
-                        </a>
+                        </a> --}}
+
+
                         <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
+                        {{-- <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
                             id="catlist">
-                            {{-- <h6 id="catlistDropdown">Categories</h6> --}}
-                        </div>
+                        </div> --}}
                         {{-- <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
                             id="scatlist">
                             {{-- <h6 id="scatlistDropdown">Subcategories</h6> 
@@ -232,23 +235,24 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
+                        @auth
                         <li class="nav-item dropdown no-arrow">
                             {{-- @guest
-                        <a href="{{ route('loginpage') }}">
-                            <button type="button" class="btn btn-link px-3 me-2">
-                                Login
-                            </button>
-                        </a>
-                        <a href="{{ route('registerpage') }}">
-                            <button type="button" class="btn btn-primary px-3 me-3">
-                                Sign up for free
-                            </button></a>
-                        <a class="btn btn-primary px-3" href="{{ route('google') }}" role="button">
-                            <i class="fa fa-google"></i>
-                        </a>
-                        <a class="btn btn-dark px-3" href="{{ route('github') }}" role="button">
-                            <i class="fa-brands fa-github"></i>
-                        </a>
+                                <a href="{{ route('loginpage') }}">
+                                    <button type="button" class="btn btn-link px-3 me-2">
+                                        Login
+                                    </button>
+                                </a>
+                                <a href="{{ route('registerpage') }}">
+                                    <button type="button" class="btn btn-primary px-3 me-3">
+                                        Sign up for free
+                                    </button></a>
+                                <a class="btn btn-primary px-3" href="{{ route('google') }}" role="button">
+                                    <i class="fa fa-google"></i>
+                                </a>
+                                <a class="btn btn-dark px-3" href="{{ route('github') }}" role="button">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
                           @endguest --}}
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -277,7 +281,11 @@
                                 </a>
                             </div>
                         </li>
+                        @endauth
 
+                        @guest
+                            <a href="{{route('loginpage')}}" class="btn-primary">login</a>
+                        @endguest
                     </ul>
 
                 </nav>
