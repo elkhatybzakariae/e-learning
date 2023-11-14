@@ -31,7 +31,7 @@
             <div id="content">
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center mr-3" href="index.html">
                         <div class="sidebar-brand-icon">
                             <img src="{{ asset('storage/images/logo.png') }}" alt="">
                         </div>
@@ -42,7 +42,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     {{-- <div class="  dropend" id="catlistdiv">
-                        <a class="nav-link  dropdown-toggle-split" href="#" data-mdb-toggle="dropdown dropdown-toggle"
+                        <a class="nav-link  dropdown-toggle-split"  data-mdb-toggle="dropdown dropdown-toggle"
                             aria-expanded="false">Categories</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
                           <li>
@@ -53,11 +53,11 @@
                     </div> --}}
                     <div class="dropdown align-items-center row">
                         {{-- <li class="nav-item dropdown "id="catlistdiv"> --}}
-                        {{-- <a class="nav-link  dropdown-toggle-split" href="#" data-mdb-toggle="dropdown dropdown-toggle"
+                        {{-- <a class="nav-link  dropdown-toggle-split"  data-mdb-toggle="dropdown dropdown-toggle"
                           aria-expanded="false"></a> --}}
 
 
-                        {{-- <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                        {{-- <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" id="cat">
                             Categories
                         </a> --}}
@@ -94,7 +94,7 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                            <a class="nav-link dropdown-toggle"  id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
@@ -116,8 +116,8 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                        {{-- <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle"  id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
@@ -129,7 +129,7 @@
                                 <h6 class="dropdown-header">
                                     Alerts Center
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" >
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
@@ -141,7 +141,7 @@
                                             download!</span>
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" >
                                     <div class="mr-3">
                                         <div class="icon-circle bg-success">
                                             <i class="fas fa-donate text-white"></i>
@@ -152,7 +152,7 @@
                                         $290.29 has been deposited into your account!
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" >
                                     <div class="mr-3">
                                         <div class="icon-circle bg-warning">
                                             <i class="fas fa-exclamation-triangle text-white"></i>
@@ -163,14 +163,14 @@
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
+                                <a class="dropdown-item text-center small text-gray-500" >Show All
                                     Alerts</a>
                             </div>
                         </li>
 
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                            <a class="nav-link dropdown-toggle"  id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
@@ -182,7 +182,7 @@
                                 <h6 class="dropdown-header">
                                     Message Center
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" >
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
@@ -193,7 +193,7 @@
                                         <div class="small text-gray-500">Emily Fowler · 58m</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" >
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
@@ -204,7 +204,7 @@
                                         <div class="small text-gray-500">Jae Chun · 1d</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" >
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
@@ -216,7 +216,7 @@
                                         <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" >
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" alt="...">
                                         <div class="status-indicator bg-success"></div>
@@ -227,9 +227,19 @@
                                         <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More
+                                <a class="dropdown-item text-center small text-gray-500" >Read More
                                     Messages</a>
                             </div>
+                        </li> --}}
+                        <li class="nav-item no-arrow mx-1">
+                            <a class="nav-link" href="{{ route('panier.index') }}" role="button">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item no-arrow mx-1">
+                            <a class="nav-link" href="{{ route('wishlist.index') }}" role="button">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
@@ -254,7 +264,7 @@
                                     <i class="fa-brands fa-github"></i>
                                 </a>
                           @endguest --}}
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            <a class="nav-link dropdown-toggle"  id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
@@ -266,11 +276,11 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" >
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" >
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a>
@@ -284,7 +294,10 @@
                         @endauth
 
                         @guest
-                            <a href="{{route('loginpage')}}" class="btn-primary">login</a>
+                        <div class="mt-3">
+                                <a href="{{route('loginpage')}}" class="btn btn-outline-primary"    role="button">Login</a>
+                                <a href="{{route('registerpage')}}" class="btn btn-primary" role="button">Register</a>
+                        </div>
                         @endguest
                     </ul>
 
