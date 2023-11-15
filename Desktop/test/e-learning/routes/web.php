@@ -7,6 +7,7 @@ use App\Http\Controllers\CourController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PanierController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectionController;
@@ -57,10 +58,10 @@ Route::get('/signin', [UserController::class, 'loginpage'])->name('loginpage');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
 
-Route::get('password/reset', [UserController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [UserController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('password/reset/{token}', [UserController::class, 'showResetForm'])->name('password.reset');
-Route::post('password/reset', [UserController::class, 'reset']);
+Route::get('password/reset', [PasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [PasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [PasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [PasswordController::class, 'reset']);
 
 
 Route::get('auth/google', [UserController::class, 'redirectToGoogle'])->name('google');
