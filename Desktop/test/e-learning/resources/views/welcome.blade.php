@@ -31,7 +31,7 @@
             <div id="content">
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center mr-3" href="index.html">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center mr-3" href="{{route('home')}}">
                         <div class="sidebar-brand-icon">
                             <img src="{{ asset('storage/images/logo.png') }}" alt="">
                         </div>

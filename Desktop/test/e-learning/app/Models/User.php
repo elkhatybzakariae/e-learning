@@ -71,19 +71,19 @@ class User extends Authenticatable
         return $this->hasMany(Cour::class);
     }
 
-    public function createPasswordResetToken()
-    {
-        $token = str_random(60);
-        $this->passwordReset()->updateOrCreate(
-            ['email' => $this->email],
-            ['token' => $token, 'created_at' => now()]
-        );
+    // public function createPasswordResetToken()
+    // {
+    //     $token = str_random(60);
+    //     $this->passwordReset()->updateOrCreate(
+    //         ['email' => $this->email],
+    //         ['token' => $token, 'created_at' => now()]
+    //     );
 
-        return $token;
-    }
+    //     return $token;
+    // }
 
-    public function passwordReset()
-    {
-        return $this->hasOne(PasswordReset::class);
-    }
+    // public function passwordReset()
+    // {
+    //     return $this->hasOne(PasswordReset::class);
+    // }
 }

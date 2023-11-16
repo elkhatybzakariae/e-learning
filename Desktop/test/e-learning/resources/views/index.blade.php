@@ -190,12 +190,96 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
+
                 <div class="container-fluid row main-content-wrap gutter-lg">
-                    {{-- @yield('container-fluid') --}}
-                    <!-- Page Heading -->
-                    {{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    </div> --}}
+
+                    {{-- <div class="main-content"> --}}
+                        {{-- <div class="row" id="result">
+                            @foreach ($coursList as $cour)
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2">
+                                        <div class="text-center">
+                                            <img class="card-img-top" style="width: 200px;"
+                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                        {{ $cour->title }}</h5>
+                                                        <p class="card-text">{{ $cour->user->FirstName }}
+                                                            {{ $cour->user->LastName }}</p>
+                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
+                                                            {{ $cour->price }}$</div>
+                                                        
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <a href="#" name="panier"
+                                                                data-id="{{ $cour->id_C }}"
+                                                                class="btn btn-primary btn-sm"
+                                                                data-route="{{ route('panier.store') }}">
+                                                                Ajouter au panier
+                                                            </a>
+                                                            <a href="#" name="wishlist"
+                                                                data-id="{{ $cour->id_C }}" class="btn btn-white"
+                                                                data-route="{{ route('wishlist.store') }}">
+                                                                <i class="fa-regular fa-heart"></i>
+                                                            </a>
+                                                        </div>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div> --}}
+
+
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                            </ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img src="{{ asset('storage/images/logo.png') }}" alt="Los Angeles">
+                                </div>
+
+                                <div class="item">
+                                    <img src="{{ asset('storage/images/logo.png') }}" alt="Chicago">
+                                </div>
+
+                                <div class="item">
+                                    <img src="{{ asset('storage/images/logo.png') }}" alt="New York">
+                                </div>
+                            </div>
+
+                            <!-- Left and right controls -->
+                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    {{-- </div> --}}
+                </div>
+
+
+
+
+                {{-- OLD VIEW --}}
+
+                {{-- <div class="container-fluid row main-content-wrap gutter-lg">
+                    
                     <aside
                         class="col-lg-2 right-sidebar sidebar-fixed sidebar-toggle-remain shop-sidebar sticky-sidebar-wrapper">
                         <div class="sidebar-overlay">
@@ -203,75 +287,7 @@
                         </div>
                         <div class="sidebar-content">
                             <div class="sticky-sidebar" data-sticky-options="{'top': 10}">
-                                {{-- <div class="filter-actions">
-                                    <a href="#"
-                                        class="sidebar-toggle-btn toggle-remain btn btn-sm btn-outline btn-primary">Filters<i
-                                            class="d-icon-arrow-right"></i></a>
-                                    {{-- <a href="#" class="filter-clean text-primary">Clean All</a>
-                                </div> --}}
-                                {{-- <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">Filter</h3>
-                                    <div class="col-6 col-sm-9 d-inline  ">
-                                        <div class="form-outline mb-2">
-                                            <select id="categorie" name="categorie" class="custom-select">
-                                                <option selected>Filtrer par Categorie</option>
-                                                {{-- @foreach ($categorie as $cat)
-                                                    <option value="" name='{{ $cat->id_Cat }}'>
-                                                        {{-- <a href="{{ route('cour.filterparcat', ['name' => $cat->CatName]) }}">
-                                                            {{ $cat->CatName }}
-                                                        </a> 
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-outline mb-2">
-                                            <select id="souscategorie" name="souscategorie" class="custom-select">
-                                                <option selected>Filtrer par SousCategorie</option>
-                                                {{-- @foreach ($souscategorie as $scat)
-                                                    <option value="" name='{{ $scat->id_SCat }}'>
-                                                        {{ $scat->SCatName }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                        <div class="form-outline mb-2">
-                                            <select id="sujet" name="sujet" class="custom-select">
-                                                <option selected>Filtrer par Sujet</option>
-                                                {{-- @foreach ($sujets as $suj)
-                                                    <option name='{{ $suj->id_Sj }}'>
-                                                        <a href="{{ route('cour.filterparsj',$suj->SjName) }}">
-                                                            {{ $suj->SjName }}
-                                                        </a>
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        {{-- <div class="form-outline mb-2">
-                                            <select id="sujet" name="sujet" class="custom-select">
-                                                <option selected>select Sujet</option>
-                                                @foreach ($sujets as $suj)
-                                                    <option value='{{ $suj->id_Sj }}'>
-                                                        <a href="{{ route('cour.filterparsj', $suj->SjName) }}">
-                                                            {{ $suj->SjName }}
-                                                        </a>
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div> --}}
-
-                                {{-- <div class="form-outline mb-2">
-                                            <select id="categorie" name="categorie" class="custom-select">
-                                                <option selected>select Categorie</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-outline mb-2">
-                                            <select id="souscategorie" name="souscategorie" class="custom-select">
-                                                <option selected>select SousCategorie</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div> --}}
+                                
 
                                 <div class="widget widget-collapsible">
                                     <h3 class="widget-title">
@@ -302,25 +318,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">Price</h3>
-                                    <div class="widget-body">
-                                       
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label>Min</label>
-                                                <input type="number" class="form-control" id="min"
-                                                    placeholder="$0">
-                                            </div>
-                                            <div class="form-group col-md-6 text-right">
-                                                <label>Max</label>
-                                                <input type="number" class="form-control" id="max"
-                                                    placeholder="$1,0000">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
 
                                 <div class="widget widget-collapsible">
                                     <h3 class="widget-title">
@@ -369,16 +366,7 @@
                                                             {{ $cour->user->LastName }}</p>
                                                         <div class="h5 mb-1 font-weight-bold text-gray-800">
                                                             {{ $cour->price }}$</div>
-                                                        {{-- <div>
-                                                                <a href="#" name="panier" data-id="{{ $cour->id_C }}"
-                                                            class="btn btn-primary"
-                                                            data-route="{{ route('panier.store') }}">Ajouter
-                                                            au panier</a>
-                                                        <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
-                                                            class="btn btn-white"
-                                                            data-route="{{ route('wishlist.store') }}"><i
-                                                                class="fa-regular fa-heart"></i></a>
-                                                            </div> --}}
+                                                        
                                                         <div style="display: flex; justify-content: space-between;">
                                                             <a href="#" name="panier"
                                                                 data-id="{{ $cour->id_C }}"
@@ -403,7 +391,7 @@
                             @endforeach
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- /.container-fluid -->
 
                 {{-- <div>
@@ -457,7 +445,14 @@
     </div>
 @endsection
 @section('script')
-    <script>
+<script>
+    
+$(document).ready(function(){
+    $('#myCarousel').carousel();
+});
+</script>
+
+    {{-- <script>
         var result = document.getElementById('result')
         var categorieselect = document.getElementById('categorie')
         var souscategorieselect = document.getElementById('souscategorie')
@@ -1015,5 +1010,5 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 @endsection

@@ -20,6 +20,7 @@
     <!-- Custom styles for this page -->
     <link href="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
+
     {{-- <style>
         body {
             background-image: url('{{ asset('storage/images/gradient_2.jpg') }}');
@@ -85,6 +86,7 @@
 <!-- Page level plugins -->
 <script src="{{ asset('storage/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
 
 <!-- Page level custom scripts -->
 <script src="{{ asset('storage/js/demo/datatables-demo.js') }}"></script>
