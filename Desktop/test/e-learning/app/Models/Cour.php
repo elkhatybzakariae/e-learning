@@ -55,12 +55,17 @@ class Cour extends Model
         $coursesGroupedByCategory = [];
         foreach ($categorie as $category) {
             $categoryId = $category->id_Cat;
-            $courses = Cour::whereHas('sujet.souscategorie.categorie', function ($query) use ($categoryId) {
+            $courses = Cour::with('user')->whereHas('sujet.souscategorie.categorie', function ($query) use ($categoryId) {
                 $query->where('id_Cat', $categoryId);
             })->where('valider', 1)->get();                   
-            $coursesGroupedByCategory[$category->id_Cat]['category'] = $category;
+            $coursesGroupedByCategory[$category->id_Cat]['category'] = $category->CatName;
             $coursesGroupedByCategory[$category->id_Cat]['courses'] = $courses;
         }
-        return $coursesGroupedByCategory;
-    }
+        return [
+            'coursesGroupedByCategory' => $coursesGroupedByCategory,
+            'categorie' => $categorie,
+            'souscategorie' => $souscategorie,
+            'sujets' => $sujets
+        ];
+        }
 }

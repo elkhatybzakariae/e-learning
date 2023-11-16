@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    
+
 
     public function index()
     {
@@ -32,9 +32,16 @@ class UserController extends Controller
         //               ->get()
         //               ->groupBy('sujet.souscategorie.categorie_id_Cat');
         $Cour = new Cour();
-        $coursList=$Cour->coursesByCategory();
-dd($coursList);
-        return view('index', compact('coursList','categorie','souscategorie','sujets'));
+        $coursList = $Cour->coursesByCategory();
+        // dd($coursList['coursesGroupedByCategory']);
+        // return view('index', compact('coursList','categorie','souscategorie','sujets'));
+
+        return view('index', [
+            'coursList' => $coursList,
+            // 'categorie' => $coursList['categorie'],
+            'souscategorie' => $coursList['souscategorie'],
+            'sujets' => $coursList['sujets']
+        ]);
     }
     public function index2()
     {
@@ -307,9 +314,4 @@ dd($coursList);
         ]);
         return redirect()->route('gestiondescomptes');
     }
-
-
-
-
-    
 }

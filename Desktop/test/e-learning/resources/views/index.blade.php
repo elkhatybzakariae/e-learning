@@ -14,9 +14,9 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    {{-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
-                    </button>
+                    </button> --}}
 
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
                         <div class="sidebar-brand-icon">
@@ -157,9 +157,13 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->FirstName }}</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                {{-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->FirstName }}</span> --}}
+                                <div class="rounded-circle d-flex justify-content-center align-items-center"
+                                    style="width: 40px; height: 40px; background-color: black; color: white;">
+                                    {{ strtoupper(substr(auth()->user()->FirstName, 0, 1) . substr(auth()->user()->LastName, 0, 1)) }}
+                                </div>
+
+                                {{-- <img class="img-profile rounded-circle" src="img/undraw_profile.svg"> --}}
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -285,7 +289,7 @@
                                 </a>
                     </div> --}}
                     {{-- <div id="myCarousel" class="owl-carousel"> --}}
-                        {{-- @foreach ($coursList as $cour)
+                    {{-- @foreach ($coursList as $cour)
                             <div class="item">
                                 <div class="card shadow h-100 py-2">
                                     <div class="">
@@ -319,48 +323,52 @@
                                 </div>
                             </div>
                         @endforeach --}}
-                        @foreach ($coursList as $categoryId => $courses)
-                        <div id="myCarousel" class="owl-carousel">
-{{dd($categoryId)}}
-                            <h2>Category: {{ $categorie->where('id_Cat', $categoryId)->first() }}</h2>
+                    @foreach ($coursList['coursesGroupedByCategory'] as $courses)
+                        <hr class="my-4">
+                        <div class="category-carousel">
+                            <h5 style="color: black">{{ $courses['category'] }}</h5>
                             <div class="owl-carousel">
-                                @foreach ($courses as $cour)
-                                <div class="item">
-                                    <div class="card shadow h-100 py-2">
-                                        <div class="">
-                                            <img class="card-img-top" style="width: 100%;"
-                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                        {{ $cour->title }}</h6>
-                                                    <p class="card-text">{{ $cour->user->FirstName }}
-                                                        {{ $cour->user->LastName }}</p>
-                                                    <div class="h5 mb-1 font-weight-bold text-gray-800">{{ $cour->price }}$
-                                                    </div>
-    
-                                                    <div style="display: flex; justify-content: space-between;">
-                                                        <a href="#" name="panier" data-id="{{ $cour->id_C }}"
-                                                            class="btn btn-primary btn-sm"
-                                                            data-route="{{ route('panier.store') }}">
-                                                            Ajouter au panier
-                                                        </a>
-                                                        <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
-                                                            class="btn btn-white" data-route="{{ route('wishlist.store') }}">
-                                                            <i class="fa-regular fa-heart"></i>
-                                                        </a>
+                                @foreach ($courses['courses'] as $cour)
+                                    <div class="item">
+                                        <div class="card shadow h-100 py-2">
+                                            <div class="">
+                                                <img class="card-img-top" style="width: 100%;"
+                                                    src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <h6
+                                                            class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                            {{ $cour->title }}
+                                                        </h6>
+                                                        <p class="card-text">{{ $cour->user->FirstName }}
+                                                            {{ $cour->user->LastName }}</p>
+                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
+                                                            {{ $cour->price }}$</div>
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <a href="#" name="panier"
+                                                                data-id="{{ $cour->id_C }}"
+                                                                class="btn btn-primary btn-sm"
+                                                                data-route="{{ route('panier.store') }}">
+                                                                Ajouter au panier
+                                                            </a>
+                                                            <a href="#" name="wishlist"
+                                                                data-id="{{ $cour->id_C }}" class="btn btn-white"
+                                                                data-route="{{ route('wishlist.store') }}">
+                                                                <i class="fa-regular fa-heart"></i>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>                                
                                 @endforeach
                             </div>
-                        </div>
-                        @endforeach
+                        </div>   
+                    @endforeach
+
 
                     {{-- </div> --}}
                 </div>
@@ -540,7 +548,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $("#myCarousel").owlCarousel({
+            $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,
                 responsiveClass: true,
@@ -560,6 +568,7 @@
                     }
                 }
             });
+
         });
     </script>
 
