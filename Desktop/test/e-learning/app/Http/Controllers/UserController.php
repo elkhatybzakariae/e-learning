@@ -23,10 +23,17 @@ class UserController extends Controller
 
     public function index()
     {
-        $categorie=Categorie::all();
-        $souscategorie=SousCategorie::all();
-        $sujets=Sujet::all();
-        $coursList = Cour::where('valider', 1)->get();
+        // $categorie=Categorie::all();
+        // $souscategorie=SousCategorie::all();
+        // $sujets=Sujet::all();
+        // // $coursList = Cour::where('valider', 1)->get();
+        // $coursList = Cour::with('sujet', 'sujet.souscategorie', 'sujet.souscategorie.categorie')
+        //               ->where('valider', 1)
+        //               ->get()
+        //               ->groupBy('sujet.souscategorie.categorie_id_Cat');
+        $Cour = new Cour();
+        $coursList=$Cour->coursesByCategory();
+dd($coursList);
         return view('index', compact('coursList','categorie','souscategorie','sujets'));
     }
     public function index2()

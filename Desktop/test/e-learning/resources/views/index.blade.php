@@ -190,11 +190,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-
-                <div class="container-fluid row main-content-wrap gutter-lg">
-
-                    {{-- <div class="main-content"> --}}
-                        {{-- <div class="row" id="result">
+                {{-- <div class="row" id="result">
                             @foreach ($coursList as $cour)
                                 <div class="col-xl-3 col-md-6 mb-4">
                                     <div class="card shadow h-100 py-2">
@@ -235,43 +231,140 @@
                                 </div>
                             @endforeach
                         </div> --}}
+                <div class="container-fluid">
+                    {{-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    @foreach ($coursList as $key => $cour)
+                                        <li data-target="#myCarousel" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"></li>
+                                    @endforeach
+                                </ol>
+                                
 
-
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                            <!-- Indicators -->
-                            <ol class="carousel-indicators">
-                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#myCarousel" data-slide-to="1"></li>
-                                <li data-target="#myCarousel" data-slide-to="2"></li>
-                            </ol>
-
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img src="{{ asset('storage/images/logo.png') }}" alt="Los Angeles">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    @foreach ($coursList as $key => $cour)
+                                        <div class="item {{ $key == 0 ? 'active' : '' }}">
+                                            <div class="card shadow h-100 py-2">
+                                                <div class="text-center">
+                                                    <img class="card-img-top" style="width: 200px;" src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                                {{ $cour->title }}</h6>
+                                                            <p class="card-text">{{ $cour->user->FirstName }} {{ $cour->user->LastName }}</p>
+                                                            <div class="h5 mb-1 font-weight-bold text-gray-800">{{ $cour->price }}$</div>
+                                                            
+                                                            <div style="display: flex; justify-content: space-between;">
+                                                                <a href="#" name="panier" data-id="{{ $cour->id_C }}" class="btn btn-primary btn-sm" data-route="{{ route('panier.store') }}">
+                                                                    Ajouter au panier
+                                                                </a>
+                                                                <a href="#" name="wishlist" data-id="{{ $cour->id_C }}" class="btn btn-white" data-route="{{ route('wishlist.store') }}">
+                                                                    <i class="fa-regular fa-heart"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
+                                
 
-                                <div class="item">
-                                    <img src="{{ asset('storage/images/logo.png') }}" alt="Chicago">
-                                </div>
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                    </div> --}}
+                    {{-- <div id="myCarousel" class="owl-carousel"> --}}
+                        {{-- @foreach ($coursList as $cour)
+                            <div class="item">
+                                <div class="card shadow h-100 py-2">
+                                    <div class="">
+                                        <img class="card-img-top" style="width: 100%;"
+                                            src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                    {{ $cour->title }}</h6>
+                                                <p class="card-text">{{ $cour->user->FirstName }}
+                                                    {{ $cour->user->LastName }}</p>
+                                                <div class="h5 mb-1 font-weight-bold text-gray-800">{{ $cour->price }}$
+                                                </div>
 
-                                <div class="item">
-                                    <img src="{{ asset('storage/images/logo.png') }}" alt="New York">
+                                                <div style="display: flex; justify-content: space-between;">
+                                                    <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                                                        class="btn btn-primary btn-sm"
+                                                        data-route="{{ route('panier.store') }}">
+                                                        Ajouter au panier
+                                                    </a>
+                                                    <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
+                                                        class="btn btn-white" data-route="{{ route('wishlist.store') }}">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <!-- Left and right controls -->
-                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
+                        @endforeach --}}
+                        @foreach ($coursList as $categoryId => $courses)
+                        <div id="myCarousel" class="owl-carousel">
+{{dd($categoryId)}}
+                            <h2>Category: {{ $categorie->where('id_Cat', $categoryId)->first() }}</h2>
+                            <div class="owl-carousel">
+                                @foreach ($courses as $cour)
+                                <div class="item">
+                                    <div class="card shadow h-100 py-2">
+                                        <div class="">
+                                            <img class="card-img-top" style="width: 100%;"
+                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                        {{ $cour->title }}</h6>
+                                                    <p class="card-text">{{ $cour->user->FirstName }}
+                                                        {{ $cour->user->LastName }}</p>
+                                                    <div class="h5 mb-1 font-weight-bold text-gray-800">{{ $cour->price }}$
+                                                    </div>
+    
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                                                            class="btn btn-primary btn-sm"
+                                                            data-route="{{ route('panier.store') }}">
+                                                            Ajouter au panier
+                                                        </a>
+                                                        <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
+                                                            class="btn btn-white" data-route="{{ route('wishlist.store') }}">
+                                                            <i class="fa-regular fa-heart"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                @endforeach
+                            </div>
                         </div>
+                        @endforeach
+
                     {{-- </div> --}}
                 </div>
+
 
 
 
@@ -445,12 +538,30 @@
     </div>
 @endsection
 @section('script')
-<script>
-    
-$(document).ready(function(){
-    $('#myCarousel').carousel();
-});
-</script>
+    <script>
+        $(document).ready(function() {
+            $("#myCarousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    600: {
+                        items: 3,
+                        nav: true
+                    },
+                    1000: {
+                        items: 5,
+                        nav: true,
+                        loop: true
+                    }
+                }
+            });
+        });
+    </script>
 
     {{-- <script>
         var result = document.getElementById('result')
