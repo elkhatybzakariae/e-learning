@@ -21,7 +21,7 @@ class Video extends Model
     ];
 
     public function media(){
-        return $this->hasMany(Media::class);
+        return $this->hasMany(Media::class,'id_V');
     }
     public function session(){
         return $this->belongsTo(Session::class, 'id_Sess');

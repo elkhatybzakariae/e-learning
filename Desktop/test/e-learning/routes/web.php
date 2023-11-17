@@ -114,7 +114,7 @@ Route::group(['prefix' => 'cour', 'middleware' => 'authen'], function () {
     Route::get('/subject/{name}', [CourController::class, 'filterparsj'])->name('cour.filterparsj');
 
     Route::get('/cour/search', [CourController::class, 'search'])->name('cour.search');
-    Route::get('/show/{id}', [CourController::class, 'show'])->name('video.show');
+    Route::get('/show/{id}', [CourController::class, 'show'])->name('cour.show');
 
 });
 

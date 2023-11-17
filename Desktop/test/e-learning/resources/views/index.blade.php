@@ -332,9 +332,12 @@
                                     <div class="item">
                                         <div class="card shadow h-100 py-2">
                                             <div class="">
+                                                <a href="{{route('cour.show',$cour->id_C)}}">
                                                 <img class="card-img-top" style="width: 100%;"
-                                                {{-- src="{{ asset('storage/images/categoriepic/' . $courses['category'] . '.png') }}" --}}
-                                                    src="{{ asset('storage/images/developpement.jpg') }}" alt="">
+                                                src="{{ asset('storage/images/' . $courses['category'] . '.jpg') }}"
+                                                    {{-- src="{{ asset('storage/images/Developement.jpg') }}" alt="" --}}
+                                                    >
+                                                </a>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">

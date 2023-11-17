@@ -32,7 +32,7 @@ class Cour extends Model
     }
     public function section()
     {
-        return $this->hasMany(Section::class);
+        return $this->hasMany(Section::class,'id_C');
     }
     public function certificate()
     {

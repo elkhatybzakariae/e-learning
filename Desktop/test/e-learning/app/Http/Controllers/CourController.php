@@ -28,8 +28,12 @@ class CourController extends Controller
     }
     public function show($id)
     {
-            $cour = Cour::where('id_C', $id)->get();
-            return view('management.cour.show', compact('cours'));
+        $cour = Cour::where('id_C', $id)
+            ->with(['section.session.video.media'])
+            ->with(['sujet.souscategorie.categorie'])
+            ->first();
+        // dd($cour);
+        return view('management.cour.show', compact('cour'));
     }
     public function coursvalider()
     {
@@ -143,6 +147,7 @@ class CourController extends Controller
         // return Json('coursList','categorie','souscategorie','sujets');
         return response()->json($coursList);
     }
+
 
     public function search(Request $request)
     {

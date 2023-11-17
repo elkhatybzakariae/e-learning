@@ -19,7 +19,7 @@ class Section extends Model
     ];
 
     public function session(){
-        return $this->hasMany(Session::class);
+        return $this->hasMany(Session::class,'id_Sec');
     }
     public function cour(){
         return $this->belongsTo(Cour::class, 'id_C');
