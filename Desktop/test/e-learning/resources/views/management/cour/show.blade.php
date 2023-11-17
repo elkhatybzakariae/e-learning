@@ -12,9 +12,6 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-
-
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
                         <div class="sidebar-brand-icon">
                             <img src="{{ asset('storage/images/logo.png') }}" alt="">
@@ -265,88 +262,156 @@
 
 
 
+                                    {{-- <div class="accordion" id="accordionPanelsStayOpenExample">
+                                        @foreach ($cour->section as $section)
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="{{ $section->id_Sec }}">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#{{ $section->Sec_Name }}"
+                                                        aria-expanded="false"
+                                                        aria-controls="{{ $section->Sec_Name }}">
+                                                        {{ $section->Sec_Name }}
+                                                    </button>
+                                                </h2>
+                                                <div id="{{ $section->Sec_Name }}" class="accordion-collapse collapse"
+                                                    aria-labelledby="{{ $section->id_Sec }}">
+                                                    <div class="accordion-body">
 
+
+
+                                                        @foreach ($section->session as $session)
+                                                            <h2 class="accordion-header" id="{{ $session->id_Sess }}">
+                                                                <button class="accordion-button collapsed" type="button"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target="#{{ $session->Sess_Name }}"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="{{ $session->Sess_Name }}">
+                                                                    {{ $session->Sess_Name }}
+                                                                </button>
+                                                            </h2>
+                                                            <div id="{{ $session->Sess_Name }}"
+                                                                class="accordion-collapse collapse"
+                                                                aria-labelledby="{{ $session->id_Sess }}">
+                                                                <div class="accordion-body">
+
+
+
+                                                                    @foreach ($session->video as $video)
+                                                                        <h2 class="accordion-header"
+                                                                            id="{{ $video->id_V }}">
+                                                                            <button class="accordion-button collapsed"
+                                                                                type="button" data-bs-toggle="collapse"
+                                                                                data-bs-target="#{{ $video->title }}"
+                                                                                aria-expanded="false"
+                                                                                aria-controls="{{ $video->title }}">
+                                                                                {{ $video->title }}
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="{{ $video->title }}"
+                                                                            class="accordion-collapse collapse"
+                                                                            aria-labelledby="{{ $video->id_V }}">
+                                                                            <div class="accordion-body">
+
+
+
+                                                                                {{ $video->title }}
+
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    @endforeach
+
+
+
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+                                    </div> --}}
                                     <div class="accordion" id="accordionPanelsStayOpenExample">
                                         @foreach ($cour->section as $section)
                                             <div class="accordion-item">
-                                            <h2 class="accordion-header" id="{{$section->id_Sec}}">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{$section->id_Sec}}" aria-expanded="true" aria-controls="{{$section->id_Sec}}">
-                                                    {{ $section->Sec_Name }}
-                                                </button>
-                                            </h2>
-                                            <div id="{{$section->id_Sec}}" class="accordion-collapse collapse show" aria-labelledby="{{$section->id_Sec}}">
-                                                <div class="accordion-body">
-                                                <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                                <h2 class="accordion-header" id="heading{{ $section->id_Sec }}">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse{{ $section->id_Sec }}"
+                                                        aria-expanded="false"
+                                                        aria-controls="collapse{{ $section->id_Sec }}">
+                                                        {{ $section->Sec_Name }}
+                                                    </button>
+                                                </h2>
+                                                <div id="collapse{{ $section->id_Sec }}"
+                                                    class="accordion-collapse collapse"
+                                                    aria-labelledby="heading{{ $section->id_Sec }}"
+                                                    data-bs-parent="#accordionPanelsStayOpenExample">
+                                                    <div class="accordion-body">
+                                                        @foreach ($section->session as $session)
+                                                            <div class="accordion-item">
+                                                                <h2 class="accordion-header"
+                                                                    id="heading{{ $session->id_Sess }}">
+                                                                    <button class="accordion-button collapsed"
+                                                                        type="button" data-bs-toggle="collapse"
+                                                                        data-bs-target="#collapse{{ $session->id_Sess }}"
+                                                                        aria-expanded="false"
+                                                                        aria-controls="collapse{{ $session->id_Sess }}">
+                                                                        {{ $session->Sess_Name }}
+                                                                    </button>
+                                                                </h2>
+                                                                <div id="collapse{{ $session->id_Sess }}"
+                                                                    class="accordion-collapse collapse"
+                                                                    aria-labelledby="heading{{ $session->id_Sess }}"
+                                                                    data-bs-parent="#collapse{{ $section->id_Sec }}">
+                                                                    <div class="accordion-body">
+                                                                        @foreach ($session->video as $video)
+                                                                            <h2 class="accordion-header"
+                                                                                id="heading{{ $video->id_V }}">
+                                                                                <button class="accordion-button collapsed"
+                                                                                    type="button"
+                                                                                    data-bs-toggle="collapse"
+                                                                                    name="video"
+                                                                                    data-id="{{ $video->id_V }}"
+                                                                                    data-lien="{{ $video->lien }}"
+                                                                                    data-bs-target="#collapse{{ $video->id_V }}"
+                                                                                    aria-expanded="false"
+                                                                                    aria-controls="collapse{{ $video->id_V }}">
+                                                                                    {{ $video->title }}
+                                                                                </button>
+                                                                            </h2>
+                                                                            @if ($video->media)
+                                                                                <div id="collapse{{ $video->id_V }}"
+                                                                                    class="accordion-collapse collapse"
+                                                                                    aria-labelledby="heading{{ $video->id_V }}"
+                                                                                    data-bs-parent="#collapse{{ $session->id_Sess }}">
+                                                                                    <div class="accordion-body">
+                                                                                        @foreach ($video->media as $media)
+                                                                                            <a href="{{route('file.download',$media->id_M)}}">
+                                                                                                {{ $media->mediaName }}
+                                                                                            </a>
+                                                                                        @endforeach
+                                                                                    </div>
+                                                                                </div>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                             </div>
-                                            </div>
                                         @endforeach
-                                        {{-- <div class="accordion-item">
-                                          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                              Accordion Item #2
-                                            </button>
-                                          </h2>
-                                          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                                            <div class="accordion-body">
-                                              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                            </div>
-                                          </div>
-                                        </div> --}}
                                     </div>
-                                    
 
-                                    <div class="accordion accordion-borderless" id="accordionFlushExampleX">
-                                        <div class="accordion-item">
-                                          <h2 class="accordion-header" id="flush-headingOneX">
-                                            <button class="accordion-button" type="button" data-mdb-toggle="collapse"
-                                              data-mdb-target="#flush-collapseOneX" aria-expanded="true" aria-controls="flush-collapseOneX">
-                                              Accordion Item #1
-                                            </button>
-                                          </h2>
-                                          <div id="flush-collapseOneX" class="accordion-collapse collapse show"
-                                            aria-labelledby="flush-headingOneX" data-mdb-parent="#accordionFlushExampleX">
-                                            <div class="accordion-body">
-                                              Placeholder content for this accordion, which is intended to demonstrate the
-                                              <code>.accordion-flush</code> class. This is the first item's accordion body.
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                          <h2 class="accordion-header" id="flush-headingTwoX">
-                                            <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
-                                              data-mdb-target="#flush-collapseTwoX" aria-expanded="false" aria-controls="flush-collapseTwoX">
-                                              Accordion Item #2
-                                            </button>
-                                          </h2>
-                                          <div id="flush-collapseTwoX" class="accordion-collapse collapse" aria-labelledby="flush-headingTwoX"
-                                            data-mdb-parent="#accordionFlushExampleX">
-                                            <div class="accordion-body">
-                                              Placeholder content for this accordion, which is intended to demonstrate the
-                                              <code>.accordion-flush</code> class. This is the second item's accordion body.
-                                              Let's imagine this being filled with some actual content.
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                          <h2 class="accordion-header" id="flush-headingThreeX">
-                                            <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
-                                              data-mdb-target="#flush-collapseThreeX" aria-expanded="false" aria-controls="flush-collapseThreeX">
-                                              Accordion Item #3
-                                            </button>
-                                          </h2>
-                                          <div id="flush-collapseThreeX" class="accordion-collapse collapse" aria-labelledby="flush-headingThreeX"
-                                            data-mdb-parent="#accordionFlushExampleX">
-                                            <div class="accordion-body">
-                                              Placeholder content for this accordion, which is intended to demonstrate the
-                                              <code>.accordion-flush</code> class. This is the third item's accordion body.
-                                              Nothing more exciting happening here in terms of content, but just filling up
-                                              the space to make it look, at least at first glance, a bit more representative
-                                              of how this would look in a real-world application.
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
 
                                 </div>
                             </div>
@@ -376,17 +441,13 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('[name="video"]').on('click', function(params) {
-                console.log($(this).data('id'));
-
+            $('[name="video"]').one('click', function(params) {
                 $('#videocontent').html(`
                     <iframe width="100%" height="315" 
                      src="https://www.youtube.com/embed/${$(this).data('lien')}"
                      frameborder="0" allowfullscreen></iframe>
                  `);
-
             })
-
         });
     </script>
 @endsection

@@ -51,17 +51,17 @@ class MediaController extends Controller
         $path = $file->store('uploads', 'public');
         $validatedData['id_M'] = $customIdM;
         $validatedData['path'] = $path;
-        
+
         // $validatedData['lien']=$lien[0];
         Media::create($validatedData);
         return redirect()->route('media.index')->with('success', 'media created successfully');
     }
 
-    
+
     public function edit($idM)
     {
         $media = Media::find($idM);
-        if(!$media){
+        if (!$media) {
             return view('404');
         }
         return view('management.media.edit', compact('media'));
@@ -73,7 +73,7 @@ class MediaController extends Controller
         if (!$media) {
             return redirect()->route('media.index')->with('error', 'media not found');
         }
-        
+
         Storage::delete($media->path);
         $file = $request->file('path');
         dd($file);
@@ -86,5 +86,34 @@ class MediaController extends Controller
     {
         Media::find($idM)->delete();
         return redirect()->route('media.index')->with('success', 'media deleted successfully');
+    }
+
+
+    public function downloadFile($id)
+    {
+        $media = Media::findOrFail($id);
+
+        $filePath = storage_path('app/public/' . $media->path);
+
+        // Check if the file exists
+        if (file_exists($filePath)) {
+            // Get the file's original name
+            $originalFileName = pathinfo($media->path, PATHINFO_FILENAME);
+
+            // Replace invalid characters in the filename
+            $sanitizedFileName = str_replace(['/', '\\'], '_', $originalFileName);
+
+            // Define headers for the download response
+            $headers = [
+                'Content-Type' => 'application/octet-stream',
+                'Content-Disposition' => 'attachment; filename="' . $sanitizedFileName . '"',
+            ];
+
+            // Return the file as a downloadable response
+            return response()->download($filePath, $sanitizedFileName, $headers);
+        } else {
+            // If the file does not exist, return an error or redirect as needed
+            return response()->json(['message' => 'File not found.'], 404);
+        }
     }
 }

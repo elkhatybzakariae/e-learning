@@ -153,6 +153,8 @@ Route::group(['prefix' => 'media', 'middleware' => 'authen'], function () {
     // Route::get('/edit/{id}', [MediaController::class, 'edit'])->name('media.edit');
     // Route::put('/update/{id}', [MediaController::class, 'update'])->name('media.update');
     Route::delete('/destroy/{id}', [MediaController::class, 'destroy'])->name('media.destroy');
+    Route::get('/download/{id}', [MediaController::class, 'downloadFile'])->name('file.download');
+
 });
 
 Route::group(['prefix' => 'certificate', 'middleware' => 'authen'], function () {
