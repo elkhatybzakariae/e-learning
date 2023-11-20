@@ -15,14 +15,28 @@ class QuizController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $cours = Cour::where('id_U', $id)->get();
+        // $cours = Cour::with('section.quiz')
+        //     ->where('id_U', $id)
+        //     ->get();
+
+        $cours = Cour::where('id_U', $id)
+        ->with(['section.quiz'])
+        ->get();
         $idsC = $cours->pluck('id_C')->all();
         $section = Section::where('id_C', $idsC)->get();
         $idsS = $section->pluck('id_Sec')->all();
-        $quiz = Quiz::whereIn('id_Sec', $idsS)->get();
+
+
+        // foreach ($cours->section as $section) {
+        //     $quizForSection = $section->quiz;
+        // }
+
+        // $quiz = Quiz::whereIn('id_Sec', $idsS)->get();
+        $quiz = $cours->section()->quiz();
+        dd($quiz);
         return view('management.quiz.index', compact('quiz'));
     }
-    
+
     public function create()
     {
         $id = Auth::id();

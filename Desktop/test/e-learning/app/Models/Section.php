@@ -25,6 +25,6 @@ class Section extends Model
         return $this->belongsTo(Cour::class, 'id_C');
     }
     public function quiz(){
-        return $this->hasOne(Quiz::class);
+        return $this->hasOne(Quiz::class,'id_Sec');
     }
 }

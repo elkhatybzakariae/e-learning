@@ -32,50 +32,58 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @if(auth()->user()->roles->contains('role_name', 'formateur'))
+                        {{-- @if (auth()->user()->roles->contains('role_name', 'formateur')) --}}
+                       
                             @foreach ($quiz as $quiz)
-                                <tr>
-                                    <td>{{ $quiz->quizName }}</td>
-                                    <td>{{ $quiz->section->Sec_Name }}</td>
-                                    <td>{{ $quiz->section->cour->title }}</td>
-                                    <td class="d-flex justify-content-center">
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button"
-                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                Actions
-                                            </button>
-                                            <div class="dropdown-menu animated--fade-in"
-                                                aria-labelledby="dropdownMenuButton">
-                                                <a href="{{route('testquestion.index', $quiz->id_Q )}}"
-                                                    class="btn btn-warning btn-icon-split ml-4 ">
-                                                    <span class="icon text-white-50">
-                                                        <i class="fa-solid fa-question"></i>
-                                                    </span>
-                                                    <span class="text">Questions</span>
-                                                </a>
-                                                <div class="dropdown-item">
-                                                    <form action="{{ route('quiz.destroy', $quiz->id_Q ) }}" method="post">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-danger btn-icon-split"
-                                                            onclick="return confirm('Are you sure you want to delete this card?')">
-                                                            {{-- <i class="fas fa-trash"></i>class="btn btn-danger btn-circle" --}}
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-trash"></i>
-                                                            </span>
-                                                            <span class="text">supprimer</span>
+                                    {{-- @foreach ($cour->section as $section)
+                                            @foreach ($section->quiz as $quiz) --}}
+                                                <tr>
+                                                    <td>{{ $quiz->quizName }}</td>
+                                                    <td>{{ $quiz->section->Sec_Name }}</td>
+                                                    <td>{{ $quiz->section->cour->title }}</td>
+                                                    <td class="d-flex justify-content-center">
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-primary dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false">
+                                                                Actions
+                                                            </button>
+                                                            <div class="dropdown-menu animated--fade-in"
+                                                                aria-labelledby="dropdownMenuButton">
+                                                                <a href="{{ route('testquestion.index', $section->quiz->id_Q) }}"
+                                                                    class="btn btn-warning btn-icon-split ml-4 ">
+                                                                    <span class="icon text-white-50">
+                                                                        <i class="fa-solid fa-question"></i>
+                                                                    </span>
+                                                                    <span class="text">Questions</span>
+                                                                </a>
+                                                                <div class="dropdown-item">
+                                                                    <form
+                                                                        action="{{ route('quiz.destroy', $section->quiz->id_Q) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('delete')
+                                                                        <button type="submit"
+                                                                            class="btn btn-danger btn-icon-split"
+                                                                            onclick="return confirm('Are you sure you want to delete this card?')">
+                                                                            {{-- <i class="fas fa-trash"></i>class="btn btn-danger btn-circle" --}}
+                                                                            <span class="icon text-white-50">
+                                                                                <i class="fas fa-trash"></i>
+                                                                            </span>
+                                                                            <span class="text">supprimer</span>
 
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {{-- @endforeach
+                                    @endforeach --}}
                             @endforeach
-                        @elseif(auth()->user()->roles->contains('role_name', 'client'))
-                        @endif
+                        {{-- @elseif(auth()->user()->roles->contains('role_name', 'client')) --}}
+                        {{-- @endif --}}
                     </tbody>
                 </table>
             </div>

@@ -137,225 +137,13 @@
                             <div class="row">
                                 <!-- Video Section (Left) -->
                                 <div class="col-lg-8 mb-4" id="videocontent">
-                                    <img class="card-img-top" style="width: 100%;"
+                                    <img class="card-img-top" style="width: 100%; height: 70%;"
                                         src="{{ asset('storage/images/' . $cour->sujet->souscategorie->categorie->CatName . '.jpg') }}">
                                     <h1>{{ $cour->title }}</h1>
                                 </div>
-
                                 <!-- List Section (Right) -->
                                 <div class="col-lg-4 mb-4" id="courdetails">
-                                    {{-- <ul>
-                                         @foreach ($cour->section as $section)
-                                            <li>
-                                                {{ $section->Sec_Name }}
-                                                <ul>
-                                                    @foreach ($section->session as $session)
-                                                        <li>
-                                                            {{ $session->Sess_Name }}
-                                                            <ul>
-                                                                @foreach ($session->video as $video)
-                                                                    <li>{{ $video->title }}</li>
-                                                                @endforeach
-                                                            </ul>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                         @endforeach
-                                    </ul> --}}
-                                    {{-- <div id="accordion">
-                                        @foreach ($cour->section as $section)
-                                            <div class="card">
-                                                <div class="card-header" id="heading{{ $section->id }}">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link" data-toggle="collapse"
-                                                            data-target="#collapse{{ $section->id }}"
-                                                            aria-expanded="true"
-                                                            aria-controls="collapse{{ $section->id }}">
-                                                            {{ $section->Sec_Name }}
-                                                        </button>
-                                                    </h5>
-                                                </div>
-
-                                                <div id="collapse{{ $section->id }}" class="collapse"
-                                                    aria-labelledby="heading{{ $section->id }}"
-                                                    data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        <ul>
-                                                            @foreach ($section->session as $session)
-                                                                <li>
-                                                                    <button class="btn btn-link" data-toggle="collapse"
-                                                                        data-target="#session{{ $session->id }}"
-                                                                        aria-expanded="true"
-                                                                        aria-controls="session{{ $session->id }}">
-                                                                        {{ $session->Sess_Name }}
-                                                                    </button>
-                                                                    <ul id="session{{ $session->id }}" class="collapse">
-                                                                        @foreach ($session->video as $video)
-                                                                            <li>{{ $video->title }}</li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div> --}}
-
-                                    {{-- <div id="accordion">
-                                        @foreach ($cour->section as $section)
-                                            <div class="card">
-                                                <div class="card-header" id="heading{{ $section->id }}">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link text-decoration-none shadow-none"
-                                                            data-toggle="collapse"
-                                                            data-target="#collapse{{ $section->id_Sec }}"
-                                                            aria-expanded="true"
-                                                            aria-controls="collapse{{ $section->id_Sec }}">
-                                                            {{ $section->Sec_Name }}
-                                                        </button>
-
-                                                    </h5>
-                                                </div>
-
-                                                <div id="collapse{{ $section->id_Sec }}" class="collapse"
-                                                    aria-labelledby="heading{{ $section->id_Sec }}"
-                                                    data-parent="#accordion">
-                                                    <div class="card-body pt-0 pr-0">
-                                                        <ul style="list-style: none; padding-left: 0px;">
-                                                            @foreach ($section->session as $session)
-                                                                <li>
-                                                                    <div class="card-header"
-                                                                        id="heading{{ $session->id_Sess }}">
-                                                                        <h5 class="mb-0">
-                                                                            <button
-                                                                                class="btn btn-link text-decoration-none shadow-none"
-                                                                                data-toggle="collapse"
-                                                                                data-target="#session{{ $session->id_Sess }}"
-                                                                                aria-expanded="true"
-                                                                                aria-controls="session{{ $session->id_Sess }}">
-                                                                                {{ $session->Sess_Name }}
-                                                                            </button>
-                                                                        </h5>
-                                                                    </div>
-                                                                    <ul style="list-style: none; "
-                                                                        id="session{{ $session->id_Sess }}"
-                                                                        class="collapse ps-2">
-                                                                        @foreach ($session->video as $video)
-                                                                            <li>
-                                                                                <button 
-                                                                                    class="btn btn-link text-decoration-none shadow-none"
-                                                                                    name="video" data-toggle="video"
-                                                                                    data-id="{{ $video->id_V }}"
-                                                                                    data-lien="{{ $video->lien }}"
-                                                                                    data-target="#video{{ $video->id_V }}">
-                                                                                    {{ $video->title }}
-                                                                                </button>
-                                                                                <ul style="list-style: none;"
-                                                                                    id="video{{ $video->id_V }}"
-                                                                                    class="collapse">
-                                                                                    @foreach ($video->media as $media)
-                                                                                        <li>
-                                                                                            <button
-                                                                                                class="btn btn-link text-decoration-none shadow-none"
-                                                                                                data-toggle="modal"
-                                                                                                data-target="#mediaModal{{ $media->id_M }}">
-                                                                                                {{ $media->mediaName }}
-                                                                                            </button>
-                                                                                        </li>
-                                                                                    @endforeach
-                                                                                </ul>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div> --}}
-
-                                    {{-- <div class="accordion" id="accordionPanelsStayOpenExample">
-                                        @foreach ($cour->section as $section)
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="{{ $section->id_Sec }}">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse"
-                                                        data-bs-target="#{{ $section->Sec_Name }}"
-                                                        aria-expanded="false"
-                                                        aria-controls="{{ $section->Sec_Name }}">
-                                                        {{ $section->Sec_Name }}
-                                                    </button>
-                                                </h2>
-                                                <div id="{{ $section->Sec_Name }}" class="accordion-collapse collapse"
-                                                    aria-labelledby="{{ $section->id_Sec }}">
-                                                    <div class="accordion-body">
-
-
-
-                                                        @foreach ($section->session as $session)
-                                                            <h2 class="accordion-header" id="{{ $session->id_Sess }}">
-                                                                <button class="accordion-button collapsed" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#{{ $session->Sess_Name }}"
-                                                                    aria-expanded="false"
-                                                                    aria-controls="{{ $session->Sess_Name }}">
-                                                                    {{ $session->Sess_Name }}
-                                                                </button>
-                                                            </h2>
-                                                            <div id="{{ $session->Sess_Name }}"
-                                                                class="accordion-collapse collapse"
-                                                                aria-labelledby="{{ $session->id_Sess }}">
-                                                                <div class="accordion-body">
-
-
-
-                                                                    @foreach ($session->video as $video)
-                                                                        <h2 class="accordion-header"
-                                                                            id="{{ $video->id_V }}">
-                                                                            <button class="accordion-button collapsed"
-                                                                                type="button" data-bs-toggle="collapse"
-                                                                                data-bs-target="#{{ $video->title }}"
-                                                                                aria-expanded="false"
-                                                                                aria-controls="{{ $video->title }}">
-                                                                                {{ $video->title }}
-                                                                            </button>
-                                                                        </h2>
-                                                                        <div id="{{ $video->title }}"
-                                                                            class="accordion-collapse collapse"
-                                                                            aria-labelledby="{{ $video->id_V }}">
-                                                                            <div class="accordion-body">
-
-
-
-                                                                                {{ $video->title }}
-
-
-
-                                                                            </div>
-                                                                        </div>
-                                                                    @endforeach
-
-
-
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-
-
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        @endforeach
-
-                                    </div> --}}
-                                    <div class="accordion accordion-flush border-start"  id="accordionPanelsStayOpenExample">
+                                    <div class="accordion accordion-flush border-start">
                                         @foreach ($cour->section as $section)
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header" id="heading{{ $section->id_Sec }}">
@@ -390,6 +178,7 @@
                                                                         aria-labelledby="heading{{ $session->id_Sess }}"
                                                                         data-bs-parent="#collapse{{ $section->id_Sec }}">
                                                                         <div class="accordion-body">
+                                                                            @php $counter = 1; @endphp
                                                                             @foreach ($session->video as $video)
                                                                                 <div class="accordion accordion-flush"
                                                                                     id="">
@@ -402,7 +191,7 @@
                                                                                                 name="video"
                                                                                                 data-id="{{ $video->id_V }}"
                                                                                                 data-lien="{{ $video->lien }}">
-                                                                                                {{ $video->title }}
+                                                                                                {{ $counter }}.{{ $video->title }}
                                                                                             </button>
                                                                                         </h2>
                                                                                         @if (count($video->media) > 0)
@@ -427,19 +216,40 @@
                                                                                     </div>
 
                                                                                 </div>
+                                                                                @php $counter++; @endphp
                                                                             @endforeach
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                @if ($cour->quiz)
+                                                                    <div class="accordion-item">
+                                                                        <a class="dropdown-item"
+                                                                            href="#">{{ $cour->quiz->quizName }}</a>
+                                                                    
+                                                                    </div>
+                                                                @endif
                                                             </div>
                                                         @endforeach
                                                     </div>
                                                 </div>
                                             </div>
                                         @endforeach
+                                        @if ($cour->certificate)
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header"
+                                                    id="heading{{ $cour->certificate->id_Cert }}">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse{{ $cour->certificate->id_Cert }}"
+                                                        aria-expanded="false"
+                                                        aria-controls="collapse{{ $cour->certificate->id_Cert }}">
+                                                        <a class="dropdown-item" href="#"> Certificat :
+                                                            {{ $cour->certificate->certificateName }}</a>
+                                                    </button>
+                                                </h2>
+                                            </div>
+                                        @endif
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -456,7 +266,6 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
@@ -468,9 +277,9 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('[name="video"]').one('click', function(params) {
+            $('[name="video"]').on('click', function(params) {
                 $('#videocontent').html(`
-                    <iframe width="100%" height="315" 
+                    <iframe width="100%" height="500" 
                      src="https://www.youtube.com/embed/${$(this).data('lien')}"
                      frameborder="0" allowfullscreen></iframe>
                  `);
