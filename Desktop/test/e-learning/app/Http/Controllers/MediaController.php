@@ -94,25 +94,18 @@ class MediaController extends Controller
         $media = Media::findOrFail($id);
 
         $filePath = storage_path('app/public/' . $media->path);
-
-        // Check if the file exists
         if (file_exists($filePath)) {
-            // Get the file's original name
             $originalFileName = pathinfo($media->path, PATHINFO_FILENAME);
 
-            // Replace invalid characters in the filename
             $sanitizedFileName = str_replace(['/', '\\'], '_', $originalFileName);
 
-            // Define headers for the download response
             $headers = [
                 'Content-Type' => 'application/octet-stream',
                 'Content-Disposition' => 'attachment; filename="' . $sanitizedFileName . '"',
             ];
 
-            // Return the file as a downloadable response
             return response()->download($filePath, $sanitizedFileName, $headers);
         } else {
-            // If the file does not exist, return an error or redirect as needed
             return response()->json(['message' => 'File not found.'], 404);
         }
     }

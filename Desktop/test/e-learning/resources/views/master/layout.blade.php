@@ -66,6 +66,7 @@
             /* Show the <ul> on hover */
         }
     </style> --}}
+    @yield('style')
 </head>
 
 <body>

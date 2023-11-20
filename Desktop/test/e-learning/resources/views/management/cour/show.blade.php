@@ -1,7 +1,26 @@
 @extends('master.layout')
 
 @section('title', 'cour')
+@section('style')
+    <style>
+        .accordion-button {
+            --bs-accordion-btn-focus-border-color: transparent;
+            --bs-accordion-btn-focus-box-shadow: none;
+            --bs-accordion-active-color: inherit;
+            --bs-accordion-active-bg: initial;
+        }
 
+        .accordion-body {
+            padding-top: 0px;
+            padding-right: 0px;
+        }
+
+        button[name="video"] {
+            --bs-accordion-btn-icon: none;
+        }
+    </style>
+
+@endsection
 @section('content')
     <div id="wrapper">
         <!-- Content Wrapper -->
@@ -260,8 +279,6 @@
                                         @endforeach
                                     </div> --}}
 
-
-
                                     {{-- <div class="accordion" id="accordionPanelsStayOpenExample">
                                         @foreach ($cour->section as $section)
                                             <div class="accordion-item">
@@ -338,7 +355,7 @@
                                         @endforeach
 
                                     </div> --}}
-                                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                                    <div class="accordion accordion-flush border-start"  id="accordionPanelsStayOpenExample">
                                         @foreach ($cour->section as $section)
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header" id="heading{{ $section->id_Sec }}">
@@ -354,54 +371,64 @@
                                                     class="accordion-collapse collapse"
                                                     aria-labelledby="heading{{ $section->id_Sec }}"
                                                     data-bs-parent="#accordionPanelsStayOpenExample">
-                                                    <div class="accordion-body">
+                                                    <div class="accordion-body ">
                                                         @foreach ($section->session as $session)
-                                                            <div class="accordion-item">
-                                                                <h2 class="accordion-header"
-                                                                    id="heading{{ $session->id_Sess }}">
-                                                                    <button class="accordion-button collapsed"
-                                                                        type="button" data-bs-toggle="collapse"
-                                                                        data-bs-target="#collapse{{ $session->id_Sess }}"
-                                                                        aria-expanded="false"
-                                                                        aria-controls="collapse{{ $session->id_Sess }}">
-                                                                        {{ $session->Sess_Name }}
-                                                                    </button>
-                                                                </h2>
-                                                                <div id="collapse{{ $session->id_Sess }}"
-                                                                    class="accordion-collapse collapse"
-                                                                    aria-labelledby="heading{{ $session->id_Sess }}"
-                                                                    data-bs-parent="#collapse{{ $section->id_Sec }}">
-                                                                    <div class="accordion-body">
-                                                                        @foreach ($session->video as $video)
-                                                                            <h2 class="accordion-header"
-                                                                                id="heading{{ $video->id_V }}">
-                                                                                <button class="accordion-button collapsed"
-                                                                                    type="button"
-                                                                                    data-bs-toggle="collapse"
-                                                                                    name="video"
-                                                                                    data-id="{{ $video->id_V }}"
-                                                                                    data-lien="{{ $video->lien }}"
-                                                                                    data-bs-target="#collapse{{ $video->id_V }}"
-                                                                                    aria-expanded="false"
-                                                                                    aria-controls="collapse{{ $video->id_V }}">
-                                                                                    {{ $video->title }}
-                                                                                </button>
-                                                                            </h2>
-                                                                            @if ($video->media)
-                                                                                <div id="collapse{{ $video->id_V }}"
-                                                                                    class="accordion-collapse collapse"
-                                                                                    aria-labelledby="heading{{ $video->id_V }}"
-                                                                                    data-bs-parent="#collapse{{ $session->id_Sess }}">
-                                                                                    <div class="accordion-body">
-                                                                                        @foreach ($video->media as $media)
-                                                                                            <a href="{{route('file.download',$media->id_M)}}">
-                                                                                                {{ $media->mediaName }}
-                                                                                            </a>
-                                                                                        @endforeach
+                                                            <div class="accordion accordion-flush" id="">
+                                                                <div class="accordion-item">
+                                                                    <h2 class="accordion-header"
+                                                                        id="heading{{ $session->id_Sess }}">
+                                                                        <button class="accordion-button collapsed"
+                                                                            type="button" data-bs-toggle="collapse"
+                                                                            data-bs-target="#collapse{{ $session->id_Sess }}"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="collapse{{ $session->id_Sess }}">
+                                                                            {{ $session->Sess_Name }}
+                                                                        </button>
+                                                                    </h2>
+                                                                    <div id="collapse{{ $session->id_Sess }}"
+                                                                        class="accordion-collapse collapse"
+                                                                        aria-labelledby="heading{{ $session->id_Sess }}"
+                                                                        data-bs-parent="#collapse{{ $section->id_Sec }}">
+                                                                        <div class="accordion-body">
+                                                                            @foreach ($session->video as $video)
+                                                                                <div class="accordion accordion-flush"
+                                                                                    id="">
+                                                                                    <div class="accordion-item d-flex">
+                                                                                        <h2 class="accordion-header flex-grow-1"
+                                                                                            id="heading{{ $video->id_V }}">
+                                                                                            <button
+                                                                                                class="accordion-button collapsed"
+                                                                                                type="button"
+                                                                                                name="video"
+                                                                                                data-id="{{ $video->id_V }}"
+                                                                                                data-lien="{{ $video->lien }}">
+                                                                                                {{ $video->title }}
+                                                                                            </button>
+                                                                                        </h2>
+                                                                                        @if (count($video->media) > 0)
+                                                                                            <div class="dropdown mt-2">
+                                                                                                <button
+                                                                                                    class="btn btn-secondary dropdown-toggle"
+                                                                                                    type="button"
+                                                                                                    data-bs-toggle="dropdown"
+                                                                                                    aria-expanded="false">
+                                                                                                    Ressources
+                                                                                                </button>
+                                                                                                <ul class="dropdown-menu">
+                                                                                                    @foreach ($video->media as $media)
+                                                                                                        <li><a class="dropdown-item"
+                                                                                                                href="{{ route('file.download', $media->id_M) }}">{{ $media->mediaName }}</a>
+                                                                                                        </li>
+                                                                                                    @endforeach
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        @endif
+
                                                                                     </div>
+
                                                                                 </div>
-                                                                            @endif
-                                                                        @endforeach
+                                                                            @endforeach
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
