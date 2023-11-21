@@ -16,12 +16,13 @@ class Question extends Model
         'id_Que',
         'question',
         'questable_id',
+        'questable_type',
     ];
     public function questable()
     {
         return $this->morphTo();
     }
     public function reponse(){
-        return $this->hasMany(Reponse::class);
+        return $this->hasMany(Reponse::class,'id_Que');
     }
 }

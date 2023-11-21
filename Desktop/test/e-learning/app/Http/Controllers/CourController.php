@@ -30,6 +30,7 @@ class CourController extends Controller
     {
         $cour = Cour::where('id_C', $id)
             ->with(['section.session.video.media'])
+            ->with(['section.quiz'])
             ->with(['sujet.souscategorie.categorie'])
             ->first();
         // dd($cour);

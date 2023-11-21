@@ -20,20 +20,20 @@ class QuizController extends Controller
         //     ->get();
 
         $cours = Cour::where('id_U', $id)
-        ->with(['section.quiz'])
-        ->get();
+            ->with(['section.quiz'])
+            ->get();
         $idsC = $cours->pluck('id_C')->all();
-        $section = Section::where('id_C', $idsC)->get();
+        $section = Section::whereIn('id_C', $idsC)->get();
         $idsS = $section->pluck('id_Sec')->all();
 
+        // dd($section);
 
         // foreach ($cours->section as $section) {
         //     $quizForSection = $section->quiz;
         // }
 
-        // $quiz = Quiz::whereIn('id_Sec', $idsS)->get();
+        $quiz = Quiz::whereIn('id_Sec', $idsS)->get();
         // $quiz = $cours->section()->quiz();
-        dd($cours);
         return view('management.quiz.index', compact('quiz'));
     }
 
@@ -49,7 +49,6 @@ class QuizController extends Controller
 
         $customIdQ = Helpers::generateIdQ();
         $validatedData = $request->validated();
-
         $validatedData['id_Q'] = $customIdQ;
 
         Quiz::create($validatedData);
@@ -61,5 +60,12 @@ class QuizController extends Controller
     {
         Quiz::find($id)->delete();
         return redirect()->route('quiz.index')->with('success', 'quiz deleted successfully');
+    }
+    public function passer($id)
+    {
+        $quiz = Quiz::where('id_Q', $id)->with('questions.reponse')->get();
+
+        // dd($quiz);
+        return view('management.quiz.passerquiz', compact('quiz'));
     }
 }

@@ -50,7 +50,7 @@
                                                             </button>
                                                             <div class="dropdown-menu animated--fade-in"
                                                                 aria-labelledby="dropdownMenuButton">
-                                                                <a href="{{ route('testquestion.index', $section->quiz->id_Q) }}"
+                                                                <a href="{{ route('testquestion.index', $quiz->id_Q) }}"
                                                                     class="btn btn-warning btn-icon-split ml-4 ">
                                                                     <span class="icon text-white-50">
                                                                         <i class="fa-solid fa-question"></i>
@@ -59,7 +59,7 @@
                                                                 </a>
                                                                 <div class="dropdown-item">
                                                                     <form
-                                                                        action="{{ route('quiz.destroy', $section->quiz->id_Q) }}"
+                                                                        action="{{ route('quiz.destroy', $quiz->id_Q) }}"
                                                                         method="post">
                                                                         @csrf
                                                                         @method('delete')

@@ -59,7 +59,7 @@
                                     <td>{{ $cour->coupon }}</td>
                                     <td>{{ $cour->valider ? "Oui" : "No"; }}</td>
                                     <td>{{ $cour->terminer ? "Oui" : "No"; }}</td>
-                                    <td>{{ $cour->sujet->SjName }}</td>
+                                    <td  >{{ $cour->sujet->SjName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->SCatName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
                                     <td class="d-flex justify-content-center">

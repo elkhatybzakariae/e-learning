@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Helpers;
 use App\Http\Requests\TestQuestionRequest;
 use App\Models\Question;
+use App\Models\Quiz;
 use App\Models\Reponse;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,8 @@ class TestQuestionController extends Controller
 {
     public function index($id)
     {
-        $questions= Question::where('questable_id',$id)->get();
-        return view('management.testquestion.index', compact('questions','id'));
+        $questions = Question::where('questable_id', $id)->get();
+        return view('management.testquestion.index', compact('questions', 'id'));
     }
     public function create($id)
     {
@@ -26,7 +27,14 @@ class TestQuestionController extends Controller
         $customIdQues = Helpers::generateIdQues();
         $validatedData = $request->validated();
         $validatedData['id_Que'] = $customIdQues;
+
         $validatedData['questable_id'] = $id;
+        $inquiz = Quiz::where('id_Q', $id)->exists();
+        if ($inquiz) {
+            $validatedData['questable_type'] = 'App\Models\Quiz';
+        } else {
+            $validatedData['questable_type'] = 'App\Models\Certificate';
+        }
 
         Question::create($validatedData);
 
@@ -46,7 +54,8 @@ class TestQuestionController extends Controller
 
         // return redirect()->back()->with('success', 'Question added successfully');
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
         Question::find($id)->delete();
         return redirect()->to(url()->previous())->with('success', 'Question deleted successfully');
     }

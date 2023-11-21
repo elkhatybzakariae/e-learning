@@ -24,6 +24,7 @@ class Quiz extends Model
     
     public function questions()
     {
+        // return $this->morphMany(Question::class, 'questable');
         return $this->morphMany(Question::class, 'questable');
     }
 }

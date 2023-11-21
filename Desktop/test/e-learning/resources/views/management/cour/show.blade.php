@@ -13,6 +13,7 @@
         .accordion-body {
             padding-top: 0px;
             padding-right: 0px;
+            padding-bottom: 0px;
         }
 
         button[name="video"] {
@@ -143,6 +144,9 @@
                                 </div>
                                 <!-- List Section (Right) -->
                                 <div class="col-lg-4 mb-4" id="courdetails">
+                                    <button class="btn btn-white" id="toggleAccordion">
+                                        <i class="fa-solid fa-eye-slash"></i>
+                                    </button>
                                     <div class="accordion accordion-flush border-start">
                                         @foreach ($cour->section as $section)
                                             <div class="accordion-item">
@@ -221,11 +225,12 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                @if ($cour->quiz)
-                                                                    <div class="accordion-item">
-                                                                        <a class="dropdown-item"
-                                                                            href="#">{{ $cour->quiz->quizName }}</a>
-                                                                    
+                                                                @if ($section->quiz)
+                                                                    <div class="accordion-item pb-1">
+                                                                        <h5 class="accordion-header">
+                                                                            <a class="dropdown-item" href="{{route('quiz.passer',$section->quiz->id_Q)}}">Quiz :
+                                                                                {{ $section->quiz->quizName }}</a>
+                                                                        </h5>
                                                                     </div>
                                                                 @endif
                                                             </div>
@@ -284,6 +289,20 @@
                      frameborder="0" allowfullscreen></iframe>
                  `);
             })
+            $('#toggleAccordion').click(function() {
+                $('.accordion').slideToggle(function() {
+                    const isVisible = $('.accordion').is(':visible');
+                    const iconClass = isVisible ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+                    $('#toggleAccordion i').removeClass().addClass('fas ' + iconClass);
+                    // const isCollapsed = isVisible ? 'Contenu du cours' : '';
+                    // $('#toggleAccordion').text(isCollapsed);
+                    const sideClass = isVisible ? 'col-lg-4 mb-4' : 'col-lg-1 mb-4';
+                    $('#courdetails').removeClass().addClass(sideClass);
+                    const Class = isVisible ? 'col-lg-8 mb-4' : 'col-lg-11 mb-4';
+                    $('#videocontent').removeClass().addClass(Class);
+                });
+            });
+
         });
     </script>
 @endsection
