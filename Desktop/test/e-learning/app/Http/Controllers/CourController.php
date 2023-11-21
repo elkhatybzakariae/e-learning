@@ -151,12 +151,11 @@ class CourController extends Controller
 
     public function search(Request $request)
     {
-        $searchQuery = $request->input('query');
+        $searchQuery = $request->input('searchInput');
         $searchResults = Cour::where('title', 'like', '%' . $searchQuery . '%')
             ->where('valider', 1)
-            ->with('user')
+            ->with('user','sujet.souscategorie.categorie')
             ->get();
-
         return response()->json($searchResults);
     }
 }

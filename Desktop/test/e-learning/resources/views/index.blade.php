@@ -36,11 +36,12 @@
                             </div>
                         </div>
                     </form> --}}
-                    <form id="courSearchForm"
+                    <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" id="searchInput"
-                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" name="searchInput" class="form-control bg-light border-0 small"
+                                id="searchInput" placeholder="Search for..." aria-label="Search"
+                                aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit" id="searchButton">
                                     <i class="fas fa-search fa-sm"></i>
@@ -235,7 +236,7 @@
                                 </div>
                             @endforeach
                         </div> --}}
-                <div class="container-fluid">
+                <div class="container-fluid" id="bodycontent">
                     {{-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
@@ -332,11 +333,10 @@
                                     <div class="item">
                                         <div class="card shadow h-100 py-2">
                                             <div class="">
-                                                <a href="{{route('cour.show',$cour->id_C)}}">
-                                                <img class="card-img-top" style="width: 100%;"
-                                                src="{{ asset('storage/images/' . $courses['category'] . '.jpg') }}"
-                                                    {{-- src="{{ asset('storage/images/Developement.jpg') }}" alt="" --}}
-                                                    >
+                                                <a href="{{ route('cour.show', $cour->id_C) }}">
+                                                    <img class="card-img-top" style="width: 100%;"
+                                                        src="{{ asset('storage/images/' . $courses['category'] . '.jpg') }}"
+                                                        {{-- src="{{ asset('storage/images/Developement.jpg') }}" alt="" --}}>
                                                 </a>
                                             </div>
                                             <div class="card-body">
@@ -370,7 +370,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                        </div>   
+                        </div>
                     @endforeach
 
 
@@ -573,6 +573,127 @@
                 }
             });
 
+            $('#courSearchForm').on('submit', function(event) {
+                event.preventDefault();
+
+                let searchInput = $('#searchInput').val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: $(this).attr('action'),
+                    data: {
+                        searchInput: searchInput
+                    },
+                    success: function(response) {
+                        // console.log('Search successful:', response);
+                        // $('#bodycontent').html('')
+                        // $('#bodycontent').empty();
+                        var cours = document.createElement('div');
+                        cours.classList.add('row');
+
+                        response.forEach(function(cour) {
+                            var courEle = `
+                                            <div class="col-xl-3 col-md-6 mb-4">
+                                                <div class="card shadow h-100 py-2">
+                                                    <div class="text-center">
+                                                        <a href="{{ route('cour.show', '') }}/${cour.id_C}">
+                                                        <img class="card-img-top" style="width: 200px;"
+                                                            src="{{ asset('storage/images/`+ cour . sujet . souscategorie . categorie . CatName +`.jpg') }}"
+                                                            alt="Card image cap"></a>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row no-gutters align-items-center">
+                                                            <div class="col ms-2">
+                                                                <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                                    ${cour.title}</h6>
+                                                                <p class="card-text">${cour.user.FirstName} ${cour.user.LastName}</p>
+                                                                <div class="h5 mb-1 font-weight-bold text-gray-800">${cour.price}$</div>
+                                                                <div style="display: flex; justify-content: space-between;">
+                                                                    <a href="#" name="panier" data-id="${cour.id_C}"
+                                                                        class="btn btn-primary btn-sm"
+                                                                        data-route="{{ route('panier.store') }}">
+                                                                        Ajouter au panier
+                                                                    </a>
+                                                                    <a href="#" name="wishlist" data-id="${cour.id_C}" class="btn btn-white"
+                                                                        data-route="{{ route('wishlist.store') }}">
+                                                                        <i class="fa-regular fa-heart"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                            // cours.innerHTML += courEle;
+                            var tempElement = document.createElement('div');
+                            tempElement.innerHTML = courEle.trim();
+
+                            cours.appendChild(tempElement.firstChild);
+                        });
+
+                        const contentP = `
+                            <div class="row main-content-wrap gutter-lg">
+                                <div class="col-lg-112 main-content">
+                                    ${cours.outerHTML}
+                                </div>
+                            </div> 
+                        `;
+                        $('#bodycontent').html(contentP)
+
+                    },
+                    error: function(error) {
+                        console.error('Error occurred:', error);
+                    }
+                });
+            });
+
+            $('a[name="panier"]').on('click', function(event) {
+                event.preventDefault();
+                var $panierLink = $(this);
+                var id = $(this).data('id');
+                var url = $(this).data('route');
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        $panierLink.text('Acceder au panier');
+                        $panierLink.attr('href', '{{ route('panier.index') }}');
+                        $panierLink.off('click');
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+            $('a[name="wishlist"]').on('click', function(event) {
+                event.preventDefault();
+                var $wishlistLink = $(this);
+                var id = $(this).data('id');
+                var url = $(this).data('route');
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        $wishlistLink.html('<i class="fa-solid fa-heart"></i>');
+                        $wishlistLink.attr('href', '{{ route('wishlist.index') }}');
+                        $wishlistLink.off('click');
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
         });
     </script>
 

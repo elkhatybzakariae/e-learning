@@ -32,8 +32,8 @@ class QuizController extends Controller
         // }
 
         // $quiz = Quiz::whereIn('id_Sec', $idsS)->get();
-        $quiz = $cours->section()->quiz();
-        dd($quiz);
+        // $quiz = $cours->section()->quiz();
+        dd($cours);
         return view('management.quiz.index', compact('quiz'));
     }
 

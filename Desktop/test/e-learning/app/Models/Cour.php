@@ -32,11 +32,11 @@ class Cour extends Model
     }
     public function section()
     {
-        return $this->hasMany(Section::class,'id_C');
+        return $this->hasMany(Section::class, 'id_C');
     }
     public function certificate()
     {
-        return $this->hasOne(Certificate::class,'id_C');
+        return $this->hasOne(Certificate::class, 'id_C');
     }
     public function sujet()
     {
@@ -48,16 +48,16 @@ class Cour extends Model
         $categorie = Categorie::all();
         $souscategorie = SousCategorie::all();
         $sujets = Sujet::all();
-        $coursesByCategory = Cour::with('sujet', 'sujet.souscategorie', 'sujet.souscategorie.categorie')
-            ->where('valider', 1)
-            ->get()
-            ->groupBy('sujet.souscategorie.categorie_id_Cat');
+        // $coursesByCategory = Cour::with('sujet', 'sujet.souscategorie', 'sujet.souscategorie.categorie')
+        //     ->where('valider', 1)
+        //     ->get()
+        //     ->groupBy('sujet.souscategorie.categorie_id_Cat');
         $coursesGroupedByCategory = [];
         foreach ($categorie as $category) {
             $categoryId = $category->id_Cat;
             $courses = Cour::with('user')->whereHas('sujet.souscategorie.categorie', function ($query) use ($categoryId) {
                 $query->where('id_Cat', $categoryId);
-            })->where('valider', 1)->get();                   
+            })->where('valider', 1)->get();
             $coursesGroupedByCategory[$category->id_Cat]['category'] = $category->CatName;
             $coursesGroupedByCategory[$category->id_Cat]['courses'] = $courses;
         }
@@ -67,5 +67,5 @@ class Cour extends Model
             'souscategorie' => $souscategorie,
             'sujets' => $sujets
         ];
-        }
+    }
 }
