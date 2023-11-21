@@ -113,45 +113,45 @@
                 </nav>
                 <div class="container-fluid justify-content-center align-items-center">
                     {{-- <div class="container ms-2 d-flex justify-content-center align-items-center"> --}}
+
                     <div class="text center bg-white p-5 pb-3  rounded">
-                        <form action="" method="POST">
+                        <form action="" id="quiz">
                             @csrf
-                            <div class="form-group row ps-5 pe-5 ">
+                            <div class="form-group row ps-5 pe-5 justify-content-center">
                                 @php $counter = 1; @endphp
                                 @foreach ($quiz as $quiz)
                                     @foreach ($quiz->questions as $Que)
-                                        <div class="form-group row justify-content-center align-items-center">
-                                            <div class="col-6 col-sm-3 col-form-label d-inline">
-                                                <label for="question" style="font-style: italic;">Question
-                                                    {{ $counter }}:
-                                                    {{ $Que->question }} ?</label>
+                                        <div class="col-12">
+                                            <div class="text-center mb-3">
+                                                <span for="question" style="font-style: italic;">
+                                                    Question {{ $counter }} : {{ $Que->question }} ?
+                                                </span>
                                             </div>
-                                            <div class="col-6 col-sm-9 d-inline  ">
-                                                <div class="form-outline mb-2 row">
-                                                    @foreach ($Que->reponse as $reponse)
-                                                        <span class="d-inline-block col-2">
-                                                            <input type="radio" id="{{ $reponse->id_R }}"
-                                                                name="responses{{ $Que->id_Que }}">
-                                                            <label
-                                                                for="{{ $reponse->id_R }}">{{ $reponse->reponse }}</label>
-                                                        </span>
-                                                    @endforeach
-                                                </div>
+                                            <div
+                                                class="form-outline  mb-2 d-flex justify-content-center align-items-center flex-wrap">
+                                                @foreach ($Que->reponse as $reponse)
+                                                    <span class="d-inline-block text-center col-4">
+                                                        <input type="radio" id="{{ $reponse->id_R }}"
+                                                            name="responses{{ $Que->id_Que }}">
+                                                        <label data-hidden-value="{{ $reponse->statusrep }}"
+                                                            for="{{ $reponse->id_R }}"
+                                                            name="responses{{ $Que->id_Que }}">
+                                                            {{ $reponse->reponse }}
+                                                        </label>
+                                                    </span>
+                                                @endforeach
                                             </div>
                                         </div>
-
                                         @php $counter++; @endphp
                                     @endforeach
                                 @endforeach
-
-
-
                             </div>
+
 
 
                             <div class="form-group text-end mt-3">
                                 <button type="submit" class="btn btn-outline-primary  gradient-custom-4 text-body"
-                                    style="font-style: italic;">Ajouter </button>
+                                    style="font-style: italic;">Valider</button>
                             </div>
 
                         </form>
@@ -177,7 +177,25 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            $('#quiz').on('submit', function(event) {
+                event.preventDefault();
 
+                $('label').each(function() {
+                    var hiddenValue = $(this).data('hidden-value');
+                    
+                    const iClass = hiddenValue ? $(this).css('color', 'green') : $(this).css('color', 'red');
+                    const iconClass = hiddenValue ? 'fa-thin fa-check' : 'fa-thin fa-xmark';
+                    $(this).removeClass().addClass('fas ' + iconClass);
+                    // if (hiddenValue) {
+                    //     $(this).css('color', 'green');
+                    // }else {
+                    //     $(this).css('color', 'red');;
+                    // }
+                });
+
+
+                
+            });
         });
     </script>
 @endsection
