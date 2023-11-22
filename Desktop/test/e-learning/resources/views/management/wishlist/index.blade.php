@@ -188,6 +188,7 @@
                     </div>
                 </div>
             </div>
+            @include('master.footer')
         </div>
     </div>
 @endsection
