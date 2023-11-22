@@ -52,6 +52,8 @@
 
         #toggleAccordion:hover {
             background-color: #e0e0e0;
+            /* background-color: transparent;
+                        color: azure; */
         }
 
         /* Style for the expanded button */
@@ -60,7 +62,9 @@
             top: 23%;
             right: 20px;
             transform: translateY(-50%);
-            z-index: 9999;
+            background-color: transparent;
+            color: azure;
+            border-radius: 5px 0px 0px 5px;
         }
 
         #videocontent.expanded {
@@ -69,9 +73,33 @@
 
 
         .sticky {
-            background-color: rgba(8, 6, 6, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
+            position: relative;
+            /* Needed for pseudo-elements */
+            transition: width 3s ease;
+            /* Define the transition property */
+        }
+
+        .sticky::after {
+            content: " Contenu cour";
+            /* font-family: Arial, sans-serif;\2190 */
+            padding: 5px;
+            width: 0;
+            /* Initial width set to 0 */
+            overflow: hidden;
+            /* Hide overflowing content */
+            white-space: nowrap;
+            /* Prevent line breaks */
+            display: inline-block;
+            /* Make it inline */
+            transition: width 3s ease;
+            /* Transition the width property */
+        }
+
+        .sticky:hover::after {
+            width: 100px;
+            background-color: transparent;
+            /* Change width on hover */
+            /* Add other styles for hover state */
         }
     </style>
 
@@ -92,7 +120,28 @@
                                 <div class="col-lg-8 mb-4" id="videocontent">
                                     <img class="card-img-top" style="width: 100%; height: 70%;"
                                         src="{{ asset('storage/images/' . $cour->sujet->souscategorie->categorie->CatName . '.jpg') }}">
-                                    <h1>{{ $cour->title }}</h1>
+                                    {{-- <h1></h1> --}}
+
+
+                                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                        <a class="navbar-brand ms-2" href="#">{{ $cour->title }}</a>
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                                            aria-expanded="false" aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"></span>
+                                        </button>
+                                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                            <div class="navbar-nav">
+                                                <a class="nav-item nav-link active" href="#"
+                                                    id="presen">Presentation <span class="sr-only">(current)</span></a>
+                                                <a class="nav-item nav-link" href="#">Remarques</a>
+                                                <a class="nav-item nav-link" href="#">Avis</a>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                    <div id="details">
+
+                                    </div>
                                 </div>
                                 <!-- List Section (Right) -->
                                 <div class="col-lg-4 mb-4" id="courdetails">
@@ -118,8 +167,7 @@
                                                         {{ $section->Sec_Name }}
                                                     </button>
                                                 </h2>
-                                                <div id="collapse{{ $section->id_Sec }}"
-                                                    class="accordion-collapse collapse"
+                                                <div id="collapse{{ $section->id_Sec }}" class="accordion-collapse collapse"
                                                     aria-labelledby="heading{{ $section->id_Sec }}"
                                                     data-bs-parent="#accordionPanelsStayOpenExample">
                                                     <div class="accordion-body ">
@@ -223,7 +271,7 @@
                 </div>
 
             </div>
-            <!-- Footer -->             
+            <!-- Footer -->
             @include('master.footer')
             <!-- End of Footer -->
         </div>
@@ -258,16 +306,24 @@
             //     });
             // });
             $('#toggleAccordion').on('click', function() {
-                $('#courdetails .accordion').toggle(); 
-                $('#toggleAccordion').toggleClass('sticky'); // Toggle sticky class
-                $('#videocontent').toggleClass('col-lg-12'); // Expand video content
+                $('#courdetails .accordion').toggle();
+                $('#toggleAccordion').toggleClass('sticky');
+                $('#videocontent').toggleClass('col-lg-12');
 
                 const isVisible = $('.accordion').is(':visible');
                 const iconClass = isVisible ? 'fa-solid fa-xmark' : 'fa-solid fa-arrow-left';
-                // const class = isVisible ? 'glass-effect' :'' ;
 
                 $('#toggleAccordion i').removeClass().addClass('fas ' + iconClass);
+                $('#toggleAccordion span').text('');
                 // $('#toggleAccordion').addClass(class);
+            });
+            $('#presen').on('click', function(e) {
+                e.preventDefault();
+                const courDes = `<h5>À propos de ce cours</h5><div>{{ $cour->description }}</div>`;
+                
+                
+                $('#details').html(courDes);
+                console.log('ffff');
             });
 
 
