@@ -319,7 +319,7 @@
             });
             $('#presen').on('click', function(e) {
                 e.preventDefault();
-                const courDes = `<h5>À propos de ce cours</h5><div>{{ $cour->description }}</div>`;
+                const courDes = `<h5 class='p-1'>À propos de ce cours</h5><div class='p-3'>{{ $cour->description }}</div>`;
                 
                 
                 $('#details').html(courDes);
