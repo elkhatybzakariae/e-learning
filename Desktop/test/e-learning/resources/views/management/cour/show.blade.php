@@ -53,7 +53,7 @@
         #toggleAccordion:hover {
             background-color: #e0e0e0;
             /* background-color: transparent;
-                        color: azure; */
+                                        color: azure; */
         }
 
         /* Style for the expanded button */
@@ -74,32 +74,25 @@
 
         .sticky {
             position: relative;
-            /* Needed for pseudo-elements */
             transition: width 3s ease;
-            /* Define the transition property */
         }
 
         .sticky::after {
             content: " Contenu cour";
             /* font-family: Arial, sans-serif;\2190 */
-            padding: 5px;
+            /* padding: 5px; */
+            font-style: italic;
+            margin-left: 10px;
             width: 0;
-            /* Initial width set to 0 */
             overflow: hidden;
-            /* Hide overflowing content */
             white-space: nowrap;
-            /* Prevent line breaks */
             display: inline-block;
-            /* Make it inline */
             transition: width 3s ease;
-            /* Transition the width property */
         }
 
         .sticky:hover::after {
             width: 100px;
             background-color: transparent;
-            /* Change width on hover */
-            /* Add other styles for hover state */
         }
     </style>
 
@@ -117,12 +110,11 @@
                         <div class="card-body">
                             <div class="row">
                                 <!-- Video Section (Left) -->
-                                <div class="col-lg-8 mb-4" id="videocontent">
-                                    <img class="card-img-top" style="width: 100%; height: 70%;"
-                                        src="{{ asset('storage/images/' . $cour->sujet->souscategorie->categorie->CatName . '.jpg') }}">
-                                    {{-- <h1></h1> --}}
-
-
+                                <div class="col-lg-8 mb-4 pr-0" id="videocontainer">
+                                    <div id="videocontent">
+                                        <img class="card-img-top" style="width: 100%; height:500px  "
+                                            src="{{ asset('storage/images/' . $cour->sujet->souscategorie->categorie->CatName . '.jpg') }}">
+                                    </div>
                                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                                         <a class="navbar-brand ms-2" href="#">{{ $cour->title }}</a>
                                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -144,44 +136,57 @@
                                     </div>
                                 </div>
                                 <!-- List Section (Right) -->
-                                <div class="col-lg-4 mb-4" id="courdetails">
+                                <div class="col-lg-4 mb-4 ps-0" id="courdetails">
                                     {{-- <button class="btn btn-white" id="toggleAccordion">
                                         <i class="fa-solid fa-eye-slash"></i>
                                     </button> --}}
-                                    <div class="" id="toggleAccordion">
-                                        <span>
+                                    <div class="d-flex justify-content-between align-items-center" id="toggleAccordion">
+                                        <span class="flex-grow-1 fst-italic fs-4">
                                             Contenu cour
                                         </span>
                                         <i id="toggle" class="fa-solid fa-xmark"></i>
                                     </div>
+
+
                                     <div class="accordion accordion-flush border-start border-top border-bottom">
 
+                                        @php $sectcounter = 1; @endphp
                                         @foreach ($cour->section as $section)
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header" id="heading{{ $section->id_Sec }}">
-                                                    <button class="accordion-button collapsed" type="button"
+                                                    <button class="accordion-button fst-italic collapsed fs-5" type="button"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#collapse{{ $section->id_Sec }}"
                                                         aria-expanded="false"
                                                         aria-controls="collapse{{ $section->id_Sec }}">
-                                                        {{ $section->Sec_Name }}
+                                                        Section {{ $sectcounter }} : {{ $section->Sec_Name }} .
+                                                        @php
+                                                            echo '<sub>' . count($section->session) . ' sessions</sub   >';
+                                                        @endphp
+
                                                     </button>
                                                 </h2>
                                                 <div id="collapse{{ $section->id_Sec }}" class="accordion-collapse collapse"
                                                     aria-labelledby="heading{{ $section->id_Sec }}"
                                                     data-bs-parent="#accordionPanelsStayOpenExample">
                                                     <div class="accordion-body ">
+
+                                                        @php $sesscounter = 1; @endphp
                                                         @foreach ($section->session as $session)
                                                             <div class="accordion accordion-flush" id="">
                                                                 <div class="accordion-item">
                                                                     <h2 class="accordion-header"
                                                                         id="heading{{ $session->id_Sess }}">
-                                                                        <button class="accordion-button collapsed"
+                                                                        <button class="accordion-button fst-italic collapsed fs-6"
                                                                             type="button" data-bs-toggle="collapse"
                                                                             data-bs-target="#collapse{{ $session->id_Sess }}"
                                                                             aria-expanded="false"
                                                                             aria-controls="collapse{{ $session->id_Sess }}">
-                                                                            {{ $session->Sess_Name }}
+                                                                            Session {{ $sesscounter }} :
+                                                                            {{ $session->Sess_Name }} . 
+                                                                            @php
+                                                                                echo ' <sub> ' . count($session->video) . ' video</sub   >';
+                                                                            @endphp
                                                                         </button>
                                                                     </h2>
                                                                     <div id="collapse{{ $session->id_Sess }}"
@@ -197,7 +202,7 @@
                                                                                         <h2 class="accordion-header flex-grow-1"
                                                                                             id="heading{{ $video->id_V }}">
                                                                                             <button
-                                                                                                class="accordion-button collapsed"
+                                                                                                class="accordion-button fst-italic collapsed"
                                                                                                 type="button"
                                                                                                 name="video"
                                                                                                 data-id="{{ $video->id_V }}"
@@ -208,7 +213,7 @@
                                                                                         @if (count($video->media) > 0)
                                                                                             <div class="dropdown mt-2">
                                                                                                 <button
-                                                                                                    class="btn btn-secondary dropdown-toggle"
+                                                                                                    class="btn btn-secondary fst-italic dropdown-toggle"
                                                                                                     type="button"
                                                                                                     data-bs-toggle="dropdown"
                                                                                                     aria-expanded="false">
@@ -216,7 +221,7 @@
                                                                                                 </button>
                                                                                                 <ul class="dropdown-menu">
                                                                                                     @foreach ($video->media as $media)
-                                                                                                        <li><a class="dropdown-item"
+                                                                                                        <li><a class="dropdown-item fst-italic"
                                                                                                                 href="{{ route('file.download', $media->id_M) }}">{{ $media->mediaName }}</a>
                                                                                                         </li>
                                                                                                     @endforeach
@@ -235,7 +240,7 @@
                                                                 @if ($section->quiz)
                                                                     <div class="accordion-item p-3" name='quiz'>
                                                                         <h6 class="accordion-header">
-                                                                            <a class="dropdown-item ps-3" type="button"
+                                                                            <a class="dropdown-item fst-italic ps-3" type="button"
                                                                                 href="{{ route('quiz.passer', $section->quiz->id_Q) }}">Quiz
                                                                                 :
                                                                                 {{ $section->quiz->quizName }}</a>
@@ -243,21 +248,25 @@
                                                                     </div>
                                                                 @endif
                                                             </div>
+
+                                                            @php $sesscounter++; @endphp
                                                         @endforeach
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            @php $sectcounter++; @endphp
                                         @endforeach
                                         @if ($cour->certificate)
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header"
                                                     id="heading{{ $cour->certificate->id_Cert }}">
-                                                    <button class="accordion-button collapsed" type="button"
+                                                    <button class="accordion-button collapsed " type="button"
                                                         data-bs-toggle="collapse" name="certi"
                                                         data-bs-target="#collapse{{ $cour->certificate->id_Cert }}"
                                                         aria-expanded="false"
                                                         aria-controls="collapse{{ $cour->certificate->id_Cert }}">
-                                                        <a class="dropdown-item" href="#"> Certificat :
+                                                        <a class="dropdown-item fst-italic" href="#"> Certificat :
                                                             {{ $cour->certificate->certificateName }}</a>
                                                     </button>
                                                 </h2>
@@ -308,22 +317,23 @@
             $('#toggleAccordion').on('click', function() {
                 $('#courdetails .accordion').toggle();
                 $('#toggleAccordion').toggleClass('sticky');
-                $('#videocontent').toggleClass('col-lg-12');
+                $('#videocontainer').toggleClass('col-lg-12');
 
                 const isVisible = $('.accordion').is(':visible');
                 const iconClass = isVisible ? 'fa-solid fa-xmark' : 'fa-solid fa-arrow-left';
+                const span = isVisible ? 'Contenu cour  ' : '';
 
                 $('#toggleAccordion i').removeClass().addClass('fas ' + iconClass);
-                $('#toggleAccordion span').text('');
+                $('#toggleAccordion span').text(span);
                 // $('#toggleAccordion').addClass(class);
             });
             $('#presen').on('click', function(e) {
                 e.preventDefault();
-                const courDes = `<h5 class='p-1'>À propos de ce cours</h5><div class='p-3'>{{ $cour->description }}</div>`;
-                
-                
+                const courDes =
+                    `<h5 class='p-1'>À propos de ce cours</h5><div class='p-3'>{{ $cour->description }}</div>`;
+
+
                 $('#details').html(courDes);
-                console.log('ffff');
             });
 
 
