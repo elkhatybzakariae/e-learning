@@ -11,12 +11,9 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                {{-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    {{-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button> --}}
+                    
 
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
                         <div class="sidebar-brand-icon">
@@ -25,17 +22,6 @@
                         <div class="sidebar-brand-text mx-2">E-Learning</div>
                     </a>
                     <!-- Topbar Search -->
-                    {{-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> --}}
                     <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -51,106 +37,6 @@
                     </form>
 
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <li class="nav-item no-arrow mx-1">
-                            <a class="nav-link" href="{{ route('panier.index') }}" role="button">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item no-arrow mx-1">
-                            <a class="nav-link" href="{{ route('wishlist.index') }}" role="button">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </li>
-
-                        {{-- <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope fa-fw"></i>
-                            <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter">7</span>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="messagesDropdown">
-                            <h6 class="dropdown-header">
-                                Message Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div class="font-weight-bold">
-                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
-                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                    <div class="status-indicator"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
-                                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
-                                    <div class="status-indicator bg-warning"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Last month's report looks great, I am very happy
-                                        with
-                                        the progress so far, keep up the good work!</div>
-                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" alt="...">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More
-                                Messages</a>
-                        </div>
-                    </li> --}}
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -158,13 +44,11 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->FirstName }}</span> --}}
-                                <div class="rounded-circle d-flex justify-content-center align-items-center"
+                                 <div class="rounded-circle d-flex justify-content-center align-items-center"
                                     style="width: 40px; height: 40px; background-color: black; color: white;">
                                     {{ strtoupper(substr(auth()->user()->FirstName, 0, 1) . substr(auth()->user()->LastName, 0, 1)) }}
                                 </div>
 
-                                {{-- <img class="img-profile rounded-circle" src="img/undraw_profile.svg"> --}}
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -177,10 +61,6 @@
                                     <i class="fa-solid fa-book-open"></i>
                                     Formateur
                                 </a>
-                                {{-- <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a> --}}
                                 <div class="dropdown-divider"></div>
                                 <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -191,7 +71,9 @@
 
                     </ul>
 
-                </nav>
+                </nav> --}}
+
+                @include('master.navbar')
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -324,7 +206,7 @@
                                 </div>
                             </div>
                         @endforeach --}}
-                    @foreach ($coursList['coursesGroupedByCategory'] as $courses)
+                    {{-- @foreach ($coursList['coursesGroupedByCategory'] as $courses)
                         <hr class="my-4">
                         <div class="category-carousel">
                             <h5 style="color: black">{{ $courses['category'] }}</h5>
@@ -336,7 +218,7 @@
                                                 <a href="{{ route('cour.show', $cour->id_C) }}">
                                                     <img class="card-img-top" style="width: 100%;"
                                                         src="{{ asset('storage/images/' . $courses['category'] . '.jpg') }}"
-                                                        {{-- src="{{ asset('storage/images/Developement.jpg') }}" alt="" --}}>
+                                                        >
                                                 </a>
                                             </div>
                                             <div class="card-body">
@@ -351,17 +233,32 @@
                                                         <div class="h5 mb-1 font-weight-bold text-gray-800">
                                                             {{ $cour->price }}$</div>
                                                         <div style="display: flex; justify-content: space-between;">
-                                                            <a href="#" name="panier"
-                                                                data-id="{{ $cour->id_C }}"
-                                                                class="btn btn-primary btn-sm"
-                                                                data-route="{{ route('panier.store') }}">
-                                                                Ajouter au panier
-                                                            </a>
-                                                            <a href="#" name="wishlist"
-                                                                data-id="{{ $cour->id_C }}" class="btn btn-white"
-                                                                data-route="{{ route('wishlist.store') }}">
-                                                                <i class="fa-regular fa-heart"></i>
-                                                            </a>
+                                                            @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                                                <a href="{{ route('panier.index') }}"
+                                                                    class="btn btn-primary btn-sm">
+                                                                    Acceder au panier
+                                                                </a>
+                                                            @else
+                                                                <a href="#" name="panier"
+                                                                    data-id="{{ $cour->id_C }}"
+                                                                    class="btn btn-primary btn-sm"
+                                                                    data-route="{{ route('panier.store') }}">
+                                                                    Ajouter au panier
+                                                                </a>
+                                                            @endif
+                                                            @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                                                <a href="{{ route('wishlist.index') }}"
+                                                                    class="btn btn-white">
+                                                                    <i class="fa-solid fa-heart"></i>
+                                                                </a>
+                                                            @else
+                                                                <a href="#" name="wishlist"
+                                                                    data-id="{{ $cour->id_C }}" class="btn btn-white"
+                                                                    data-route="{{ route('wishlist.store') }}">
+                                                                    <i class="fa-regular fa-heart"></i>
+                                                                </a>
+                                                            @endif
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -371,19 +268,103 @@
                                 @endforeach
                             </div>
                         </div>
+                    @endforeach --}}
+
+
+                    @foreach ($coursList['coursesGroupedByCategory'] as $courses)
+                        @dd(array_chunk($coursList['coursesGroupedByCategory'], 5))
+                        <hr class="my-4">
+                        <div class="category-carousel">
+                            <h5 style="color: black">{{ $courses['category'] }}</h5>
+                            <div id="carouselExampleControls{{ $loop->iteration }}" class="carousel slide"
+                                data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    {{-- @php $chunks = array_chunk($courses['courses']->toArray(), 5); @endphp
+                                    @foreach ($chunks as $key => $chunk)
+                                        <div class="carousel-item{{ $key === 0 ? ' active' : '' }}">
+                                            <div class="row">
+                                                @foreach ($chunk as $cour)
+                                                    <div class="col-md-2">
+                                                        <div class="card shadow h-100 py-2">
+                                                            <div class="">
+                                                                <a href="{{ route('cour.show', $cour->id_C) }}">
+                                                                    <img class="card-img-top" style="width: 100%;"
+                                                                        src="{{ asset('storage/images/' . $courses['category'] . '.jpg') }}">
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-2">
+                                                                        <h6
+                                                                            class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                                            {{ $cour->title }}
+                                                                        </h6>
+                                                                        <p class="card-text">{{ $cour->user->FirstName }}
+                                                                            {{ $cour->user->LastName }}</p>
+                                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
+                                                                            {{ $cour->price }}$</div>
+                                                                        <div
+                                                                            style="display: flex; justify-content: space-between;">
+                                                                            @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                                                                <a href="{{ route('panier.index') }}"
+                                                                                    class="btn btn-primary btn-sm">
+                                                                                    Acceder au panier
+                                                                                </a>
+                                                                            @else
+                                                                                <a href="#" name="panier"
+                                                                                    data-id="{{ $cour->id_C }}"
+                                                                                    class="btn btn-primary btn-sm"
+                                                                                    data-route="{{ route('panier.store') }}">
+                                                                                    Ajouter au panier
+                                                                                </a>
+                                                                            @endif
+                                                                            @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                                                                <a href="{{ route('wishlist.index') }}"
+                                                                                    class="btn btn-white">
+                                                                                    <i class="fa-solid fa-heart"></i>
+                                                                                </a>
+                                                                            @else
+                                                                                <a href="#" name="wishlist"
+                                                                                    data-id="{{ $cour->id_C }}"
+                                                                                    class="btn btn-white"
+                                                                                    data-route="{{ route('wishlist.store') }}">
+                                                                                    <i class="fa-regular fa-heart"></i>
+                                                                                </a>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach --}}
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleControls{{ $loop->iteration }}" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleControls{{ $loop->iteration }}" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
                     @endforeach
 
 
-                    {{-- </div> --}}
-                </div>
 
 
 
 
 
-                {{-- OLD VIEW --}}
+                    {{-- OLD VIEW --}}
 
-                {{-- <div class="container-fluid row main-content-wrap gutter-lg">
+                    {{-- <div class="container-fluid row main-content-wrap gutter-lg">
                     
                     <aside
                         class="col-lg-2 right-sidebar sidebar-fixed sidebar-toggle-remain shop-sidebar sticky-sidebar-wrapper">
@@ -497,9 +478,9 @@
                         </div>
                     </div>
                 </div> --}}
-                <!-- /.container-fluid -->
+                    <!-- /.container-fluid -->
 
-                {{-- <div>
+                    {{-- <div>
                     <nav class="g-mb-100" aria-label="Page Navigation">
                         <ul class="list-inline mb-0">
                           <li class="list-inline-item hidden-down">
@@ -531,167 +512,91 @@
                         </ul>
                       </nav>
                 </div> --}}
-            </div>
-            <!-- End of Main Content -->
+                </div>
+                <!-- End of Main Content -->
 
-            <!-- Footer -->
-            @include('master.footer')
-            <!-- End of Footer -->
+                <!-- Footer -->
+                @include('master.footer')
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-@endsection
-@section('script')
-    <script>
-        $(document).ready(function() {
-            $('.owl-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 1,
-                        nav: true
-                    },
-                    600: {
-                        items: 3,
-                        nav: true
-                    },
-                    1000: {
-                        items: 5,
-                        nav: true,
-                        loop: true
-                    }
-                }
-            });
-
-            $('#courSearchForm').on('submit', function(event) {
-                event.preventDefault();
-
-                let searchInput = $('#searchInput').val();
-
-                $.ajax({
-                    type: 'GET',
-                    url: $(this).attr('action'),
-                    data: {
-                        searchInput: searchInput
-                    },
-                    success: function(response) {
-                        // console.log('Search successful:', response);
-                        // $('#bodycontent').html('')
-                        // $('#bodycontent').empty();
-                        var cours = document.createElement('div');
-                        cours.classList.add('row');
-
-                        response.forEach(function(cour) {
-                            var courEle = `
-                                            <div class="col-xl-3 col-md-6 mb-4">
-                                                <div class="card shadow h-100 py-2">
-                                                    <div class="text-center">
-                                                        <a href="{{ route('cour.show', '') }}/${cour.id_C}">
-                                                        <img class="card-img-top" style="width: 200px;"
-                                                            src="{{ asset('storage/images/`+ cour . sujet . souscategorie . categorie . CatName +`.jpg') }}"
-                                                            alt="Card image cap"></a>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="row no-gutters align-items-center">
-                                                            <div class="col ms-2">
-                                                                <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                                    ${cour.title}</h6>
-                                                                <p class="card-text">${cour.user.FirstName} ${cour.user.LastName}</p>
-                                                                <div class="h5 mb-1 font-weight-bold text-gray-800">${cour.price}$</div>
-                                                                <div style="display: flex; justify-content: space-between;">
-                                                                    <a href="#" name="panier" data-id="${cour.id_C}"
-                                                                        class="btn btn-primary btn-sm"
-                                                                        data-route="{{ route('panier.store') }}">
-                                                                        Ajouter au panier
-                                                                    </a>
-                                                                    <a href="#" name="wishlist" data-id="${cour.id_C}" class="btn btn-white"
-                                                                        data-route="{{ route('wishlist.store') }}">
-                                                                        <i class="fa-regular fa-heart"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        `;
-                            // cours.innerHTML += courEle;
-                            var tempElement = document.createElement('div');
-                            tempElement.innerHTML = courEle.trim();
-
-                            cours.appendChild(tempElement.firstChild);
-                        });
-
-                        const contentP = `
-                            <div class="row main-content-wrap gutter-lg">
-                                <div class="col-lg-112 main-content">
-                                    ${cours.outerHTML}
-                                </div>
-                            </div> 
-                        `;
-                        $('#bodycontent').html(contentP)
-
-                    },
-                    error: function(error) {
-                        console.error('Error occurred:', error);
+    @endsection
+    @section('script')
+        <script>
+            $(document).ready(function() {
+                $('.owl-carousel').owlCarousel({
+                    loop: true,
+                    margin: 10,
+                    responsiveClass: true,
+                    responsive: {
+                        0: {
+                            items: 1,
+                            nav: true
+                        },
+                        600: {
+                            items: 3,
+                            nav: true
+                        },
+                        1000: {
+                            items: 5,
+                            nav: true,
+                            loop: true
+                        }
                     }
                 });
-            });
+                $('a[name="panier"]').on('click', function(event) {
+                    event.preventDefault();
+                    var $panierLink = $(this);
+                    var id = $(this).data('id');
+                    var url = $(this).data('route');
+                    $.ajax({
+                        method: 'POST',
+                        url: url,
+                        data: {
+                            id: id,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(data) {
+                            $panierLink.text('Acceder au panier');
+                            $panierLink.attr('href', '{{ route('panier.index') }}');
+                            $panierLink.off('click');
 
-            $('a[name="panier"]').on('click', function(event) {
-                event.preventDefault();
-                var $panierLink = $(this);
-                var id = $(this).data('id');
-                var url = $(this).data('route');
-                $.ajax({
-                    method: 'POST',
-                    url: url,
-                    data: {
-                        id: id,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(data) {
-                        $panierLink.text('Acceder au panier');
-                        $panierLink.attr('href', '{{ route('panier.index') }}');
-                        $panierLink.off('click');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                });
+                $('a[name="wishlist"]').on('click', function(event) {
+                    event.preventDefault();
+                    var $wishlistLink = $(this);
+                    var id = $(this).data('id');
+                    var url = $(this).data('route');
+                    $.ajax({
+                        method: 'POST',
+                        url: url,
+                        data: {
+                            id: id,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(data) {
+                            $wishlistLink.html('<i class="fa-solid fa-heart"></i>');
+                            $wishlistLink.attr('href', '{{ route('wishlist.index') }}');
+                            $wishlistLink.off('click');
 
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
                 });
             });
-            $('a[name="wishlist"]').on('click', function(event) {
-                event.preventDefault();
-                var $wishlistLink = $(this);
-                var id = $(this).data('id');
-                var url = $(this).data('route');
-                $.ajax({
-                    method: 'POST',
-                    url: url,
-                    data: {
-                        id: id,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(data) {
-                        $wishlistLink.html('<i class="fa-solid fa-heart"></i>');
-                        $wishlistLink.attr('href', '{{ route('wishlist.index') }}');
-                        $wishlistLink.off('click');
+        </script>
 
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            });
-        });
-    </script>
-
-    {{-- <script>
+        {{-- <script>
         var result = document.getElementById('result')
         var categorieselect = document.getElementById('categorie')
         var souscategorieselect = document.getElementById('souscategorie')
@@ -1250,4 +1155,4 @@
             });
         });
     </script> --}}
-@endsection
+    @endsection

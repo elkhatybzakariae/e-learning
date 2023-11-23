@@ -13,4 +13,8 @@ class Panier extends Model
     public $incrementing = false;
     public $timestamps = true;
     protected $fillable = ['id','id_U','id_C'];
+    public function cour()
+    {
+        return $this->belongsTo(Cour::class, 'id_C');
+    }
 }

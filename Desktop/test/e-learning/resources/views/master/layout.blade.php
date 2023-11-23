@@ -19,14 +19,15 @@
     <link href="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta2/css/bootstrap.min.css" rel="stylesheet"> --}}
-    
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- JS Bundle -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     {{-- <style>
         body {
@@ -100,7 +101,89 @@
 
 <!-- Page level custom scripts -->
 <script src="{{ asset('storage/js/demo/datatables-demo.js') }}"></script>
-    
+{{-- <script src="{{ asset('storage/js/app/nav.js') }}"></script> --}}
+<script>
+    $(document).ready(function() {
+        $('#courSearchForm').on('submit', function(event) {
+            event.preventDefault();
+            let searchInput = $('#searchInput').val();
+            if ($('#bodycontent').length === 0) {
+                window.location.href = "{{ route('index') }}";
+            } else {
+
+                $.ajax({
+                    type: 'GET',
+                    url: $(this).attr('action'),
+                    data: {
+                        searchInput: searchInput
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        // $('#bodycontent').html('')
+                        // $('#bodycontent').empty();
+                        var cours = document.createElement('div');
+                        cours.classList.add('row');
+
+                        response.forEach(function(cour) {
+                            var courEle = `
+                                    <div class="col-xl-3 col-md-6 mb-4">
+                                        <div class="card shadow h-100 py-2">
+                                            <div class="text-center">
+                                                <a href="{{ route('cour.show', '') }}/${cour.id_C}">
+                                                <img class="card-img-top" style="width: 200px;"
+                                                    src="{{ asset('storage/images/`+ cour . sujet . souscategorie . categorie . CatName +`.jpg') }}"
+                                                    alt="Card image cap"></a>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col ms-2">
+                                                        <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                            ${cour.title}</h6>
+                                                        <p class="card-text">${cour.user.FirstName} ${cour.user.LastName}</p>
+                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">${cour.price}$</div>
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <a href="#" name="panier" data-id="${cour.id_C}"
+                                                                class="btn btn-primary btn-sm"
+                                                                data-route="{{ route('panier.store') }}">
+                                                                Ajouter au panier
+                                                            </a>
+                                                            <a href="#" name="wishlist" data-id="${cour.id_C}" class="btn btn-white"
+                                                                data-route="{{ route('wishlist.store') }}">
+                                                                <i class="fa-regular fa-heart"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            // cours.innerHTML += courEle;
+                            var tempElement = document.createElement('div');
+                            tempElement.innerHTML = courEle.trim();
+
+                            cours.appendChild(tempElement.firstChild);
+                        });
+
+                        const contentP = `
+                    <div class="row main-content-wrap gutter-lg">
+                        <div class="col-lg-112 main-content">
+                            ${cours.outerHTML}
+                        </div>
+                    </div> 
+                `;
+                        $('#bodycontent').html(contentP)
+
+                    },
+                    error: function(error) {
+                        console.error('Error occurred:', error);
+                    }
+                });
+            }
+
+        });
+    });
+</script>
 @yield('script')
 
 </html>

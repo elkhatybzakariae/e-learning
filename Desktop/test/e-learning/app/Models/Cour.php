@@ -34,6 +34,14 @@ class Cour extends Model
     {
         return $this->hasMany(Section::class, 'id_C');
     }
+    public function wishlist()
+    {
+        return $this->hasOne(WishList::class, 'id_C');
+    }
+    public function panier()
+    {
+        return $this->hasOne(Panier::class, 'id_C');
+    }
     public function certificate()
     {
         return $this->hasOne(Certificate::class, 'id_C');
