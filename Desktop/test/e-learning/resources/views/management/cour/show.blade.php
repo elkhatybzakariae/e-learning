@@ -114,8 +114,8 @@
                                     <div id="videocontent">
                                         {{-- @dd($cour->photo) --}}
                                         <img src="{{ asset('storage/images/Development/Programming Languages/php/cG6Na59Z1OLK0raLgBjP3x5OBtapIgoRLkJFtlE5.jpg') }}" alt="Image">
-                                        <img class="card-img-top" style="width: 100%; height: 500px;"
-                                            src="{{ asset('storage/' . $cour->photo) }}">
+                                        {{-- <img class="card-img-top" style="width: 100%; height: 500px;"
+                                            src="{{ asset('storage/' . $cour->photo) }}"> --}}
 
                                     </div>
                                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
