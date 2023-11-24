@@ -217,8 +217,8 @@
                                             <div class="">
                                                 {{-- @dd($cour['photo']) --}}
                                                 <a href="{{ route('cour.show', $cour->id_C) }}">
-                                                    {{-- <img class="card-img-top" style="width: 100%;"
-                                                        src="{{ asset('storage/' . $cour['photo']) }}"> --}}
+                                                    <img class="card-img-top" style="width: 100%;"
+                                                        src="{{ asset('storage/' . $cour['photo']) }}">
                                                 </a>
                                             </div>
                                             <div class="card-body">

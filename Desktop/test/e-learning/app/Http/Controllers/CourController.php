@@ -70,11 +70,13 @@ class CourController extends Controller
         $sujet = Sujet::where('id_Sj', $validatedData['id_Sj'])->select('id_SCat', 'SjName')->first();;
         $subCategory =  SousCategorie::where('id_SCat', $sujet['id_SCat'])->select('id_Cat', 'SCatName')->first();;
         $category =  Categorie::where('id_Cat', $subCategory['id_Cat'])->value('CatName'); 
+        $path = 'images/' . $category . '/' . $subCategory['SCatName'] . '/' . $sujet['SjName'];
 
-        $path = 'public/images/' . $category . '/' . $subCategory['SCatName'] . '/' . $sujet['SjName'];
-        $photoPath = $request->file('photo')->store($path);
-
-        $validatedData['photo'] = $photoPath;
+        $storagePath = 'public/' . $path;
+        $photoPath = $request->file('photo')->store($storagePath);
+        dd($path);
+        // Get the URL or relative path to access the image
+        $validatedData['photo'] = $path;
         $validatedData['id_C'] = $customIdC;
         $validatedData['id_U'] = $creator;
 
@@ -112,11 +114,15 @@ class CourController extends Controller
         $sujet = Sujet::where('id_Sj', $validatedData['id_Sj'])->select('id_SCat', 'SjName')->first();;
         $subCategory =  SousCategorie::where('id_SCat', $sujet['id_SCat'])->select('id_Cat', 'SCatName')->first();;
         $category =  Categorie::where('id_Cat', $subCategory['id_Cat'])->value('CatName'); 
-
-        $path = 'public/images/' . $category . '/' . $subCategory['SCatName'] . '/' . $sujet['SjName'];
+        $path = 'images/' . $category . '/' . $subCategory['SCatName'] . '/' . $sujet['SjName'];
+        $storagePath = 'public/' . $path;
+        $photoPath = $request->file('photo')->store($storagePath);
         
-        $photoPath = $request->file('photo')->store($path);
-        $validatedData['photo'] = $photoPath;
+        // Get the URL or relative path to access the image
+        // $validatedData['photo'] = $path;
+        
+        // $photoPath = $request->file('photo')->store('public/'.$path);
+        $validatedData['photo'] = $path;
         $Cour->update($validatedData);
         return redirect()->route('cour.index')->with('success', 'Cour updated successfully');
     }

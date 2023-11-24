@@ -113,9 +113,10 @@
                                 <div class="col-lg-8 mb-4 pr-0" id="videocontainer">
                                     <div id="videocontent">
                                         {{-- @dd($cour->photo) --}}
-                                        <img src="{{ asset('storage/images/Development/Programming Languages/php/cG6Na59Z1OLK0raLgBjP3x5OBtapIgoRLkJFtlE5.jpg') }}" alt="Image">
-                                        {{-- <img class="card-img-top" style="width: 100%; height: 500px;"
-                                            src="{{ asset('storage/' . $cour->photo) }}"> --}}
+                                        
+                                        {{-- <img src="{{ asset('C:\Users\zaki\Desktop\test\e-learning\storage\app\public\images\Science\Earth Science\sc\bUtgna18meCYF17KJwP8DUCINgIm2994LsRKWlhq.jpg') }}" alt="Image"> --}}
+                                        <img class="card-img-top" style="width: 100%; height: 500px;"
+                                            src="{{ asset('storage/' . $cour->photo) }}">
 
                                     </div>
                                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
