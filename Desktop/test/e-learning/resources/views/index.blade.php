@@ -206,7 +206,7 @@
                                 </div>
                             </div>
                         @endforeach --}}
-                    {{-- @foreach ($coursList['coursesGroupedByCategory'] as $courses)
+                    @foreach ($coursList['coursesGroupedByCategory'] as $courses)
                         <hr class="my-4">
                         <div class="category-carousel">
                             <h5 style="color: black">{{ $courses['category'] }}</h5>
@@ -215,9 +215,10 @@
                                     <div class="item">
                                         <div class="card shadow h-100 py-2">
                                             <div class="">
+                                                {{-- @dd($cour['photo']) --}}
                                                 <a href="{{ route('cour.show', $cour->id_C) }}">
                                                     <img class="card-img-top" style="width: 100%;"
-                                                        src="{{ asset('storage/images/' . $courses['category'] . '.jpg') }}"
+                                                        src="{{ asset('storage/' . $cour['photo']) }}"
                                                         >
                                                 </a>
                                             </div>
@@ -268,22 +269,18 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endforeach --}}
+                    @endforeach
 
 
-                    @foreach ($coursList['coursesGroupedByCategory'] as $courses)
-                        @dd(array_chunk($coursList['coursesGroupedByCategory'], 5))
+                    {{-- @foreach ($coursList['coursesGroupedByCategory'] as $courses)
                         <hr class="my-4">
                         <div class="category-carousel">
                             <h5 style="color: black">{{ $courses['category'] }}</h5>
                             <div id="carouselExampleControls{{ $loop->iteration }}" class="carousel slide"
                                 data-bs-ride="carousel">
                                 <div class="carousel-inner">
-                                    {{-- @php $chunks = array_chunk($courses['courses']->toArray(), 5); @endphp
-                                    @foreach ($chunks as $key => $chunk)
+                                    @foreach ($courses['courses'] as $key => $cour)
                                         <div class="carousel-item{{ $key === 0 ? ' active' : '' }}">
-                                            <div class="row">
-                                                @foreach ($chunk as $cour)
                                                     <div class="col-md-2">
                                                         <div class="card shadow h-100 py-2">
                                                             <div class="">
@@ -337,10 +334,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @endforeach
-                                            </div>
                                         </div>
-                                    @endforeach --}}
+                                    @endforeach
                                 </div>
                                 <button class="carousel-control-prev" type="button"
                                     data-bs-target="#carouselExampleControls{{ $loop->iteration }}" data-bs-slide="prev">
@@ -354,7 +349,7 @@
                                 </button>
                             </div>
                         </div>
-                    @endforeach
+                    @endforeach --}}
 
 
 
@@ -542,7 +537,7 @@
                         },
                         1000: {
                             items: 5,
-                            nav: true,
+                            // nav: true,
                             loop: true
                         }
                     }

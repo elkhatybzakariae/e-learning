@@ -67,6 +67,14 @@ class CourController extends Controller
         $customIdC = Helpers::generateIdC();
         $validatedData = $request->validated();
 
+        $sujet = Sujet::where('id_Sj', $validatedData['id_Sj'])->select('id_SCat', 'SjName')->first();;
+        $subCategory =  SousCategorie::where('id_SCat', $sujet['id_SCat'])->select('id_Cat', 'SCatName')->first();;
+        $category =  Categorie::where('id_Cat', $subCategory['id_Cat'])->value('CatName'); 
+
+        $path = 'public/images/' . $category . '/' . $subCategory['SCatName'] . '/' . $sujet['SjName'];
+        $photoPath = $request->file('photo')->store($path);
+
+        $validatedData['photo'] = $photoPath;
         $validatedData['id_C'] = $customIdC;
         $validatedData['id_U'] = $creator;
 
@@ -99,7 +107,17 @@ class CourController extends Controller
         if (!$Cour) {
             return redirect()->route('cour.index')->with('error', 'Cour not found');
         }
-        $Cour->update($request->validated());
+        $validatedData = $request->validated();
+
+        $sujet = Sujet::where('id_Sj', $validatedData['id_Sj'])->select('id_SCat', 'SjName')->first();;
+        $subCategory =  SousCategorie::where('id_SCat', $sujet['id_SCat'])->select('id_Cat', 'SCatName')->first();;
+        $category =  Categorie::where('id_Cat', $subCategory['id_Cat'])->value('CatName'); 
+
+        $path = 'public/images/' . $category . '/' . $subCategory['SCatName'] . '/' . $sujet['SjName'];
+        
+        $photoPath = $request->file('photo')->store($path);
+        $validatedData['photo'] = $photoPath;
+        $Cour->update($validatedData);
         return redirect()->route('cour.index')->with('success', 'Cour updated successfully');
     }
 
@@ -155,7 +173,7 @@ class CourController extends Controller
         $searchQuery = $request->input('searchInput');
         $searchResults = Cour::where('title', 'like', '%' . $searchQuery . '%')
             ->where('valider', 1)
-            ->with('user','sujet.souscategorie.categorie')
+            ->with('user', 'sujet.souscategorie.categorie')
             ->get();
         return response()->json($searchResults);
     }

@@ -5,10 +5,34 @@
 
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5 rounded mb-5">
-            <form action="{{ route('cour.update', $cour->id_C) }}" method="POST">
+            <form action="{{ route('cour.update', $cour->id_C) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group row ps-3 pe-3 ">
+                    {{-- <div class="col-6 col-sm-3 col-form-label d-inline">
+                        <label for="photo" style="font-style: italic;">Image:</label>
+                    </div>
+                    <div class="col-6 col-sm-9 d-inline">
+                        <div class="form-outline mb-2">
+                            <input type="file" name="photo" 
+                            accept="image/jpeg, image/png, image/jpg, image/gif" 
+                            id="photo" class="form-control form-control-lg" style="">
+                        </div>
+                        @error('photo')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div> --}}
+                    <div class="col-12 ">
+                        <label for="photo" style="font-style: italic;">New Image:</label>
+                        <div class="form-outline mb-2">
+                            <input type="file" name="photo" 
+                            accept="image/jpeg, image/png, image/jpg, image/gif" 
+                            id="photo" class="form-control form-control-lg" style="">
+                        </div>
+                        @error('photo')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="title" style="font-style: italic;">title:</label>
                     </div>

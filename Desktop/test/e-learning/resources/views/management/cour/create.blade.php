@@ -4,9 +4,38 @@
 
     <div class="container ms-2 d-flex justify-content-center align-items-center">
         <div class="text center bg-white p-5 pb-3 mt-5  rounded">
-            <form action="{{ route('cour.store') }}" method="POST">
+            <form action="{{ route('cour.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row ps-3 pe-3 ">
+                    <div>
+                        <div class="mb-4 d-flex justify-content-center">
+                            <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                            alt="example placeholder" style="width: 300px;" />
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div class="btn btn-primary btn-rounded">
+                                <label class="form-label text-white m-1" for="photo">Choose file</label>
+                                <input type="file" class="form-control d-none" name="photo" 
+                                accept="image/jpeg, image/png, image/jpg, image/gif" 
+                                id="photo" onchange="displaySelectedImage(event, 'selectedImage')" />
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="col-6 col-sm-3 col-form-label d-inline">
+                        <label for="photo" style="font-style: italic;">Image:</label>
+                    </div>
+                    <div class="col-6 col-sm-9 d-inline">
+                        <div class="form-outline mb-2">
+                            <input type="file" name="photo" 
+                            accept="image/jpeg, image/png, image/jpg, image/gif" 
+                            id="photo" class="form-control form-control-lg" style="">
+                        </div>
+                        @error('photo')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div> --}}
+
+                    
                     <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="title" style="font-style: italic;">title:</label>
                     </div>
@@ -98,7 +127,7 @@
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
                             <select name="id_SCat" id="id_SCat" class="custom-select">
-                                <option selected>select SousCategorie</option>
+                                <option value="{{ old('id_SCat') }}" selected>select SousCategorie</option>
                             </select>
                         </div>
                     </div>
@@ -109,7 +138,7 @@
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
                             <select name="id_Sj" id="id_Sj" class="custom-select">
-                                <option selected>select Sujet</option>
+                                <option value="{{ old('id_Sj') }}" selected>select Sujet</option>
                             </select>
                         </div>
                         @error('id_Sj')

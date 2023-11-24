@@ -25,6 +25,7 @@ class CourRequest extends FormRequest
     public function rules()
     {
         return [
+            // 'photo' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
             'title' => 'required|string|max:100',
             'info' => 'required|string|max:100',
             'description' => 'nullable|string|max:100',

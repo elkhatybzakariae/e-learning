@@ -15,6 +15,7 @@ class Cour extends Model
     public $timestamps = true;
     protected $fillable = [
         'id_C',
+        'photo',
         'title',
         'info',
         'description',

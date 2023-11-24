@@ -53,7 +53,7 @@
         #toggleAccordion:hover {
             background-color: #e0e0e0;
             /* background-color: transparent;
-                                        color: azure; */
+                                            color: azure; */
         }
 
         /* Style for the expanded button */
@@ -112,8 +112,11 @@
                                 <!-- Video Section (Left) -->
                                 <div class="col-lg-8 mb-4 pr-0" id="videocontainer">
                                     <div id="videocontent">
-                                        <img class="card-img-top" style="width: 100%; height:500px  "
-                                            src="{{ asset('storage/images/' . $cour->sujet->souscategorie->categorie->CatName . '.jpg') }}">
+                                        {{-- @dd($cour->photo) --}}
+                                        <img src="{{ asset('storage/images/Development/Programming Languages/php/cG6Na59Z1OLK0raLgBjP3x5OBtapIgoRLkJFtlE5.jpg') }}" alt="Image">
+                                        <img class="card-img-top" style="width: 100%; height: 500px;"
+                                            src="{{ asset('storage/' . $cour->photo) }}">
+
                                     </div>
                                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                                         <a class="navbar-brand ms-2" href="#">{{ $cour->title }}</a>
@@ -154,8 +157,8 @@
                                         @foreach ($cour->section as $section)
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header" id="heading{{ $section->id_Sec }}">
-                                                    <button class="accordion-button fst-italic collapsed fs-5" type="button"
-                                                        data-bs-toggle="collapse"
+                                                    <button class="accordion-button fst-italic collapsed fs-5"
+                                                        type="button" data-bs-toggle="collapse"
                                                         data-bs-target="#collapse{{ $section->id_Sec }}"
                                                         aria-expanded="false"
                                                         aria-controls="collapse{{ $section->id_Sec }}">
@@ -177,13 +180,14 @@
                                                                 <div class="accordion-item">
                                                                     <h2 class="accordion-header"
                                                                         id="heading{{ $session->id_Sess }}">
-                                                                        <button class="accordion-button fst-italic collapsed fs-6"
+                                                                        <button
+                                                                            class="accordion-button fst-italic collapsed fs-6"
                                                                             type="button" data-bs-toggle="collapse"
                                                                             data-bs-target="#collapse{{ $session->id_Sess }}"
                                                                             aria-expanded="false"
                                                                             aria-controls="collapse{{ $session->id_Sess }}">
                                                                             Session {{ $sesscounter }} :
-                                                                            {{ $session->Sess_Name }} . 
+                                                                            {{ $session->Sess_Name }} .
                                                                             @php
                                                                                 echo ' <sub> ' . count($session->video) . ' video</sub   >';
                                                                             @endphp
@@ -240,7 +244,8 @@
                                                                 @if ($section->quiz)
                                                                     <div class="accordion-item p-3" name='quiz'>
                                                                         <h6 class="accordion-header">
-                                                                            <a class="dropdown-item fst-italic ps-3" type="button"
+                                                                            <a class="dropdown-item fst-italic ps-3"
+                                                                                type="button"
                                                                                 href="{{ route('quiz.passer', $section->quiz->id_Q) }}">Quiz
                                                                                 :
                                                                                 {{ $section->quiz->quizName }}</a>
