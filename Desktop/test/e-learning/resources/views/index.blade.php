@@ -215,9 +215,8 @@
                                     <div class="item">
                                         <div class="card shadow h-100 py-2">
                                             <div class="">
-                                                {{-- @dd($cour['photo']) --}}
                                                 <a href="{{ route('cour.show', $cour->id_C) }}">
-                                                    <img class="card-img-top" style="width: 100%;"
+                                                    <img class="card-img-top" style="width: 100%; height:150px;"
                                                         src="{{ asset('storage/' . $cour['photo']) }}">
                                                 </a>
                                             </div>

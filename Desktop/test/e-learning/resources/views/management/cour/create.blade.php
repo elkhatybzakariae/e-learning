@@ -7,7 +7,7 @@
             <form action="{{ route('cour.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row ps-3 pe-3 ">
-                    <div>
+                    {{-- <div>
                         <div class="mb-4 d-flex justify-content-center">
                             <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
                             alt="example placeholder" style="width: 300px;" />
@@ -20,8 +20,8 @@
                                 id="photo" onchange="displaySelectedImage(event, 'selectedImage')" />
                             </div>
                         </div>
-                    </div>
-                    {{-- <div class="col-6 col-sm-3 col-form-label d-inline">
+                    </div> --}}
+                    <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="photo" style="font-style: italic;">Image:</label>
                     </div>
                     <div class="col-6 col-sm-9 d-inline">
@@ -33,7 +33,7 @@
                         @error('photo')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div> --}}
+                    </div>
 
                     
                     <div class="col-6 col-sm-3 col-form-label d-inline">

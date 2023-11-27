@@ -208,7 +208,7 @@ class UserController extends Controller
         $validation = $req->validate([
             'FirstName' => 'required|string|max:50',
             'LastName' => 'required|string|max:50',
-            'Phone' => 'required|string|max:50',
+            // 'Phone' => 'required|string|max:50',
         ]);
         $id = Auth::id();
         $profile = User::find($id);

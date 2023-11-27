@@ -1,6 +1,16 @@
 @extends('auth.dashboard')
 @section('title', 'cours')
 
+{{-- @section('style')
+    <style>
+        table td {
+            white-space: nowrap;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+@endsection --}}
 @section('container-fluid')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -57,9 +67,9 @@
                                     <td>{{ $cour->Prerequisites }}</td>
                                     <td>{{ $cour->price }}</td>
                                     <td>{{ $cour->coupon }}</td>
-                                    <td>{{ $cour->valider ? "Oui" : "No"; }}</td>
-                                    <td>{{ $cour->terminer ? "Oui" : "No"; }}</td>
-                                    <td  >{{ $cour->sujet->SjName }}</td>
+                                    <td>{{ $cour->valider ? 'Oui' : 'No' }}</td>
+                                    <td>{{ $cour->terminer ? 'Oui' : 'No' }}</td>
+                                    <td>{{ $cour->sujet->SjName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->SCatName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
                                     <td class="d-flex justify-content-center">
@@ -107,8 +117,8 @@
                                     <td>{{ $cour->Prerequisites }}</td>
                                     <td>{{ $cour->price }}</td>
                                     <td>{{ $cour->coupon }}</td>
-                                    <td>{{ $cour->valider ? "Oui" : "No"; }}</td>
-                                    <td>{{ $cour->terminer ? "Oui" : "No"; }}</td>
+                                    <td>{{ $cour->valider ? 'Oui' : 'No' }}</td>
+                                    <td>{{ $cour->terminer ? 'Oui' : 'No' }}</td>
                                     <td>{{ $cour->sujet->SjName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->SCatName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->categorie->CatName }}</td>

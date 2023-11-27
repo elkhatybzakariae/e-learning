@@ -62,21 +62,21 @@ class CourController extends Controller
 
     public function store(CourRequest $request)
     {
-
+        // dd($request);
         $creator = Auth::id();
         $customIdC = Helpers::generateIdC();
         $validatedData = $request->validated();
 
         $sujet = Sujet::where('id_Sj', $validatedData['id_Sj'])->select('id_SCat', 'SjName')->first();;
         $subCategory =  SousCategorie::where('id_SCat', $sujet['id_SCat'])->select('id_Cat', 'SCatName')->first();;
-        $category =  Categorie::where('id_Cat', $subCategory['id_Cat'])->value('CatName'); 
+        $category =  Categorie::where('id_Cat', $subCategory['id_Cat'])->value('CatName');
+        $imgName = time() . $request->file('photo')->getClientOriginalName();
+
         $path = 'images/' . $category . '/' . $subCategory['SCatName'] . '/' . $sujet['SjName'];
 
-        $storagePath = 'public/' . $path;
-        $photoPath = $request->file('photo')->store($storagePath);
-        dd($path);
-        // Get the URL or relative path to access the image
-        $validatedData['photo'] = $path;
+        $photoPath = $request->file('photo')->storeAs($path,$imgName,'public');
+
+        $validatedData['photo'] = $photoPath;
         $validatedData['id_C'] = $customIdC;
         $validatedData['id_U'] = $creator;
 
@@ -113,16 +113,19 @@ class CourController extends Controller
 
         $sujet = Sujet::where('id_Sj', $validatedData['id_Sj'])->select('id_SCat', 'SjName')->first();;
         $subCategory =  SousCategorie::where('id_SCat', $sujet['id_SCat'])->select('id_Cat', 'SCatName')->first();;
-        $category =  Categorie::where('id_Cat', $subCategory['id_Cat'])->value('CatName'); 
+        $category =  Categorie::where('id_Cat', $subCategory['id_Cat'])->value('CatName');
+
         $path = 'images/' . $category . '/' . $subCategory['SCatName'] . '/' . $sujet['SjName'];
-        $storagePath = 'public/' . $path;
-        $photoPath = $request->file('photo')->store($storagePath);
-        
+        $imgName = time() . $request->file('photo')->getClientOriginalName();
+
+        // $photoPath = $request->file('photo')->store($path);
+        $photoPath = $request->file('photo')->storeAs($path,$imgName,'public');
+
         // Get the URL or relative path to access the image
         // $validatedData['photo'] = $path;
-        
+
         // $photoPath = $request->file('photo')->store('public/'.$path);
-        $validatedData['photo'] = $path;
+        $validatedData['photo'] = $photoPath;
         $Cour->update($validatedData);
         return redirect()->route('cour.index')->with('success', 'Cour updated successfully');
     }

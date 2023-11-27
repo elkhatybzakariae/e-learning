@@ -78,10 +78,17 @@
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
+                @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                <a class="dropdown-item" href="{{ route('home2') }}">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    Dashboard
+                </a>
+                @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
                 <a class="dropdown-item" href="{{ route('teach') }}">
                     <i class="fa-solid fa-book-open"></i>
                     Formateur
                 </a>
+                @endif
                 {{-- <a class="dropdown-item" href="#">
             <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
             Activity Log
