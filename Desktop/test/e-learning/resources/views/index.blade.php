@@ -224,7 +224,7 @@
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
                                                         <h6
-                                                            class="card-title font-weight-bold text-dark text-uppercase mb-1">
+                                                            class="card-title font-weight-bold text-dark text-uppercase mb-1 text-truncate" style="max-width: 225px;">
                                                             {{ $cour->title }}
                                                         </h6>
                                                         <p class="card-text">{{ $cour->user->FirstName }}
@@ -248,7 +248,7 @@
                                                             @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
                                                                 <a href="{{ route('wishlist.index') }}"
                                                                     class="btn btn-white">
-                                                                    <i class="fa-solid fa-heart"></i>
+                                                                    <i class="fa-solid fa-heart" ></i>
                                                                 </a>
                                                             @else
                                                                 <a href="#" name="wishlist"

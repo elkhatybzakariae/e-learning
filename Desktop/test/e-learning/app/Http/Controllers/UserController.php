@@ -60,6 +60,11 @@ class UserController extends Controller
             $coursNo = Cour::where('valider', '0')->count();
             $coursV = Cour::where('valider', '1')->count();
             return view('auth.dashboard2', compact('coursNo', 'coursV', 'coursN'));
+        } elseif (auth()->user()->roles->contains('role_name', 'client')) {
+            // $coursN = Cour::count();
+            // $coursNo = Cour::where('valider', '0')->count();
+            // $coursV = Cour::where('valider', '1')->count();
+            return view('auth.dashboard2');
         }
     }
 
@@ -235,19 +240,23 @@ class UserController extends Controller
             'Email' => 'required|email|max:50',
             'Password' => 'required|string|min:8',
             'Confirm_password' => 'required|string|min:8',
+            'usertype' => 'required',
         ]);
         if ($request->Password === $request->Confirm_password) {
             $newuser = User::create([
                 'id_U' => $id_U,
                 'FirstName' => $validation['FirstName'],
                 'LastName' => $validation['LastName'],
+                'usertype' => $validation['usertype'],
                 'Email' => $validation['Email'],
                 'Password' => Hash::make($validation['Password']),
             ]);
+            $type=Role::where('role_name',$validation['usertype'])->first();
+            
             Role_User::create([
                 'id' => $id,
                 'id_U' => $newuser->id_U,
-                'id_R' => "3",
+                'id_R' => $type->id_R,
             ]);
             auth()->login($newuser);
             // return redirect()->route('dashboard');

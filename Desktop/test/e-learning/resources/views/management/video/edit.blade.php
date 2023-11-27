@@ -54,12 +54,12 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            <select name="id_V" id="id_V" class="custom-select">
-                                    <option value="{{ $video->id_V }}">
+                            <select name="id_Sess" id="id_Sess" class="custom-select">
+                                    <option value="{{ $video->session->id_Sess }}">
                                         {{ $video->session->Sess_Name }}</option>
                             </select>
                         </div>
-                        @error('id_V')
+                        @error('id_Sess')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

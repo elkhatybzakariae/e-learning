@@ -72,7 +72,7 @@
                                     <td>{{ $cour->sujet->SjName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->SCatName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
-                                    <td class="d-flex justify-content-center">
+                                    <td id="actions" class="d-flex justify-content-center">
                                         <div class="dropdown">
                                             <button class="btn btn-primary dropdown-toggle" type="button"
                                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -82,7 +82,7 @@
                                             <div class="dropdown-menu animated--fade-in"
                                                 aria-labelledby="dropdownMenuButton">
                                                 <a href="{{ route('cour.valider', $cour->id_C) }}"
-                                                    class="btn btn-warning btn-icon-split ">
+                                                    class="btn btn-warning btn-icon-split ms-2">
                                                     <span class="icon text-white-50">
                                                         <i class="fas fa-exclamation-triangle"></i>
                                                     </span>
@@ -122,7 +122,7 @@
                                     <td>{{ $cour->sujet->SjName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->SCatName }}</td>
                                     <td>{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
-                                    <td class="d-flex justify-content-center">
+                                    <td id="actions" class="d-flex justify-content-center">
                                         <div class="dropdown">
                                             <button class="btn btn-primary dropdown-toggle" type="button"
                                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"

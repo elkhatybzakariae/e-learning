@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
-        <div class="sidebar-brand-icon">
+    <a class="sidebar-brand d-flex text-decoration-none align-items-center justify-content-center ms-1" href="{{ route('index') }}">
+        <div class="sidebar-brand-icon ps-1">
             <img src="{{ asset('storage/images/logo.png') }}" alt="">
         </div>
         <div class="sidebar-brand-text mx-2">E-Learning</div>
@@ -80,13 +80,18 @@
                 </a>
                 @if (auth()->user()->roles->contains('role_name', 'moderateur'))
                 <a class="dropdown-item" href="{{ route('home2') }}">
-                    <i class="fa-solid fa-gauge-high"></i>
+                    <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
                     Dashboard
                 </a>
                 @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
                 <a class="dropdown-item" href="{{ route('teach') }}">
                     <i class="fa-solid fa-book-open"></i>
                     Formateur
+                </a>
+                @elseif (auth()->user()->roles->contains('role_name', 'client'))
+                <a class="dropdown-item" href="{{route('home2')}}">
+                    <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
+                    Dashboard
                 </a>
                 @endif
                 {{-- <a class="dropdown-item" href="#">

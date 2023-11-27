@@ -29,12 +29,33 @@ class CourController extends Controller
     public function show($id)
     {
         $cour = Cour::where('id_C', $id)
-            ->with(['section.session.video.media'])
-            ->with(['section.quiz'])
-            ->with(['sujet.souscategorie.categorie'])
-            ->first();
-        // dd($cour);
-        return view('management.cour.show', compact('cour'));
+        ->with([
+            'section' => function ($query) {
+                $query->with([
+                    'session' => function ($query) {
+                        $query->with(['video' => function ($query) {
+                            $query->orderBy('created_at', 'asc');
+                        }]);
+                    },
+                    'quiz',
+                ]);
+            },
+            'sujet.souscategorie.categorie'
+        ])
+        ->first();
+    
+
+return view('management.cour.show', compact('cour'));
+
+
+
+        //     $cour = Cour::where('id_C', $id)
+        //         ->with(['section.session.video.media'])
+        //         ->with(['section.quiz'])
+        //         ->with(['sujet.souscategorie.categorie'])
+        //         ->first();
+        //     // dd($cour);
+        //     return view('management.cour.show', compact('cour'));
     }
     public function coursvalider()
     {
@@ -74,7 +95,7 @@ class CourController extends Controller
 
         $path = 'images/' . $category . '/' . $subCategory['SCatName'] . '/' . $sujet['SjName'];
 
-        $photoPath = $request->file('photo')->storeAs($path,$imgName,'public');
+        $photoPath = $request->file('photo')->storeAs($path, $imgName, 'public');
 
         $validatedData['photo'] = $photoPath;
         $validatedData['id_C'] = $customIdC;
@@ -119,7 +140,7 @@ class CourController extends Controller
         $imgName = time() . $request->file('photo')->getClientOriginalName();
 
         // $photoPath = $request->file('photo')->store($path);
-        $photoPath = $request->file('photo')->storeAs($path,$imgName,'public');
+        $photoPath = $request->file('photo')->storeAs($path, $imgName, 'public');
 
         // Get the URL or relative path to access the image
         // $validatedData['photo'] = $path;

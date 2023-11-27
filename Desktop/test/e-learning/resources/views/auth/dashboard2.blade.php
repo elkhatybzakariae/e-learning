@@ -137,6 +137,59 @@
                 </div>
             </div>
         @endif
+        @if (auth()->user()->roles->contains('role_name', 'client'))
+            <div class="col-xl-4 col-md-4 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    cours
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="cour">{{ 0 }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-paste fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        cours valider
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="coursV">{{ 0 }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-check fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    cours Non valider
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="coursNo">{{ 0 }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-xmark fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
         
     </div>
 

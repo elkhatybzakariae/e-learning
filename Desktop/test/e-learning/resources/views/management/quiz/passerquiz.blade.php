@@ -11,7 +11,7 @@
     <div id="wrapper">
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                {{-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
                         <div class="sidebar-brand-icon">
                             <img src="{{ asset('storage/images/logo.png') }}" alt="">
@@ -77,13 +77,11 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->FirstName }}</span> --}}
                                 <div class="rounded-circle d-flex justify-content-center align-items-center"
                                     style="width: 40px; height: 40px; background-color: black; color: white;">
                                     {{ strtoupper(substr(auth()->user()->FirstName, 0, 1) . substr(auth()->user()->LastName, 0, 1)) }}
                                 </div>
 
-                                {{-- <img class="img-profile rounded-circle" src="img/undraw_profile.svg"> --}}
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -96,10 +94,6 @@
                                     <i class="fa-solid fa-book-open"></i>
                                     Formateur
                                 </a>
-                                {{-- <a class="dropdown-item" href="#">
-                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Activity Log
-                        </a> --}}
                                 <div class="dropdown-divider"></div>
                                 <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -110,7 +104,8 @@
 
                     </ul>
 
-                </nav>
+                </nav> --}}
+                @include('master.navbar')
                 <div class="container-fluid justify-content-center align-items-center">
                     {{-- <div class="container ms-2 d-flex justify-content-center align-items-center"> --}}
 

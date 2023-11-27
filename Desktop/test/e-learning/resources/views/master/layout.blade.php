@@ -28,14 +28,21 @@
     <!-- JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    {{-- <style>
-        table td {
+    <style>
+        /* table td {
             white-space: nowrap;
             max-width: 150px;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-    </style> --}}
+
+        #actions {
+            white-space: normal;
+            width: auto;
+            overflow: visible;
+            text-overflow: clip;
+        } */
+    </style>
 
     {{-- <style>
         body {
@@ -105,7 +112,7 @@
 <script src="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta2/js/bootstrap.min.js"></script>
+{{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta2/js/bootstrap.min.js"></script> --}}
 
 <!-- Page level custom scripts -->
 <script src="{{ asset('storage/js/demo/datatables-demo.js') }}"></script>

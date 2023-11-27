@@ -11,15 +11,15 @@
 
     <title>Register</title>
 
-     <!-- Custom fonts for this template-->
-     <link href="{{ asset('storage/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-     <link
-         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-         rel="stylesheet">
- 
-     <!-- Custom styles for this template-->
-     <link href="{{ asset('storage/css/sb-admin-2.min.css') }}" rel="stylesheet">
-     <style>
+    <!-- Custom fonts for this template-->
+    <link href="{{ asset('storage/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ asset('storage/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <style>
         .bg-register-image {
             background: url("{{ asset('storage/img/e-learning.jpg') }}");
             background-position: end;
@@ -53,17 +53,38 @@
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text"  name="FirstName" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
+                                        <input type="text" name="FirstName" class="form-control form-control-user"
+                                            id="exampleFirstName" placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="LastName" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
+                                        <input type="text" name="LastName" class="form-control form-control-user"
+                                            id="exampleLastName" placeholder="Last Name">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0" style="left: 30px;">
+                                        <input class="form-check-input" type="radio" 
+                                        name="usertype"
+                                            id="usertype1" value="client">
+                                        <label class="form-check-label" for="usertype1">
+                                            Client
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-6" style="left: 30px;">
+                                        <input class="form-check-input" type="radio" 
+                                        name="usertype"
+                                            id="usertype2" value="formateur" >
+                                        <label class="form-check-label" for="usertype2">
+                                            Formateur
+                                        </label>
+                                    </div>
+                                </div>
+
+
+
                                 <div class="form-group">
-                                    <input type="email" name="Email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
+                                    <input type="email" name="Email" class="form-control form-control-user"
+                                        id="exampleInputEmail" placeholder="Email Address">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -71,8 +92,9 @@
                                             id="exampleInputPassword" placeholder="Password">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" name="Confirm_password"  class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                        <input type="password" name="Confirm_password"
+                                            class="form-control form-control-user" id="exampleRepeatPassword"
+                                            placeholder="Repeat Password">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">

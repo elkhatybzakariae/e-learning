@@ -303,6 +303,124 @@
                         </div>
                     </div>
                 </li>
+            @elseif (auth()->user()->roles->contains('role_name', 'client'))
+                <!-- Heading -->
+                {{-- <div class="sidebar-heading">
+                    gestion des cours
+                </div> --}}
+
+                <!-- Nav Item  -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecours"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-solid fa-paste"></i>
+                        <span>cours</span>
+                    </a>
+                    {{-- <div id="collapsecours" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+
+                            <a class="collapse-item" href="{{ route('cour.index') }}">Table cours</a>
+                            <a class="collapse-item" href="{{ route('cour.coursvalider') }}">
+                                Table cours valider<i class="fa-solid fa-check ml-1"></i>
+                            </a>
+                            <a class="collapse-item" href="{{ route('cour.coursnonvalider') }}">
+                                Table cours non valider<i class="fa-solid fa-xmark ml-1"></i>
+                            </a>
+                        </div>
+                    </div> --}}
+                </li>
+
+                {{-- <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesections"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-solid fa-list"></i>
+                        <span>sections</span>
+                    </a>
+                    <div id="collapsesections" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+
+                            <a class="collapse-item" href="{{ route('section.index') }}">Table
+                                sections</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesessions"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-solid fa-bars"></i>
+                        <span>sessions</span>
+                    </a>
+                    <div id="collapsesessions" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('session.index') }}">Table
+                                sessions</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsevideos"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-solid fa-video"></i>
+                        <span>videos</span>
+                    </a>
+                    <div id="collapsevideos" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('video.index') }}">Table
+                                videos</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemedia"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-regular fa-file-zipper"></i>
+                        <span>media</span>
+                    </a>
+                    <div id="collapsemedia" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('media.index') }}">Table media</a>
+                        </div>
+                    </div>
+                </li> --}}
+                <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Test
+                </div>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecert"
+                        aria-expanded="true" aria-controls="collapsecert">
+                        <i class="fa-solid fa-certificate"></i>
+                        <span>Certificates</span>
+                    </a>
+                    {{-- <div id="collapsecert" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('certificate.index') }}">Table Certificates</a>
+                        </div>
+                    </div> --}}
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQuiz"
+                        aria-expanded="true" aria-controls="collapseQuiz">
+                        <i class="fa-solid fa-question"></i>
+                        <span>Quiz</span>
+                    </a>
+                    {{-- <div id="collapseQuiz" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('quiz.index') }}">Table Quiz</a>
+                        </div>
+                    </div> --}}
+                </li>
             @endif
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
