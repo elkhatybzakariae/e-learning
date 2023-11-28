@@ -26,4 +26,8 @@ class Video extends Model
     public function session(){
         return $this->belongsTo(Session::class, 'id_Sess');
     }
+    public function videoterminer()
+    {
+        return $this->hasMany(VideoTerminer::class,'id_V');
+    }
 }

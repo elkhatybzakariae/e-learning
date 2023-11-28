@@ -16,6 +16,7 @@ use App\Http\Controllers\SousCategorieController;
 use App\Http\Controllers\SujetController;
 use App\Http\Controllers\TestQuestionController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\VideoTerminerController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
 
@@ -189,6 +190,11 @@ Route::group(['prefix' => 'wishlist', 'middleware' => 'authen'], function () {
     Route::get('/', [WishListController::class, 'index'])->name('wishlist.index');
     Route::post('/store', [WishListController::class, 'store'])->name('wishlist.store');
     Route::delete('/delete/{id}', [WishListController::class, 'delete'])->name('wishlist.delete');
+});
+Route::group(['prefix' => 'videoTerminer', 'middleware' => 'authen'], function () {
+    Route::get('/progress', [VideoTerminerController::class, 'progress'])->name('videoTerminer.progress');
+    Route::post('/check', [VideoTerminerController::class, 'check'])->name('videoTerminer.check');
+    Route::delete('/delete', [VideoTerminerController::class, 'delete'])->name('videoTerminer.delete');
 });
 
 Route::fallback(function () {

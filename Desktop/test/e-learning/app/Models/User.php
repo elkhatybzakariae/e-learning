@@ -70,6 +70,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cour::class);
     }
+    public function videoterminer()
+    {
+        return $this->hasMany(VideoTerminer::class,'id_U');
+    }
 
     // public function createPasswordResetToken()
     // {

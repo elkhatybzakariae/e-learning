@@ -77,4 +77,23 @@ class Cour extends Model
             'sujets' => $sujets
         ];
     }
+
+    public function show($id){
+        $cour = Cour::where('id_C', $id)
+            ->with([
+                'section' => function ($query) {
+                    $query->with([
+                        'session' => function ($query) {
+                            $query->with(['video' => function ($query) {
+                                $query->orderBy('created_at', 'asc')->with('videoterminer');
+                            }]);
+                        },
+                        'quiz',
+                    ]);
+                },
+                'sujet.souscategorie.categorie'
+            ])
+            ->first();
+            return $cour;
+    }
 }

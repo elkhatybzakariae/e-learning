@@ -53,7 +53,7 @@
         #toggleAccordion:hover {
             background-color: #e0e0e0;
             /* background-color: transparent;
-                                            color: azure; */
+                                                                            color: azure; */
         }
 
         /* Style for the expanded button */
@@ -94,6 +94,15 @@
             width: 100px;
             background-color: transparent;
         }
+
+
+        /* .progress-section{text-align: center; padding: 80px 0px; background: #303030;}
+    .progress-section h1{ margin-bottom:70px; color:#fff;}
+    .progress-bars{ margin: auto; background: #fff; width: 120px; height: 120px; transform: rotate(45deg); position: relative;}
+    .progress-bars h2 { line-height: 120px; text-align: center; transform: rotate(-45deg);}
+    .progress-bars:before{position: absolute; content: ""; border: solid 5px #595959; border-width: 5px 0px 0px 5px; width: 30px; height: 30px; top: -9px; left: -9px; bottom: -9px; right: -9px; z-index: 10;}
+    .progress-bars:after{position: absolute; content: ""; border: solid 5px #2bb0ef; border-width: 5px 5px 5px 5px; width: 140px; height: 140px; top: -9px; left: -9px; bottom: -9px; right: -9px;}
+     */
     </style>
 
 @endsection
@@ -101,7 +110,6 @@
     <div id="wrapper">
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
                 @include('master.navbar')
@@ -112,12 +120,8 @@
                                 <!-- Video Section (Left) -->
                                 <div class="col-lg-8 mb-4 pr-0" id="videocontainer">
                                     <div id="videocontent">
-                                        {{-- @dd($cour->photo) --}}
-                                        
-                                        {{-- <img src="{{ asset('C:\Users\zaki\Desktop\test\e-learning\storage\app\public\images\Science\Earth Science\sc\bUtgna18meCYF17KJwP8DUCINgIm2994LsRKWlhq.jpg') }}" alt="Image"> --}}
-                                        <img class="card-img-top" style="width: 100%; height: 500px;"
+                                        <img class="card-img-top" id="img" data-hidden-id='{{$cour->id_C}}' style="width: 100%; height: 500px;"
                                             src="{{ asset('storage/' . $cour->photo) }}">
-
                                     </div>
                                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                                         <a class="navbar-brand ms-2" href="#">{{ $cour->title }}</a>
@@ -132,6 +136,9 @@
                                                     id="presen">Presentation <span class="sr-only">(current)</span></a>
                                                 <a class="nav-item nav-link" href="#">Remarques</a>
                                                 <a class="nav-item nav-link" href="#">Avis</a>
+                                                {{-- <div class="progress-bars">
+                                                    <h2>85%</h2>
+                                                </div><!--progress-bars--> --}}
                                             </div>
                                         </div>
                                     </nav>
@@ -148,6 +155,8 @@
                                         <span class="flex-grow-1 fst-italic fs-4">
                                             Contenu cour
                                         </span>
+                                        <sub class=" fst-italic" id="sub">
+                                        </sub>
                                         <i id="toggle" class="fa-solid fa-xmark"></i>
                                     </div>
 
@@ -204,6 +213,13 @@
                                                                                 <div class="accordion accordion-flush"
                                                                                     id="">
                                                                                     <div class="accordion-item d-flex">
+                                                                                        <input class="form-check-input"
+                                                                                            style="margin-top: 20px;"
+                                                                                            type="checkbox" name="videoT"
+                                                                                            value="{{ $video->id_V }}"
+                                                                                            id="{{ $video->id_V }}"
+                                                                                            @foreach ($video->videoterminer as $videoterminer)
+                                                                                            @if ($videoterminer->terminer === 1) checked @endif @endforeach>
                                                                                         <h2 class="accordion-header flex-grow-1"
                                                                                             id="heading{{ $video->id_V }}">
                                                                                             <button
@@ -299,7 +315,45 @@
 
 @section('script')
     <script>
+        function progress() {
+            const id = $('#img').data('hidden-id');
+            const url = "{{ route('videoTerminer.progress') }}";
+                    $.ajax({
+                        url: url,
+                        method: 'GET',
+                        data: {
+                            id: id,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            $('#sub').html( response.videoTerminerCount +' sur ' + response.videoCount +' terminé.')
+                            
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+        }
+
         $(document).ready(function() {
+            // const id = $('#img').data('hidden-id');
+            // const url = "{{ route('videoTerminer.progress') }}";
+            //         $.ajax({
+            //             url: url,
+            //             method: 'GET',
+            //             data: {
+            //                 id: id,
+            //                 _token: '{{ csrf_token() }}'
+            //             },
+            //             success: function(response) {
+            //                 $('#sub').html( response.videoTerminerCount +' sur ' + response.videoCount +' terminé.')
+            //                 console.log(response);
+            //             },
+            //             error: function(xhr, status, error) {
+            //                 console.error('Error:', error);
+            //             }
+            //         });
+            progress();
             $('[name="video"]').on('click', function(params) {
                 $('#videocontent').html(`
                     <iframe width="100%" height="500" 
@@ -340,6 +394,48 @@
 
 
                 $('#details').html(courDes);
+            });
+            $('[name="videoT"]').on('change', function(e) {
+
+                const idV = $(this).attr('id');
+                if ($(this).is(':checked')) {
+                    // const idV = $(this).attr('id');
+                    const url = "{{ route('videoTerminer.check') }}";
+                    $.ajax({
+                        url: url,
+                        method: 'POST',
+                        data: {
+                            id: idV,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                } else {
+                    // const idV = $(this).attr('id');
+                    const url = "{{ route('videoTerminer.delete') }}";
+                    $.ajax({
+                        url: url,
+                        method: 'DELETE',
+                        data: {
+                            id: idV,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                }
+                // $('#').html(courDes);
+                
+            progress();
             });
 
 

@@ -18,6 +18,7 @@ use App\Models\SousCategorie;
 use App\Models\Sujet;
 use App\Models\User;
 use App\Models\Video;
+use App\Models\VideoTerminer;
 use App\Models\WishList;
 use Illuminate\Support\Str;
 class Helpers
@@ -154,6 +155,14 @@ class Helpers
     {
         $id = Str::random(15);
         while (WishList::where('id', $id)->exists()) {
+            $id = Str::random(15);
+        }
+        return $id;
+    }
+    public static function generateIdVT()
+    {
+        $id = Str::random(15);
+        while (VideoTerminer::where('id_VT', $id)->exists()) {
             $id = Str::random(15);
         }
         return $id;
