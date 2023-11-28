@@ -171,6 +171,7 @@ Route::group(['prefix' => 'quiz', 'middleware' => 'authen'], function () {
     Route::post('/store', [QuizController::class, 'store'])->name('quiz.store');
     Route::delete('/destroy/{id}', [QuizController::class, 'destroy'])->name('quiz.destroy');
     Route::get('/passer/{id}', [QuizController::class, 'passer'])->name('quiz.passer');
+    Route::post('/valider', [QuizController::class, 'valider'])->name('quiz.valider');
 });
 
 Route::group(['prefix' => 'testquestion', 'middleware' => 'authen'], function () {

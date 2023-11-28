@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Helpers\Helpers;
 use App\Http\Requests\QuizRequest;
 use App\Models\Cour;
+use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\Reponse;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +17,6 @@ class QuizController extends Controller
     public function index()
     {
         $id = Auth::id();
-        // $cours = Cour::with('section.quiz')
-        //     ->where('id_U', $id)
-        //     ->get();
-
         $cours = Cour::where('id_U', $id)
             ->with(['section.quiz'])
             ->get();
@@ -26,14 +24,7 @@ class QuizController extends Controller
         $section = Section::whereIn('id_C', $idsC)->get();
         $idsS = $section->pluck('id_Sec')->all();
 
-        // dd($section);
-
-        // foreach ($cours->section as $section) {
-        //     $quizForSection = $section->quiz;
-        // }
-
         $quiz = Quiz::whereIn('id_Sec', $idsS)->get();
-        // $quiz = $cours->section()->quiz();
         return view('management.quiz.index', compact('quiz'));
     }
 
@@ -67,5 +58,43 @@ class QuizController extends Controller
 
         // dd($quiz);
         return view('management.quiz.passerquiz', compact('quiz'));
+    }
+    public function valider(Request $request)
+    {
+        $data = $request->formData;
+        $idQ = $request->input('idQ');
+
+        $ans = explode('&', $data);
+
+        $tab = [];
+        foreach ($ans as $item) {
+            list($key, $value) = explode('=', $item);
+            array_push($tab, $value);
+        }
+
+        $results = Reponse::whereIn('id_R', $tab)->get();
+
+        $score = 0;
+        foreach ($results as $correctAnswer) {
+            if (isset($correctAnswer) && $correctAnswer->statusrep === 1) {
+                $score++;
+            }
+        }
+        $Q = Question::where('questable_id', $idQ)->get();
+
+        $ids = $Q->pluck('id_Que')->all();
+        $listR = Reponse::whereIn('id_Que', $ids)->get();
+
+        // $RCount = count($tab);
+        $nbQue = Question::where('questable_id', $idQ)->count();
+        $sc = ($score / $nbQue) * 100;
+
+        return response()->json([
+            'results' => $results,
+            'score' => $sc,
+            'RCount' => $score,
+            'nbQue' => $nbQue,
+            'listR' => $listR
+        ]);
     }
 }

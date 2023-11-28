@@ -111,7 +111,7 @@
 
                     <div class="text center bg-white p-5 pb-3  rounded">
                         <form action="" id="quiz">
-                            @csrf
+                            {{-- @csrf --}}
                             <div class="form-group row ps-5 pe-5 justify-content-center">
                                 @php $counter = 1; @endphp
                                 @foreach ($quiz as $quiz)
@@ -127,9 +127,9 @@
                                                 @foreach ($Que->reponse as $reponse)
                                                     <span class="d-inline-block text-center col-4">
                                                         <input type="radio" id="{{ $reponse->id_R }}"
-                                                            name="responses{{ $Que->id_Que }}">
-                                                        <label data-hidden-value="{{ $reponse->statusrep }}"
-                                                            for="{{ $reponse->id_R }}"
+                                                            name="responses{{ $Que->id_Que }}"
+                                                            value="{{ $reponse->id_R }}">
+                                                        <label id="label{{ $reponse->id_R }}" {{-- data-hidden-value="{{ $reponse->statusrep }}" --}} for="{{ $reponse->id_R }}"
                                                             name="responses{{ $Que->id_Que }}">
                                                             {{ $reponse->reponse }}
                                                         </label>
@@ -144,10 +144,25 @@
 
 
 
-                            <div class="form-group text-end mt-3">
+                            {{-- <div class="form-group text-end mt-3">
+                                <div id="score"></div>
                                 <button type="submit" class="btn btn-outline-primary  gradient-custom-4 text-body"
                                     style="font-style: italic;">Valider</button>
+                            </div> --}}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group text-start mt-3">
+                                        <div id="score"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-end justify-content-end">
+                                    <div class="form-group  mt-3 ">
+                                        <button type="submit" class="btn btn-outline-primary gradient-custom-4 text-body"
+                                            style="font-style: italic;">Valider</button>
+                                    </div>
+                                </div>
                             </div>
+
 
                         </form>
                     </div>
@@ -155,7 +170,7 @@
                 </div>
 
             </div>
-            <!-- Footer -->            
+            <!-- Footer -->
             @include('master.footer')
             <!-- End of Footer -->
         </div>
@@ -166,25 +181,55 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#quiz').on('submit', function(event) {
-                event.preventDefault();
+            // $('#quiz').on('submit', function(event) {
+            //     event.preventDefault();
 
-                $('label').each(function() {
-                    var hiddenValue = $(this).data('hidden-value');
-                    
-                    const iClass = hiddenValue ? $(this).css('color', 'green') : $(this).css('color', 'red');
-                    const iconClass = hiddenValue ? 'fa-thin fa-check' : 'fa-thin fa-xmark';
-                    $(this).removeClass().addClass('fas ' + iconClass);
-                    // if (hiddenValue) {
-                    //     $(this).css('color', 'green');
-                    // }else {
-                    //     $(this).css('color', 'red');;
-                    // }
+            //     $('label').each(function() {
+            //         var hiddenValue = $(this).data('hidden-value');
+
+            //         const iClass = hiddenValue ? $(this).css('color', 'green') : $(this).css(
+            //             'color', 'red');
+            //         const iconClass = hiddenValue ? 'fa-thin fa-check' : 'fa-thin fa-xmark';
+            //         $(this).removeClass().addClass('fas ' + iconClass);
+            //         // if (hiddenValue) {
+            //         //     $(this).css('color', 'green');
+            //         // }else {
+            //         //     $(this).css('color', 'red');;
+            //         // }
+            //     });
+
+
+
+            // });
+            $('#quiz').on('submit', function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                var idQ = '{{ $quiz->id_Q }}';
+                $.ajax({
+                    url: "{{ route('quiz.valider') }}",
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        formData,
+                        idQ: idQ,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        $('#score').html('<p>' + response.RCount + '/' + response.nbQue +
+                            ' Correct</p><p>votre score est : ' + response.score.toFixed(
+                                1) + '%</p>')
+                        response.listR.forEach(item => {
+                            $('#label' + item.id_R).css('color', item.statusrep === 1 ? 'green' : 'red');
+                            $('#label' + item.id_R).removeClass().addClass(item.statusrep === 1 ? 'i fas fa-thin fa-check' : 'i fas fa-thin fa-xmark');
+                        });
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Validation error:', error);
+                    }
                 });
-
-
-                
             });
+
         });
     </script>
 @endsection

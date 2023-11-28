@@ -9,6 +9,7 @@ use App\Models\Media;
 use App\Models\Panier;
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\QuizPasser;
 use App\Models\Reponse;
 use App\Models\Role;
 use App\Models\Role_User;
@@ -163,6 +164,14 @@ class Helpers
     {
         $id = Str::random(15);
         while (VideoTerminer::where('id_VT', $id)->exists()) {
+            $id = Str::random(15);
+        }
+        return $id;
+    }
+    public static function generateIdQP()
+    {
+        $id = Str::random(15);
+        while (QuizPasser::where('id_QP', $id)->exists()) {
             $id = Str::random(15);
         }
         return $id;

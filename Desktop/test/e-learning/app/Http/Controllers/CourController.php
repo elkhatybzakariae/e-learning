@@ -30,35 +30,6 @@ class CourController extends Controller
     {
         $couur= new Cour();
         $cour=$couur->show($id);
-
-        // if ($cour) {
-        //     $videoCount = 0;
-
-        //     // Loop through each section of the cour
-        //     foreach ($cour->section as $section) {
-        //         // Loop through each session in the section
-        //         foreach ($section->session as $session) {
-        //             // Add the count of videos in each session to the total count
-        //             $videoCount += $session->video->count();
-        //         }
-        //     }
-        // }
-
-        // if ($cour) {
-        //     $videoTerminerCount = 0;
-        //     foreach ($cour->section as $section) {
-        //         foreach ($section->session as $session) {
-        //             foreach ($session->video as $video) {
-        //                 foreach ($video->videoterminer  as $videoterminer) {
-        //                     if ($videoterminer->terminer === 1) {
-        //                         $videoTerminerCount++;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }, 'videoCount', 'videoTerminerCount'
-
         return view('management.cour.show', compact('cour'));
 
 
