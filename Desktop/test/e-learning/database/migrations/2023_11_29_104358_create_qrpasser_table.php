@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('qrpasser', function (Blueprint $table) {
             $table->string('id_QRP')->primary(); 
-            $table->string('QRdata');
+            $table->text('QRdata');
             $table->string('id_QP');
             $table->foreign('id_QP')->references('id_QP')->on('quizpasser');
             $table->timestamps();

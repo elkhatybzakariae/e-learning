@@ -56,10 +56,29 @@ class QuizController extends Controller
     }
     public function passer($id)
     {
-        $quiz = Quiz::where('id_Q', $id)->with('questions.reponse')->get();
+        $idU = Auth::id();
+        $quiz = Quiz::where('id_Q', $id)->with(['questions.reponse','quizpasser.qrpasser'])->first();
+        
+        $DejaPasser = QuizPasser::where('id_Q', $quiz->id_Q)->where('id_U', $idU)->first();
 
-        // dd($quiz);
-        return view('management.quiz.passerquiz', compact('quiz'));
+        // if ($DejaPasser) {
+        $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
+        //  dd($oldRep);
+        if ($oldRep) {
+            $QandR = explode('&', $oldRep->QRdata);
+
+            $tab = [];
+            foreach ($QandR as $item) {
+                list($key, $value) = explode('=', $item);
+                // array_push($tab, $value);
+                $tab[$key] = $value;
+            }
+            // dd($tab);
+            return view('management.quiz.passerquiz', compact('quiz', 'tab'));
+            // }
+        } else {
+            return view('management.quiz.passerquiz', compact('quiz'));
+        }
     }
     public function valider(Request $request)
     {
@@ -94,9 +113,9 @@ class QuizController extends Controller
         $idQP = Helpers::generateIdQP();
         $idQRP = Helpers::generateIdQRP();
 
-        $DejaPasser = QuizPasser::where('id_Q', $idQ)->where('id_U',$idU)->first();
+        $DejaPasser = QuizPasser::where('id_Q', $idQ)->where('id_U', $idU)->first();
         if (!$DejaPasser) {
-            $QP=QuizPasser::create([
+            $QP = QuizPasser::create([
                 'id_QP' => $idQP,
                 'passer' => true,
                 'repcount' => $RepCount,
@@ -109,19 +128,16 @@ class QuizController extends Controller
                 'QRdata' => $data,
                 'id_QP' => $QP->id_QP
             ]);
-        }else{
+        } else {
             $DejaPasser->update([
                 'repcount' => $RepCount,
                 'score' => $score
             ]);
-            $updateQRPasser= QRPasser::where('id_QP',$DejaPasser->id_QP)->first();
+            $updateQRPasser = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
             $updateQRPasser->update([
                 'QRdata' => $data,
             ]);
         }
-
-
-
         return response()->json([
             'results' => $results,
             'RepCount' => $RepCount,

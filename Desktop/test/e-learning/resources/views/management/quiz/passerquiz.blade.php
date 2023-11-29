@@ -114,32 +114,31 @@
                             {{-- @csrf --}}
                             <div class="form-group row ps-5 pe-5 justify-content-center">
                                 @php $counter = 1; @endphp
-                                @foreach ($quiz as $quiz)
-                                    @foreach ($quiz->questions as $Que)
-                                        <div class="col-12">
-                                            <div class="text-center mb-3">
-                                                <span for="question" style="font-style: italic;">
-                                                    Question {{ $counter }} : {{ $Que->question }} ?
-                                                </span>
-                                            </div>
-                                            <div
-                                                class="form-outline  mb-2 d-flex justify-content-center align-items-center flex-wrap">
-                                                @foreach ($Que->reponse as $reponse)
-                                                    <span class="d-inline-block text-center col-4">
-                                                        <input type="radio" id="{{ $reponse->id_R }}"
-                                                            name="responses{{ $Que->id_Que }}"
-                                                            value="{{ $reponse->id_R }}">
-                                                        <label id="label{{ $reponse->id_R }}" {{-- data-hidden-value="{{ $reponse->statusrep }}" --}} for="{{ $reponse->id_R }}"
-                                                            name="responses{{ $Que->id_Que }}">
-                                                            {{ $reponse->reponse }}
-                                                        </label>
-                                                    </span>
-                                                @endforeach
-                                            </div>
+                                {{-- @foreach ($quiz as $quiz) --}}
+                                @foreach ($quiz->questions as $Que)
+                                    <div class="col-12">
+                                        <div class="text-center mb-3">
+                                            <span for="question" style="font-style: italic;">
+                                                Question {{ $counter }} : {{ $Que->question }} ?
+                                            </span>
                                         </div>
-                                        @php $counter++; @endphp
-                                    @endforeach
+                                        <div
+                                            class="form-outline  mb-2 d-flex justify-content-center align-items-center flex-wrap">
+                                            @foreach ($Que->reponse as $reponse)
+                                                <span class="d-inline-block text-center col-4">
+                                                    <input type="radio" id="{{ $reponse->id_R }}"
+                                                        name="responses{{ $Que->id_Que }}" value="{{ $reponse->id_R }}">
+                                                    <label id="label{{ $reponse->id_R }}" {{-- data-hidden-value="{{ $reponse->statusrep }}" --}}
+                                                        for="{{ $reponse->id_R }}" name="responses{{ $Que->id_Que }}">
+                                                        {{ $reponse->reponse }}
+                                                    </label>
+                                                </span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @php $counter++; @endphp
                                 @endforeach
+                                {{-- @endforeach --}}
                             </div>
 
 
@@ -179,6 +178,54 @@
 @endsection
 
 @section('script')
+    @if (isset($tab))
+        <script>
+            var jsVariable = @json($tab);
+            var quiz = @json($quiz);
+            console.log(quiz);
+            // quiz.listR.forEach(item => {
+            //     $('#label' + item.id_R).css('color', item.statusrep === 1 ?
+            //         'green' : 'red');
+            //     $('#label' + item.id_R).removeClass().addClass(item
+            //         .statusrep === 1 ? 'i fas fa-thin fa-check' :
+            //         'i fas fa-thin fa-xmark');
+            // });
+            for (var key in jsVariable) {
+                if (jsVariable.hasOwnProperty(key)) {
+                    var value = jsVariable[key];
+                    var inputExists = $('input[id="' + value + '"]').length > 0;
+                    //                     if (inputExists) {
+                    $('input[id="' + value + '"]').prop('checked', true);
+
+
+
+
+                    // console.log($('label[name="' + key + '"][id="label' + value + '"]'));
+                    // $('label[name="' + key + '"][id="label' + value + '"]').css('color', 'green');
+                    // $('label').css('color','red');
+                    // $('#label' + value).css('color', 'green');
+                    // $('#label' + value).removeClass().addClass('i fas fa-thin fa-check');
+
+
+                    // $('label').each(function() {
+                    //     if ($(this).attr('id') === 'label'+value || $(this).attr('name') === key) { 
+                    //         $(this).css('color','green');
+                    //     } else {
+                    //         $(this).css('color', 'red'); 
+                    //     }
+                    // });
+                    // $('label').each(function() {
+                    //     if ($(this).attr('for') === value) {
+                    //         $(this).css('color', 'green');
+                    //     } else {
+                    //         $(this).css('color', 'red');
+                    //     }
+                    // });
+
+                }
+            }
+        </script>
+    @endif
     <script>
         $(document).ready(function() {
             // $('#quiz').on('submit', function(event) {
@@ -201,6 +248,7 @@
 
 
             // });
+
             $('#quiz').on('submit', function(e) {
                 e.preventDefault();
                 var formData = $(this).serialize();
@@ -219,13 +267,18 @@
                             ' Correct</p><p>votre score est : ' + response.score.toFixed(
                                 1) + '%</p>')
                         response.listR.forEach(item => {
-                            $('#label' + item.id_R).css('color', item.statusrep === 1 ? 'green' : 'red');
-                            $('#label' + item.id_R).removeClass().addClass(item.statusrep === 1 ? 'i fas fa-thin fa-check' : 'i fas fa-thin fa-xmark');
+                            $('#label' + item.id_R).css('color', item.statusrep === 1 ?
+                                'green' : 'red');
+                            $('#label' + item.id_R).removeClass().addClass(item
+                                .statusrep === 1 ? 'i fas fa-thin fa-check' :
+                                'i fas fa-thin fa-xmark');
                         });
 
                     },
                     error: function(xhr, status, error) {
-                        console.error('Validation error:', error);
+                        console.log(xhr);
+                        console.log(status);
+                        console.error(error);
                     }
                 });
             });
