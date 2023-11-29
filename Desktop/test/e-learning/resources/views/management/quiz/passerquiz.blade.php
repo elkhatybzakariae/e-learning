@@ -215,7 +215,7 @@
                     },
                     success: function(response) {
                         console.log(response);
-                        $('#score').html('<p>' + response.RCount + '/' + response.nbQue +
+                        $('#score').html('<p>' + response.RepCount + '/' + response.nbQue +
                             ' Correct</p><p>votre score est : ' + response.score.toFixed(
                                 1) + '%</p>')
                         response.listR.forEach(item => {

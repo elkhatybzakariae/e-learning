@@ -7,6 +7,7 @@ use App\Models\Certificate;
 use App\Models\Cour;
 use App\Models\Media;
 use App\Models\Panier;
+use App\Models\QRPasser;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\QuizPasser;
@@ -172,6 +173,14 @@ class Helpers
     {
         $id = Str::random(15);
         while (QuizPasser::where('id_QP', $id)->exists()) {
+            $id = Str::random(15);
+        }
+        return $id;
+    }
+    public static function generateIdQRP()
+    {
+        $id = Str::random(15);
+        while (QRPasser::where('id_QRP', $id)->exists()) {
             $id = Str::random(15);
         }
         return $id;

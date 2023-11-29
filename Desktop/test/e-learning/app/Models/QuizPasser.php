@@ -15,6 +15,8 @@ class QuizPasser extends Model
     protected $fillable = [
         'id_QP',
         'passer',
+        'repcount',
+        'score',
         'id_U',
         'id_Q',
     ];
@@ -26,5 +28,9 @@ class QuizPasser extends Model
     public function quiz()
     {
         return $this->morphMany(Quiz::class, 'id_Q');
+    }
+    public function qrpasser()
+    {
+        return $this->hasMany(QRPasser::class, 'id_QP');
     }
 }

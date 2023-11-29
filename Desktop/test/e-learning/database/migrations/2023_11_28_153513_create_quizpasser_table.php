@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('quizpasser', function (Blueprint $table) {
             $table->string('id_QP')->primary();
             $table->boolean('passer')->default('0');
+            $table->integer('repcount')->default(0);
+            $table->float('score')->default(0);
             $table->string('id_U');
             $table->foreign('id_U')->references('id_U')->on('users');
             $table->string('id_Q');
