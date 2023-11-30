@@ -156,7 +156,11 @@
                                 </div>
                                 <div class="col-md-6 d-flex align-items-end justify-content-end">
                                     <div class="form-group  mt-3 ">
-                                        <button type="submit" class="btn btn-outline-primary gradient-custom-4 text-body"
+                                        <button type="submit" id="submit"
+                                            class="btn btn-outline-primary gradient-custom-4 text-body"
+                                            style="font-style: italic;">Valider</button>
+                                        <button type="submit" id="submit"
+                                            class="btn btn-outline-primary gradient-custom-4 text-body"
                                             style="font-style: italic;">Valider</button>
                                     </div>
                                 </div>
@@ -182,48 +186,28 @@
         <script>
             var jsVariable = @json($tab);
             var quiz = @json($quiz);
-            console.log(quiz);
-            // quiz.listR.forEach(item => {
-            //     $('#label' + item.id_R).css('color', item.statusrep === 1 ?
-            //         'green' : 'red');
-            //     $('#label' + item.id_R).removeClass().addClass(item
-            //         .statusrep === 1 ? 'i fas fa-thin fa-check' :
-            //         'i fas fa-thin fa-xmark');
-            // });
+            var DejaPasser = @json($DejaPasser);
+            var nbQue = @json($nbQue);
+            console.log($('#submit'));
+            $('#score').html('<p>' + DejaPasser.repcount + '/' + nbQue +
+                ' Correct</p><p>votre score est : ' + DejaPasser.score.toFixed(
+                    1) + '%</p>')
+            $('#submit').html('<em>Effacer</em>').click(function() {
+                $('input').prop('checked', false);
+                $('#score').html('');
+                $(this).html('<em>Valider</em>')
+                // $(this).attr('id', 'newID');.attr('type', 'button')
+                // $(this).attr('type', 'submit');
+            });
+
             for (var key in jsVariable) {
                 if (jsVariable.hasOwnProperty(key)) {
                     var value = jsVariable[key];
                     var inputExists = $('input[id="' + value + '"]').length > 0;
-                    //                     if (inputExists) {
                     $('input[id="' + value + '"]').prop('checked', true);
-
-
-
-
-                    // console.log($('label[name="' + key + '"][id="label' + value + '"]'));
-                    // $('label[name="' + key + '"][id="label' + value + '"]').css('color', 'green');
-                    // $('label').css('color','red');
-                    // $('#label' + value).css('color', 'green');
-                    // $('#label' + value).removeClass().addClass('i fas fa-thin fa-check');
-
-
-                    // $('label').each(function() {
-                    //     if ($(this).attr('id') === 'label'+value || $(this).attr('name') === key) { 
-                    //         $(this).css('color','green');
-                    //     } else {
-                    //         $(this).css('color', 'red'); 
-                    //     }
-                    // });
-                    // $('label').each(function() {
-                    //     if ($(this).attr('for') === value) {
-                    //         $(this).css('color', 'green');
-                    //     } else {
-                    //         $(this).css('color', 'red');
-                    //     }
-                    // });
-
                 }
             }
+            
         </script>
     @endif
     <script>

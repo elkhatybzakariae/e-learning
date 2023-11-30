@@ -61,6 +61,12 @@ class QuizController extends Controller
         
         $DejaPasser = QuizPasser::where('id_Q', $quiz->id_Q)->where('id_U', $idU)->first();
 
+        
+        // $Q = Question::where('questable_id',$quiz->id_Q)->get();
+
+        // $ids = $Q->pluck('id_Que')->all();
+
+        $nbQue = Question::where('questable_id', $quiz->id_Q)->count();
         // if ($DejaPasser) {
         $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
         //  dd($oldRep);
@@ -74,7 +80,7 @@ class QuizController extends Controller
                 $tab[$key] = $value;
             }
             // dd($tab);
-            return view('management.quiz.passerquiz', compact('quiz', 'tab'));
+            return view('management.quiz.passerquiz', compact('quiz', 'tab','DejaPasser','nbQue'));
             // }
         } else {
             return view('management.quiz.passerquiz', compact('quiz'));
