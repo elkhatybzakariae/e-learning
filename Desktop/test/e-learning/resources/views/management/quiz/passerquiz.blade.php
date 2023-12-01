@@ -156,12 +156,12 @@
                                 </div>
                                 <div class="col-md-6 d-flex align-items-end justify-content-end">
                                     <div class="form-group  mt-3 ">
-                                        <button type="submit" id="submit"
+                                        <button type="submit" id="valider"
                                             class="btn btn-outline-primary gradient-custom-4 text-body"
                                             style="font-style: italic;">Valider</button>
-                                        <button type="submit" id="submit"
+                                        <button type="button" id="effacer"
                                             class="btn btn-outline-primary gradient-custom-4 text-body"
-                                            style="font-style: italic;">Valider</button>
+                                            style="font-style: italic;" hidden>Effacer</button>
                                     </div>
                                 </div>
                             </div>
@@ -188,16 +188,25 @@
             var quiz = @json($quiz);
             var DejaPasser = @json($DejaPasser);
             var nbQue = @json($nbQue);
+
+
+            $('#valider').attr('hidden', true);
+            $('#effacer').removeAttr('hidden');
             console.log($('#submit'));
             $('#score').html('<p>' + DejaPasser.repcount + '/' + nbQue +
                 ' Correct</p><p>votre score est : ' + DejaPasser.score.toFixed(
                     1) + '%</p>')
-            $('#submit').html('<em>Effacer</em>').click(function() {
+
+            $('#effacer').click(function() {
                 $('input').prop('checked', false);
                 $('#score').html('');
-                $(this).html('<em>Valider</em>')
-                // $(this).attr('id', 'newID');.attr('type', 'button')
-                // $(this).attr('type', 'submit');
+                $('#effacer').attr('hidden', true);
+                $('#valider').removeAttr('hidden');
+
+                $('label').css('color', '');
+                $('label').removeClass().addClass('');
+                
+                $('input').attr('disabled', false);
             });
 
             for (var key in jsVariable) {
@@ -207,7 +216,6 @@
                     $('input[id="' + value + '"]').prop('checked', true);
                 }
             }
-            
         </script>
     @endif
     <script>
@@ -256,6 +264,9 @@
                             $('#label' + item.id_R).removeClass().addClass(item
                                 .statusrep === 1 ? 'i fas fa-thin fa-check' :
                                 'i fas fa-thin fa-xmark');
+                            $('#valider').attr('hidden', true);
+                            $('input').attr('disabled', true);
+                            $('#effacer').removeAttr('hidden');
                         });
 
                     },

@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // })->name('home');
 
+// Route::get('/', [Home::class, 'index'])->name('home');
 Route::get('/', [Home::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'superadmin'], function () {

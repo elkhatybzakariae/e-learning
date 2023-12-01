@@ -36,6 +36,12 @@ class UserController extends Controller
         // dd($coursList['coursesGroupedByCategory']);
         // return view('index', compact('coursList','categorie','souscategorie','sujets'));
         
+        // return view('index', [
+        //     'coursList' => $coursList,
+        //     // 'categorie' => $coursList['categorie'],
+        //     'souscategorie' => $coursList['souscategorie'],
+        //     'sujets' => $coursList['sujets']
+        // ]);
         return view('index', [
             'coursList' => $coursList,
             // 'categorie' => $coursList['categorie'],
