@@ -1,6 +1,360 @@
 @extends('master.layout')
 
 @section('title', 'index')
+@section('link')
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <style type="text/css">
+        body {
+            margin-top: 20px;
+            background-color: #f4f7f6;
+        }
+
+        .c_review {
+            margin-bottom: 0
+        }
+
+        .c_review li {
+            margin-bottom: 16px;
+            padding-bottom: 13px;
+            border-bottom: 1px solid #e8e8e8
+        }
+
+        .c_review li:last-child {
+            margin: 0;
+            border: none
+        }
+
+        .c_review .avatar {
+            float: left;
+            width: 80px
+        }
+
+        .c_review .comment-action {
+            float: left;
+            width: calc(100% - 80px)
+        }
+
+        .c_review .comment-action .c_name {
+            margin: 0
+        }
+
+        .c_review .comment-action p {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 95%;
+            display: block
+        }
+
+        .product_item:hover .cp_img {
+            top: -40px
+        }
+
+        .product_item:hover .cp_img img {
+            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22)
+        }
+
+        .product_item:hover .cp_img .hover {
+            display: block
+        }
+
+        .product_item .cp_img {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translate(-50%);
+            -webkit-transform: translate(-50%);
+            -ms-transform: translate(-50%);
+            -moz-transform: translate(-50%);
+            -o-transform: translate(-50%);
+            -khtml-transform: translate(-50%);
+            width: 100%;
+            padding: 15px;
+            transition: all 0.2s ease-in-out
+        }
+
+        .product_item .cp_img img {
+            transition: all 0.2s ease-in-out;
+            border-radius: 6px
+        }
+
+        .product_item .cp_img .hover {
+            display: none;
+            text-align: center;
+            margin-top: 10px
+        }
+
+        .product_item .product_details {
+            padding-top: 110%;
+            text-align: center
+        }
+
+        .product_item .product_details h5 {
+            margin-bottom: 5px
+        }
+
+        .product_item .product_details h5 a {
+            font-size: 16px;
+            color: #444
+        }
+
+        .product_item .product_details h5 a:hover {
+            text-decoration: none
+        }
+
+        .product_item .product_details .product_price {
+            margin: 0
+        }
+
+        .product_item .product_details .product_price li {
+            display: inline-block;
+            padding: 0 10px
+        }
+
+        .product_item .product_details .product_price .new_price {
+            font-weight: 600;
+            color: #ff4136
+        }
+
+        .product_item_list table tr td {
+            vertical-align: middle
+        }
+
+        .product_item_list table tr td h5 {
+            font-size: 15px;
+            margin: 0
+        }
+
+        .product_item_list table tr td .btn {
+            box-shadow: none !important
+        }
+
+        .product-order-list table tr th:last-child {
+            width: 145px
+        }
+
+        .preview {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column
+        }
+
+        .preview .preview-pic {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1
+        }
+
+        .preview .preview-thumbnail.nav-tabs {
+            margin-top: 15px;
+            font-size: 0
+        }
+
+        .preview .preview-thumbnail.nav-tabs li {
+            width: 20%;
+            display: inline-block
+        }
+
+        .preview .preview-thumbnail.nav-tabs li nav-link img {
+            max-width: 100%;
+            display: block
+        }
+
+        .preview .preview-thumbnail.nav-tabs li a {
+            padding: 0;
+            margin: 2px;
+            border-radius: 0 !important;
+            border-top: none !important;
+            border-left: none !important;
+            border-right: none !important
+        }
+
+        .preview .preview-thumbnail.nav-tabs li:last-of-type {
+            margin-right: 0
+        }
+
+        .preview .tab-content {
+            overflow: hidden
+        }
+
+        .preview .tab-content img {
+            width: 100%;
+            -webkit-animation-name: opacity;
+            animation-name: opacity;
+            -webkit-animation-duration: .3s;
+            animation-duration: .3s
+        }
+
+        .details {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column
+        }
+
+        .details .rating .stars {
+            display: inline-block
+        }
+
+        .details .sizes .size {
+            margin-right: 10px
+        }
+
+        .details .sizes .size:first-of-type {
+            margin-left: 40px
+        }
+
+        .details .colors .color {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+            height: 2em;
+            width: 2em;
+            border-radius: 2px
+        }
+
+        .details .colors .color:first-of-type {
+            margin-left: 20px
+        }
+
+        .details .colors .not-available {
+            text-align: center;
+            line-height: 2em
+        }
+
+        .details .colors .not-available:before {
+            font-family: Material-Design-Iconic-Font;
+            content: "\f136";
+            color: #fff
+        }
+
+        @media screen and (max-width: 996px) {
+            .preview {
+                margin-bottom: 20px
+            }
+        }
+
+        @-webkit-keyframes opacity {
+            0% {
+                opacity: 0;
+                -webkit-transform: scale(3);
+                transform: scale(3)
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: scale(1);
+                transform: scale(1)
+            }
+        }
+
+        @keyframes opacity {
+            0% {
+                opacity: 0;
+                -webkit-transform: scale(3);
+                transform: scale(3)
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: scale(1);
+                transform: scale(1)
+            }
+        }
+
+        .cart-page .cart-table tr th:last-child {
+            width: 145px
+        }
+
+        .cart-table .quantity-grp {
+            width: 120px
+        }
+
+        .cart-table .quantity-grp .input-group {
+            margin-bottom: 0
+        }
+
+        .cart-table .quantity-grp .input-group-addon {
+            padding: 0 !important;
+            text-align: center;
+            background-color: #1ab1e3
+        }
+
+        .cart-table .quantity-grp .input-group-addon a {
+            display: block;
+            padding: 8px 10px 10px;
+            color: #fff
+        }
+
+        .cart-table .quantity-grp .input-group-addon a i {
+            vertical-align: middle
+        }
+
+        .cart-table .quantity-grp .form-control {
+            background-color: #fff
+        }
+
+        .cart-table .quantity-grp .form-control+.input-group-addon {
+            background-color: #1ab1e3
+        }
+
+        .ec-checkout .wizard .content .form-group .btn-group.bootstrap-select.form-control {
+            padding: 0
+        }
+
+        .ec-checkout .wizard .content .form-group .btn-group.bootstrap-select.form-control .btn-round.btn-simple {
+            padding-top: 12px;
+            padding-bottom: 12px
+        }
+
+        .ec-checkout .wizard .content ul.card-type {
+            font-size: 0
+        }
+
+        .ec-checkout .wizard .content ul.card-type li {
+            display: inline-block;
+            margin-right: 10px
+        }
+
+        .card {
+            background: #fff;
+            margin-bottom: 30px;
+            transition: .5s;
+            border: 0;
+            border-radius: .55rem;
+            position: relative;
+            width: 100%;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .card .body {
+            font-size: 14px;
+            color: #424242;
+            padding: 20px;
+            font-weight: 400;
+        }
+    </style>
+
+@endsection
 
 @section('content')
     <div id="wrapper">
@@ -9,204 +363,10 @@
 
             <!-- Main Content -->
             <div id="content">
-
-                <!-- Topbar -->
-                {{-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    
-
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
-                        <div class="sidebar-brand-icon">
-                            <img src="{{ asset('storage/images/logo.png') }}" alt="">
-                        </div>
-                        <div class="sidebar-brand-text mx-2">E-Learning</div>
-                    </a>
-                    <!-- Topbar Search -->
-                    <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" name="searchInput" class="form-control bg-light border-0 small"
-                                id="searchInput" placeholder="Search for..." aria-label="Search"
-                                aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit" id="searchButton">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 <div class="rounded-circle d-flex justify-content-center align-items-center"
-                                    style="width: 40px; height: 40px; background-color: black; color: white;">
-                                    {{ strtoupper(substr(auth()->user()->FirstName, 0, 1) . substr(auth()->user()->LastName, 0, 1)) }}
-                                </div>
-
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('profile') }}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="{{ route('teach') }}">
-                                    <i class="fa-solid fa-book-open"></i>
-                                    Formateur
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav> --}}
-
                 @include('master.navbar')
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                {{-- <div class="row" id="result">
-                            @foreach ($coursList as $cour)
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card shadow h-100 py-2">
-                                        <div class="text-center">
-                                            <img class="card-img-top" style="width: 200px;"
-                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                        {{ $cour->title }}</h5>
-                                                        <p class="card-text">{{ $cour->user->FirstName }}
-                                                            {{ $cour->user->LastName }}</p>
-                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
-                                                            {{ $cour->price }}$</div>
-                                                        
-                                                        <div style="display: flex; justify-content: space-between;">
-                                                            <a href="#" name="panier"
-                                                                data-id="{{ $cour->id_C }}"
-                                                                class="btn btn-primary btn-sm"
-                                                                data-route="{{ route('panier.store') }}">
-                                                                Ajouter au panier
-                                                            </a>
-                                                            <a href="#" name="wishlist"
-                                                                data-id="{{ $cour->id_C }}" class="btn btn-white"
-                                                                data-route="{{ route('wishlist.store') }}">
-                                                                <i class="fa-regular fa-heart"></i>
-                                                            </a>
-                                                        </div>
-
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div> --}}
                 <div class="container-fluid" id="bodycontent">
-                    {{-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                                <!-- Indicators -->
-                                <ol class="carousel-indicators">
-                                    @foreach ($coursList as $key => $cour)
-                                        <li data-target="#myCarousel" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"></li>
-                                    @endforeach
-                                </ol>
-                                
 
-                                <!-- Wrapper for slides -->
-                                <div class="carousel-inner">
-                                    @foreach ($coursList as $key => $cour)
-                                        <div class="item {{ $key == 0 ? 'active' : '' }}">
-                                            <div class="card shadow h-100 py-2">
-                                                <div class="text-center">
-                                                    <img class="card-img-top" style="width: 200px;" src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                                {{ $cour->title }}</h6>
-                                                            <p class="card-text">{{ $cour->user->FirstName }} {{ $cour->user->LastName }}</p>
-                                                            <div class="h5 mb-1 font-weight-bold text-gray-800">{{ $cour->price }}$</div>
-                                                            
-                                                            <div style="display: flex; justify-content: space-between;">
-                                                                <a href="#" name="panier" data-id="{{ $cour->id_C }}" class="btn btn-primary btn-sm" data-route="{{ route('panier.store') }}">
-                                                                    Ajouter au panier
-                                                                </a>
-                                                                <a href="#" name="wishlist" data-id="{{ $cour->id_C }}" class="btn btn-white" data-route="{{ route('wishlist.store') }}">
-                                                                    <i class="fa-regular fa-heart"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                                
-
-                                <!-- Left and right controls -->
-                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                    </div> --}}
-                    {{-- <div id="myCarousel" class="owl-carousel"> --}}
-                    {{-- @foreach ($coursList as $cour)
-                            <div class="item">
-                                <div class="card shadow h-100 py-2">
-                                    <div class="">
-                                        <img class="card-img-top" style="width: 100%;"
-                                            src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                    {{ $cour->title }}</h6>
-                                                <p class="card-text">{{ $cour->user->FirstName }}
-                                                    {{ $cour->user->LastName }}</p>
-                                                <div class="h5 mb-1 font-weight-bold text-gray-800">{{ $cour->price }}$
-                                                </div>
-
-                                                <div style="display: flex; justify-content: space-between;">
-                                                    <a href="#" name="panier" data-id="{{ $cour->id_C }}"
-                                                        class="btn btn-primary btn-sm"
-                                                        data-route="{{ route('panier.store') }}">
-                                                        Ajouter au panier
-                                                    </a>
-                                                    <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
-                                                        class="btn btn-white" data-route="{{ route('wishlist.store') }}">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach --}}
-                    @foreach ($coursList['coursesGroupedByCategory'] as $courses)
+                    {{-- @foreach ($coursList['coursesGroupedByCategory'] as $courses)
                         <hr class="my-4">
                         <div class="category-carousel">
                             <h5 style="color: black">{{ $courses['category'] }}</h5>
@@ -223,8 +383,8 @@
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
-                                                        <h6
-                                                            class="card-title font-weight-bold text-dark text-uppercase mb-1 text-truncate" style="max-width: 225px;">
+                                                        <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1 text-truncate"
+                                                            style="max-width: 225px;">
                                                             {{ $cour->title }}
                                                         </h6>
                                                         <p class="card-text">{{ $cour->user->FirstName }}
@@ -248,7 +408,7 @@
                                                             @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
                                                                 <a href="{{ route('wishlist.index') }}"
                                                                     class="btn btn-white">
-                                                                    <i class="fa-solid fa-heart" ></i>
+                                                                    <i class="fa-solid fa-heart"></i>
                                                                 </a>
                                                             @else
                                                                 <a href="#" name="wishlist"
@@ -267,247 +427,180 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endforeach
-
-
-                    {{-- @foreach ($coursList['coursesGroupedByCategory'] as $courses)
-                        <hr class="my-4">
-                        <div class="category-carousel">
-                            <h5 style="color: black">{{ $courses['category'] }}</h5>
-                            <div id="carouselExampleControls{{ $loop->iteration }}" class="carousel slide"
-                                data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    @foreach ($courses['courses'] as $key => $cour)
-                                        <div class="carousel-item{{ $key === 0 ? ' active' : '' }}">
-                                                    <div class="col-md-2">
-                                                        <div class="card shadow h-100 py-2">
-                                                            <div class="">
-                                                                <a href="{{ route('cour.show', $cour->id_C) }}">
-                                                                    <img class="card-img-top" style="width: 100%;"
-                                                                        src="{{ asset('storage/images/' . $courses['category'] . '.jpg') }}">
-                                                                </a>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <div class="row no-gutters align-items-center">
-                                                                    <div class="col mr-2">
-                                                                        <h6
-                                                                            class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                                            {{ $cour->title }}
-                                                                        </h6>
-                                                                        <p class="card-text">{{ $cour->user->FirstName }}
-                                                                            {{ $cour->user->LastName }}</p>
-                                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
-                                                                            {{ $cour->price }}$</div>
-                                                                        <div
-                                                                            style="display: flex; justify-content: space-between;">
-                                                                            @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
-                                                                                <a href="{{ route('panier.index') }}"
-                                                                                    class="btn btn-primary btn-sm">
-                                                                                    Acceder au panier
-                                                                                </a>
-                                                                            @else
-                                                                                <a href="#" name="panier"
-                                                                                    data-id="{{ $cour->id_C }}"
-                                                                                    class="btn btn-primary btn-sm"
-                                                                                    data-route="{{ route('panier.store') }}">
-                                                                                    Ajouter au panier
-                                                                                </a>
-                                                                            @endif
-                                                                            @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
-                                                                                <a href="{{ route('wishlist.index') }}"
-                                                                                    class="btn btn-white">
-                                                                                    <i class="fa-solid fa-heart"></i>
-                                                                                </a>
-                                                                            @else
-                                                                                <a href="#" name="wishlist"
-                                                                                    data-id="{{ $cour->id_C }}"
-                                                                                    class="btn btn-white"
-                                                                                    data-route="{{ route('wishlist.store') }}">
-                                                                                    <i class="fa-regular fa-heart"></i>
-                                                                                </a>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleControls{{ $loop->iteration }}" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleControls{{ $loop->iteration }}" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
                     @endforeach --}}
 
+                    <div class="container">
+                        <div class="row clearfix">
+                            @foreach ($coursList['coursesGroupedByCategory'] as $courses)
+                                <hr class="my-4">
+                                <div class=" container category-carousel">
+                                    <h5 style="color: black">{{ $courses['category'] }}</h5>
+                                    <div class="owl-carousel clearfix">
+                                        @foreach ($courses['courses'] as $cour)
+                                            <div class="item">
+                                                <div class="card product_item">
+                                                    <div class="body">
+                                                        <div class="cp_img">
+                                                            <img style="width: 195px; height:195px;" src="{{ asset('storage/' . $cour['photo']) }}"
+                                                                alt="Product" class="img-fluid">
+                                                            <div class="hover">
+                                                                {{-- <a href="javascript:void(0);"
+                                                                    class="btn btn-primary btn-sm waves-effect"><i
+                                                                        class="zmdi zmdi-plus"></i></a>
+                                                                <a href="javascript:void(0);"
+                                                                    class="btn btn-primary btn-sm waves-effect"><i
+                                                                        class="zmdi zmdi-shopping-cart"></i></a> --}}
 
-
-
-
-
-
-                    {{-- OLD VIEW --}}
-
-                    {{-- <div class="container-fluid row main-content-wrap gutter-lg">
-                    
-                    <aside
-                        class="col-lg-2 right-sidebar sidebar-fixed sidebar-toggle-remain shop-sidebar sticky-sidebar-wrapper">
-                        <div class="sidebar-overlay">
-                            <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
-                        </div>
-                        <div class="sidebar-content">
-                            <div class="sticky-sidebar" data-sticky-options="{'top': 10}">
-                                
-
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">
-                                        <a data-toggle="collapse" class="text-black-50 text-sm" href="#filterSection"
-                                            role="button" aria-expanded="false" aria-controls="filterSection"
-                                            id="filterToggle" class="d-flex justify-content-between align-items-center">
-                                            <span class="mr-2 ">Filter</span>
-                                            <i class="fas fa-plus plus-icon float-right"></i>
-                                        </a>
-                                    </h3>
-                                    <div class="widget-body collapse" id="filterSection">
-                                        <div class="col-6 col-sm-9 d-inline">
-                                            <div class="form-outline mb-2">
-                                                <select id="categorie" name="categorie" class="custom-select">
-                                                    <option selected>Filtrer par Categorie</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-outline mb-2">
-                                                <select id="souscategorie" name="souscategorie" class="custom-select">
-                                                    <option selected>Filtrer par SousCategorie</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-outline mb-2">
-                                                <select id="sujet" name="sujet" class="custom-select">
-                                                    <option selected>Filtrer par Sujet</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">
-                                        <a data-toggle="collapse" class="text-black-50" href="#priceFilter"
-                                            role="button" aria-expanded="false" aria-controls="priceFilter"
-                                            id="priceToggle">
-                                            Price <i class="fas fa-plus float-right"></i>
-                                        </a>
-                                    </h3>
-                                    <div class="widget-body collapse" id="priceFilter">
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label>Min</label>
-                                                <input type="number" class="form-control" id="min"
-                                                    placeholder="$0">
-                                            </div>
-                                            <div class="form-group col-md-6 text-right">
-                                                <label>Max</label>
-                                                <input type="number" class="form-control" id="max"
-                                                    placeholder="$1,0000">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </aside>
-                    <!-- Content Row -->
-
-                    <div class="col-lg-10 main-content">
-                        <div class="row" id="result">
-                            @foreach ($coursList as $cour)
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card shadow h-100 py-2">
-                                        <div class="text-center">
-                                            <img class="card-img-top" style="width: 200px;"
-                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                        {{ $cour->title }}</h5>
-                                                        <p class="card-text">{{ $cour->user->FirstName }}
-                                                            {{ $cour->user->LastName }}</p>
-                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
-                                                            {{ $cour->price }}$</div>
-                                                        
-                                                        <div style="display: flex; justify-content: space-between;">
-                                                            <a href="#" name="panier"
-                                                                data-id="{{ $cour->id_C }}"
-                                                                class="btn btn-primary btn-sm"
-                                                                data-route="{{ route('panier.store') }}">
-                                                                Ajouter au panier
-                                                            </a>
-                                                            <a href="#" name="wishlist"
-                                                                data-id="{{ $cour->id_C }}" class="btn btn-white"
-                                                                data-route="{{ route('wishlist.store') }}">
-                                                                <i class="fa-regular fa-heart"></i>
-                                                            </a>
+                                                                @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                                                    <a href="{{ route('panier.index') }}"
+                                                                        class="btn btn-primary btn-sm">
+                                                                        {{-- Acceder au panier --}}
+                                                                        
+                                                                        <i
+                                                                        class="zmdi zmdi-shopping-cart"></i>
+                                                                    </a>
+                                                                @else
+                                                                    <a href="#" name="panier"
+                                                                        data-id="{{ $cour->id_C }}"
+                                                                        class="btn btn-primary btn-sm"
+                                                                        data-route="{{ route('panier.store') }}">
+                                                                        <i
+                                                                        class="zmdi zmdi-shopping-cart"></i>
+                                                                    </a>
+                                                                @endif
+                                                                @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                                                    <a href="{{ route('wishlist.index') }}"
+                                                                        class="btn btn-white">
+                                                                        <i class="fa-solid fa-heart"></i>
+                                                                    </a>
+                                                                @else
+                                                                    <a href="#" name="wishlist"
+                                                                        data-id="{{ $cour->id_C }}" class="btn btn-white"
+                                                                        data-route="{{ route('wishlist.store') }}">
+                                                                        <i class="fa-regular fa-heart"></i>
+                                                                    </a>
+                                                                @endif
+                                                            </div>
                                                         </div>
-
-
-
+                                                        <div class="product_details">
+                                                            <h5><a href="ec-product-detail.html">{{ $cour->title }}</a>
+                                                            </h5>
+                                                            <ul class="product_price list-unstyled">
+                                                                {{-- <li class="old_price">$16.00</li> --}}
+                                                                <li class="new_price">${{ $cour->price }}</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             @endforeach
+
+
+
+
+
+                        {{--     <div class="col-lg-3 col-md-4 col-sm-12">
+                                <div class="card product_item">
+                                    <div class="body">
+                                        <div class="cp_img">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Product"
+                                                class="img-fluid">
+                                            <div class="hover">
+                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
+                                                        class="zmdi zmdi-plus"></i></a>
+                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
+                                                        class="zmdi zmdi-shopping-cart"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product_details">
+                                            <h5><a href="ec-product-detail.html">Simple Black Clock</a></h5>
+                                            <ul class="product_price list-unstyled">
+                                                <li class="old_price">$16.00</li>
+                                                <li class="new_price">$13.00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-12">
+                                <div class="card product_item">
+                                    <div class="body">
+                                        <div class="cp_img">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Product"
+                                                class="img-fluid">
+                                            <div class="hover">
+                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
+                                                        class="zmdi zmdi-plus"></i></a>
+                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
+                                                        class="zmdi zmdi-shopping-cart"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product_details">
+                                            <h5><a href="ec-product-detail.html">Simple Black Clock</a></h5>
+                                            <ul class="product_price list-unstyled">
+                                                <li class="old_price">$12.00</li>
+                                                <li class="new_price">$11.00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-12">
+                                <div class="card product_item">
+                                    <div class="body">
+                                        <div class="cp_img">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Product"
+                                                class="img-fluid">
+                                            <div class="hover">
+                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
+                                                        class="zmdi zmdi-plus"></i></a>
+                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
+                                                        class="zmdi zmdi-shopping-cart"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product_details">
+                                            <h5><a href="ec-product-detail.html">Brone Candle</a></h5>
+                                            <ul class="product_price list-unstyled">
+                                                <li class="old_price">$23.00</li>
+                                                <li class="new_price">$17.00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-12">
+                                <div class="card product_item">
+                                    <div class="body">
+                                        <div class="cp_img">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Product"
+                                                class="img-fluid">
+                                            <div class="hover">
+                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
+                                                        class="zmdi zmdi-plus"></i></a>
+                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
+                                                        class="zmdi zmdi-shopping-cart"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product_details">
+                                            <h5><a href="ec-product-detail.html">Simple Black Clock</a></h5>
+                                            <ul class="product_price list-unstyled">
+                                                <li class="old_price">$16.00</li>
+                                                <li class="new_price">$10.00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+
+
+
                         </div>
                     </div>
-                </div> --}}
-                    <!-- /.container-fluid -->
 
-                    {{-- <div>
-                    <nav class="g-mb-100" aria-label="Page Navigation">
-                        <ul class="list-inline mb-0">
-                          <li class="list-inline-item hidden-down">
-                            <a class="active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5" href="#!">1</a>
-                          </li>
-                          <li class="list-inline-item hidden-down">
-                            <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5" href="#!">2</a>
-                          </li>
-                          <li class="list-inline-item g-hidden-xs-down">
-                            <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5" href="#!">3</a>
-                          </li>
-                          <li class="list-inline-item hidden-down">
-                            <span class="g-width-30 g-height-30 g-color-gray-dark-v5 g-font-size-12 rounded-circle g-pa-5">...</span>
-                          </li>
-                          <li class="list-inline-item g-hidden-xs-down">
-                            <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5" href="#!">15</a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="#!" aria-label="Next">
-                              <span aria-hidden="true">
-                                <i class="fa fa-angle-right"></i>
-                              </span>
-                              <span class="sr-only">Next</span>
-                            </a>
-                          </li>
-                          <li class="list-inline-item float-right">
-                            <span class="u-pagination-v1__item-info g-color-gray-dark-v4 g-font-size-12 g-pa-5">Page 1 of 15</span>
-                          </li>
-                        </ul>
-                      </nav>
-                </div> --}}
                 </div>
-                <!-- End of Main Content -->
-
                 <!-- Footer -->
                 @include('master.footer')
                 <!-- End of Footer -->
@@ -516,80 +609,86 @@
             <!-- End of Content Wrapper -->
 
         </div>
-    @endsection
-    @section('script')
-        <script>
-            $(document).ready(function() {
-                $('.owl-carousel').owlCarousel({
-                    loop: true,
-                    margin: 10,
-                    responsiveClass: true,
-                    responsive: {
-                        0: {
-                            items: 1,
-                            nav: true
-                        },
-                        600: {
-                            items: 3,
-                            nav: true
-                        },
-                        1000: {
-                            items: 5,
-                            // nav: true,
-                            loop: true
-                        }
+    </div>
+@endsection
+@section('script')
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    600: {
+                        items: 3,
+                        nav: true
+                    },
+                    1000: {
+                        items: 5,
+                        // nav: true,
+                        loop: true
+                    }
+                }
+            });
+            $('a[name="panier"]').on('click', function(event) {
+                event.preventDefault();
+                var $panierLink = $(this);
+                var id = $(this).data('id');
+                var url = $(this).data('route');
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        $panierLink.text('Acceder au panier');
+                        $panierLink.attr('href', '{{ route('panier.index') }}');
+                        $panierLink.off('click');
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
                     }
                 });
-                $('a[name="panier"]').on('click', function(event) {
-                    event.preventDefault();
-                    var $panierLink = $(this);
-                    var id = $(this).data('id');
-                    var url = $(this).data('route');
-                    $.ajax({
-                        method: 'POST',
-                        url: url,
-                        data: {
-                            id: id,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(data) {
-                            $panierLink.text('Acceder au panier');
-                            $panierLink.attr('href', '{{ route('panier.index') }}');
-                            $panierLink.off('click');
+            });
+            $('a[name="wishlist"]').on('click', function(event) {
+                event.preventDefault();
+                var $wishlistLink = $(this);
+                var id = $(this).data('id');
+                var url = $(this).data('route');
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        $wishlistLink.html('<i class="fa-solid fa-heart"></i>');
+                        $wishlistLink.attr('href', '{{ route('wishlist.index') }}');
+                        $wishlistLink.off('click');
 
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(error);
-                        }
-                    });
-                });
-                $('a[name="wishlist"]').on('click', function(event) {
-                    event.preventDefault();
-                    var $wishlistLink = $(this);
-                    var id = $(this).data('id');
-                    var url = $(this).data('route');
-                    $.ajax({
-                        method: 'POST',
-                        url: url,
-                        data: {
-                            id: id,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(data) {
-                            $wishlistLink.html('<i class="fa-solid fa-heart"></i>');
-                            $wishlistLink.attr('href', '{{ route('wishlist.index') }}');
-                            $wishlistLink.off('click');
-
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(error);
-                        }
-                    });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
                 });
             });
-        </script>
+        });
+    </script>
 
-        {{-- <script>
+    {{-- <script>
         var result = document.getElementById('result')
         var categorieselect = document.getElementById('categorie')
         var souscategorieselect = document.getElementById('souscategorie')
@@ -1148,4 +1247,4 @@
             });
         });
     </script> --}}
-    @endsection
+@endsection
