@@ -7,8 +7,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
     <style type="text/css">
         body {
@@ -430,79 +429,75 @@
                     @endforeach --}}
 
                     <div class="container">
-                        <div class="row clearfix">
-                            @foreach ($coursList['coursesGroupedByCategory'] as $courses)
-                                <hr class="my-4">
-                                <div class=" container category-carousel">
-                                    <h5 style="color: black">{{ $courses['category'] }}</h5>
-                                    <div class="owl-carousel clearfix">
-                                        @foreach ($courses['courses'] as $cour)
-                                            <div class="item">
-                                                <div class="card product_item">
-                                                    <div class="body">
-                                                        <div class="cp_img">
-                                                            <img style="width: 195px; height:195px;" src="{{ asset('storage/' . $cour['photo']) }}"
-                                                                alt="Product" class="img-fluid">
-                                                            <div class="hover">
-                                                                {{-- <a href="javascript:void(0);"
+                        {{-- <div class="row"> --}}
+                        @foreach ($coursList['coursesGroupedByCategory'] as $courses)
+                            <hr class="my-4">
+                            <div class="category-carousel">
+                                <h5 style="color: black">{{ $courses['category'] }}</h5>
+                                <div class="owl-carousel clearfix">
+                                    @foreach ($courses['courses'] as $cour)
+                                        <div class="item ">
+                                            <div class="card product_item">
+                                                <div class="body">
+                                                    <div class="cp_img">
+                                                        <img style="width: 195px; height:195px;"
+                                                            src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
+                                                            {{-- class="img-fluid" --}} class="img-fluid custom-z-index">
+                                                        <div class="hover">
+                                                            {{-- <a href="javascript:void(0);"
                                                                     class="btn btn-primary btn-sm waves-effect"><i
                                                                         class="zmdi zmdi-plus"></i></a>
                                                                 <a href="javascript:void(0);"
                                                                     class="btn btn-primary btn-sm waves-effect"><i
                                                                         class="zmdi zmdi-shopping-cart"></i></a> --}}
 
-                                                                @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
-                                                                    <a href="{{ route('panier.index') }}"
-                                                                        class="btn btn-primary btn-sm">
-                                                                        {{-- Acceder au panier --}}
-                                                                        
-                                                                        <i
-                                                                        class="zmdi zmdi-shopping-cart"></i>
-                                                                    </a>
-                                                                @else
-                                                                    <a href="#" name="panier"
-                                                                        data-id="{{ $cour->id_C }}"
-                                                                        class="btn btn-primary btn-sm"
-                                                                        data-route="{{ route('panier.store') }}">
-                                                                        <i
-                                                                        class="zmdi zmdi-shopping-cart"></i>
-                                                                    </a>
-                                                                @endif
-                                                                @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
-                                                                    <a href="{{ route('wishlist.index') }}"
-                                                                        class="btn btn-white">
-                                                                        <i class="fa-solid fa-heart"></i>
-                                                                    </a>
-                                                                @else
-                                                                    <a href="#" name="wishlist"
-                                                                        data-id="{{ $cour->id_C }}" class="btn btn-white"
-                                                                        data-route="{{ route('wishlist.store') }}">
-                                                                        <i class="fa-regular fa-heart"></i>
-                                                                    </a>
-                                                                @endif
-                                                            </div>
+                                                            @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                                                <a href="{{ route('panier.index') }}"
+                                                                    class="btn btn-primary btn-sm">
+                                                                    {{-- Acceder au panier --}}
+
+                                                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                                                </a>
+                                                            @else
+                                                                <a href="#" name="panier"
+                                                                    data-id="{{ $cour->id_C }}"
+                                                                    class="btn btn-primary btn-sm"
+                                                                    data-route="{{ route('panier.store') }}">
+                                                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                                                </a>
+                                                            @endif
+                                                            @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                                                <a href="{{ route('wishlist.index') }}"
+                                                                    class="btn btn-white">
+                                                                    <i class="fa-solid fa-heart"></i>
+                                                                </a>
+                                                            @else
+                                                                <a href="#" name="wishlist"
+                                                                    data-id="{{ $cour->id_C }}" class="btn btn-white"
+                                                                    data-route="{{ route('wishlist.store') }}">
+                                                                    <i class="fa-regular fa-heart"></i>
+                                                                </a>
+                                                            @endif
                                                         </div>
-                                                        <div class="product_details">
-                                                            <h5><a href="ec-product-detail.html">{{ $cour->title }}</a>
-                                                            </h5>
-                                                            <ul class="product_price list-unstyled">
-                                                                {{-- <li class="old_price">$16.00</li> --}}
-                                                                <li class="new_price">${{ $cour->price }}</li>
-                                                            </ul>
-                                                        </div>
+                                                    </div>
+                                                    <div class="product_details">
+                                                        <h5><a href="ec-product-detail.html">{{ $cour->title }}</a>
+                                                        </h5>
+                                                        <ul class="product_price list-unstyled">
+                                                            {{-- <li class="old_price">$16.00</li> --}}
+                                                            <li class="new_price">${{ $cour->price }}</li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
-                                    </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                            @endforeach
+                            </div>
+                        @endforeach
 
 
-
-
-
-                        {{--     <div class="col-lg-3 col-md-4 col-sm-12">
+                        {{-- <div class="col-lg-3 col-md-4 col-sm-12">
                                 <div class="card product_item">
                                     <div class="body">
                                         <div class="cp_img">
@@ -593,30 +588,30 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> --}}
+                        </div> --}}
 
 
 
-                        </div>
                     </div>
-
                 </div>
-                <!-- Footer -->
-                @include('master.footer')
-                <!-- End of Footer -->
 
             </div>
-            <!-- End of Content Wrapper -->
+            <!-- Footer -->
+            @include('master.footer')
+            <!-- End of Footer -->
 
         </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
     </div>
 @endsection
 @section('script')
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript"></script>
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.owl-carousel').owlCarousel({

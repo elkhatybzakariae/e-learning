@@ -4,6 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <title>//</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/logo.png') }}">
+    <link href="{{ asset('storage/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template-->
+    <link href="{{ asset('storage/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link href="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
     <style>
         :root {
             --rotate-speed: 40;
@@ -274,6 +298,114 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <a class="sidebar-brand d-flex text-decoration-none align-items-center justify-content-center ms-1" href="{{ route('index') }}">
+            {{-- <div class="sidebar-brand-icon ps-1">
+                <img src="{{ asset('storage/images/logo.png') }}" alt="">
+            </div> --}}
+            {{-- <div class="sidebar-brand-text mx-2">E-Learning</div> --}}
+            <div class="sidebar-brand-text mx-2 fst-italic fw-bolder" style=" color: rgb(112, 112, 231);">E-Learning</div>
+
+        </a>
+        {{-- <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
+            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="text" name="searchInput" class="form-control bg-light border-0 small" id="searchInput"
+                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit" id="searchButton">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+     --}}
+    
+        <!-- Topbar Navbar -->
+        {{-- <ul class="navbar-nav ml-auto">
+    
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                    aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+    
+            <li class="nav-item no-arrow mx-1">
+                <a class="nav-link" href="{{ route('panier.index') }}" role="button">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </a>
+            </li>
+            <li class="nav-item no-arrow mx-1">
+                <a class="nav-link" href="{{ route('wishlist.index') }}" role="button">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+            </li>
+    
+    
+    
+            <div class="topbar-divider d-none d-sm-block"></div>
+    
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <div class="rounded-circle d-flex justify-content-center align-items-center"
+                        style="width: 40px; height: 40px; background-color: black; color: white;">
+                        {{ strtoupper(substr(auth()->user()->FirstName, 0, 1) . substr(auth()->user()->LastName, 0, 1)) }}
+                    </div>
+                    </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="{{ route('profile') }}">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                    </a>
+                    @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                    <a class="dropdown-item" href="{{ route('home2') }}">
+                        <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
+                        Dashboard
+                    </a>
+                    @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
+                    <a class="dropdown-item" href="{{ route('teach') }}">
+                        <i class="fa-solid fa-book-open"></i>
+                        Formateur
+                    </a>
+                    @elseif (auth()->user()->roles->contains('role_name', 'client'))
+                    <a class="dropdown-item" href="{{route('home2')}}">
+                        <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
+                        Dashboard
+                    </a>
+                    @endif
+                    
+                    <div class="dropdown-divider"></div>
+                    <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                </div>
+            </li>
+    
+        </ul> --}}
+    
+    </nav>
+    
     <!-- partial:index.partial.html -->
     <div class="void" id="void">
         <div class="crop">
@@ -313,6 +445,23 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>
+<script src=" {{ asset('storage/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src=" {{ asset('storage/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src=" {{ asset('storage/js/sb-admin-2.min.js') }}"></script>
+
+<!-- Page level plugins -->
+<script src="{{ asset('storage/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ asset('storage/js/demo/datatables-demo.js') }}"></script>
 <script>
     var categories = @json($categories);
     console.log(categories);
