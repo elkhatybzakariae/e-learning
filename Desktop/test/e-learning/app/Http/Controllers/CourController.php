@@ -10,6 +10,7 @@ use App\Models\Categorie;
 use App\Models\Cour;
 use App\Models\SousCategorie;
 use App\Models\Sujet;
+use App\Models\VideoTerminer;
 use Illuminate\Http\Request;
 
 class CourController extends Controller
@@ -17,9 +18,17 @@ class CourController extends Controller
     public function index()
     {
         $admin = auth()->user()->roles->contains('role_name', 'moderateur');
+        $client = auth()->user()->roles->contains('role_name', 'client');
         $id = Auth::id();
         if ($admin) {
             $cours = Cour::where('valider', '0')->orderBy('id_C', 'desc')->get();
+            return view('management.cour.index', compact('cours'));
+        } elseif ($client) {
+            // $cours = VideoTerminer::where('id_U', Auth::id())->with(['video.session.section'])->get();
+            $cours = Cour::whereHas('section.session.video.videoterminer', function($query) {
+                $query->where('id_U', Auth::id());
+            })->with('section.session.video')->get();
+            // dd($cours);            
             return view('management.cour.index', compact('cours'));
         } else {
             $cours = Cour::where('id_U', $id)->orderBy('id_C', 'desc')->get();
@@ -28,8 +37,8 @@ class CourController extends Controller
     }
     public function show($id)
     {
-        $couur= new Cour();
-        $cour=$couur->show($id);
+        $couur = new Cour();
+        $cour = $couur->show($id);
         return view('management.cour.show', compact('cour'));
 
 

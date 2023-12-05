@@ -307,7 +307,7 @@
             <div class="sidebar-brand-text mx-2 fst-italic fw-bolder" style=" color: rgb(112, 112, 231);">E-Learning</div>
 
         </a>
-        {{-- <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
+         {{-- <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
                 <input type="text" name="searchInput" class="form-control bg-light border-0 small" id="searchInput"
@@ -318,10 +318,9 @@
                     </button>
                 </div>
             </div>
-        </form>
-     --}}
+        </form> --}}
+     
     
-        <!-- Topbar Navbar -->
         {{-- <ul class="navbar-nav ml-auto">
     
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -464,14 +463,14 @@
 <script src="{{ asset('storage/js/demo/datatables-demo.js') }}"></script>
 <script>
     var categories = @json($categories);
-    console.log(categories);
+    // console.log(categories);
     var contenu = '';
     categories.forEach(item => {
         contenu += `<li>
                   <div class="card"><a href=""><span class="model-name">${item.CatName}</span><span>Model for
                   generating highly dimensional, mostly numeric, tabular data</span></a></div>
               </li>`;
-        console.log(item.CatName);
+        // console.log(item.CatName);
     });
     $('#card-list').html(contenu);
 </script>

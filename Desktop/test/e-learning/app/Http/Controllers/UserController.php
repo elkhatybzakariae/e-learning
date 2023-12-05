@@ -13,6 +13,7 @@ use App\Models\Cour;
 use App\Models\Panier;
 use App\Models\SousCategorie;
 use App\Models\Sujet;
+use App\Models\VideoTerminer;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;

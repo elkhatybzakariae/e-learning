@@ -440,9 +440,12 @@
                                             <div class="card product_item">
                                                 <div class="body">
                                                     <div class="cp_img">
-                                                        <img style="width: 195px; height:195px;"
-                                                            src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
-                                                            {{-- class="img-fluid" --}} class="img-fluid custom-z-index">
+
+                                                        <a href="{{ route('cour.show', $cour->id_C) }}">
+                                                            <img style="width: 195px; height:195px;"
+                                                                src="{{ asset('storage/' . $cour['photo']) }}"
+                                                                alt="Product" {{-- class="img-fluid" --}} class="img-fluid">
+                                                        </a>
                                                         <div class="hover">
                                                             {{-- <a href="javascript:void(0);"
                                                                     class="btn btn-primary btn-sm waves-effect"><i
@@ -481,7 +484,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="product_details">
-                                                        <h5><a href="ec-product-detail.html">{{ $cour->title }}</a>
+                                                        <h5><a href="#">{{ $cour->title }}</a>
                                                         </h5>
                                                         <ul class="product_price list-unstyled">
                                                             {{-- <li class="old_price">$16.00</li> --}}

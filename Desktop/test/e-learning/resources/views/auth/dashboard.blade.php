@@ -316,19 +316,19 @@
                         <i class="fa-solid fa-paste"></i>
                         <span>cours</span>
                     </a>
-                    {{-- <div id="collapsecours" class="collapse" aria-labelledby="headingUtilities"
+                    <div id="collapsecours" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
 
-                            <a class="collapse-item" href="{{ route('cour.index') }}">Table cours</a>
-                            <a class="collapse-item" href="{{ route('cour.coursvalider') }}">
+                            <a class="collapse-item" href="{{ route('cour.index') }}">Mes cours</a>
+                            {{-- <a class="collapse-item" href="{{ route('cour.coursvalider') }}">
                                 Table cours valider<i class="fa-solid fa-check ml-1"></i>
                             </a>
                             <a class="collapse-item" href="{{ route('cour.coursnonvalider') }}">
                                 Table cours non valider<i class="fa-solid fa-xmark ml-1"></i>
-                            </a>
+                            </a> --}}
                         </div>
-                    </div> --}}
+                    </div>
                 </li>
 
                 {{-- <li class="nav-item">
@@ -400,12 +400,12 @@
                         <i class="fa-solid fa-certificate"></i>
                         <span>Certificates</span>
                     </a>
-                    {{-- <div id="collapsecert" class="collapse" aria-labelledby="headingTwo"
+                    <div id="collapsecert" class="collapse" aria-labelledby="headingTwo"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('certificate.index') }}">Table Certificates</a>
+                            <a class="collapse-item" href="{{ route('certificate.index') }}">Mes Certificates</a>
                         </div>
-                    </div> --}}
+                    </div>
                 </li>
 
                 <li class="nav-item">
@@ -414,12 +414,12 @@
                         <i class="fa-solid fa-question"></i>
                         <span>Quiz</span>
                     </a>
-                    {{-- <div id="collapseQuiz" class="collapse" aria-labelledby="headingTwo"
+                    <div id="collapseQuiz" class="collapse" aria-labelledby="headingTwo"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('quiz.index') }}">Table Quiz</a>
+                            <a class="collapse-item" href="{{ route('quiz.index') }}">Mes Quiz</a>
                         </div>
-                    </div> --}}
+                    </div>
                 </li>
             @endif
             <!-- Divider -->
