@@ -18,16 +18,24 @@ class QuizController extends Controller
 {
     public function index()
     {
+        $formateur = auth()->user()->roles->contains('role_name', 'formateur');
+        $client = auth()->user()->roles->contains('role_name', 'client');
         $id = Auth::id();
-        $cours = Cour::where('id_U', $id)
-            ->with(['section.quiz'])
-            ->get();
-        $idsC = $cours->pluck('id_C')->all();
-        $section = Section::whereIn('id_C', $idsC)->get();
-        $idsS = $section->pluck('id_Sec')->all();
+        if ($formateur) {
+            $cours = Cour::where('id_U', $id)
+                ->with(['section.quiz'])
+                ->get();
+            $idsC = $cours->pluck('id_C')->all();
+            $section = Section::whereIn('id_C', $idsC)->get();
+            $idsS = $section->pluck('id_Sec')->all();
 
-        $quiz = Quiz::whereIn('id_Sec', $idsS)->get();
-        return view('management.quiz.index', compact('quiz'));
+            $quiz = Quiz::whereIn('id_Sec', $idsS)->get();
+            return view('management.quiz.index', compact('quiz'));
+        } elseif ($client) {
+            $quiz= QuizPasser::where('id_U',$id)->with(['quiz'])->get();
+            // dd($quiz);
+            return view('management.quiz.index', compact('quiz'));
+        }
     }
 
     public function create()
@@ -57,11 +65,11 @@ class QuizController extends Controller
     public function passer($id)
     {
         $idU = Auth::id();
-        $quiz = Quiz::where('id_Q', $id)->with(['questions.reponse','quizpasser.qrpasser'])->first();
-        
+        $quiz = Quiz::where('id_Q', $id)->with(['questions.reponse', 'quizpasser.qrpasser'])->first();
+
         $DejaPasser = QuizPasser::where('id_Q', $quiz->id_Q)->where('id_U', $idU)->first();
 
-        
+
         // $Q = Question::where('questable_id',$quiz->id_Q)->get();
 
         // $ids = $Q->pluck('id_Que')->all();
@@ -80,7 +88,7 @@ class QuizController extends Controller
                 $tab[$key] = $value;
             }
             // dd($tab);
-            return view('management.quiz.passerquiz', compact('quiz', 'tab','DejaPasser','nbQue'));
+            return view('management.quiz.passerquiz', compact('quiz', 'tab', 'DejaPasser', 'nbQue'));
             // }
         } else {
             return view('management.quiz.passerquiz', compact('quiz'));

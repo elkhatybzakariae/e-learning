@@ -21,10 +21,10 @@
                 <i class="fa-regular fa-plus"></i> Ajouter Cour</a>
         @endif
     </div>
-    <!-- DataTales Example --> @if (!auth()->user()->roles->contains('role_name', 'client'))
-           
-    <div class="card shadow mb-4">
-        <div class="card-body">
+    <!-- DataTales Example -->
+    @if (!auth()->user()->roles->contains('role_name', 'client'))
+        <div class="card shadow mb-4">
+            <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -167,54 +167,53 @@
                         </tbody>
                     </table>
                 </div>
-            
+            </div>
         </div>
-    </div>@else
-            
-            <div class="container">
-                @foreach ($cours as $cour)
-                    <div class="card product_item">
-                        <div class="body">
-                            <div class="cp_img">
-                                <a href="{{ route('cour.show', $cour->id_C) }}">
-                                    <img style="width: 195px; height:195px;" src="{{ asset('storage/' . $cour['photo']) }}"
-                                        alt="Product" class="img-fluid" class="img-fluid">
-                                </a>
-                                <div class="hover">
+    @else
+        <div class="container row">
+            @foreach ($cours as $cour)
+                <div class="card product_item col-lg-3 col-md-4 col-sm-12 ml-1">
+                    <div class="body">
+                        <div class="cp_img">
+                            <a href="{{ route('cour.show', $cour->id_C) }}">
+                                <img style="width: 195px; height:195px;" src="{{ asset('storage/' . $cour['photo']) }}"
+                                    alt="Product" class="img-fluid" class="img-fluid">
+                            </a>
+                            {{-- <div class="hover">
 
-                                    @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
-                                        <a href="{{ route('panier.index') }}" class="btn btn-primary btn-sm">
+                                @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                    <a href="{{ route('panier.index') }}" class="btn btn-primary btn-sm">
 
-                                            <i class="zmdi zmdi-shopping-cart"></i>
-                                        </a>
-                                    @else
-                                        <a href="#" name="panier" data-id="{{ $cour->id_C }}"
-                                            class="btn btn-primary btn-sm" data-route="{{ route('panier.store') }}">
-                                            <i class="zmdi zmdi-shopping-cart"></i>
-                                        </a>
-                                    @endif
-                                    @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
-                                        <a href="{{ route('wishlist.index') }}" class="btn btn-white">
-                                            <i class="fa-solid fa-heart"></i>
-                                        </a>
-                                    @else
-                                        <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
-                                            class="btn btn-white" data-route="{{ route('wishlist.store') }}">
-                                            <i class="fa-regular fa-heart"></i>
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="product_details">
-                                <h5><a href="#">{{ $cour->title }}</a>
-                                </h5>
-                                <ul class="product_price list-unstyled">
-                                    <li class="new_price">${{ $cour->price }}</li>
-                                </ul>
-                            </div>
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                    </a>
+                                @else
+                                    <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                                        class="btn btn-primary btn-sm" data-route="{{ route('panier.store') }}">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                    </a>
+                                @endif
+                                @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                    <a href="{{ route('wishlist.index') }}" class="btn btn-white">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </a>
+                                @else
+                                    <a href="#" name="wishlist" data-id="{{ $cour->id_C }}" class="btn btn-white"
+                                        data-route="{{ route('wishlist.store') }}">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </a>
+                                @endif
+                            </div> --}}
+                        </div>
+                        <div class="product_details">
+                            <h5><a href="#">{{ $cour->title }}</a>
+                            </h5>
+                            <ul class="product_price list-unstyled">
+                                <li class="new_price">${{ $cour->price }}</li>
+                            </ul>
                         </div>
                     </div>
-                @endforeach
-            </div>
-            @endif
+                </div>
+            @endforeach
+        </div>
+    @endif
 @endsection

@@ -2,7 +2,7 @@
 
 @section('title', 'index')
 @section('link')
-    <link rel="stylesheet"
+    {{-- <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -351,7 +351,7 @@
             padding: 20px;
             font-weight: 400;
         }
-    </style>
+    </style> --}}
 
 @endsection
 
@@ -359,7 +359,6 @@
     <div id="wrapper">
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
                 @include('master.navbar')
@@ -434,10 +433,10 @@
                             <hr class="my-4">
                             <div class="category-carousel">
                                 <h5 style="color: black">{{ $courses['category'] }}</h5>
-                                <div class="owl-carousel clearfix">
+                                <div class="owl-carousel ">
                                     @foreach ($courses['courses'] as $cour)
-                                        <div class="item ">
-                                            <div class="card product_item">
+                                        {{-- <div class=" "> --}}
+                                            <div class="item card product_item">
                                                 <div class="body">
                                                     <div class="cp_img">
 
@@ -493,7 +492,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        {{-- </div> --}}
                                     @endforeach
                                 </div>
                             </div>
@@ -610,11 +609,11 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript"></script>
+    <script type="text/javascript"></script> --}}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> --}}
     <script>
         $(document).ready(function() {
             $('.owl-carousel').owlCarousel({

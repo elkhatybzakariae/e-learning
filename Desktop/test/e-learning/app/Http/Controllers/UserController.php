@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\Categorie;
 use App\Models\Cour;
 use App\Models\Panier;
+use App\Models\QuizPasser;
 use App\Models\SousCategorie;
 use App\Models\Sujet;
 use App\Models\VideoTerminer;
@@ -70,8 +71,12 @@ class UserController extends Controller
         } elseif (auth()->user()->roles->contains('role_name', 'client')) {
             // $coursN = Cour::count();
             // $coursNo = Cour::where('valider', '0')->count();
-            // $coursV = Cour::where('valider', '1')->count();
-            return view('auth.dashboard2');
+            $cours = Cour::whereHas('section.session.video.videoterminer', function($query) {
+                $query->where('id_U', Auth::id());
+            })->count();
+            $videoN = VideoTerminer::where('id_U',Auth::id())->count();
+            $quizpasser = QuizPasser::where('id_U',Auth::id())->count();
+            return view('auth.dashboard2', compact('videoN','cours','quizpasser'));
         }
     }
 
