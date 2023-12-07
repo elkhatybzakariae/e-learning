@@ -393,12 +393,12 @@
 
 
     <style>
-        /* table td {
+        .tabletd {
             white-space: nowrap;
             max-width: 150px;
             overflow: hidden;
             text-overflow: ellipsis;
-        } */
+        }
 
         /* #actions {
             white-space: normal;

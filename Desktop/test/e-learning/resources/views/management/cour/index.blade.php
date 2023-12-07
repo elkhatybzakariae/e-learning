@@ -63,17 +63,17 @@
                             @if (auth()->user()->roles->contains('role_name', 'moderateur'))
                                 @foreach ($cours as $cour)
                                     <tr>
-                                        <td>{{ $cour->title }}</td>
-                                        <td>{{ $cour->info }}</td>
-                                        <td>{{ $cour->description }}</td>
-                                        <td>{{ $cour->Prerequisites }}</td>
-                                        <td>{{ $cour->price }}</td>
-                                        <td>{{ $cour->coupon }}</td>
-                                        <td>{{ $cour->valider ? 'Oui' : 'No' }}</td>
-                                        <td>{{ $cour->terminer ? 'Oui' : 'No' }}</td>
-                                        <td>{{ $cour->sujet->SjName }}</td>
-                                        <td>{{ $cour->sujet->souscategorie->SCatName }}</td>
-                                        <td>{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
+                                        <td class="tabletd">{{ $cour->title }}</td>
+                                        <td class="tabletd">{{ $cour->info }}</td>
+                                        <td class="tabletd">{{ $cour->description }}</td>
+                                        <td class="tabletd">{{ $cour->Prerequisites }}</td>
+                                        <td class="tabletd">{{ $cour->price }}</td>
+                                        <td class="tabletd">{{ $cour->coupon }}</td>
+                                        <td class="tabletd">{{ $cour->valider ? 'Oui' : 'No' }}</td>
+                                        <td class="tabletd">{{ $cour->terminer ? 'Oui' : 'No' }}</td>
+                                        <td class="tabletd">{{ $cour->sujet->SjName }}</td>
+                                        <td class="tabletd">{{ $cour->sujet->souscategorie->SCatName }}</td>
+                                        <td class="tabletd">{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
                                         <td id="actions" class="d-flex justify-content-center">
                                             <div class="dropdown">
                                                 <button class="btn btn-primary dropdown-toggle" type="button"
@@ -114,17 +114,18 @@
                             @elseif(auth()->user()->roles->contains('role_name', 'formateur'))
                                 @foreach ($cours as $cour)
                                     <tr>
-                                        <td>{{ $cour->title }}</td>
-                                        <td>{{ $cour->info }}</td>
-                                        <td>{{ $cour->description }}</td>
-                                        <td>{{ $cour->Prerequisites }}</td>
-                                        <td>{{ $cour->price }}</td>
-                                        <td>{{ $cour->coupon }}</td>
-                                        <td>{{ $cour->valider ? 'Oui' : 'No' }}</td>
-                                        <td>{{ $cour->terminer ? 'Oui' : 'No' }}</td>
-                                        <td>{{ $cour->sujet->SjName }}</td>
-                                        <td>{{ $cour->sujet->souscategorie->SCatName }}</td>
-                                        <td>{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
+                                        <td class="tabletd">{{ $cour->title }}</td>
+                                        <td class="tabletd">{{ $cour->info }}</td>
+                                        <td class="tabletd">{{ $cour->description }}</td>
+                                        <td class="tabletd">{{ $cour->Prerequisites }}</td>
+                                        <td class="tabletd">{{ $cour->price }}</td>
+                                        <td class="tabletd">{{ $cour->coupon }}</td>
+                                        <td class="tabletd">{{ $cour->valider ? 'Oui' : 'No' }}</td>
+                                        <td class="tabletd">{{ $cour->terminer ? 'Oui' : 'No' }}</td>
+                                        <td class="tabletd">{{ $cour->sujet->SjName }}</td>
+                                        <td class="tabletd">{{ $cour->sujet->souscategorie->SCatName }}</td>
+                                        <td class="tabletd">{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
+                                        <td class=""><i class="material-icons"></i></td>
                                         <td id="actions" class="d-flex justify-content-center">
                                             <div class="dropdown">
                                                 <button class="btn btn-primary dropdown-toggle" type="button"
