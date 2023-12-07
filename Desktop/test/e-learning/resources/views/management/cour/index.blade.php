@@ -174,7 +174,7 @@
             @foreach ($cours as $cour)
                 <div class="card product_item col-lg-3 col-md-4 col-sm-12 ml-1">
                     <div class="body">
-                        <div class="cp_img">
+                        <div class="cp_img d-flex justify-content-center align-items-center">
                             <a href="{{ route('cour.show', $cour->id_C) }}">
                                 <img style="width: 195px; height:195px;" src="{{ asset('storage/' . $cour['photo']) }}"
                                     alt="Product" class="img-fluid" class="img-fluid">

@@ -398,9 +398,9 @@
             max-width: 150px;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
+        } */
 
-        #actions {
+        /* #actions {
             white-space: normal;
             width: auto;
             overflow: visible;

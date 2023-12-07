@@ -467,7 +467,7 @@
     var contenu = '';
     categories.forEach(item => {
         contenu += `<li>
-                  <div class="card"><a href=""><span class="model-name">${item.CatName}</span><span>Model for
+                  <div class="card"><a href="{{ route('index') }}"><span class="model-name">${item.CatName}</span><span>Model for
                   generating highly dimensional, mostly numeric, tabular data</span></a></div>
               </li>`;
         // console.log(item.CatName);

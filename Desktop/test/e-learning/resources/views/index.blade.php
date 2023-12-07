@@ -352,7 +352,15 @@
             font-weight: 400;
         }
     </style> --}}
-
+    <style>
+        .title {
+            text-transform: capitalize;
+            /* white-space: nowrap;
+                max-width: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis; */
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -433,65 +441,67 @@
                             <hr class="my-4">
                             <div class="category-carousel">
                                 <h5 style="color: black">{{ $courses['category'] }}</h5>
-                                <div class="owl-carousel ">
+                                <div class="owl-carousel">
                                     @foreach ($courses['courses'] as $cour)
                                         {{-- <div class=" "> --}}
-                                            <div class="item card product_item">
-                                                <div class="body">
-                                                    <div class="cp_img">
+                                        <div style="
+                                            margin-top: 24px;
+                                            margin-bottom: 10px;"
+                                            class="item card product_item">
+                                            <div class="body">
+                                                <div class="cp_img">
 
-                                                        <a href="{{ route('cour.show', $cour->id_C) }}">
-                                                            <img style="width: 195px; height:195px;"
-                                                                src="{{ asset('storage/' . $cour['photo']) }}"
-                                                                alt="Product" {{-- class="img-fluid" --}} class="img-fluid">
-                                                        </a>
-                                                        <div class="hover">
-                                                            {{-- <a href="javascript:void(0);"
+                                                    <a href="{{ route('cour.show', $cour->id_C) }}">
+                                                        <img style="width: 195px; height:195px;"
+                                                            src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
+                                                            {{-- class="img-fluid" --}} class="img-fluid">
+                                                    </a>
+                                                    <div class="hover">
+                                                        {{-- <a href="javascript:void(0);"
                                                                     class="btn btn-primary btn-sm waves-effect"><i
                                                                         class="zmdi zmdi-plus"></i></a>
                                                                 <a href="javascript:void(0);"
                                                                     class="btn btn-primary btn-sm waves-effect"><i
                                                                         class="zmdi zmdi-shopping-cart"></i></a> --}}
 
-                                                            @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
-                                                                <a href="{{ route('panier.index') }}"
-                                                                    class="btn btn-primary btn-sm">
-                                                                    {{-- Acceder au panier --}}
+                                                        @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                                            <a href="{{ route('panier.index') }}"
+                                                                class="btn btn-primary btn-sm">
+                                                                {{-- Acceder au panier --}}
 
-                                                                    <i class="zmdi zmdi-shopping-cart"></i>
-                                                                </a>
-                                                            @else
-                                                                <a href="#" name="panier"
-                                                                    data-id="{{ $cour->id_C }}"
-                                                                    class="btn btn-primary btn-sm"
-                                                                    data-route="{{ route('panier.store') }}">
-                                                                    <i class="zmdi zmdi-shopping-cart"></i>
-                                                                </a>
-                                                            @endif
-                                                            @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
-                                                                <a href="{{ route('wishlist.index') }}"
-                                                                    class="btn btn-white">
-                                                                    <i class="fa-solid fa-heart"></i>
-                                                                </a>
-                                                            @else
-                                                                <a href="#" name="wishlist"
-                                                                    data-id="{{ $cour->id_C }}" class="btn btn-white"
-                                                                    data-route="{{ route('wishlist.store') }}">
-                                                                    <i class="fa-regular fa-heart"></i>
-                                                                </a>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_details">
-                                                        <h5><a href="#">{{ $cour->title }}</a>
-                                                        </h5>
-                                                        <ul class="product_price list-unstyled">
-                                                            {{-- <li class="old_price">$16.00</li> --}}
-                                                            <li class="new_price">${{ $cour->price }}</li>
-                                                        </ul>
+                                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                                            </a>
+                                                        @else
+                                                            <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                                                                class="btn btn-primary btn-sm"
+                                                                data-route="{{ route('panier.store') }}">
+                                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                                            </a>
+                                                        @endif
+                                                        @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                                            <a href="{{ route('wishlist.index') }}" class="btn btn-white">
+                                                                <i class="fa-solid fa-heart"></i>
+                                                            </a>
+                                                        @else
+                                                            <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
+                                                                class="btn btn-white"
+                                                                data-route="{{ route('wishlist.store') }}">
+                                                                <i class="fa-regular fa-heart"></i>
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
+                                                <div class="product_details" style="width: 174px;">
+                                                    <h5 class="title ">
+                                                        <a class="" href="#">{{ $cour->title }}</a>
+                                                    </h5>
+                                                    <ul class="product_price list-unstyled">
+                                                        {{-- <li class="old_price">$16.00</li> --}}
+                                                        <li class="new_price">${{ $cour->price }}</li>
+                                                    </ul>
+                                                </div>
                                             </div>
+                                        </div>
                                         {{-- </div> --}}
                                     @endforeach
                                 </div>
@@ -592,8 +602,6 @@
                                 </div>
                         </div> --}}
 
-
-
                     </div>
                 </div>
 
@@ -601,10 +609,8 @@
             <!-- Footer -->
             @include('master.footer')
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
-
     </div>
     </div>
 @endsection
