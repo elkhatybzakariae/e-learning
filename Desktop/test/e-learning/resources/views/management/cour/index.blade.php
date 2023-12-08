@@ -10,7 +10,70 @@
             text-overflow: ellipsis;
         }
     </style> --}}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        table.table td a:hover {
+            color: #2196F3;
+        }
 
+        table.table td a.edit {
+            color: #FFC107;
+        }
+
+        table.table td a.delete {
+            color: #F44336;
+        }
+
+        table.table td i {
+            font-size: 19px;
+        }
+
+        /* Modal styles */
+        .modal .modal-dialog {
+            max-width: 400px;
+        }
+
+        .modal .modal-header,
+        .modal .modal-body,
+        .modal .modal-footer {
+            padding: 20px 30px;
+        }
+
+        .modal .modal-content {
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .modal .modal-footer {
+            background: #ecf0f1;
+            border-radius: 0 0 3px 3px;
+        }
+
+        .modal .modal-title {
+            display: inline-block;
+        }
+
+        .modal .form-control {
+            border-radius: 2px;
+            box-shadow: none;
+            border-color: #dddddd;
+        }
+
+        .modal textarea.form-control {
+            resize: vertical;
+        }
+
+        .modal .btn {
+            border-radius: 2px;
+            min-width: 100px;
+        }
+
+        .modal form label {
+            font-weight: normal;
+        }
+    </style>
 @endsection
 @section('container-fluid')
     <!-- Page Heading -->
@@ -125,7 +188,6 @@
                                         <td class="tabletd">{{ $cour->sujet->SjName }}</td>
                                         <td class="tabletd">{{ $cour->sujet->souscategorie->SCatName }}</td>
                                         <td class="tabletd">{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
-                                        <td class=""><i class="material-icons"></i></td>
                                         <td id="actions" class="d-flex justify-content-center">
                                             <div class="dropdown">
                                                 <button class="btn btn-primary dropdown-toggle" type="button"
@@ -135,29 +197,39 @@
                                                 </button>
                                                 <div class="dropdown-menu animated--fade-in"
                                                     aria-labelledby="dropdownMenuButton">
-                                                    <a href="{{ route('cour.edit', $cour->id_C) }}"
+                                                    <a href="{{ route('cour.edit', $cour->id_C) }}" class="edit"
+                                                        class="btn btn-warning btn-icon-split ml-4 ">
+                                                        <i class="material-icons" data-toggle="tooltip"
+                                                            title="Edit">&#xE254;</i>
+                                                    </a>
+                                                    <a href="{{ route('cour.destroy', $cour->id_C) }}" class="delete"
+                                                        data-csrf="{{ csrf_token() }}">
+                                                        <i class="material-icons" data-toggle="tooltip"
+                                                            title="Delete">&#xE872;</i>
+                                                    </a>
+                                                    {{-- <a href="{{ route('cour.edit', $cour->id_C) }}"                                                        
                                                         class="btn btn-warning btn-icon-split ml-4 ">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-exclamation-triangle"></i>
                                                         </span>
                                                         <span class="text">modifier</span>
-                                                    </a>
-                                                    <div class="dropdown-item">
+                                                    </a> --}}
+                                                    {{-- <div class="dropdown-item">
                                                         <form action="{{ route('cour.destroy', $cour->id_C) }}"
                                                             method="post">
                                                             @csrf
                                                             @method('delete')
+                                                            
                                                             <button type="submit" class="btn btn-danger btn-icon-split"
                                                                 onclick="return confirm('Are you sure you want to delete this card?')">
-                                                                {{-- <i class="fas fa-trash"></i>class="btn btn-danger btn-circle" --}}
                                                                 <span class="icon text-white-50">
                                                                     <i class="fas fa-trash"></i>
                                                                 </span>
                                                                 <span class="text">supprimer</span>
-
+                                                                
                                                             </button>
                                                         </form>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </td>
@@ -217,4 +289,29 @@
             @endforeach
         </div>
     @endif
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.delete').on('click', function(event) {
+                event.preventDefault();
+
+                var csrfToken = $(this).data('csrf'); // Retrieve CSRF token from data attribute
+
+                $.ajax({
+                    type: 'DELETE', // Use 'DELETE' method for deleting resources
+                    url: $(this).attr('href'),
+                    data: {
+                        _token: csrfToken
+                    },
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        console.error('Error occurred:', error);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
