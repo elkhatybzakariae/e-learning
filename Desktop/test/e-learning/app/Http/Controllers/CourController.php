@@ -25,7 +25,7 @@ class CourController extends Controller
             return view('management.cour.index', compact('cours'));
         } elseif ($client) {
             // $cours = VideoTerminer::where('id_U', Auth::id())->with(['video.session.section'])->get();
-            $cours = Cour::whereHas('section.session.video.videoterminer', function($query) {
+            $cours = Cour::whereHas('section.session.video.videoterminer', function ($query) {
                 $query->where('id_U', Auth::id());
             })->with('section.session.video')->get();
             // dd($cours);            
@@ -195,10 +195,18 @@ class CourController extends Controller
     public function search(Request $request)
     {
         $searchQuery = $request->input('searchInput');
-        $searchResults = Cour::where('title', 'like', '%' . $searchQuery . '%')
-            ->where('valider', 1)
-            ->with('user', 'sujet.souscategorie.categorie')
-            ->get();
-        return response()->json($searchResults);
+        if ($searchQuery) {
+            $searchResults = Cour::where('title', 'like', '%' . $searchQuery . '%')
+                ->where('valider', 1)
+                ->with('user', 'sujet.souscategorie.categorie')
+                ->get();
+            if ($searchQuery) {
+                return response()->json($searchResults);
+            } else {
+                return response()->json(['message' => 'searchResults empty']);
+            }
+        } else {
+            return response()->json(['message' => 'searchInput empty']);
+        }
     }
 }

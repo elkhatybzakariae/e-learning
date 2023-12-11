@@ -443,7 +443,6 @@
                                 <h5 style="color: black">{{ $courses['category'] }}</h5>
                                 <div class="owl-carousel">
                                     @foreach ($courses['courses'] as $cour)
-                                        {{-- <div class=" "> --}}
                                         <div style="
                                             margin-top: 24px;
                                             margin-bottom: 10px;"
@@ -502,7 +501,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- </div> --}}
                                     @endforeach
                                 </div>
                             </div>

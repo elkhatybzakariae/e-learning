@@ -458,19 +458,15 @@
 <script src="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-
-<!-- Page level custom scripts -->
 <script src="{{ asset('storage/js/demo/datatables-demo.js') }}"></script>
 <script>
     var categories = @json($categories);
-    // console.log(categories);
     var contenu = '';
     categories.forEach(item => {
         contenu += `<li>
                   <div class="card"><a href="{{ route('index') }}"><span class="model-name">${item.CatName}</span><span>Model for
                   generating highly dimensional, mostly numeric, tabular data</span></a></div>
               </li>`;
-        // console.log(item.CatName);
     });
     $('#card-list').html(contenu);
 </script>

@@ -1,15 +1,6 @@
 @extends('auth.dashboard')
 @section('title', 'cours')
-
 @section('style')
-    {{-- <style>
-        table td {
-            white-space: nowrap;
-            max-width: 150px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style> --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -76,7 +67,6 @@
     </style>
 @endsection
 @section('container-fluid')
-    <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-2 text-gray-800">Cours</h1>
         @if (auth()->user()->roles->contains('role_name', 'formateur'))
@@ -84,7 +74,6 @@
                 <i class="fa-regular fa-plus"></i> Ajouter Cour</a>
         @endif
     </div>
-    <!-- DataTales Example -->
     @if (!auth()->user()->roles->contains('role_name', 'client'))
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -188,7 +177,7 @@
                                         <td class="tabletd">{{ $cour->sujet->SjName }}</td>
                                         <td class="tabletd">{{ $cour->sujet->souscategorie->SCatName }}</td>
                                         <td class="tabletd">{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
-                                        <td class="tabletd d-flex justify-content-center align-items-center">
+                                        {{-- <td class="tabletd d-flex justify-content-center align-items-center">
                                             <a href="{{ route('cour.edit', $cour->id_C) }}" class="edit"
                                                 class="btn btn-warning btn-icon-split ml-4 pe-2 ">
                                                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
@@ -197,7 +186,7 @@
                                                 data-csrf="{{ csrf_token() }}">
                                                 <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                                             </a>
-                                        </td>
+                                        </td> --}}
                                         <td id="actions" class="d-flex justify-content-center">
                                             <div class="dropdown">
                                                 <button class="btn btn-primary dropdown-toggle" type="button"
@@ -205,9 +194,9 @@
                                                     aria-expanded="false">
                                                     Actions
                                                 </button>
-                                                <div class="dropdown-menu animated--fade-in "
+                                                <div class="dropdown-menu animated--fade-in"
                                                     aria-labelledby="dropdownMenuButton">
-                                                    <a href="{{ route('cour.edit', $cour->id_C) }}" class="edit"
+                                                    {{-- <a href="{{ route('cour.edit', $cour->id_C) }}" class="edit"
                                                         class="btn btn-warning btn-icon-split ml-4 pe-2">
                                                         <i class="material-icons" data-toggle="tooltip"
                                                             title="Edit">&#xE254;</i>
@@ -216,36 +205,35 @@
                                                         data-csrf="{{ csrf_token() }}">
                                                         <i class="material-icons" data-toggle="tooltip"
                                                             title="Delete">&#xE872;</i>
-                                                    </a>
-                                                    {{-- <a href="{{ route('cour.edit', $cour->id_C) }}"                                                        
+                                                    </a> --}}
+                                                    <a href="{{ route('cour.edit', $cour->id_C) }}"
                                                         class="btn btn-warning btn-icon-split ml-4 ">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-exclamation-triangle"></i>
                                                         </span>
                                                         <span class="text">modifier</span>
-                                                    </a> --}}
-                                                    {{-- <div class="dropdown-item">
+                                                    </a>
+                                                    <div class="dropdown-item">
                                                         <form action="{{ route('cour.destroy', $cour->id_C) }}"
                                                             method="post">
                                                             @csrf
                                                             @method('delete')
-                                                            
+
                                                             <button type="submit" class="btn btn-danger btn-icon-split"
                                                                 onclick="return confirm('Are you sure you want to delete this card?')">
                                                                 <span class="icon text-white-50">
                                                                     <i class="fas fa-trash"></i>
                                                                 </span>
                                                                 <span class="text">supprimer</span>
-                                                                
+
                                                             </button>
                                                         </form>
-                                                    </div> --}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                 @endforeach
-                            @elseif(auth()->user()->roles->contains('role_name', 'client'))
                             @endif
                         </tbody>
                     </table>
@@ -305,11 +293,10 @@
         $(document).ready(function() {
             $('.delete').on('click', function(event) {
                 event.preventDefault();
-
-                var csrfToken = $(this).data('csrf'); // Retrieve CSRF token from data attribute
-
+                var csrfToken = $(this).data('csrf');
                 $.ajax({
-                    type: 'DELETE', // Use 'DELETE' method for deleting resources
+                    type: 'DELETE',
+                    /
                     url: $(this).attr('href'),
                     data: {
                         _token: csrfToken

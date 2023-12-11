@@ -29,8 +29,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // })->name('home');
-
-// Route::get('/', [Home::class, 'index'])->name('home');
 Route::get('/', [Home::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'superadmin'], function () {
@@ -43,12 +41,12 @@ Route::group(['middleware' => 'superadmin'], function () {
     Route::put('/update/user/{id}', [UserController::class, 'updateuser'])->name('updateuser');
 });
 Route::group(['middleware' => 'authen'], function () {
-    Route::get('/index', [UserController::class, 'index'])->name('index');
+    Route::get('/home', [UserController::class, 'index'])->name('index');
     Route::get('/teach', [UserController::class, 'teach'])->name('teach');
     Route::get('/teachdashboard', [UserController::class, 'teachdashboard'])->name('teachdashboard')->middleware('formateur');
     Route::get('/management', [UserController::class, 'management'])->name('management')->middleware('moderateur');
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-    Route::get('/home', [UserController::class, 'index2'])->name('home2');
+    // Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [UserController::class, 'index2'])->name('home2');
     Route::get('/profile/', [UserController::class, 'profile'])->name('profile');
     Route::put('/profile/update', [UserController::class, 'update'])->name('update');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
@@ -81,7 +79,6 @@ Route::group(['prefix' => 'categories', 'middleware' => 'authen'], function () {
     Route::put('/update/{id}', [CategorieController::class, 'update'])->name('categorie.update');
     Route::delete('/destroy/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
 });
-
 Route::group(['prefix' => 'souscategories', 'middleware' => 'authen'], function () {
     Route::get('/', [SousCategorieController::class, 'index'])->name('souscategorie.index');
     Route::get('/create', [SousCategorieController::class, 'create'])->name('souscategorie.create');
@@ -90,7 +87,6 @@ Route::group(['prefix' => 'souscategories', 'middleware' => 'authen'], function 
     Route::put('/update/{id}', [SousCategorieController::class, 'update'])->name('souscategorie.update');
     Route::delete('/destroy/{id}', [SousCategorieController::class, 'destroy'])->name('souscategorie.destroy');
 });
-
 Route::group(['prefix' => 'sujet', 'middleware' => 'authen'], function () {
     Route::get('/', [SujetController::class, 'index'])->name('sujet.index');
     Route::get('/create', [SujetController::class, 'create'])->name('sujet.create');
@@ -99,7 +95,6 @@ Route::group(['prefix' => 'sujet', 'middleware' => 'authen'], function () {
     Route::put('/update/{id}', [SujetController::class, 'update'])->name('sujet.update');
     Route::delete('/destroy/{id}', [SujetController::class, 'destroy'])->name('sujet.destroy');
 });
-
 Route::group(['prefix' => 'cour', 'middleware' => 'authen'], function () {
     Route::get('/', [CourController::class, 'index'])->name('cour.index');
     Route::get('/create', [CourController::class, 'create'])->name('cour.create');
@@ -115,11 +110,10 @@ Route::group(['prefix' => 'cour', 'middleware' => 'authen'], function () {
     Route::get('/subcategory/{name}', [CourController::class, 'filterparsouscat'])->name('cour.filterparsouscat');
     Route::get('/subject/{name}', [CourController::class, 'filterparsj'])->name('cour.filterparsj');
 
-    Route::get('/cour/search', [CourController::class, 'search'])->name('cour.search');
+    Route::get('/search', [CourController::class, 'search'])->name('cour.search');
     Route::get('/show/{id}', [CourController::class, 'show'])->name('cour.show');
 
 });
-
 Route::group(['prefix' => 'section', 'middleware' => 'authen'], function () {
     Route::get('/', [SectionController::class, 'index'])->name('section.index');
     Route::get('/create', [SectionController::class, 'create'])->name('section.create');
@@ -128,7 +122,6 @@ Route::group(['prefix' => 'section', 'middleware' => 'authen'], function () {
     Route::put('/update/{id}', [SectionController::class, 'update'])->name('section.update');
     Route::delete('/destroy/{id}', [SectionController::class, 'destroy'])->name('section.destroy');
 });
-
 Route::group(['prefix' => 'session', 'middleware' => 'authen'], function () {
     Route::get('/', [SessionController::class, 'index'])->name('session.index');
     Route::get('/create', [SessionController::class, 'create'])->name('session.create');
@@ -137,7 +130,6 @@ Route::group(['prefix' => 'session', 'middleware' => 'authen'], function () {
     Route::put('/update/{id}', [SessionController::class, 'update'])->name('session.update');
     Route::delete('/destroy/{id}', [SessionController::class, 'destroy'])->name('session.destroy');
 });
-
 Route::group(['prefix' => 'video', 'middleware' => 'authen'], function () {
     Route::get('/create', [VideoController::class, 'create'])->name('video.create');
     Route::get('/', [VideoController::class, 'index'])->name('video.index');
@@ -147,7 +139,6 @@ Route::group(['prefix' => 'video', 'middleware' => 'authen'], function () {
     Route::put('/update/{id}', [VideoController::class, 'update'])->name('video.update');
     Route::delete('/destroy/{id}', [VideoController::class, 'destroy'])->name('video.destroy');
 });
-
 Route::group(['prefix' => 'media', 'middleware' => 'authen'], function () {
     Route::get('/', [MediaController::class, 'index'])->name('media.index');
     Route::get('/create', [MediaController::class, 'create'])->name('media.create');
@@ -158,14 +149,12 @@ Route::group(['prefix' => 'media', 'middleware' => 'authen'], function () {
     Route::get('/download/{id}', [MediaController::class, 'downloadFile'])->name('file.download');
 
 });
-
 Route::group(['prefix' => 'certificate', 'middleware' => 'authen'], function () {
     Route::get('/', [CertificateController::class, 'index'])->name('certificate.index');
     Route::get('/create', [CertificateController::class, 'create'])->name('certificate.create');
     Route::post('/store', [CertificateController::class, 'store'])->name('certificate.store');
     Route::delete('/destroy/{id}', [CertificateController::class, 'destroy'])->name('certificate.destroy');
 });
-
 Route::group(['prefix' => 'quiz', 'middleware' => 'authen'], function () {
     Route::get('/', [QuizController::class, 'index'])->name('quiz.index');
     Route::get('/create', [QuizController::class, 'create'])->name('quiz.create');
@@ -174,20 +163,17 @@ Route::group(['prefix' => 'quiz', 'middleware' => 'authen'], function () {
     Route::get('/passer/{id}', [QuizController::class, 'passer'])->name('quiz.passer');
     Route::post('/valider', [QuizController::class, 'valider'])->name('quiz.valider');
 });
-
 Route::group(['prefix' => 'testquestion', 'middleware' => 'authen'], function () {
     Route::get('/{id}', [TestQuestionController::class, 'index'])->name('testquestion.index');
     Route::get('/create/{id}', [TestQuestionController::class, 'create'])->name('testquestion.create');
     Route::post('/store/{id}', [TestQuestionController::class, 'store'])->name('testquestion.store');
     Route::delete('/destroy/{id}', [TestQuestionController::class, 'destroy'])->name('testquestion.destroy');
 });
-
 Route::group(['prefix' => 'panier', 'middleware' => 'authen'], function () {
     Route::get('/', [PanierController::class, 'index'])->name('panier.index');
     Route::post('/store', [PanierController::class, 'store'])->name('panier.store');
     Route::delete('/delete/{id}', [PanierController::class, 'delete'])->name('panier.delete');
 });
-
 Route::group(['prefix' => 'wishlist', 'middleware' => 'authen'], function () {
     Route::get('/', [WishListController::class, 'index'])->name('wishlist.index');
     Route::post('/store', [WishListController::class, 'store'])->name('wishlist.store');

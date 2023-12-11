@@ -210,10 +210,10 @@ class UserController extends Controller
             return redirect()->route('home2');
         }
     }
-    public function dashboard()
-    {
-        return view('auth.dashboard');
-    }
+    // public function dashboard()
+    // {
+    //     return view('auth.dashboard');
+    // }
     public function profile()
     {
         $id = Auth::id();

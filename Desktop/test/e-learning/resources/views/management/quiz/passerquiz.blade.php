@@ -112,20 +112,22 @@
                     <div class="text center bg-white p-5 pb-3  rounded">
                         <form action="" id="quiz">
                             {{-- @csrf --}}
-                            <div class="form-group row ps-5 pe-5 justify-content-center">
+                            <div class="form-group row ps-5 pe-5 ms-5 justify-content-center">
                                 @php $counter = 1; @endphp
                                 {{-- @foreach ($quiz as $quiz) --}}
                                 @foreach ($quiz->questions as $Que)
-                                    <div class="col-12">
-                                        <div class="text-center mb-3">
+                                    <div class="col-12 mt-2 mb-4">
+                                        <h3>Question {{ $counter }} </h3>
+                                        <hr>
+                                        <div class=" mb-3">
                                             <span for="question" style="font-style: italic;">
-                                                Question {{ $counter }} : {{ $Que->question }} ?
+                                                 {{ $Que->question }} ?
                                             </span>
                                         </div>
                                         <div
                                             class="form-outline  mb-2 d-flex justify-content-center align-items-center flex-wrap">
                                             @foreach ($Que->reponse as $reponse)
-                                                <span class="d-inline-block text-center col-4">
+                                                <span class="d-inline-block col-12">
                                                     <input type="radio" id="{{ $reponse->id_R }}"
                                                         name="responses{{ $Que->id_Que }}" value="{{ $reponse->id_R }}">
                                                     <label id="label{{ $reponse->id_R }}" {{-- data-hidden-value="{{ $reponse->statusrep }}" --}}
