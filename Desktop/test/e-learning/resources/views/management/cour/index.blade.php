@@ -188,6 +188,16 @@
                                         <td class="tabletd">{{ $cour->sujet->SjName }}</td>
                                         <td class="tabletd">{{ $cour->sujet->souscategorie->SCatName }}</td>
                                         <td class="tabletd">{{ $cour->sujet->souscategorie->categorie->CatName }}</td>
+                                        <td class="tabletd d-flex justify-content-center align-items-center">
+                                            <a href="{{ route('cour.edit', $cour->id_C) }}" class="edit"
+                                                class="btn btn-warning btn-icon-split ml-4 pe-2 ">
+                                                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                            </a>
+                                            <a href="{{ route('cour.destroy', $cour->id_C) }}" class="delete ps-2"
+                                                data-csrf="{{ csrf_token() }}">
+                                                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                            </a>
+                                        </td>
                                         <td id="actions" class="d-flex justify-content-center">
                                             <div class="dropdown">
                                                 <button class="btn btn-primary dropdown-toggle" type="button"
@@ -195,14 +205,14 @@
                                                     aria-expanded="false">
                                                     Actions
                                                 </button>
-                                                <div class="dropdown-menu animated--fade-in"
+                                                <div class="dropdown-menu animated--fade-in "
                                                     aria-labelledby="dropdownMenuButton">
                                                     <a href="{{ route('cour.edit', $cour->id_C) }}" class="edit"
-                                                        class="btn btn-warning btn-icon-split ml-4 ">
+                                                        class="btn btn-warning btn-icon-split ml-4 pe-2">
                                                         <i class="material-icons" data-toggle="tooltip"
                                                             title="Edit">&#xE254;</i>
                                                     </a>
-                                                    <a href="{{ route('cour.destroy', $cour->id_C) }}" class="delete"
+                                                    <a href="{{ route('cour.destroy', $cour->id_C) }}" class="delete ps-2"
                                                         data-csrf="{{ csrf_token() }}">
                                                         <i class="material-icons" data-toggle="tooltip"
                                                             title="Delete">&#xE872;</i>
