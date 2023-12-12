@@ -57,10 +57,6 @@ class Cour extends Model
         $categorie = Categorie::all();
         $souscategorie = SousCategorie::all();
         $sujets = Sujet::all();
-        // $coursesByCategory = Cour::with('sujet', 'sujet.souscategorie', 'sujet.souscategorie.categorie')
-        //     ->where('valider', 1)
-        //     ->get()
-        //     ->groupBy('sujet.souscategorie.categorie_id_Cat');
         $coursesGroupedByCategory = [];
         foreach ($categorie as $category) {
             $categoryId = $category->id_Cat;

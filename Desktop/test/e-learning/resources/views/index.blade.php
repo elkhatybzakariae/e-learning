@@ -356,9 +356,9 @@
         .title {
             text-transform: capitalize;
             /* white-space: nowrap;
-                                max-width: 150px;
-                                overflow: hidden;
-                                text-overflow: ellipsis; */
+                                            max-width: 150px;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis; */
         }
     </style>
 @endsection
@@ -442,9 +442,9 @@
                                 <hr class="my-4">
                                 <div class="category-carousel row">
                                     <h5 style="color: black" class="col-10">{{ $courses['category'] }}</h5>
-                                    <h6 style="color: rgb(84, 22, 156)" class="col-2">
-                                        <a href="{{route('cour.catshow',$courses['category'])}}">
-                                            voir tous
+                                    <h6 style="color: rgb(84, 22, 156)" class="col-2 text-end">
+                                        <a href="{{ route('cour.catshow', $courses['category']) }}">
+                                            see all
                                         </a>
                                     </h6>
                                     <div class="owl-carousel">
@@ -455,11 +455,10 @@
                                                 class="item card product_item">
                                                 <div class="body">
                                                     <div class="cp_img">
-
                                                         <a href="{{ route('cour.show', $cour->id_C) }}">
                                                             <img style="width: 195px; height:195px;"
                                                                 src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
-                                                                {{-- class="img-fluid" --}} class="img-fluid">
+                                                                class="img-fluid">
                                                         </a>
                                                         <div class="hover">
                                                             {{-- <a href="javascript:void(0);"
@@ -502,7 +501,13 @@
                                                         </h5>
                                                         <ul class="product_price list-unstyled">
                                                             {{-- <li class="old_price">$16.00</li> --}}
-                                                            <li class="new_price">${{ $cour->price }}</li>
+                                                            <li class="new_price">
+                                                                @if ($cour->price === 0.0)
+                                                                    Free
+                                                                @else
+                                                                    ${{ $cour->price }}
+                                                                @endif
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -513,26 +518,27 @@
                             @endforeach
                         @endisset
                         @isset($cours)
-                            <div class="container row">
+                            <div class="container row ms-5">
                                 @foreach ($cours as $cour)
-                                    <div class="card product_item col-lg-3 col-md-4 col-sm-12">
+                                    <div class=" card product_item col-lg-3 ms-4 me-4">
                                         <div class="body">
-                                            <div class="cp_img d-flex justify-content-center align-items-center">
-                                                <a href="{{ route('cour.show', $cour->id_C) }}">
+                                            <div class="cp_img ">
+                                                <a class="d-flex justify-content-center align-items-center"
+                                                    href="{{ route('cour.show', $cour->id_C) }}">
                                                     <img style="width: 195px; height:195px;"
                                                         src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
                                                         class="img-fluid" class="img-fluid">
                                                 </a>
-                                                {{-- <div class="hover">
-                    
+                                                <div class="hover">
                                                     @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
                                                         <a href="{{ route('panier.index') }}" class="btn btn-primary btn-sm">
-                    
+
                                                             <i class="zmdi zmdi-shopping-cart"></i>
                                                         </a>
                                                     @else
                                                         <a href="#" name="panier" data-id="{{ $cour->id_C }}"
-                                                            class="btn btn-primary btn-sm" data-route="{{ route('panier.store') }}">
+                                                            class="btn btn-primary btn-sm"
+                                                            data-route="{{ route('panier.store') }}">
                                                             <i class="zmdi zmdi-shopping-cart"></i>
                                                         </a>
                                                     @endif
@@ -541,147 +547,34 @@
                                                             <i class="fa-solid fa-heart"></i>
                                                         </a>
                                                     @else
-                                                        <a href="#" name="wishlist" data-id="{{ $cour->id_C }}" class="btn btn-white"
-                                                            data-route="{{ route('wishlist.store') }}">
+                                                        <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
+                                                            class="btn btn-white" data-route="{{ route('wishlist.store') }}">
                                                             <i class="fa-regular fa-heart"></i>
                                                         </a>
                                                     @endif
-                                                </div> --}}
+                                                </div>
                                             </div>
                                             <div class="product_details">
                                                 <h5><a href="#">{{ $cour->title }}</a>
                                                 </h5>
                                                 <ul class="product_price list-unstyled">
-                                                    <li class="new_price">${{ $cour->price }}</li>
+                                                    <li class="new_price">
+                                                        @if ($cour->price === 0.0)
+                                                            Free
+                                                        @else
+                                                            ${{ $cour->price }}
+                                                        @endif
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
-                            <ul class='pagination'>
+                            <div class='d-flex justify-content-end align-items-end'>
                                 {{ $cours->links('pagination::bootstrap-4') }}
-                            </ul>
-                            {{-- {{$cours->links()}} --}}
-                            {{-- @dd($cours->links()) --}}
-                            {{-- @php
-                                $customLinks = $cours->links()->toHtml();
-                                // echo $customLinks;
-                            @endphp
-
-                            <nav aria-label="...">
-                                <ul class="pagination">
-                                    <li class="page-item disabled">
-                                        <a class="page-link">Previous</a>
-                                    </li>
-                                    {!! $customLinks !!}
-                                    @foreach ($cours->links() as $key => $item)
-                                        {{ $key }}: {{ $item }}
-                                    @endforeach
-
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav> --}}
-
-
-
+                            </div>
                         @endisset
-
-                        {{-- <div class="col-lg-3 col-md-4 col-sm-12">
-                                <div class="card product_item">
-                                    <div class="body">
-                                        <div class="cp_img">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Product"
-                                                class="img-fluid">
-                                            <div class="hover">
-                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
-                                                        class="zmdi zmdi-plus"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
-                                                        class="zmdi zmdi-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product_details">
-                                            <h5><a href="ec-product-detail.html">Simple Black Clock</a></h5>
-                                            <ul class="product_price list-unstyled">
-                                                <li class="old_price">$16.00</li>
-                                                <li class="new_price">$13.00</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-12">
-                                <div class="card product_item">
-                                    <div class="body">
-                                        <div class="cp_img">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Product"
-                                                class="img-fluid">
-                                            <div class="hover">
-                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
-                                                        class="zmdi zmdi-plus"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
-                                                        class="zmdi zmdi-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product_details">
-                                            <h5><a href="ec-product-detail.html">Simple Black Clock</a></h5>
-                                            <ul class="product_price list-unstyled">
-                                                <li class="old_price">$12.00</li>
-                                                <li class="new_price">$11.00</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-12">
-                                <div class="card product_item">
-                                    <div class="body">
-                                        <div class="cp_img">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Product"
-                                                class="img-fluid">
-                                            <div class="hover">
-                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
-                                                        class="zmdi zmdi-plus"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
-                                                        class="zmdi zmdi-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product_details">
-                                            <h5><a href="ec-product-detail.html">Brone Candle</a></h5>
-                                            <ul class="product_price list-unstyled">
-                                                <li class="old_price">$23.00</li>
-                                                <li class="new_price">$17.00</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-12">
-                                <div class="card product_item">
-                                    <div class="body">
-                                        <div class="cp_img">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Product"
-                                                class="img-fluid">
-                                            <div class="hover">
-                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
-                                                        class="zmdi zmdi-plus"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm waves-effect"><i
-                                                        class="zmdi zmdi-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product_details">
-                                            <h5><a href="ec-product-detail.html">Simple Black Clock</a></h5>
-                                            <ul class="product_price list-unstyled">
-                                                <li class="old_price">$16.00</li>
-                                                <li class="new_price">$10.00</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div> --}}
-
                     </div>
                 </div>
 
@@ -695,11 +588,6 @@
     </div>
 @endsection
 @section('script')
-    {{-- <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript"></script> --}}
-
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> --}}
     <script>
         $(document).ready(function() {
             $('.owl-carousel').owlCarousel({

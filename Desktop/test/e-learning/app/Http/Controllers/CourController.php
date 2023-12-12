@@ -209,7 +209,7 @@ class CourController extends Controller
         $cours = Cour::where('title', 'like', '%' . $searchQuery . '%')
             ->where('valider', 1)
             ->with('user', 'sujet.souscategorie.categorie')
-            ->paginate(5);
+            ->paginate(6);
         // dd($searchResults);
         // if ($cours) {
         return view('index', [
