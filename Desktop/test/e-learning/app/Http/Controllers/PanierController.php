@@ -16,7 +16,8 @@ class PanierController extends Controller
         $listid = Panier::where('id_U', $id)->get();
         $ids = $listid->pluck('id_C')->all();
         $listC = Cour::whereIn('id_C', $ids)->get();
-        return view('management.panier.index', compact('listC'));
+        $NeleinP= Panier::where('id_U', $id)->count();
+        return view('management.panier.index', compact('listC','NeleinP'));
     }
     public function store(Request $request)
     {
