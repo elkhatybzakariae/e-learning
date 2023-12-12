@@ -51,6 +51,15 @@ class CourController extends Controller
         //     // dd($cour);
         //     return view('management.cour.show', compact('cour'));
     }
+    public function catshow($name)
+    {
+        $cours = Cour::whereHas('sujet.souscategorie.categorie', function ($query) use ($name) {
+            $query->where('CatName', $name);
+        })->paginate(5);
+        return view('index', [
+            'cours' => $cours,
+        ]);
+    }
     public function coursvalider()
     {
         $id = Auth::id();
@@ -195,18 +204,24 @@ class CourController extends Controller
     public function search(Request $request)
     {
         $searchQuery = $request->input('searchInput');
-        if ($searchQuery) {
-            $searchResults = Cour::where('title', 'like', '%' . $searchQuery . '%')
-                ->where('valider', 1)
-                ->with('user', 'sujet.souscategorie.categorie')
-                ->get();
-            if ($searchQuery) {
-                return response()->json($searchResults);
-            } else {
-                return response()->json(['message' => 'searchResults empty']);
-            }
-        } else {
-            return response()->json(['message' => 'searchInput empty']);
-        }
+        // $searchQuery = $request->input('searchInput');
+        // if ($searchQuery) {
+        $cours = Cour::where('title', 'like', '%' . $searchQuery . '%')
+            ->where('valider', 1)
+            ->with('user', 'sujet.souscategorie.categorie')
+            ->paginate(5);
+        // dd($searchResults);
+        // if ($cours) {
+        return view('index', [
+            'cours' => $cours,
+        ]);
+        // return redirect()->route('index', compact($cours));
+        // return response()->json($searchResults);
+        //     } else {
+        //         return response()->json(['message' => 'searchResults empty']);
+        //     }
+        // } else {
+        //     return response()->json(['message' => 'searchInput empty']);
+        // }
     }
 }

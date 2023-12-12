@@ -112,6 +112,7 @@ Route::group(['prefix' => 'cour', 'middleware' => 'authen'], function () {
 
     Route::get('/search', [CourController::class, 'search'])->name('cour.search');
     Route::get('/show/{id}', [CourController::class, 'show'])->name('cour.show');
+    Route::get('/category/show/{name}', [CourController::class, 'catshow'])->name('cour.catshow');
 
 });
 Route::group(['prefix' => 'section', 'middleware' => 'authen'], function () {

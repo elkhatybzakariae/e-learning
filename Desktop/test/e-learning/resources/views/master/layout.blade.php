@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    {{-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> --}}
+
+
     @yield('link')
     <style type="text/css">
         body {
@@ -398,7 +401,7 @@
 <script src=" {{ asset('storage/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src=" {{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src=" {{ asset('storage/js/demo/datatables-demo.js') }}"></script>
-<script src=" {{ asset('storage/js/search.js') }}"></script>
+{{-- <script src=" {{ asset('storage/js/search.js') }}"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

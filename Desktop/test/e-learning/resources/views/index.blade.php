@@ -356,9 +356,9 @@
         .title {
             text-transform: capitalize;
             /* white-space: nowrap;
-                max-width: 150px;
-                overflow: hidden;
-                text-overflow: ellipsis; */
+                                max-width: 150px;
+                                overflow: hidden;
+                                text-overflow: ellipsis; */
         }
     </style>
 @endsection
@@ -437,75 +437,157 @@
 
                     <div class="container">
                         {{-- <div class="row"> --}}
-                        @foreach ($coursList['coursesGroupedByCategory'] as $courses)
-                            <hr class="my-4">
-                            <div class="category-carousel">
-                                <h5 style="color: black">{{ $courses['category'] }}</h5>
-                                <div class="owl-carousel">
-                                    @foreach ($courses['courses'] as $cour)
-                                        <div style="
+                        @isset($coursList)
+                            @foreach ($coursList['coursesGroupedByCategory'] as $courses)
+                                <hr class="my-4">
+                                <div class="category-carousel row">
+                                    <h5 style="color: black" class="col-10">{{ $courses['category'] }}</h5>
+                                    <h6 style="color: rgb(84, 22, 156)" class="col-2">
+                                        <a href="{{route('cour.catshow',$courses['category'])}}">
+                                            voir tous
+                                        </a>
+                                    </h6>
+                                    <div class="owl-carousel">
+                                        @foreach ($courses['courses'] as $cour)
+                                            <div style="
                                             margin-top: 24px;
                                             margin-bottom: 10px;"
-                                            class="item card product_item">
-                                            <div class="body">
-                                                <div class="cp_img">
+                                                class="item card product_item">
+                                                <div class="body">
+                                                    <div class="cp_img">
 
-                                                    <a href="{{ route('cour.show', $cour->id_C) }}">
-                                                        <img style="width: 195px; height:195px;"
-                                                            src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
-                                                            {{-- class="img-fluid" --}} class="img-fluid">
-                                                    </a>
-                                                    <div class="hover">
-                                                        {{-- <a href="javascript:void(0);"
+                                                        <a href="{{ route('cour.show', $cour->id_C) }}">
+                                                            <img style="width: 195px; height:195px;"
+                                                                src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
+                                                                {{-- class="img-fluid" --}} class="img-fluid">
+                                                        </a>
+                                                        <div class="hover">
+                                                            {{-- <a href="javascript:void(0);"
                                                                     class="btn btn-primary btn-sm waves-effect"><i
                                                                         class="zmdi zmdi-plus"></i></a>
                                                                 <a href="javascript:void(0);"
                                                                     class="btn btn-primary btn-sm waves-effect"><i
                                                                         class="zmdi zmdi-shopping-cart"></i></a> --}}
 
-                                                        @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
-                                                            <a href="{{ route('panier.index') }}"
-                                                                class="btn btn-primary btn-sm">
-                                                                {{-- Acceder au panier --}}
+                                                            @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                                                <a href="{{ route('panier.index') }}"
+                                                                    class="btn btn-primary btn-sm">
+                                                                    {{-- Acceder au panier --}}
 
-                                                                <i class="zmdi zmdi-shopping-cart"></i>
-                                                            </a>
-                                                        @else
-                                                            <a href="#" name="panier" data-id="{{ $cour->id_C }}"
-                                                                class="btn btn-primary btn-sm"
-                                                                data-route="{{ route('panier.store') }}">
-                                                                <i class="zmdi zmdi-shopping-cart"></i>
-                                                            </a>
-                                                        @endif
-                                                        @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
-                                                            <a href="{{ route('wishlist.index') }}" class="btn btn-white">
-                                                                <i class="fa-solid fa-heart"></i>
-                                                            </a>
-                                                        @else
-                                                            <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
-                                                                class="btn btn-white"
-                                                                data-route="{{ route('wishlist.store') }}">
-                                                                <i class="fa-regular fa-heart"></i>
-                                                            </a>
-                                                        @endif
+                                                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                                                </a>
+                                                            @else
+                                                                <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                                                                    class="btn btn-primary btn-sm"
+                                                                    data-route="{{ route('panier.store') }}">
+                                                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                                                </a>
+                                                            @endif
+                                                            @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                                                <a href="{{ route('wishlist.index') }}" class="btn btn-white">
+                                                                    <i class="fa-solid fa-heart"></i>
+                                                                </a>
+                                                            @else
+                                                                <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
+                                                                    class="btn btn-white"
+                                                                    data-route="{{ route('wishlist.store') }}">
+                                                                    <i class="fa-regular fa-heart"></i>
+                                                                </a>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_details" style="width: 174px;">
+                                                        <h5 class="title ">
+                                                            <a class="" href="#">{{ $cour->title }}</a>
+                                                        </h5>
+                                                        <ul class="product_price list-unstyled">
+                                                            {{-- <li class="old_price">$16.00</li> --}}
+                                                            <li class="new_price">${{ $cour->price }}</li>
+                                                        </ul>
                                                     </div>
                                                 </div>
-                                                <div class="product_details" style="width: 174px;">
-                                                    <h5 class="title ">
-                                                        <a class="" href="#">{{ $cour->title }}</a>
-                                                    </h5>
-                                                    <ul class="product_price list-unstyled">
-                                                        {{-- <li class="old_price">$16.00</li> --}}
-                                                        <li class="new_price">${{ $cour->price }}</li>
-                                                    </ul>
-                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endisset
+                        @isset($cours)
+                            <div class="container row">
+                                @foreach ($cours as $cour)
+                                    <div class="card product_item col-lg-3 col-md-4 col-sm-12">
+                                        <div class="body">
+                                            <div class="cp_img d-flex justify-content-center align-items-center">
+                                                <a href="{{ route('cour.show', $cour->id_C) }}">
+                                                    <img style="width: 195px; height:195px;"
+                                                        src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
+                                                        class="img-fluid" class="img-fluid">
+                                                </a>
+                                                {{-- <div class="hover">
+                    
+                                                    @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                                        <a href="{{ route('panier.index') }}" class="btn btn-primary btn-sm">
+                    
+                                                            <i class="zmdi zmdi-shopping-cart"></i>
+                                                        </a>
+                                                    @else
+                                                        <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                                                            class="btn btn-primary btn-sm" data-route="{{ route('panier.store') }}">
+                                                            <i class="zmdi zmdi-shopping-cart"></i>
+                                                        </a>
+                                                    @endif
+                                                    @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                                        <a href="{{ route('wishlist.index') }}" class="btn btn-white">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                        </a>
+                                                    @else
+                                                        <a href="#" name="wishlist" data-id="{{ $cour->id_C }}" class="btn btn-white"
+                                                            data-route="{{ route('wishlist.store') }}">
+                                                            <i class="fa-regular fa-heart"></i>
+                                                        </a>
+                                                    @endif
+                                                </div> --}}
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="#">{{ $cour->title }}</a>
+                                                </h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="new_price">${{ $cour->price }}</li>
+                                                </ul>
                                             </div>
                                         </div>
-                                    @endforeach
-                                </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
+                            <ul class='pagination'>
+                                {{ $cours->links('pagination::bootstrap-4') }}
+                            </ul>
+                            {{-- {{$cours->links()}} --}}
+                            {{-- @dd($cours->links()) --}}
+                            {{-- @php
+                                $customLinks = $cours->links()->toHtml();
+                                // echo $customLinks;
+                            @endphp
 
+                            <nav aria-label="...">
+                                <ul class="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link">Previous</a>
+                                    </li>
+                                    {!! $customLinks !!}
+                                    @foreach ($cours->links() as $key => $item)
+                                        {{ $key }}: {{ $item }}
+                                    @endforeach
+
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav> --}}
+
+
+
+                        @endisset
 
                         {{-- <div class="col-lg-3 col-md-4 col-sm-12">
                                 <div class="card product_item">
