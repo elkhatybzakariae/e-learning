@@ -355,7 +355,7 @@
 
 
                                     <div class="col-md-4" >
-                                        <div class="payment-info mt-5" style="background-color: #ffffff">
+                                        <div class="payment-info mt-5 shadow" style="background-color: #ffffff">
                                             <div class="d-flex justify-content-between align-items-center"><span
                                                     style="color: black;">
                                                     Details</span>
@@ -423,7 +423,7 @@
                                                 {{-- </span> --}}
                                             </button>
                                         </div>
-                                        <div class="payment-info mt-3">
+                                        <div class="payment-info mt-3 shadow" style="background-color: #ffffff">
                                             <div class="cart-icons">
                                                 <div class="cart-icons-title mb-2" style="color: black;">Payez avec</div>
                                                 <div class="cart-icons-list mt-1 mb-1">
