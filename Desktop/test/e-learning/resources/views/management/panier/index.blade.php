@@ -237,8 +237,8 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-2 text-gray-800">Panier</h1>
                     </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-body">
+                    <div class="card shadow mb-4" style="background-color: #f5f5f5">
+                        <div class="card-body"  style="background-color: #f5f5f5">
                             {{-- <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -291,7 +291,7 @@
                                     </tbody>
                                 </table>
                             </div> --}}
-                            <div class="container mt-2 p-2 rounded cart">
+                            <div class="container mt-2 p-2 rounded cart"  style="background-color: #f5f5f5">
                                 <div class="row no-gutters">
                                     <div class="col-md-8">
                                         <div class="product-details mr-2">
@@ -310,7 +310,7 @@
                                             </div>
                                             @foreach ($listC as $item)
                                                 @if ($item->price != 0.0)
-                                                    <div
+                                                    <div  style="background-color: #ffffff"
                                                         class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                                                         <div class="d-flex flex-row">
                                                             <div class="custom-control custom-checkbox align-self-center">
@@ -320,9 +320,11 @@
                                                                 <label class="custom-control-label"
                                                                     for="{{ $item->id_C }}"></label>
                                                             </div>
+                                                            
+                                                        <a href="{{ route('cour.show', $item->id_C) }}">
                                                             <img class="rounded"
                                                                 src="{{ asset('storage/' . $item['photo']) }}"
-                                                                width="50" height="50">
+                                                                width="50" height="50"></a>
                                                             <div class="ml-2"><span
                                                                     class="font-weight-bold d-block title">{{ $item->title }}</span>
                                                                 <span class="spec fw-bold">$ {{ $item->price }}</span>
@@ -352,8 +354,8 @@
 
 
 
-                                    <div class="col-md-4">
-                                        <div class="payment-info mt-5">
+                                    <div class="col-md-4" >
+                                        <div class="payment-info mt-5" style="background-color: #ffffff">
                                             <div class="d-flex justify-content-between align-items-center"><span
                                                     style="color: black;">
                                                     Details</span>
@@ -411,8 +413,9 @@
                                                 <span>Total</span>
                                                 <span id="totalP">$0.00</span>
                                             </div>
-                                            <button href="#myModal" data-toggle="modal"
-                                            style="background-color: gray"
+                                            <button href="#myModal" data-toggle="modal" 
+                                            id="pay"
+                                            style="background-color: #5FBDFF"  
                                                 class="btn  btn-block d-flex justify-content-center mt-3"
                                                 type="button">
                                                 <span>pay</span>
@@ -508,6 +511,9 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            console.log( $('input[name="item"]:checked').length);
+            
+
             $('#all').on('click', function() {
                 var isChecked = $(this).prop('checked');
                 isChecked === true ?
@@ -525,6 +531,8 @@
 
             $('input[name="item"]').on('click', function() {
                 const checkedCount = $('input[name="item"]:checked').length;
+                // checkedCount = 0 ? $('#pay').prop('disabled', false) : $('#pay').prop('disabled', true)
+
                 $('#nbitem').html(checkedCount);
                 let totalprice = 0;
                 $('input[name="item"]:checked').each(function() {

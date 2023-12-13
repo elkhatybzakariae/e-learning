@@ -131,7 +131,7 @@
 
         .product_item .product_details .product_price .new_price {
             font-weight: 600;
-            color: #6536ff
+            color: #010101
         }
 
         .product_item_list table tr td {

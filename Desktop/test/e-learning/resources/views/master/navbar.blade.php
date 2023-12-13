@@ -48,7 +48,8 @@
 
         <li class="nav-item no-arrow mx-1">
             <a class="nav-link" href="{{ route('panier.index') }}" role="button">
-                <i class="fa-solid fa-basket-shopping"></i>
+                {{-- <i class="fa-solid fa-basket-shopping"></i> --}}
+                <i class="fa-solid fa-cart-shopping"></i>
             </a>
         </li>
         <li class="nav-item no-arrow mx-1">
