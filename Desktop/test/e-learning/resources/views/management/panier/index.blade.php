@@ -2,6 +2,9 @@
 
 @section('title', 'panier')
 
+@section('link')
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+@endsection
 @section('style')
     <style>
         .title {
@@ -9,7 +12,7 @@
         }
 
         .payment-info {
-            background: rgb(97, 158, 189);
+            background: rgba(221, 220, 220, 0.598);
             padding: 10px;
             border-radius: 6px;
             color: #fff;
@@ -21,8 +24,8 @@
         }
 
         /* body {
-            background: #eee;
-        } */
+                                    background: #eee;
+                                } */
 
         .cart {
             background: #fff;
@@ -72,24 +75,25 @@
         }
 
         .credit-inputs {
-            background: rgb(102, 102, 221);
-            color: #fff !important;
-            border-color: rgb(102, 102, 221);
+            background: rgb(238, 238, 241);
+            color: #1a0f0f !important;
+            border-color: rgb(134, 134, 150);
         }
 
         .credit-inputs::placeholder {
-            color: #fff;
+            color: #100d0d;
             font-size: 13px;
         }
 
         .credit-card-label {
+            color: black;
             font-size: 9px;
             font-weight: 300;
         }
 
         .form-control.credit-inputs:focus {
-            background: rgb(102, 102, 221);
-            border: rgb(102, 102, 221);
+            background: rgb(102, 221, 207);
+            border: rgb(123, 123, 135);
         }
 
         .line {
@@ -97,6 +101,7 @@
         }
 
         .information span {
+            color: black;
             font-size: 12px;
             font-weight: 500;
         }
@@ -118,6 +123,101 @@
         .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
             /* background-color: #7300ff; */
             background-color: gray;
+        }
+    </style>
+    <style>
+        body {
+            font-family: 'Varela Round', sans-serif;
+        }
+
+        .modal-confirm {
+            color: #636363;
+            width: 325px;
+            font-size: 14px;
+        }
+
+        .modal-confirm .modal-content {
+            padding: 20px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .modal-confirm .modal-header {
+            border-bottom: none;
+            position: relative;
+        }
+
+        .modal-confirm h4 {
+            text-align: center;
+            font-size: 26px;
+            margin: 30px 0 -15px;
+        }
+
+        .modal-confirm .form-control,
+        .modal-confirm .btn {
+            min-height: 40px;
+            border-radius: 3px;
+        }
+
+        .modal-confirm .close {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        .modal-confirm .modal-footer {
+            border: none;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .modal-confirm .icon-box {
+            color: #fff;
+            position: absolute;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            top: -70px;
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            z-index: 9;
+            background: #82ce34;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-confirm .icon-box i {
+            font-size: 58px;
+            position: relative;
+            top: 3px;
+        }
+
+        .modal-confirm.modal-dialog {
+            margin-top: 80px;
+        }
+
+        .modal-confirm .btn {
+            color: #fff;
+            border-radius: 4px;
+            background: #82ce34;
+            text-decoration: none;
+            transition: all 0.4s;
+            line-height: normal;
+            border: none;
+        }
+
+        .modal-confirm .btn:hover,
+        .modal-confirm .btn:focus {
+            background: #6fb32b;
+            outline: none;
+        }
+
+        .trigger-btn {
+            display: inline-block;
+            margin: 100px auto;
         }
     </style>
 @endsection
@@ -215,7 +315,8 @@
                                                         <div class="d-flex flex-row">
                                                             <div class="custom-control custom-checkbox align-self-center">
                                                                 <input type="checkbox" class="custom-control-input"
-                                                                    id="{{ $item->id_C }}" name="item">
+                                                                    id="{{ $item->id_C }}"
+                                                                    data-price="{{ $item->price }}" name="item">
                                                                 <label class="custom-control-label"
                                                                     for="{{ $item->id_C }}"></label>
                                                             </div>
@@ -252,10 +353,10 @@
 
 
                                     <div class="col-md-4">
-                                        <div class="payment-info">
-                                            <div class="d-flex justify-content-between align-items-center"><span>
+                                        <div class="payment-info mt-5">
+                                            <div class="d-flex justify-content-between align-items-center"><span
+                                                    style="color: black;">
                                                     Details</span>
-                                                <img class="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30">
                                             </div>
                                             {{-- <span class="type d-block mt-3 mb-1">Card
                                                 type</span>
@@ -281,11 +382,13 @@
                                             </label> --}}
                                             <div>
                                                 <label class="credit-card-label">Email </label>
-                                                <input class="form-control credit-inputs" type="email" placeholder="Email@...">
+                                                <input class="form-control credit-inputs" type="email"
+                                                    placeholder="Email@...">
                                             </div>
                                             <div>
                                                 <label class="credit-card-label">Adress</label>
-                                                <input type="text" class="form-control credit-inputs" placeholder="Adress ...">
+                                                <input type="text" class="form-control credit-inputs"
+                                                    placeholder="Adress ...">
                                             </div>
                                             {{-- <div class="row">
                                                 <div class="col-md-6"><label class="credit-card-label">Date</label><input
@@ -298,7 +401,7 @@
                                             </div> --}}
                                             <hr class="line">
                                             <div class="d-flex justify-content-between information">
-                                                <span>items</span><span>0</span>
+                                                <span>items</span><span id="nbitem">0</span>
                                             </div>
                                             {{-- <div class="d-flex justify-content-between information">
                                                 <span>Shipping</span>
@@ -306,32 +409,89 @@
                                             </div> --}}
                                             <div class="d-flex justify-content-between information">
                                                 <span>Total</span>
-                                                <span>$0.00</span>
+                                                <span id="totalP">$0.00</span>
                                             </div>
-                                            <button class="btn btn-primary btn-block d-flex justify-content-between mt-3"
+                                            <button href="#myModal" data-toggle="modal"
+                                            style="background-color: gray"
+                                                class="btn  btn-block d-flex justify-content-center mt-3"
                                                 type="button">
                                                 <span>pay</span>
                                                 {{-- <span>Checkout<i class="fa fa-long-arrow-right ml-1"></i> --}}
-                                                </span>
+                                                {{-- </span> --}}
                                             </button>
                                         </div>
                                         <div class="payment-info mt-3">
-                                            <div class="d-flex justify-content-between align-items-center"><span>
-                                                Protection acheteur</span>
-                                                {{-- <img class="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30"> --}}
+                                            <div class="cart-icons">
+                                                <div class="cart-icons-title mb-2" style="color: black;">Payez avec</div>
+                                                <div class="cart-icons-list mt-1 mb-1">
+                                                    <i style="color: #000000;" class="fa-brands fa-cc-visa fa-2xl"></i>
+                                                    <i style="color: #000000;"
+                                                        class="fa-brands fa-cc-mastercard fa-2xl"></i>
+                                                    <i style="color: #000000;" class="fa-brands fa-cc-jcb fa-2xl"></i>
+                                                    <i style="color: #000000;" class="fa-brands fa-cc-paypal fa-2xl"></i>
+                                                    <i style="color: #000000;" class="fa-brands fa-google-pay fa-2xl"></i>
+                                                    <i style="color: #000000;" class="fa-brands fa-apple-pay fa-2xl"></i>
+                                                    <i style="color: #000000;" class="fa-brands fa-amazon-pay fa-2xl"></i>
+
+                                                    {{-- <img class="cart-icons-img" src="https://img.alicdn.com/tfs/TB1xcMWdEKF3KVjSZFEXXXExFXa-68-48.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S7b20ce778ba44e60a062008c35e98b57M/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/Sea8b6d9e957a4b4783785f087af30ba2r/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S91ee3e0f4fde4535aad35f7c30f6bacfh/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S8df1a1d99c8049d1b1a86c9a144719b6W/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S173da9e53a234dcb9795cebd1856c4d7J/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/Sa4a89534ef694f1c8877ae3d864db6acz/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S85aba413145f4b479fc18825603f87aaZ/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S0321450614244c4dafba2517560de3b8s/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/Sffbd9fb9807e42d9a32feda7bc09121cA/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S7774cbfd89914cad85c8b548087820308/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/Sf9caac85ebcd470a95d0ff441ebf609fc/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S2a5881f5906b4fb58a0c6da600ddf7bf1/216x144.png"></div><div class="cart-icons-line"></div> --}}
+                                                </div>
+                                                <hr>
+                                                <div class="cart-icons-title mt-3"
+                                                    style="display: flex; align-items: center; color:black;">Protection
+                                                    acheteur</div>
+                                                <div class="cart-icons-list mt-1 fw-light" style="color: black;">
+                                                    
+                                                    <img src="{{asset('storage/images/insurance.png')}}"
+                                                        height="21"
+                                                        {{-- style="vertical-align: middle; " --}}
+                                                        >&nbsp;&nbsp;Obtenez un
+                                                    remboursement complet si l'article vous est livré en retard ou bien
+                                                    ne correspond pas à sa description.
+                                                </div>
                                             </div>
-                                            
+                                            {{-- <div class="d-flex justify-content-between align-items-center"><span>
+                                                    Protection acheteur</span>
+                                            </div>
+
                                             <div>
                                                 <label class="credit-card-label">Email </label>
-                                                <input class="form-control credit-inputs" type="email" placeholder="Email@...">
+                                                <input class="form-control credit-inputs" type="email"
+                                                    placeholder="Email@...">
                                             </div>
                                             <hr class="line">
                                             <div class="d-flex justify-content-between information">
-                                                <span><img src="https://ae01.alicdn.com/kf/S5d155b426fd74b24bd10e73f9ac90a93b/64x76.png" height="21" style="vertical-align: middle;"></span><span>0</span>
+                                                <span><img
+                                                        src="https://ae01.alicdn.com/kf/S5d155b426fd74b24bd10e73f9ac90a93b/64x76.png"
+                                                        height="21" style="vertical-align: middle;"></span><span>0</span>
                                             </div>
                                             <div class="d-flex justify-content-between information">
-                                                <span>  Obtenez un remboursement complet si l'article vous est livré en retard ou bien ne correspond pas à sa description.</span>
+                                                <span> Obtenez un remboursement complet si l'article vous est livré en
+                                                    retard ou bien ne correspond pas à sa description.</span>
                                                 <span></span>
+                                            </div> --}}
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!-- Modal HTML -->
+                                    <div id="myModal" class="modal fade">
+                                        <div class="modal-dialog modal-confirm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <div class="icon-box">
+                                                        <i class="material-icons">&#xE876;</i>
+                                                    </div>
+                                                    <h4 class="modal-title w-100">Awesome!</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="text-center">Your order has been confirmed.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-success btn-block"
+                                                        data-dismiss="modal">OK</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -353,7 +513,27 @@
                 isChecked === true ?
                     $('input[name="item"]').prop('checked', true) :
                     $('input[name="item"]').prop('checked', false);
+                const checkedCount = $('input[name="item"]:checked').length;
+                $('#nbitem').html(checkedCount);
+                let totalprice = 0;
+                $('input[name="item"]:checked').each(function() {
+                    const itemPrice = $(this).data('price');
+                    totalprice += parseFloat(itemPrice);
+                });
+                $('#totalP').html('$' + totalprice);
             })
+
+            $('input[name="item"]').on('click', function() {
+                const checkedCount = $('input[name="item"]:checked').length;
+                $('#nbitem').html(checkedCount);
+                let totalprice = 0;
+                $('input[name="item"]:checked').each(function() {
+                    const itemPrice = $(this).data('price');
+                    totalprice += parseFloat(itemPrice);
+                });
+                $('#totalP').html('$' + totalprice);
+            });
+
         })
     </script>
 @endsection
