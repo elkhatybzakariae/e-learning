@@ -623,6 +623,7 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(data) {
+                        console.log(data);
                         $panierLink.html('<i class="fa-solid fa-cart-shopping"></i>');
                         $panierLink.attr('href', '{{ route('panier.index') }}');
                         $panierLink.off('click');
