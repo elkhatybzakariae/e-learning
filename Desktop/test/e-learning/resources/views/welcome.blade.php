@@ -21,38 +21,28 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                    {{-- <div class="  dropend" id="catlistdiv">
-                        <a class="nav-link  dropdown-toggle-split"  data-mdb-toggle="dropdown dropdown-toggle"
-                            aria-expanded="false">Categories</a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                          <li>
-                            gggggggggg
-                          </li>
-                        </ul>
-
-                    </div> --}}
                     <div class="dropdown align-items-center row">
-                        {{-- <li class="nav-item dropdown "id="catlistdiv"> --}}
+                        <li class="nav-item dropdown "id="catlistdiv">
                         {{-- <a class="nav-link  dropdown-toggle-split"  data-mdb-toggle="dropdown dropdown-toggle"
                           aria-expanded="false"></a> --}}
 
 
-                        {{-- <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" id="cat">
                             Categories
-                        </a> --}}
+                        </a>
 
 
                         <!-- Dropdown - User Information -->
-                        {{-- <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
+                        <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
                             id="catlist">
-                        </div> --}}
-                        {{-- <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
+                        </div>
+                        <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
                             id="scatlist">
-                            {{-- <h6 id="scatlistDropdown">Subcategories</h6> 
-                        </div> --}}
+                            <h6 id="scatlistDropdown">Subcategories</h6> 
+                        </div>
 
-                        {{-- </li> --}}
+                        </li>
                     </div>
 
 
@@ -313,9 +303,9 @@
     <script>
         $(document).ready(function() {
             var cat = document.getElementById('cat');
-            // var catlistdiv = document.getElementById('catlistdiv');
+            var catlistdiv = document.getElementById('catlistdiv');
             var catlist = document.getElementById('catlist');
-            // var scatlist = document.getElementById('scatlist');
+            var scatlist = document.getElementById('scatlist');
 
             function categorie() {
                 categories.forEach(categorie => {
