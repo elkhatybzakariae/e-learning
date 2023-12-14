@@ -23,12 +23,9 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
-
-    <style>
+    {{-- <style>
         :root {
             --rotate-speed: 40;
             --count: 8;
@@ -293,21 +290,21 @@
             /* Specify the desired font size */
             /* Add other span styles if needed */
         }
-    </style>
-
+    </style> --}}
 </head>
 
 <body>
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-        <a class="sidebar-brand d-flex text-decoration-none align-items-center justify-content-center ms-1" href="{{ route('index') }}">
+        <a class="sidebar-brand d-flex text-decoration-none align-items-center justify-content-center ms-1"
+            href="{{ route('index') }}">
             {{-- <div class="sidebar-brand-icon ps-1">
                 <img src="{{ asset('storage/images/logo.png') }}" alt="">
             </div> --}}
-            {{-- <div class="sidebar-brand-text mx-2">E-Learning</div> --}}
-            <div class="sidebar-brand-text mx-2 fst-italic fw-bolder" style=" color: rgb(112, 112, 231);">E-Learning</div>
+            <div class="sidebar-brand-text mx-2 fst-italic fw-bolder" style=" color: rgb(112, 112, 231);">E-Learning
+            </div>
 
         </a>
-         {{-- <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
+        {{-- <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
                 <input type="text" name="searchInput" class="form-control bg-light border-0 small" id="searchInput"
@@ -319,8 +316,8 @@
                 </div>
             </div>
         </form> --}}
-     
-    
+
+
         {{-- <ul class="navbar-nav ml-auto">
     
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -402,64 +399,32 @@
             </li>
     
         </ul> --}}
-    
+
     </nav>
-    
-    <!-- partial:index.partial.html -->
-    <div class="void" id="void">
+    {{-- <div class="void" id="void">
         <div class="crop">
             <ul id="card-list" style="--count: 5;">
-                {{-- <li>
-                    <div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for
-                                generating highly dimensional, mostly numeric, tabular data</span></a></div>
-                </li>
-                <li>
-                    <div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for
-                                generating highly dimensional, mostly numeric, tabular data</span></a></div>
-                </li>
-                <li>
-                    <div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for
-                                generating highly dimensional, mostly numeric, tabular data</span></a></div>
-                </li>
-                <li>
-                    <div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for
-                                generating highly dimensional, mostly numeric, tabular data</span></a></div>
-                </li>
-                <li>
-                    <div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for
-                                generating highly dimensional, mostly numeric, tabular data</span></a></div>
-                </li>
-                <li>
-                    <div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for
-                                generating highly dimensional, mostly numeric, tabular data</span></a></div>
-                </li> --}}
+
             </ul>
             <div class="last-circle"></div>
             <div class="second-circle"></div>
         </div>
         <div class="mask"><span>our categories</span></div>
         <div class="center-circle"></div>
-        <div>
-            <!-- partial -->
-
+    </div> --}}
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>
+<script src=" {{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src=" {{ asset('storage/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-<!-- Core plugin JavaScript-->
+<script src=" {{ asset('storage/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src=" {{ asset('storage/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-<!-- Custom scripts for all pages-->
+<script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>
+<script src=" {{ asset('storage/js/demo/datatables-demo.js') }}"></script>
 <script src=" {{ asset('storage/js/sb-admin-2.min.js') }}"></script>
-
-<!-- Page level plugins -->
-<script src="{{ asset('storage/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-<script src="{{ asset('storage/js/demo/datatables-demo.js') }}"></script>
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{-- <script>
     var categories = @json($categories);
     var contenu = '';
     categories.forEach(item => {
@@ -469,6 +434,6 @@
               </li>`;
     });
     $('#card-list').html(contenu);
-</script>
+</script> --}}
 
 </html>

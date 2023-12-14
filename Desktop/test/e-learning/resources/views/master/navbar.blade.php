@@ -1,5 +1,42 @@
+<style>
+    /* Style for the icon container */
+    .icon-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Style for the number inside the icon */
+    .icon-number {
+        /* position: absolute;
+    top: 15px;
+    right: 0px;
+    background-color: gray;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: smaller;
+    width: 10px;
+    height: 10px; */
+        position: absolute;
+        font-size: 12px;
+        color: white;
+        line-height: 14px;
+        background-color: #d1d3e2;
+        ;
+        border-radius: 16px;
+        text-align: center;
+        font-weight: 700;
+        min-height: 14px;
+        padding: 0 4px;
+        top: 22px;
+        right: 1px;
+    }
+</style>
+
+
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <a class="sidebar-brand d-flex text-decoration-none align-items-center justify-content-center ms-1" href="{{ route('index') }}">
+    <a class="sidebar-brand d-flex text-decoration-none align-items-center justify-content-center ms-1"
+        href="{{ route('index') }}">
         <div class="sidebar-brand-icon ps-1">
             <img src="{{ asset('storage/images/logo.png') }}" alt="">
         </div>
@@ -49,7 +86,8 @@
         <li class="nav-item no-arrow mx-1">
             <a class="nav-link" href="{{ route('panier.index') }}" role="button">
                 {{-- <i class="fa-solid fa-basket-shopping"></i> --}}
-                <i class="fa-solid fa-cart-shopping">{{$numberOfItems}}</i>
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="icon-number">{{ $numberOfItems }}</span>
             </a>
         </li>
         <li class="nav-item no-arrow mx-1">
@@ -81,20 +119,20 @@
                     Profile
                 </a>
                 @if (auth()->user()->roles->contains('role_name', 'moderateur'))
-                <a class="dropdown-item" href="{{ route('home2') }}">
-                    <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
-                    Dashboard
-                </a>
+                    <a class="dropdown-item" href="{{ route('home2') }}">
+                        <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
+                        Dashboard
+                    </a>
                 @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
-                <a class="dropdown-item" href="{{ route('teach') }}">
-                    <i class="fa-solid fa-book-open"></i>
-                    Formateur
-                </a>
+                    <a class="dropdown-item" href="{{ route('teach') }}">
+                        <i class="fa-solid fa-book-open"></i>
+                        Formateur
+                    </a>
                 @elseif (auth()->user()->roles->contains('role_name', 'client'))
-                <a class="dropdown-item" href="{{route('home2')}}">
-                    <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
-                    Dashboard
-                </a>
+                    <a class="dropdown-item" href="{{ route('home2') }}">
+                        <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
+                        Dashboard
+                    </a>
                 @endif
                 {{-- <a class="dropdown-item" href="#">
             <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
