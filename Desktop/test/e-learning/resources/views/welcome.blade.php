@@ -2,6 +2,42 @@
 
 @section('title', 'e-learning')
 
+@section('style')
+    <style>
+        .mega-menu {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            margin-top: 34px;
+        }
+
+
+        .navbar .ddiv:hover .mega-menu {
+            display: block;
+        }
+
+
+        .form-control:focus {
+            box-shadow: none;
+        }
+
+        .form-control-underlined {
+            border-width: 0;
+            border-bottom-width: 1px;
+            border-radius: 0;
+            padding-left: 0;
+        }
+
+        .form-control::placeholder {
+            font-size: 0.95rem;
+            color: #aaa;
+            font-style: italic;
+        }
+    </style>
+@endsection
 @section('content')
     <div id="">
         <!-- Content Wrapper -->
@@ -10,65 +46,62 @@
 
             <div id="content">
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center mr-3" href="{{route('home')}}">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="height: 75px;">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center mr-3" href="{{ route('home') }}">
                         <div class="sidebar-brand-icon">
                             <img src="{{ asset('storage/images/logo.png') }}" alt="">
                         </div>
                         <div class="sidebar-brand-text mx-2">E-Learning</div>
                     </a>
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <div class="dropdown align-items-center row">
-                        <li class="nav-item dropdown "id="catlistdiv">
-                        {{-- <a class="nav-link  dropdown-toggle-split"  data-mdb-toggle="dropdown dropdown-toggle"
-                          aria-expanded="false"></a> --}}
+                    <div class="dropdown row ddiv">
+                        <ul class="list-unstyled">
+                            <li class="nav-item dropdown mt-3"id="catlistdiv">
+                                <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" id="cat">
+                                    Categories
+                                </a>
 
 
-                        <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" id="cat">
-                            Categories
-                        </a>
+                                {{-- <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
+                                    id="catlist">
+                                </div> --}}
+                                <div class="mega-menu" id="catlist">
+                                    {{-- <div class="mega-menu-column"> --}}
+                                    {{-- <h3>Category 1</h3>
+                                        <ul>
+                                            <li><a href="#">Product 1</a></li>
+                                            <li><a href="#">Product 2</a></li>
+                                            <!-- Add more product links -->
+                                        </ul> --}}
 
+                                    {{-- </div> --}}
+                                    <!-- Add more mega menu columns -->
+                                </div>
+                                {{-- <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
+                                id="scatlist">
+                                <h6 id="scatlistDropdown">Subcategories</h6>
+                            </div> --}}
 
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
-                            id="catlist">
-                        </div>
-                        <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
-                            id="scatlist">
-                            <h6 id="scatlistDropdown">Subcategories</h6> 
-                        </div>
+                            </li>
+                        </ul>
 
-                        </li>
                     </div>
-
-
-
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                    <form action="">
+                        <div
+                            class="p-1 bg-light rounded rounded-pill shadow-sm mb-4 d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="search" placeholder="Search for...?" aria-describedby="button-addon1"
+                                    class="form-control border-0 bg-light">
+                                <div class="input-group-append">
+                                    <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i
+                                            class="fa fa-search"></i></button>
+                                </div>
                             </div>
                         </div>
                     </form>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle"  id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
@@ -203,7 +236,7 @@
                         </li> --}}
                         <li class="nav-item no-arrow mx-1">
                             <a class="nav-link" href="{{ route('panier.index') }}" role="button">
-                                <i class="fa-solid fa-basket-shopping"></i>
+                                <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </li>
                         <li class="nav-item no-arrow mx-1">
@@ -214,10 +247,9 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
                         @auth
-                        <li class="nav-item dropdown no-arrow">
-                            {{-- @guest
+                            <li class="nav-item dropdown no-arrow">
+                                {{-- @guest
                                 <a href="{{ route('loginpage') }}">
                                     <button type="button" class="btn btn-link px-3 me-2">
                                         Login
@@ -234,55 +266,133 @@
                                     <i class="fa-brands fa-github"></i>
                                 </a>
                           @endguest --}}
-                            <a class="nav-link dropdown-toggle"  id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('profile') }}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                                 </a>
-                                <a class="dropdown-item" >
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" >
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Settings
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Activity Log
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
                         @endauth
 
                         @guest
-                        <div class="mt-3">
-                                <a href="{{route('loginpage')}}" class="btn btn-outline-primary"    role="button">Login</a>
-                                <a href="{{route('registerpage')}}" class="btn btn-primary" role="button">Register</a>
-                        </div>
+                            <div class="mt-3">
+                                <a href="{{ route('loginpage') }}" class="btn btn-outline-primary" style="border-radius: 20px;"
+                                    role="button">Login</a>
+                                <a href="{{ route('registerpage') }}" class="btn btn-primary" style="border-radius: 20px;"
+                                    role="button">Register</a>
+                            </div>
                         @endguest
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="bg-image d-flex justify-content-center align-items-center"
+                    {{-- <div class="bg-image d-flex justify-content-center align-items-center"
                         style="
                     background-image:  url('{{ asset('storage/images/background.jpg') }}');
                     height: 100vh;
                   ">
                         <h1 class="text-white">Page title</h1>
+                    </div> --}}
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner">
+                            {{-- <div class="carousel-item active">
+                                <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
+                                    class="d-block w-100" alt="...">
+                                    {{-- <div class="carousel-caption d-none d-md-block" style="color: black">
+                                        <h1 class="ud-heading-serif-xxl" data-purpose="safely-set-inner-html:billboard:title"
+                                            data-testid="safely-set-inner-html:billboard:title">Des compétences pour votre
+                                            avenir</h1>
+                                        <p class="ud-text-md" data-purpose="safely-set-inner-html:billboard:subtitle"
+                                            data-testid="safely-set-inner-html:billboard:subtitle">
+                                            Développez votre potentiel avec un cours à partir de 11,99&nbsp;$US seulement. La
+                                            promotion se termine aujourd'hui.
+                                        </p>
+                                    </div> 
+                                    <div class="bg-dark bg-opacity-50 text-light d-flex justify-content-center align-items-center vh-100">
+                                        <div class="text-center">
+                                            <h4 class="text-light">Custom heading</h4>
+                                            <p class="text-light mb-0">paragraph</p>
+                                        </div>
+                                    </div>
+                                    
+                            </div> --}}
+                            <div class="carousel-item active position-relative" style="color: black">
+                                <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
+                                    class="d-block w-100" alt="...">
+                                <div class="position-absolute  p-4" style="left:10%; top: 20%; width:35%; background-color:#fff;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
+                                    <h1 style="font-style: italic;">Des compétences pour votre
+                                        avenir.</h1>
+                                    <p>
+                                        Développez votre potentiel avec un cours à partir de 11,99&nbsp;$US seulement. La
+                                        promotion se termine aujourd'hui.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
+                                    class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block" style="color: black">
+                                    <h1 class="ud-heading-serif-xxl" data-purpose="safely-set-inner-html:billboard:title"
+                                        data-testid="safely-set-inner-html:billboard:title">Des compétences pour votre
+                                        avenir</h1>
+                                    <p class="ud-text-md" data-purpose="safely-set-inner-html:billboard:subtitle"
+                                        data-testid="safely-set-inner-html:billboard:subtitle">
+                                        Développez votre potentiel avec un cours à partir de 11,99&nbsp;$US seulement. La
+                                        promotion se termine aujourd'hui.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
+                                    class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block" style="color: black">
+                                    <h1 class="ud-heading-serif-xxl" data-purpose="safely-set-inner-html:billboard:title"
+                                        data-testid="safely-set-inner-html:billboard:title">Des compétences pour votre
+                                        avenir</h1>
+                                    <p class="ud-text-md" data-purpose="safely-set-inner-html:billboard:subtitle"
+                                        data-testid="safely-set-inner-html:billboard:subtitle">
+                                        Développez votre potentiel avec un cours à partir de 11,99&nbsp;$US seulement. La
+                                        promotion se termine aujourd'hui.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
+
 
                 </div>
                 <!-- /.container-fluid -->
