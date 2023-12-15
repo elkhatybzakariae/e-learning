@@ -18,6 +18,7 @@ use App\Http\Controllers\TestQuestionController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VideoTerminerController;
 use App\Http\Controllers\WishListController;
+use App\Models\Cour;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/welcome', function () {
-    return view('welcome');
+    $lastC= Cour::orderBy('created_at', 'desc')->take(10)->get();
+    return view('welcome',compact('lastC'));
 })->name('welcome');
 Route::get('/', [Home::class, 'index'])->name('home');
 

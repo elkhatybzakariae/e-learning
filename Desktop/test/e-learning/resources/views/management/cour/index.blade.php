@@ -296,7 +296,6 @@
                 var csrfToken = $(this).data('csrf');
                 $.ajax({
                     type: 'DELETE',
-                    /
                     url: $(this).attr('href'),
                     data: {
                         _token: csrfToken

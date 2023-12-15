@@ -22,7 +22,7 @@
     @yield('link')
     <style type="text/css">
         body {
-            background-color: #f4f7f6;
+            background-color: white;
         }
 
         .c_review {

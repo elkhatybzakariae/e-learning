@@ -37,6 +37,24 @@
             font-style: italic;
         }
     </style>
+    <style>
+        .owl-carousel .owl-nav button {
+            width: 25px;
+            text-align: center;
+            border: 1px solid #0b0606 !important;
+        }
+    </style>
+    <!-- Important Owl stylesheet -->
+    <link rel="stylesheet" href="owl-carousel/owl.carousel.css">
+
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="owl-carousel/owl.theme.css">
+
+    <!--  jQuery 1.7+  -->
+    <script src="jquery-1.9.1.min.js"></script>
+
+    <!-- Include js plugin -->
+    <script src="assets/owl-carousel/owl.carousel.js"></script>
 @endsection
 @section('content')
     <div id="">
@@ -47,7 +65,8 @@
             <div id="content">
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="height: 75px;">
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center mr-3" href="{{ route('home') }}">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center mr-3"
+                        href="{{ route('home') }}">
                         <div class="sidebar-brand-icon">
                             <img src="{{ asset('storage/images/logo.png') }}" alt="">
                         </div>
@@ -308,42 +327,23 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    {{-- <div class="bg-image d-flex justify-content-center align-items-center"
-                        style="
-                    background-image:  url('{{ asset('storage/images/background.jpg') }}');
-                    height: 100vh;
-                  ">
-                        <h1 class="text-white">Page title</h1>
-                    </div> --}}
-                    <div id="carouselExample" class="carousel slide">
+                <div class="container-fluid row"
+                    style="
+                padding-right: 0px;
+                margin-left: 0px;
+                padding-left: 0px;
+                margin-right: 0px;
+            ">
+                    <div id="carouselExample" class="carousel slide col-12">
                         <div class="carousel-inner">
-                            {{-- <div class="carousel-item active">
-                                <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
-                                    class="d-block w-100" alt="...">
-                                    {{-- <div class="carousel-caption d-none d-md-block" style="color: black">
-                                        <h1 class="ud-heading-serif-xxl" data-purpose="safely-set-inner-html:billboard:title"
-                                            data-testid="safely-set-inner-html:billboard:title">Des compétences pour votre
-                                            avenir</h1>
-                                        <p class="ud-text-md" data-purpose="safely-set-inner-html:billboard:subtitle"
-                                            data-testid="safely-set-inner-html:billboard:subtitle">
-                                            Développez votre potentiel avec un cours à partir de 11,99&nbsp;$US seulement. La
-                                            promotion se termine aujourd'hui.
-                                        </p>
-                                    </div> 
-                                    <div class="bg-dark bg-opacity-50 text-light d-flex justify-content-center align-items-center vh-100">
-                                        <div class="text-center">
-                                            <h4 class="text-light">Custom heading</h4>
-                                            <p class="text-light mb-0">paragraph</p>
-                                        </div>
-                                    </div>
-                                    
-                            </div> --}}
                             <div class="carousel-item active position-relative" style="color: black">
                                 <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
                                     class="d-block w-100" alt="...">
-                                <div class="position-absolute  p-4" style="left:10%; top: 20%; width:35%; background-color:#fff;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
-                                    <h1 style="font-style: italic;">Des compétences pour votre
+                                <div class="position-absolute  p-4"
+                                    style="left:10%; top: 20%; width:35%; 
+                                        background-color:#fff;border-radius:5%;
+                                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                    <h1 style="font-family: Georgia, serif;">Des compétences pour votre
                                         avenir.</h1>
                                     <p>
                                         Développez votre potentiel avec un cours à partir de 11,99&nbsp;$US seulement. La
@@ -355,12 +355,13 @@
                             <div class="carousel-item">
                                 <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
                                     class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block" style="color: black">
-                                    <h1 class="ud-heading-serif-xxl" data-purpose="safely-set-inner-html:billboard:title"
-                                        data-testid="safely-set-inner-html:billboard:title">Des compétences pour votre
-                                        avenir</h1>
-                                    <p class="ud-text-md" data-purpose="safely-set-inner-html:billboard:subtitle"
-                                        data-testid="safely-set-inner-html:billboard:subtitle">
+                                <div class="position-absolute  p-4"
+                                    style="left:10%; top: 20%; width:35%; 
+                                    background-color:#fff;border-radius:5%;
+                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                    <h1 style="font-family: Georgia, serif;">Des compétences pour votre
+                                        avenir.</h1>
+                                    <p>
                                         Développez votre potentiel avec un cours à partir de 11,99&nbsp;$US seulement. La
                                         promotion se termine aujourd'hui.
                                     </p>
@@ -369,12 +370,13 @@
                             <div class="carousel-item">
                                 <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
                                     class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block" style="color: black">
-                                    <h1 class="ud-heading-serif-xxl" data-purpose="safely-set-inner-html:billboard:title"
-                                        data-testid="safely-set-inner-html:billboard:title">Des compétences pour votre
-                                        avenir</h1>
-                                    <p class="ud-text-md" data-purpose="safely-set-inner-html:billboard:subtitle"
-                                        data-testid="safely-set-inner-html:billboard:subtitle">
+                                <div class="position-absolute  p-4"
+                                    style="left:10%; top: 20%; width:35%; 
+                                    background-color:#fff;border-radius:5%;
+                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                    <h1 style="font-family: Georgia, serif;">Des compétences pour votre
+                                        avenir.</h1>
+                                    <p>
                                         Développez votre potentiel avec un cours à partir de 11,99&nbsp;$US seulement. La
                                         promotion se termine aujourd'hui.
                                     </p>
@@ -392,6 +394,116 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
+
+                    <div class="outer-div  mt-5 me-3"
+                        style="background-color: #f4f7f6;
+                            height: 200px; display: flex; align-items: center; justify-content: center;">
+                        <div class="inner-div ms-3 me-3 text-center"
+                            style="font-size: smaller; font-family: Georgia, serif; width:100%;">
+                            <h2 class="text-center mb-3" style="font-size: small;font-family: Georgia, serif;">
+                                Plus de 15 000&nbsp;entreprises et des millions de participants nous font confiance dans
+                                le monde entier
+                            </h2>
+                            <ul
+                                class="list-unstyled d-flex justify-content-between align-items-center ms-3 me-3 flex-wrap">
+
+                                <li class="partner-logos-module--item--1KtIF">
+                                    <img src="https://s.udemycdn.com/partner-logos/ou-v1/volkswagen.svg"
+                                        alt="Volkswagen logo" width="48" height="48" loading="lazy">
+                                </li>
+                                <li class="partner-logos-module--item--1KtIF"><img
+                                        src="https://s.udemycdn.com/partner-logos/ou-v1/samsung.svg" alt="Samsung logo"
+                                        width="101" height="34" loading="lazy">
+                                </li>
+                                <li class="partner-logos-module--item--1KtIF"><img
+                                        src="https://s.udemycdn.com/partner-logos/ou-v1/cisco.svg" alt="Cisco logo"
+                                        width="87" height="40" loading="lazy"></li>
+                                <li class="partner-logos-module--item--1KtIF"><img
+                                        src="https://s.udemycdn.com/partner-logos/ou-v1/att.svg" alt="ATT&amp;T logo"
+                                        width="97" height="40" loading="lazy">
+                                </li>
+                                <li class="partner-logos-module--item--1KtIF"><img
+                                        src="https://s.udemycdn.com/partner-logos/ou-v1/procter_gamble.svg"
+                                        alt="Procter &amp; Gamble logo" width="48" height="48" loading="lazy">
+                                </li>
+                                <li class="partner-logos-module--item--1KtIF"><img
+                                        src="https://s.udemycdn.com/partner-logos/ou-v1/hewlett_packard_enterprise.svg"
+                                        alt="Hewlett Packard Enterprise logo" width="94" height="40"
+                                        loading="lazy"></li>
+                                <li class="partner-logos-module--item--1KtIF"><img
+                                        src="https://s.udemycdn.com/partner-logos/ou-v1/citi.svg" alt="Citi logo"
+                                        width="62" height="40" loading="lazy"></li>
+                                <li class="partner-logos-module--item--1KtIF"><img
+                                        src="https://s.udemycdn.com/partner-logos/ou-v1/ericsson.svg" alt="Ericsson logo"
+                                        width="55" height="48" loading="lazy">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+                    <div class="category-carousel row">
+                        <h5 style="color: black" class="col-10">The Last Cours</h5>
+                        <div class="owl-carousel">
+                            @foreach ($lastC as $cour)
+                                <div style="
+                                            margin-top: 24px;
+                                            margin-bottom: 10px;"
+                                    class="item card product_item">
+                                    <div class="body">
+                                        <div class="cp_img">
+                                            <a href="{{ route('cour.show', $cour->id_C) }}">
+                                                <img style="width: 195px; height:195px;"
+                                                    src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
+                                                    class="img-fluid">
+                                            </a>
+                                            <div class="hover">
+
+                                                @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                                    <a href="{{ route('panier.index') }}" class="btn btn-primary btn-sm">
+                                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                                                        class="btn btn-primary btn-sm"
+                                                        data-route="{{ route('panier.store') }}">
+                                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                                    </a>
+                                                @endif
+                                                @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                                    <a href="{{ route('wishlist.index') }}" class="btn btn-white">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
+                                                        class="btn btn-white" data-route="{{ route('wishlist.store') }}">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="product_details" style="width: 174px;">
+                                            <h5 class="title ">
+                                                <a class="" href="#">{{ $cour->title }}</a>
+                                            </h5>
+                                            <ul class="product_price list-unstyled">
+                                                <li class="new_price">
+                                                    @if ($cour->price === 0.0)
+                                                        Free
+                                                    @else
+                                                        ${{ $cour->price }}
+                                                    @endif
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button id="prev">prev</button>
+                        <button id="next">next</button>
+                    </div>
+
 
 
                 </div>
@@ -556,6 +668,79 @@
             cat.addEventListener('mouseleave', function() {
                 cat.removeEventListener('mouseenter', categorie);
             });
+
+
+            // $('.owl-carousel').owlCarousel({
+            //     loop: true,
+            //     margin: 10,
+            //     responsiveClass: true,
+            //     responsive: {
+            //         0: {
+            //             items: 1,
+            //             nav: true
+            //         },
+            //         600: {
+            //             items: 3,
+            //             nav: true
+            //         },
+            //         1000: {
+            //             items: 5,
+            //             nav: true,
+            //             loop: true
+            //         }
+            //     }
+            // });
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true,
+                        dots: true
+                    },
+                    600: {
+                        items: 3,
+                        nav: true,
+                        dots: true
+                    },
+                    1000: {
+                        items: 5,
+                        nav: true,
+                        dots: true
+                    }
+                }
+            })
+            $("#next").click(function(){
+    owl.trigger('owl.next');
+  })
+  $("#prev").click(function(){
+    owl.trigger('owl.prev');
+  })
+            
+
+            // $('.owl-carousel').owlCarousel({
+            //     rtl: true,
+            //     autoplay: true,
+            //     autoplayTimeout: 6000,
+            //     autoplayHoverPause: false,
+            //     loop: true,
+            //     autoWidth: true,
+
+            //     items: 3,
+            //     nav: true,
+            //     animateOut: 'slideOutDown',
+            //     animateIn: 'flipInX',
+            //     smartSpeed: 900,
+
+            //     margin: 10,
+            //     center: true,
+
+            // });
+
+
         });
     </script>
+
 @endsection
