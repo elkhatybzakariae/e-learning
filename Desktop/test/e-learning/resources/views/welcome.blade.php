@@ -36,40 +36,48 @@
             color: #aaa;
             font-style: italic;
         }
-    </style>
-    <style>
-        /* .owl-carousel .owl-nav button {
-                            width: 25px;
-                            text-align: center;
-                            border: 1px solid #0b0606 !important;
-                        } */
-        /* .owl-item{            
-            width: 315px;
-        } */
+
+         /* .owl-carousel .owl-nav button {
+                                width: 25px;
+                                text-align: center;
+                                border: 1px solid #0b0606 !important;
+                            } */
+        .owl-nav {
+            position: relative;
+            top: -230px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .owl-prev {
             width: 50px;
             height: 50px;
+            right: -15px;
             text-align: center;
             border: none;
             border-radius: 50%;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: #3498db;
-            color: #fff;
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #cf8d29;
+            color: #FFFBF5;
             cursor: pointer;
             outline: none;
+            z-index: 1;
         }
-        .owl-next {            
+
+        .owl-next {
             width: 50px;
             height: 50px;
             text-align: center;
             border: none;
             border-radius: 50%;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: #3498db;
-            color: #fff;
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #FFFBF5;
+            color: #FFFBF5;
             font-size: 16px;
             cursor: pointer;
             outline: none;
+            z-index: 1;
         }
     </style>
     <!-- Important Owl stylesheet -->
@@ -355,7 +363,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid row"
+                <div class="container-fluid row d-flex justify-content-center align-item-center"
                     style="
                 padding-right: 0px;
                 margin-left: 0px;
@@ -421,7 +429,7 @@
                         </button>
                     </div>
 
-                    <div class="outer-div  mt-5 me-3"
+                    <div class="outer-div  mt-5"
                         style="background-color: #f4f7f6;
                             height: 200px; display: flex; align-items: center; justify-content: center;">
                         <div class="inner-div ms-3 me-3 text-center"
@@ -467,13 +475,12 @@
                         </div>
                     </div>
 
-                    <hr class="my-4">
-                    <div class="category-carousel row">
+                    {{-- <hr class="my-4"> --}}
+                    <div class="category-carousel row" >
                         <h5 style="color: black" class="col-10">The Last Cours</h5>
                         <div class="owl-carousel">
                             @foreach ($lastC as $cour)
-                                <div style="margin-top: 24px;margin-bottom: 10px;"
-                                    class="item card product_item">
+                                <div style="margin-top: 24px;margin-bottom: 10px;" class="item card product_item">
                                     <div class="body">
                                         <div class="cp_img">
                                             <a href="{{ route('cour.show', $cour->id_C) }}">
