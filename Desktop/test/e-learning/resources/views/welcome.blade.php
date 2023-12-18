@@ -38,10 +38,38 @@
         }
     </style>
     <style>
-        .owl-carousel .owl-nav button {
-            width: 25px;
+        /* .owl-carousel .owl-nav button {
+                            width: 25px;
+                            text-align: center;
+                            border: 1px solid #0b0606 !important;
+                        } */
+        /* .owl-item{            
+            width: 315px;
+        } */
+        .owl-prev {
+            width: 50px;
+            height: 50px;
             text-align: center;
-            border: 1px solid #0b0606 !important;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+        .owl-next {            
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #3498db;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
         }
     </style>
     <!-- Important Owl stylesheet -->
@@ -351,8 +379,21 @@
                                     </p>
                                 </div>
                             </div>
-
                             <div class="carousel-item">
+                                <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/a312e355-0a20-4a46-a0b8-65c71539af30.jpg"
+                                    class="d-block w-100" alt="...">
+                                <div class="position-absolute  p-4"
+                                    style="left:10%; top: 20%; width:35%; 
+                                    background-color:#fff;border-radius:5%;
+                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                    <h1 style="font-family: Georgia, serif;">Des connaissances pour votre futur moi.</h1>
+                                    <p>
+                                        Apprenez des compétences auprès de formateurs confirmés du monde entier. Les cours
+                                        sont à partir de 12,99 $US jusqu'au 21 décembre.
+                                    </p>
+                                </div>
+                            </div>
+                            {{-- <div class="carousel-item">
                                 <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
                                     class="d-block w-100" alt="...">
                                 <div class="position-absolute  p-4"
@@ -366,22 +407,7 @@
                                         promotion se termine aujourd'hui.
                                     </p>
                                 </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
-                                    class="d-block w-100" alt="...">
-                                <div class="position-absolute  p-4"
-                                    style="left:10%; top: 20%; width:35%; 
-                                    background-color:#fff;border-radius:5%;
-                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                                    <h1 style="font-family: Georgia, serif;">Des compétences pour votre
-                                        avenir.</h1>
-                                    <p>
-                                        Développez votre potentiel avec un cours à partir de 11,99&nbsp;$US seulement. La
-                                        promotion se termine aujourd'hui.
-                                    </p>
-                                </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                             data-bs-slide="prev">
@@ -446,9 +472,7 @@
                         <h5 style="color: black" class="col-10">The Last Cours</h5>
                         <div class="owl-carousel">
                             @foreach ($lastC as $cour)
-                                <div style="
-                                            margin-top: 24px;
-                                            margin-bottom: 10px;"
+                                <div style="margin-top: 24px;margin-bottom: 10px;"
                                     class="item card product_item">
                                     <div class="body">
                                         <div class="cp_img">
@@ -500,8 +524,8 @@
                                 </div>
                             @endforeach
                         </div>
-                        <button id="prev">prev</button>
-                        <button id="next">next</button>
+                        {{-- <button id="prev">prev</button>
+                        <button id="next">next</button> --}}
                     </div>
 
 
@@ -697,47 +721,37 @@
                 responsive: {
                     0: {
                         items: 1,
-                        nav: true,
-                        dots: true
+                        nav: true
                     },
                     600: {
                         items: 3,
-                        nav: true,
-                        dots: true
+                        nav: true
                     },
                     1000: {
                         items: 5,
                         nav: true,
-                        dots: true
+                        loop: true
                     }
                 }
-            })
-            $("#next").click(function(){
-    owl.trigger('owl.next');
-  })
-  $("#prev").click(function(){
-    owl.trigger('owl.prev');
-  })
-            
-
+            });
+            // $("#next").click(function() {
+            //     owl.trigger('owl.next');
+            // })
+            // $("#prev").click(function() {
+            //     owl.trigger('owl.prev');
+            // })
             // $('.owl-carousel').owlCarousel({
-            //     rtl: true,
-            //     autoplay: true,
-            //     autoplayTimeout: 6000,
-            //     autoplayHoverPause: false,
             //     loop: true,
-            //     autoWidth: true,
-
-            //     items: 3,
+            //     margin: 0,
+            //     itemsDesktop: [1400, 3],
+            //     itemsDesktopSmall: [1100, 3],
+            //     itemsTablet: [700, 3],
             //     nav: true,
-            //     animateOut: 'slideOutDown',
-            //     animateIn: 'flipInX',
-            //     smartSpeed: 900,
-
-            //     margin: 10,
-            //     center: true,
-
+            //     navText: ['<span aria-label="Previous">‹</span>', '<span aria-label="Next">›</span>'],
             // });
+
+
+
 
 
         });
