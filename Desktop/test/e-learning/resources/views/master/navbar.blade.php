@@ -1,22 +1,9 @@
 <style>
-    /* Style for the icon container */
     .icon-container {
         position: relative;
         display: inline-block;
     }
-
-    /* Style for the number inside the icon */
     .icon-number {
-        /* position: absolute;
-    top: 15px;
-    right: 0px;
-    background-color: gray;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 5px;
-    font-size: smaller;
-    width: 10px;
-    height: 10px; */
         position: absolute;
         font-size: 12px;
         color: white;

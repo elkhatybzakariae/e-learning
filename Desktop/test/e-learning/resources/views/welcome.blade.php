@@ -38,10 +38,10 @@
         }
 
         /* .owl-carousel .owl-nav button {
-                                        width: 25px;
-                                        text-align: center;
-                                        border: 1px solid #0b0606 !important;
-                                    } */
+                                                    width: 25px;
+                                                    text-align: center;
+                                                    border: 1px solid #0b0606 !important;
+                                                } */
         .owl-nav {
             position: relative;
             top: -230px;
@@ -365,11 +365,11 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid row d-flex justify-content-center align-item-center"
                     style="
-                padding-right: 0px;
-                margin-left: 0px;
-                padding-left: 0px;
-                margin-right: 0px;
-            ">
+                            padding-right: 0px;
+                            margin-left: 0px;
+                            padding-left: 0px;
+                            margin-right: 0px;
+                        ">
                     <div id="carouselExample" class="carousel slide col-12">
                         <div class="carousel-inner">
                             <div class="carousel-item active position-relative" style="color: black">
@@ -475,7 +475,6 @@
                         </div>
                     </div>
 
-                    {{-- <hr class="my-4"> --}}
                     <div class="category-carousel row mt-3" {{-- style="background-color: #f4f7f6;" --}}>
                         <h5 style="color: black ;font-family: Georgia, serif;" class="col-10 pt-3">Les participants
                             regardent</h5>
@@ -539,7 +538,40 @@
                     <div>
                         <h5 style="color: black ;font-family: Georgia, serif;">Meilleures catégories</h5>
                         <div class="row" id="divcat">
+                        </div>
+                    </div>
 
+                    <div class="inner-div ms-3 me-3 mt-5">
+                        <div class="row ms-5 me-5 d-flex justify-content-center align-item-center">
+                            <div class="col-4"
+                            {{-- style="background-color: #f4f7f6;" --}}
+                            >
+                                <h3 class="pt-4" style="font-family: Georgia, serif; color:#4463d1;">E-Learning</h5>
+                                <h4 style="font-family: Georgia, serif;">Développez tes compétences avec E-Learning</h5>
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-4"
+                             {{-- style="background-color: #f4f7f6;" --}}
+                             >
+                                <img src="{{ asset('storage/images/AccImg/img1.webp') }}" height="400px"
+                                    width="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inner-div ms-3 me-3 mt-5">
+                        <div class="row ms-5 me-5 d-flex justify-content-center align-item-center">
+                            <div class="col-4">
+                                <img src="{{ asset('storage/images/AccImg/img2.jpg') }}" height="400px"
+                                    width="" />
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-4">
+                                <h3 class="pt-4" style="font-family: Georgia, serif;">Devenir formateur</h3>
+                                <h4 style="font-family: Georgia, serif;">
+                                    Nos formateurs du monde entier donnent des cours à des millions de participants sur E-Learning. Nous vous offrons les outils et les compétences nécessaires pour enseigner ce que vous aimez.
+                                </h4>
+                                <a href="#" class="btn btn-dark">Commencez à enseigner dès aujourd'hui</a>
+                            </div>
                         </div>
                     </div>
 
@@ -751,24 +783,24 @@
 
             // for (let index = 0; index <= 3; index++) {
             //     const Dchild = `<a href='#' class='col-3'>
-            //             <div><img src='storage/images/categoriesImg/${categories[index].CatName}.jpg'/></div>
-            //             <div><h6>${categories[index].CatName}</h6></div>
-            //         </a>`;
+        //             <div><img src='storage/images/categoriesImg/${categories[index].CatName}.jpg'/></div>
+        //             <div><h6>${categories[index].CatName}</h6></div>
+        //         </a>`;
             //     // const Dchild = document.createElement('div');
             //     // Dchild.textContent = categories[index].CatName;
             //     // Dchild.classList.add('col-3');
             //     divcat.appendChild(Dchild);
             // }
             for (let index = 0; index <= 3; index++) {
-    const Dchild = `
-        <a href='#' class='col-3' style='text-decoration: none;'>
-            <div><img style='height:183px ;width:275px; ' src='storage/images/categoriesImg/${categories[index].CatName}.jpg'/></div>
-            <div><h6 style='color: #2d2f31;
-    padding: .8rem 0 1.6rem;'>${categories[index].CatName}</h6></div>
-        </a>
-    `;
-    divcat.insertAdjacentHTML('beforeend', Dchild);
-}
+                const Dchild = `
+                        <a href='#' class='col-3' style='text-decoration: none;'>
+                            <div><img style='height:183px ;width:275px; ' src='storage/images/categoriesImg/${categories[index].CatName}.jpg'/></div>
+                            <div><h6 style='color: #2d2f31;
+                                    padding: .8rem 0 1.6rem;' class='ms-1'>${categories[index].CatName}</h6></div>
+                        </a>
+                    `;
+                divcat.insertAdjacentHTML('beforeend', Dchild);
+            }
 
 
 
