@@ -37,11 +37,11 @@
             font-style: italic;
         }
 
-         /* .owl-carousel .owl-nav button {
-                                width: 25px;
-                                text-align: center;
-                                border: 1px solid #0b0606 !important;
-                            } */
+        /* .owl-carousel .owl-nav button {
+                                        width: 25px;
+                                        text-align: center;
+                                        border: 1px solid #0b0606 !important;
+                                    } */
         .owl-nav {
             position: relative;
             top: -230px;
@@ -476,8 +476,9 @@
                     </div>
 
                     {{-- <hr class="my-4"> --}}
-                    <div class="category-carousel row" >
-                        <h5 style="color: black" class="col-10">The Last Cours</h5>
+                    <div class="category-carousel row mt-3" {{-- style="background-color: #f4f7f6;" --}}>
+                        <h5 style="color: black ;font-family: Georgia, serif;" class="col-10 pt-3">Les participants
+                            regardent</h5>
                         <div class="owl-carousel">
                             @foreach ($lastC as $cour)
                                 <div style="margin-top: 24px;margin-bottom: 10px;" class="item card product_item">
@@ -535,7 +536,12 @@
                         <button id="next">next</button> --}}
                     </div>
 
+                    <div>
+                        <h5 style="color: black ;font-family: Georgia, serif;">Meilleures catégories</h5>
+                        <div class="row" id="divcat">
 
+                        </div>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -559,6 +565,7 @@
             var catlistdiv = document.getElementById('catlistdiv');
             var catlist = document.getElementById('catlist');
             var scatlist = document.getElementById('scatlist');
+            var divcat = document.getElementById('divcat');
 
             function categorie() {
                 categories.forEach(categorie => {
@@ -741,21 +748,29 @@
                     }
                 }
             });
-            // $("#next").click(function() {
-            //     owl.trigger('owl.next');
-            // })
-            // $("#prev").click(function() {
-            //     owl.trigger('owl.prev');
-            // })
-            // $('.owl-carousel').owlCarousel({
-            //     loop: true,
-            //     margin: 0,
-            //     itemsDesktop: [1400, 3],
-            //     itemsDesktopSmall: [1100, 3],
-            //     itemsTablet: [700, 3],
-            //     nav: true,
-            //     navText: ['<span aria-label="Previous">‹</span>', '<span aria-label="Next">›</span>'],
-            // });
+
+            // for (let index = 0; index <= 3; index++) {
+            //     const Dchild = `<a href='#' class='col-3'>
+            //             <div><img src='storage/images/categoriesImg/${categories[index].CatName}.jpg'/></div>
+            //             <div><h6>${categories[index].CatName}</h6></div>
+            //         </a>`;
+            //     // const Dchild = document.createElement('div');
+            //     // Dchild.textContent = categories[index].CatName;
+            //     // Dchild.classList.add('col-3');
+            //     divcat.appendChild(Dchild);
+            // }
+            for (let index = 0; index <= 3; index++) {
+    const Dchild = `
+        <a href='#' class='col-3' style='text-decoration: none;'>
+            <div><img style='height:183px ;width:275px; ' src='storage/images/categoriesImg/${categories[index].CatName}.jpg'/></div>
+            <div><h6 style='color: #2d2f31;
+    padding: .8rem 0 1.6rem;'>${categories[index].CatName}</h6></div>
+        </a>
+    `;
+    divcat.insertAdjacentHTML('beforeend', Dchild);
+}
+
+
 
 
 
