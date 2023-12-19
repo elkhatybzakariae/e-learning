@@ -1,7 +1,5 @@
 @extends('master.layout')
-
 @section('title', 'e-learning')
-
 @section('style')
     <style>
         .mega-menu {
@@ -38,10 +36,10 @@
         }
 
         /* .owl-carousel .owl-nav button {
-                                                    width: 25px;
-                                                    text-align: center;
-                                                    border: 1px solid #0b0606 !important;
-                                                } */
+                                                                                        width: 25px;
+                                                                                        text-align: center;
+                                                                                        border: 1px solid #0b0606 !important;
+                                                                                    } */
         .owl-nav {
             position: relative;
             top: -230px;
@@ -80,24 +78,268 @@
             z-index: 1;
         }
     </style>
-    <!-- Important Owl stylesheet -->
+
+    <style>
+        .footer_area {
+            position: relative;
+            /* z-index: 1; */
+            overflow: hidden;
+            webkit-box-shadow: 0 8px 48px 8px rgba(47, 91, 234, 0.175);
+            box-shadow: 0 8px 48px 8px rgba(47, 91, 234, 0.175);
+            padding: 60px;
+        }
+
+        .footer_area .row {
+            margin-left: -25px;
+            margin-right: -25px;
+        }
+
+        .footer_area .row .col,
+        .footer_area .row .col-1,
+        .footer_area .row .col-10,
+        .footer_area .row .col-11,
+        .footer_area .row .col-12,
+        .footer_area .row .col-2,
+        .footer_area .row .col-3,
+        .footer_area .row .col-4,
+        .footer_area .row .col-5,
+        .footer_area .row .col-6,
+        .footer_area .row .col-7,
+        .footer_area .row .col-8,
+        .footer_area .row .col-9,
+        .footer_area .row .col-auto,
+        .footer_area .row .col-lg,
+        .footer_area .row .col-lg-1,
+        .footer_area .row .col-lg-10,
+        .footer_area .row .col-lg-11,
+        .footer_area .row .col-lg-12,
+        .footer_area .row .col-lg-2,
+        .footer_area .row .col-lg-3,
+        .footer_area .row .col-lg-4,
+        .footer_area .row .col-lg-5,
+        .footer_area .row .col-lg-6,
+        .footer_area .row .col-lg-7,
+        .footer_area .row .col-lg-8,
+        .footer_area .row .col-lg-9,
+        .footer_area .row .col-lg-auto,
+        .footer_area .row .col-md,
+        .footer_area .row .col-md-1,
+        .footer_area .row .col-md-10,
+        .footer_area .row .col-md-11,
+        .footer_area .row .col-md-12,
+        .footer_area .row .col-md-2,
+        .footer_area .row .col-md-3,
+        .footer_area .row .col-md-4,
+        .footer_area .row .col-md-5,
+        .footer_area .row .col-md-6,
+        .footer_area .row .col-md-7,
+        .footer_area .row .col-md-8,
+        .footer_area .row .col-md-9,
+        .footer_area .row .col-md-auto,
+        .footer_area .row .col-sm,
+        .footer_area .row .col-sm-1,
+        .footer_area .row .col-sm-10,
+        .footer_area .row .col-sm-11,
+        .footer_area .row .col-sm-12,
+        .footer_area .row .col-sm-2,
+        .footer_area .row .col-sm-3,
+        .footer_area .row .col-sm-4,
+        .footer_area .row .col-sm-5,
+        .footer_area .row .col-sm-6,
+        .footer_area .row .col-sm-7,
+        .footer_area .row .col-sm-8,
+        .footer_area .row .col-sm-9,
+        .footer_area .row .col-sm-auto,
+        .footer_area .row .col-xl,
+        .footer_area .row .col-xl-1,
+        .footer_area .row .col-xl-10,
+        .footer_area .row .col-xl-11,
+        .footer_area .row .col-xl-12,
+        .footer_area .row .col-xl-2,
+        .footer_area .row .col-xl-3,
+        .footer_area .row .col-xl-4,
+        .footer_area .row .col-xl-5,
+        .footer_area .row .col-xl-6,
+        .footer_area .row .col-xl-7,
+        .footer_area .row .col-xl-8,
+        .footer_area .row .col-xl-9,
+        .footer_area .row .col-xl-auto {
+            padding-right: 25px;
+            padding-left: 25px;
+        }
+
+        .single-footer-widget {
+            position: relative;
+            z-index: 1;
+        }
+
+        .single-footer-widget .copywrite-text a {
+            color: #747794;
+            font-size: 1rem;
+        }
+
+        .single-footer-widget .copywrite-text a:hover,
+        .single-footer-widget .copywrite-text a:focus {
+            color: #3f43fd;
+        }
+
+        .single-footer-widget .widget-title {
+            margin-bottom: 1.5rem;
+        }
+
+        .single-footer-widget .footer_menu li a {
+            color: #747794;
+            margin-bottom: 1rem;
+            display: block;
+            font-size: 1rem;
+        }
+
+        .single-footer-widget .footer_menu li a:hover,
+        .single-footer-widget .footer_menu li a:focus {
+            color: #3f43fd;
+        }
+
+        .single-footer-widget .footer_menu li:last-child a {
+            margin-bottom: 0;
+        }
+
+        .footer_social_area {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer_social_area a {
+            border-radius: 50%;
+            height: 40px;
+            text-align: center;
+            width: 40px;
+            display: inline-block;
+            background-color: #f5f5ff;
+            line-height: 40px;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            margin-right: 10px;
+        }
+
+        .footer_social_area a i {
+            line-height: 36px;
+        }
+
+        .footer_social_area a:hover,
+        .footer_social_area a:focus {
+            color: #ffffff;
+        }
+
+        @-webkit-keyframes bi-cycle {
+            0% {
+                left: 0;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes bi-cycle {
+            0% {
+                left: 0;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        ol li,
+        ul li {
+            list-style: none;
+        }
+
+        ol,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
     <link rel="stylesheet" href="owl-carousel/owl.carousel.css">
-
-    <!-- Default Theme -->
     <link rel="stylesheet" href="owl-carousel/owl.theme.css">
-
-    <!--  jQuery 1.7+  -->
     <script src="jquery-1.9.1.min.js"></script>
-
-    <!-- Include js plugin -->
     <script src="assets/owl-carousel/owl.carousel.js"></script>
+    <style>
+        #hiddenList {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #100d0d;
+            padding: 10px;
+        }
+
+        #hiddenList li {
+            list-style: none;
+        }
+
+        #hiddenList li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 5px 0;
+        }
+
+        #hiddenList li a:hover {
+            background-color: #0a0707;
+        }
+
+        #hoverBtn:hover+#hiddenList {
+            display: block;
+        }
+    </style>
+
+    <style type="text/css">
+        .navbar .megamenu {
+            padding: 1rem;
+        }
+
+        /* ============ desktop view ============ */
+        @media all and (min-width: 992px) {
+
+            .navbar .has-megamenu {
+                position: static !important;
+            }
+
+            .navbar .megamenu {
+                left: 0;
+                right: 0;
+                width: 100%;
+                margin-top: 0;
+            }
+            .menuA:hover menu{
+                display: block;
+            }
+
+        }
+
+        /* ============ desktop view .end// ============ */
+
+
+        /* ============ mobile view ============ */
+        @media(max-width: 991px) {
+
+            .navbar.fixed-top .navbar-collapse,
+            .navbar.sticky-top .navbar-collapse {
+                overflow-y: auto;
+                max-height: 90vh;
+                margin-top: 10px;
+            }
+        }
+
+        /* ============ mobile view .end// ============ */
+    </style>
 @endsection
 @section('content')
     <div id="">
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
-
             <div id="content">
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="height: 75px;">
@@ -141,6 +383,73 @@
                         </ul>
 
                     </div>
+                    <div>
+                        <div class="collapse navbar-collapse" id="main_nav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown has-megamenu">
+                                    <a class="nav-link dropdown-toggle" id="menuA" href="#" data-bs-toggle="dropdown"> 
+                                        Mega menu
+                                    </a>
+                                    <div class="dropdown-menu megamenu" id="menu" role="menu">
+                                        <div class="row g-3">
+                                            <div class="col-lg-3 col-6">
+                                                <div class="col-megamenu" >
+                                                    <ul class="list-unstyled" id="ulcatlist">
+                                                        {{-- <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li> --}}
+                                                    </ul>
+                                                </div> <!-- col-megamenu.// -->
+                                            </div><!-- end col-3 -->
+                                            {{-- <div class="col-lg-3 col-6">
+                                                <div class="col-megamenu">
+                                                    <h6 class="title">Title Menu Two</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                    </ul>
+                                                </div>  <!-- col-megamenu.// -->
+                                            </div><!-- end col-3 -->
+                                            <div class="col-lg-3 col-6">
+                                                <div class="col-megamenu">
+                                                    <h6 class="title">Title Menu Three</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                    </ul>
+                                                </div>  <!-- col-megamenu.// -->
+                                            </div>    
+                                            <div class="col-lg-3 col-6">
+                                                <div class="col-megamenu">
+                                                    <h6 class="title">Title Menu Four</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                        <li><a href="#">Custom Menu</a></li>
+                                                    </ul>
+                                                </div>  <!-- col-megamenu.// -->
+                                            </div> --}}
+                                        </div><!-- end row -->
+                                    </div> <!-- dropdown-mega-menu.// -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <form action="">
                         <div
                             class="p-1 bg-light rounded rounded-pill shadow-sm mb-4 d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -352,8 +661,8 @@
 
                         @guest
                             <div class="mt-3">
-                                <a href="{{ route('loginpage') }}" class="btn btn-outline-primary" style="border-radius: 20px;"
-                                    role="button">Login</a>
+                                <a href="{{ route('loginpage') }}" class="btn btn-outline-primary"
+                                    style="border-radius: 20px;" role="button">Login</a>
                                 <a href="{{ route('registerpage') }}" class="btn btn-primary" style="border-radius: 20px;"
                                     role="button">Register</a>
                             </div>
@@ -364,12 +673,7 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid row d-flex justify-content-center align-item-center"
-                    style="
-                            padding-right: 0px;
-                            margin-left: 0px;
-                            padding-left: 0px;
-                            margin-right: 0px;
-                        ">
+                    style="padding-right: 0px;margin-left: 0px;padding-left: 0px;margin-right: 0px;">
                     <div id="carouselExample" class="carousel slide col-12">
                         <div class="carousel-inner">
                             <div class="carousel-item active position-relative" style="color: black">
@@ -543,16 +847,13 @@
 
                     <div class="inner-div ms-3 me-3 mt-5">
                         <div class="row ms-5 me-5 d-flex justify-content-center align-item-center">
-                            <div class="col-4"
-                            {{-- style="background-color: #f4f7f6;" --}}
-                            >
+                            <div class="col-4" {{-- style="background-color: #f4f7f6;" --}}>
                                 <h3 class="pt-4" style="font-family: Georgia, serif; color:#4463d1;">E-Learning</h5>
-                                <h4 style="font-family: Georgia, serif;">Développez tes compétences avec E-Learning</h5>
+                                    <h4 style="font-family: Georgia, serif;">Développez tes compétences avec E-Learning
+                                        </h5>
                             </div>
                             <div class="col-1"></div>
-                            <div class="col-4"
-                             {{-- style="background-color: #f4f7f6;" --}}
-                             >
+                            <div class="col-4" {{-- style="background-color: #f4f7f6;" --}}>
                                 <img src="{{ asset('storage/images/AccImg/img1.webp') }}" height="400px"
                                     width="" />
                             </div>
@@ -568,7 +869,9 @@
                             <div class="col-4">
                                 <h3 class="pt-4" style="font-family: Georgia, serif;">Devenir formateur</h3>
                                 <h4 style="font-family: Georgia, serif;">
-                                    Nos formateurs du monde entier donnent des cours à des millions de participants sur E-Learning. Nous vous offrons les outils et les compétences nécessaires pour enseigner ce que vous aimez.
+                                    Nos formateurs du monde entier donnent des cours à des millions de participants sur
+                                    E-Learning. Nous vous offrons les outils et les compétences nécessaires pour enseigner
+                                    ce que vous aimez.
                                 </h4>
                                 <a href="#" class="btn btn-dark">Commencez à enseigner dès aujourd'hui</a>
                             </div>
@@ -582,15 +885,108 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            @include('master.footer')
+            {{-- @include('master.footer') --}}
+            <footer class="footer_area section_padding_130_0 mt-5">
+                <div class="container">
+                    <div class="row">
+                        <!-- Single Widget-->
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="single-footer-widget section_padding_0_130">
+                                <!-- Footer Logo-->
+                                <div class="footer-logo mb-3"></div>
+                                <p>this page is completely creative, lightweight, clean app landing page.</p>
+                                <!-- Copywrite Text-->
+                                <div class="copywrite-text mb-5">
+                                    <p class="mb-0">Made with <i class="lni-heart mr-1"></i>by<a class="ml-1"
+                                            href="#">E-Learning</a></p>
+                                </div>
+                                <!-- Footer Social Area-->
+                                <div class="footer_social_area"><a href="#" data-toggle="tooltip"
+                                        data-placement="top" title="" data-original-title="Facebook"><i
+                                            class="fa-brands fa-facebook"></i></a><a href="#" data-toggle="tooltip"
+                                        data-placement="top" title="" data-original-title="Pinterest"><i
+                                            class="fa-brands fa-pinterest"></i></a><a href="#"
+                                        data-toggle="tooltip" data-placement="top" title=""
+                                        data-original-title="Skype"><i class="fa-brands fa-skype"></i></a><a
+                                        href="#" data-toggle="tooltip" data-placement="top" title=""
+                                        data-original-title="Twitter"><i class="fa-brands fa-twitter"></i></a></div>
+                            </div>
+                        </div>
+                        <!-- Single Widget-->
+                        <div class="col-12 col-sm-6 col-lg">
+                            <div class="single-footer-widget section_padding_0_130">
+                                <!-- Widget Title-->
+                                <h5 class="widget-title">About</h5>
+                                <!-- Footer Menu-->
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Corporate Sale</a></li>
+                                        <li><a href="#">Terms &amp; Policy</a></li>
+                                        <li><a href="#">Community</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Widget-->
+                        <div class="col-12 col-sm-6 col-lg">
+                            <div class="single-footer-widget section_padding_0_130">
+                                <!-- Widget Title-->
+                                <h5 class="widget-title">Support</h5>
+                                <!-- Footer Menu-->
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#">Help</a></li>
+                                        <li><a href="#">Support</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Term &amp; Conditions</a></li>
+                                        <li><a href="#">Help &amp; Support</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Widget-->
+                        <div class="col-12 col-sm-6 col-lg">
+                            <div class="single-footer-widget section_padding_0_130">
+                                <!-- Widget Title-->
+                                <h5 class="widget-title">Contact</h5>
+                                <!-- Footer Menu-->
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#">Call Centre</a></li>
+                                        <li><a href="#">Email Us</a></li>
+                                        <li><a href="#">Term &amp; Conditions</a></li>
+                                        <li><a href="#">Help Center</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-lg-12 mt-5 ">
+                            <div class="copyright text-center">
+                                <span>Copyright &copy; E-Learning {{ date('Y') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
-
     </div>
 @endsection
 @section('script')
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            /////// Prevent closing from click inside dropdown
+            document.querySelectorAll('.dropdown-menu').forEach(function(element) {
+                element.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            })
+        });
+        // DOMContentLoaded  end
+    </script>
+
     <script>
         $(document).ready(function() {
             var cat = document.getElementById('cat');
@@ -598,6 +994,15 @@
             var catlist = document.getElementById('catlist');
             var scatlist = document.getElementById('scatlist');
             var divcat = document.getElementById('divcat');
+            var ulcatlist = document.getElementById('ulcatlist');
+
+
+            for (let index = 0; index < categories.length; index++) {
+                const lichild = `
+                        <li><a href="#">${categories[index].CatName}</a></li>
+                    `;
+                    ulcatlist.insertAdjacentHTML('beforeend', lichild);
+            }
 
             function categorie() {
                 categories.forEach(categorie => {
@@ -763,6 +1168,9 @@
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,
+                //   lazyLoad: 'ondemand',
+                // slidesToShow: 3,
+                // slidesToScroll: 3
                 responsiveClass: true,
                 responsive: {
                     0: {
@@ -781,16 +1189,7 @@
                 }
             });
 
-            // for (let index = 0; index <= 3; index++) {
-            //     const Dchild = `<a href='#' class='col-3'>
-        //             <div><img src='storage/images/categoriesImg/${categories[index].CatName}.jpg'/></div>
-        //             <div><h6>${categories[index].CatName}</h6></div>
-        //         </a>`;
-            //     // const Dchild = document.createElement('div');
-            //     // Dchild.textContent = categories[index].CatName;
-            //     // Dchild.classList.add('col-3');
-            //     divcat.appendChild(Dchild);
-            // }
+
             for (let index = 0; index <= 3; index++) {
                 const Dchild = `
                         <a href='#' class='col-3' style='text-decoration: none;'>
@@ -802,13 +1201,6 @@
                 divcat.insertAdjacentHTML('beforeend', Dchild);
             }
 
-
-
-
-
-
-
         });
     </script>
-
 @endsection
