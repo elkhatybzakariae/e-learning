@@ -36,10 +36,10 @@
         }
 
         /* .owl-carousel .owl-nav button {
-                                                                                                                        width: 25px;
-                                                                                                                        text-align: center;
-                                                                                                                        border: 1px solid #0b0606 !important;
-                                                                                                                    } */
+                                                                                                                            width: 25px;
+                                                                                                                            text-align: center;
+                                                                                                                            border: 1px solid #0b0606 !important;
+                                                                                                                        } */
         .owl-nav {
             position: relative;
             top: -230px;
@@ -343,19 +343,19 @@
 
     <style>
         /* .dropdown:hover>div>.dropdown-menu {
-                        display: block;
-                    } */
-
-        /* .dropdown:hover> div>.dropdown-menu {
                             display: block;
                         } */
+
+        /* .dropdown:hover> div>.dropdown-menu {
+                                display: block;
+                            } */
         /* .dropdown:hover>.dropdown-menu {
-                display: block;
-            } */
+                    display: block;
+                } */
 
         /* .dropdown>.dropdown-toggle:active {
-                        pointer-events: none;
-                    } */
+                            pointer-events: none;
+                        } */
     </style>
     <script>
         // Get the dropdown menu
@@ -416,91 +416,8 @@
                         </div>
                         <div class="sidebar-brand-text mx-2">E-Learning</div>
                     </a>
-                    {{-- <div class="dropdown row ddiv">
-                        <ul class="list-unstyled">
-                            <li class="nav-item dropdown mt-3"id="catlistdiv">
-                                <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false" id="cat">
-                                    Categories
-                                </a>
-
-
-                                <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
-                                    id="catlist">
-                                </div>
-                                <div class="mega-menu" id="catlist">
-                                </div>
-                                <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
-                                id="scatlist">
-                                <h6 id="scatlistDropdown">Subcategories</h6>
-                            </div>
-
-                            </li>
-                        </ul>
-
-                    </div> --}}
-                    {{-- <div>
-                        <div class="collapse navbar-collapse" id="main_nav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item dropdown has-megamenu">
-                                    <a class="nav-link dropdown-toggle" id="menuA" href="#"
-                                        data-bs-toggle="dropdown">
-                                        Mega menu
-                                    </a>
-                                    <div class="dropdown-menu megamenu" id="menu" role="menu">
-                                        <div class="row g-3 ">
-                                            <div class="col-lg-3 col-6">
-                                                <div class="col-megamenu">
-                                                    <ul class="list-unstyled" id="ulcatlist">
-
-                                                    </ul>
-                                                </div> <!-- col-megamenu.// -->
-                                            </div>
-                                        </div><!-- end row -->
-                                    </div> <!-- dropdown-mega-menu.// -->
-                                </li>
-                            </ul>
-                        </div>
-                    </div> --}}
-                    {{-- <div class="dropdown">
-                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-mdb-toggle="dropdown" aria-expanded="false">
-                            Categories
-                        </button>
-                        <div class="row">
-                            <ul class="dropdown-menu col-6" aria-labelledby="dropdownMenuButton" id="ulcatlist">
-                              
-                            </ul>
-                            <ul class="dropdown-menu col-6" aria-labelledby="dropdownMenuButton" id="">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
-
-                    </div> --}}
-                    {{-- <nav class="dropdown d-flex" style="width: 200px">
-                        <button class="btn btn-white dropdown-toggle" id="dropdownMenuButton" data-mdb-toggle="dropdown"
-                            aria-expanded="false">
-                            Categories
-                        </button>
-                        <div class="">
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ulcatlist">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
-                        <div class="p-2 flex-fill">                            
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
-                    </nav> --}}
                     <div class="dropdown">
-                        <button class="btn btn-white dropdown-toggle" id="dropdownMenuButton" data-mdb-toggle="dropdown"
+                        <button class="btn btn-white" id="dropdownMenuButton" data-mdb-toggle="dropdown"
                             aria-expanded="false">
                             Categories
                         </button>
@@ -908,9 +825,14 @@
                     <div class="inner-div ms-3 me-3 mt-5">
                         <div class="row ms-5 me-5 d-flex justify-content-center align-item-center">
                             <div class="col-4" {{-- style="background-color: #f4f7f6;" --}}>
-                                <h3 class="pt-4" style="font-family: Georgia, serif; color:#4463d1;">E-Learning</h5>
-                                    <h4 style="font-family: Georgia, serif;">Développez tes compétences avec E-Learning
-                                        </h5>
+                                <h3 class="pt-4" style="font-family: Georgia, serif; color:#4463d1;">E-Learning</h3>
+                                <h4 style="font-family: Georgia, serif;" class="mt-2 pt-2">Développez tes compétences avec E-Learning
+                                </h4>
+                                <h6 style="font-family: Georgia, serif;" class="mt-2 pt-2">
+                                    Accès illimité à plus de 25 000+ des meilleurs cours E-Learning, partout et à tout
+                                    moment
+                                </h6>
+                                <a href="#" class="btn btn-dark mt-5">En savoir plus</a>
                             </div>
                             <div class="col-1"></div>
                             <div class="col-4" {{-- style="background-color: #f4f7f6;" --}}>
@@ -1098,7 +1020,7 @@
                             <div>${categories[index].CatName}</div>
                             <div>&raquo;</div>                             
                         </a>
-                        <ul class="dropdown-menu dropdown-submenu"  style='width: auto;'>
+                        <ul class="dropdown-menu dropdown-submenu" style='width: 350px;'>
                             ${generateSubcategoriesList(categories[index].id_Cat)}
                         </ul>
                     </li>
@@ -1116,7 +1038,7 @@
                                         <div>${souscategories[j].SCatName}</div>
                                         <div>&raquo;</div>
                                     </a>
-                                    <ul class="dropdown-menu dropdown-submenu">
+                                    <ul class="dropdown-menu dropdown-submenu" style='width: 350px;'>
                                         ${generateSujetsList(souscategories[j].id_SCat)}
                                     </ul>
                                 </li>
@@ -1129,7 +1051,7 @@
             function generateSujetsList(subcategoryId) {
                 let sujetsList = '';
                 for (let k = 0; k < sujets.length; k++) {
-                    if (sujets[k].id_SCat  === subcategoryId) {
+                    if (sujets[k].id_SCat === subcategoryId) {
                         sujetsList += `
                                     <li>
                                         <a class="dropdown-item" href="#">

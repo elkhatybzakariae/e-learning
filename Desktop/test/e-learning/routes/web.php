@@ -27,10 +27,10 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/welcome', function () {
-    $lastC= Cour::orderBy('created_at', 'desc')->take(10)->get();
-    return view('welcome',compact('lastC'));
-})->name('welcome');
+// Route::get('/welcome', function () {
+//     $lastC= Cour::orderBy('created_at', 'desc')->take(10)->get();
+//     return view('welcome',compact('lastC'));
+// })->name('welcome');
 Route::get('/', [Home::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'superadmin'], function () {
