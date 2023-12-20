@@ -36,10 +36,10 @@
         }
 
         /* .owl-carousel .owl-nav button {
-                                                                                        width: 25px;
-                                                                                        text-align: center;
-                                                                                        border: 1px solid #0b0606 !important;
-                                                                                    } */
+                                                                                                                        width: 25px;
+                                                                                                                        text-align: center;
+                                                                                                                        border: 1px solid #0b0606 !important;
+                                                                                                                    } */
         .owl-nav {
             position: relative;
             top: -230px;
@@ -307,20 +307,18 @@
             }
 
             .navbar .megamenu {
-                left: 0;
-                right: 0;
-                width: 100%;
+                /* left: 0; */
+                /* right: 0; */
+                /* width: 100%; */
                 margin-top: 0;
             }
-            .menuA:hover menu{
+
+            .menuA:hover+menu {
                 display: block;
             }
-
         }
 
         /* ============ desktop view .end// ============ */
-
-
         /* ============ mobile view ============ */
         @media(max-width: 991px) {
 
@@ -333,6 +331,74 @@
         }
 
         /* ============ mobile view .end// ============ */
+    </style>
+    <style>
+        .row {
+            margin-right: 0px;
+            margin-left: 0px;
+        }
+    </style>
+
+
+
+    <style>
+        /* .dropdown:hover>div>.dropdown-menu {
+                        display: block;
+                    } */
+
+        /* .dropdown:hover> div>.dropdown-menu {
+                            display: block;
+                        } */
+        /* .dropdown:hover>.dropdown-menu {
+                display: block;
+            } */
+
+        /* .dropdown>.dropdown-toggle:active {
+                        pointer-events: none;
+                    } */
+    </style>
+    <script>
+        // Get the dropdown menu
+        const dropdownMenu = document.querySelector('.dropdown');
+
+        // Prevent the dropdown menu from closing on mouseleave
+        dropdownMenu.addEventListener('mouseleave', function(event) {
+            event.stopPropagation();
+        });
+    </script>
+    <style>
+        .dropdown:hover>.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            position: relative;
+        }
+
+        .dropdown-menu .dropdown-submenu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: -11px;
+        }
+
+        .dropdown-menu .dropdown-submenu-left {
+            right: 100%;
+            left: auto;
+        }
+
+        .dropdown-menu>li:hover>.dropdown-submenu {
+            display: block;
+        }
+
+        .dropdown-hover:hover>.dropdown-menu {
+            display: inline-block;
+        }
+
+        .dropdown-hover>.dropdown-toggle:active {
+            /*Without this, clicking will make it sticky*/
+            pointer-events: none;
+        }
     </style>
 @endsection
 @section('content')
@@ -350,7 +416,7 @@
                         </div>
                         <div class="sidebar-brand-text mx-2">E-Learning</div>
                     </a>
-                    <div class="dropdown row ddiv">
+                    {{-- <div class="dropdown row ddiv">
                         <ul class="list-unstyled">
                             <li class="nav-item dropdown mt-3"id="catlistdiv">
                                 <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -359,96 +425,90 @@
                                 </a>
 
 
-                                {{-- <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
+                                <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="catlistDropdown"
                                     id="catlist">
-                                </div> --}}
-                                <div class="mega-menu" id="catlist">
-                                    {{-- <div class="mega-menu-column"> --}}
-                                    {{-- <h3>Category 1</h3>
-                                        <ul>
-                                            <li><a href="#">Product 1</a></li>
-                                            <li><a href="#">Product 2</a></li>
-                                            <!-- Add more product links -->
-                                        </ul> --}}
-
-                                    {{-- </div> --}}
-                                    <!-- Add more mega menu columns -->
                                 </div>
-                                {{-- <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
+                                <div class="mega-menu" id="catlist">
+                                </div>
+                                <div class="dropdown-menu col-6 shadow animated--grow-in" aria-labelledby="scatlistDropdown"
                                 id="scatlist">
                                 <h6 id="scatlistDropdown">Subcategories</h6>
-                            </div> --}}
+                            </div>
 
                             </li>
                         </ul>
 
-                    </div>
-                    <div>
+                    </div> --}}
+                    {{-- <div>
                         <div class="collapse navbar-collapse" id="main_nav">
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown has-megamenu">
-                                    <a class="nav-link dropdown-toggle" id="menuA" href="#" data-bs-toggle="dropdown"> 
+                                    <a class="nav-link dropdown-toggle" id="menuA" href="#"
+                                        data-bs-toggle="dropdown">
                                         Mega menu
                                     </a>
                                     <div class="dropdown-menu megamenu" id="menu" role="menu">
-                                        <div class="row g-3">
+                                        <div class="row g-3 ">
                                             <div class="col-lg-3 col-6">
-                                                <div class="col-megamenu" >
+                                                <div class="col-megamenu">
                                                     <ul class="list-unstyled" id="ulcatlist">
-                                                        {{-- <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li> --}}
+
                                                     </ul>
                                                 </div> <!-- col-megamenu.// -->
-                                            </div><!-- end col-3 -->
-                                            {{-- <div class="col-lg-3 col-6">
-                                                <div class="col-megamenu">
-                                                    <h6 class="title">Title Menu Two</h6>
-                                                    <ul class="list-unstyled">
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                    </ul>
-                                                </div>  <!-- col-megamenu.// -->
-                                            </div><!-- end col-3 -->
-                                            <div class="col-lg-3 col-6">
-                                                <div class="col-megamenu">
-                                                    <h6 class="title">Title Menu Three</h6>
-                                                    <ul class="list-unstyled">
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                    </ul>
-                                                </div>  <!-- col-megamenu.// -->
-                                            </div>    
-                                            <div class="col-lg-3 col-6">
-                                                <div class="col-megamenu">
-                                                    <h6 class="title">Title Menu Four</h6>
-                                                    <ul class="list-unstyled">
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                        <li><a href="#">Custom Menu</a></li>
-                                                    </ul>
-                                                </div>  <!-- col-megamenu.// -->
-                                            </div> --}}
+                                            </div>
                                         </div><!-- end row -->
                                     </div> <!-- dropdown-mega-menu.// -->
                                 </li>
                             </ul>
                         </div>
+                    </div> --}}
+                    {{-- <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-mdb-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </button>
+                        <div class="row">
+                            <ul class="dropdown-menu col-6" aria-labelledby="dropdownMenuButton" id="ulcatlist">
+                              
+                            </ul>
+                            <ul class="dropdown-menu col-6" aria-labelledby="dropdownMenuButton" id="">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+
+                    </div> --}}
+                    {{-- <nav class="dropdown d-flex" style="width: 200px">
+                        <button class="btn btn-white dropdown-toggle" id="dropdownMenuButton" data-mdb-toggle="dropdown"
+                            aria-expanded="false">
+                            Categories
+                        </button>
+                        <div class="">
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ulcatlist">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                        <div class="p-2 flex-fill">                            
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </nav> --}}
+                    <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" id="dropdownMenuButton" data-mdb-toggle="dropdown"
+                            aria-expanded="false">
+                            Categories
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ulcatlist">
+
+                        </ul>
                     </div>
+
 
                     <form action="">
                         <div
@@ -661,8 +721,8 @@
 
                         @guest
                             <div class="mt-3">
-                                <a href="{{ route('loginpage') }}" class="btn btn-outline-primary"
-                                    style="border-radius: 20px;" role="button">Login</a>
+                                <a href="{{ route('loginpage') }}" class="btn btn-outline-primary" style="border-radius: 20px;"
+                                    role="button">Login</a>
                                 <a href="{{ route('registerpage') }}" class="btn btn-primary" style="border-radius: 20px;"
                                     role="button">Register</a>
                             </div>
@@ -975,7 +1035,7 @@
     </div>
 @endsection
 @section('script')
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             /////// Prevent closing from click inside dropdown
             document.querySelectorAll('.dropdown-menu').forEach(function(element) {
@@ -985,7 +1045,7 @@
             })
         });
         // DOMContentLoaded  end
-    </script>
+    </script> --}}
 
     <script>
         $(document).ready(function() {
@@ -997,45 +1057,124 @@
             var ulcatlist = document.getElementById('ulcatlist');
 
 
+            // <li><a class="dropdown-item" href="#"></a></li>
+            // for (let index = 0; index < categories.length; index++) {
+            //     const lichild = `
+
+        //     <li>
+        //                 <a class="dropdown-item" href="#">
+        //                     ${categories[index].CatName} &raquo;
+        //                 </a>
+        //                 <ul class="dropdown-menu dropdown-submenu">`
+            //     for (let j = 0; j < souscategories.length; j++) {
+            //         console.log(souscategories[j].SCatName);
+            //         `
+        //                   <li>
+        //                     <a class="dropdown-item" href="#">${souscategories[j].SCatName} &raquo; </a>
+        //                     <ul class="dropdown-menu dropdown-submenu">
+        //                         `
+            //         for (let k = 0; k < sujets.length; k++) {
+            //             `
+        //                       <li>
+        //                         <a class="dropdown-item" href="#">${sujets[k].SjName}</a>
+        //                       </li>
+        //                       `
+            //         }
+            //         `
+        //                     </ul>
+        //                   </li>
+        //                   `
+            //     }
+            //     `
+        //                 </ul>
+        //               </li>
+        //         `;
+            //     ulcatlist.insertAdjacentHTML('beforeend', lichild);
+            // }
             for (let index = 0; index < categories.length; index++) {
                 const lichild = `
-                        <li><a href="#">${categories[index].CatName}</a></li>
-                    `;
-                    ulcatlist.insertAdjacentHTML('beforeend', lichild);
+                    <li>
+                        <a class="dropdown-item d-flex justify-content-between" href="#">
+                            <div>${categories[index].CatName}</div>
+                            <div>&raquo;</div>                             
+                        </a>
+                        <ul class="dropdown-menu dropdown-submenu"  style='width: auto;'>
+                            ${generateSubcategoriesList(categories[index].id_Cat)}
+                        </ul>
+                    </li>
+                `;
+                ulcatlist.insertAdjacentHTML('beforeend', lichild);
             }
 
-            function categorie() {
-                categories.forEach(categorie => {
-                    const catli = document.createElement('li');
-                    const cata = document.createElement('a');
-                    cata.textContent = categorie.CatName;
-                    catli.name = categorie.id_Cat;
-                    cata.id = categorie.id_Cat;
-                    cata.classList.add('dropdown-item');
-                    catli.appendChild(cata);
-                    catlist.appendChild(catli);
-
-                    cata.addEventListener('mouseenter', function() {
-                        souscategorie(cata);
-                        // scatlist.classList.toggle('show');
-                    });
-                    // cata.removeEventListener('mouseleave', souscategorie);
-
-                    cata.addEventListener('mouseleave', function() {
-                        cata.removeEventListener('mouseenter', souscategorie);
-                        const ulToRemove = cata.querySelectorAll('li');
-                        //     // const ulToRemove = cata.querySelector(`[name='${catli.name}']`);
-                        //     // const ulToRemove = cata.querySelectorAll('li');
-                        // console.log(ulToRemove);
-                        // if (ulToRemove) {
-                        //     cata.removeChild(ulToRemove);
-                        // }
-                        ulToRemove.forEach(li => {
-                            cata.removeChild(li);
-                        });
-                    });
-                });
+            function generateSubcategoriesList(categoryId) {
+                let subcategoriesList = '';
+                for (let j = 0; j < souscategories.length; j++) {
+                    if (souscategories[j].id_Cat === categoryId) {
+                        subcategoriesList += `
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between" href="#">
+                                        <div>${souscategories[j].SCatName}</div>
+                                        <div>&raquo;</div>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-submenu">
+                                        ${generateSujetsList(souscategories[j].id_SCat)}
+                                    </ul>
+                                </li>
+                            `;
+                    }
+                }
+                return subcategoriesList;
             }
+
+            function generateSujetsList(subcategoryId) {
+                let sujetsList = '';
+                for (let k = 0; k < sujets.length; k++) {
+                    if (sujets[k].id_SCat  === subcategoryId) {
+                        sujetsList += `
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            ${sujets[k].SjName}
+                                        </a>
+                                    </li>
+                                `;
+                    }
+                }
+                return sujetsList;
+            }
+
+
+            // function categorie() {
+            //     categories.forEach(categorie => {
+            //         const catli = document.createElement('li');
+            //         const cata = document.createElement('a');
+            //         cata.textContent = categorie.CatName;
+            //         catli.name = categorie.id_Cat;
+            //         cata.id = categorie.id_Cat;
+            //         cata.classList.add('dropdown-item');
+            //         catli.appendChild(cata);
+            //         catlist.appendChild(catli);
+
+            //         cata.addEventListener('mouseenter', function() {
+            //             souscategorie(cata);
+            //             // scatlist.classList.toggle('show');
+            //         });
+            //         // cata.removeEventListener('mouseleave', souscategorie);
+
+            //         cata.addEventListener('mouseleave', function() {
+            //             cata.removeEventListener('mouseenter', souscategorie);
+            //             const ulToRemove = cata.querySelectorAll('li');
+            //             //     // const ulToRemove = cata.querySelector(`[name='${catli.name}']`);
+            //             //     // const ulToRemove = cata.querySelectorAll('li');
+            //             // console.log(ulToRemove);
+            //             // if (ulToRemove) {
+            //             //     cata.removeChild(ulToRemove);
+            //             // }
+            //             ulToRemove.forEach(li => {
+            //                 cata.removeChild(li);
+            //             });
+            //         });
+            //     });
+            // }
             // function categorie() {
             //     // categories dropdown
             //     categories.forEach(function(categorie) {
@@ -1070,49 +1209,49 @@
             //     });
             // }
 
-            function souscategorie(cata) {
-                var scatlist = document.createElement('ul');
-                scatlist.classList.add('dropdown-menu');
+            // function souscategorie(cata) {
+            //     var scatlist = document.createElement('ul');
+            //     scatlist.classList.add('dropdown-menu');
 
-                const souscat = souscategories.filter(function(e) {
-                    return e.id_Cat === cata.id;
-                });
-                console.log(souscat);
-                souscat.forEach(function(souscategorie) {
-                    const souscatLi = document.createElement('li');
-                    const souscata = document.createElement('a');
-                    souscata.textContent = souscategorie.SCatName;
-                    souscatLi.name = souscategorie.id_SCat;
-                    souscata.classList.add('dropdown-item');
+            //     const souscat = souscategories.filter(function(e) {
+            //         return e.id_Cat === cata.id;
+            //     });
+            //     console.log(souscat);
+            //     souscat.forEach(function(souscategorie) {
+            //         const souscatLi = document.createElement('li');
+            //         const souscata = document.createElement('a');
+            //         souscata.textContent = souscategorie.SCatName;
+            //         souscatLi.name = souscategorie.id_SCat;
+            //         souscata.classList.add('dropdown-item');
 
-                    souscatLi.appendChild(souscata);
-                    // cata.appendChild(souscatLi);
-                    scatlist.appendChild(souscatLi);
-                    cata.appendChild(scatlist);
-                    // console.log(scatlist);
-                    // catdiv.appendChild(scatlist);
+            //         souscatLi.appendChild(souscata);
+            //         // cata.appendChild(souscatLi);
+            //         scatlist.appendChild(souscatLi);
+            //         cata.appendChild(scatlist);
+            //         // console.log(scatlist);
+            //         // catdiv.appendChild(scatlist);
 
 
-                    // event listener for sujet
-                    // souscatdiv.addEventListener('mouseenter', function() {
-                    //     sujet(souscatdiv);
+            //         // event listener for sujet
+            //         // souscatdiv.addEventListener('mouseenter', function() {
+            //         //     sujet(souscatdiv);
 
-                    // });
-                    // souscatdiv.addEventListener('mouseleave', function() {
-                    //     souscatdiv.removeEventListener('mouseenter', sujet);
-                    //     const ulToRemove = souscatdiv.querySelector('div > ul');
-                    //     if (ulToRemove) {
-                    //         souscatdiv.removeChild(ulToRemove);
-                    //     }
-                    // });
+            //         // });
+            //         // souscatdiv.addEventListener('mouseleave', function() {
+            //         //     souscatdiv.removeEventListener('mouseenter', sujet);
+            //         //     const ulToRemove = souscatdiv.querySelector('div > ul');
+            //         //     if (ulToRemove) {
+            //         //         souscatdiv.removeChild(ulToRemove);
+            //         //     }
+            //         // });
 
-                });
+            //     });
 
-                // souscatdiv.appendChild(souscata); 
-                // souscatLi.appendChild(souscatdiv); 
-                // scatlist.appendChild(souscatLi);
+            //     // souscatdiv.appendChild(souscata); 
+            //     // souscatLi.appendChild(souscatdiv); 
+            //     // scatlist.appendChild(souscatLi);
 
-            }
+            // }
 
             // function sujet(souscatdiv) {
             //     var sujetList = document.createElement('ul');
@@ -1139,10 +1278,10 @@
             //     });
             // }
 
-            cat.addEventListener('mouseenter', categorie);
-            cat.addEventListener('mouseleave', function() {
-                cat.removeEventListener('mouseenter', categorie);
-            });
+            // cat.addEventListener('mouseenter', categorie);
+            // cat.addEventListener('mouseleave', function() {
+            //     cat.removeEventListener('mouseenter', categorie);
+            // });
 
 
             // $('.owl-carousel').owlCarousel({
