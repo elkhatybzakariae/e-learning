@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('id_SCat')->primary();
             $table->string('SCatName');
             $table->string('id_Cat'); 
-            $table->foreign('id_Cat')->references('id_cat')->on('categories');
+            $table->foreign('id_Cat')->references('id_Cat')->on('categories');
             $table->timestamps();
         });
     }
