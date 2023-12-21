@@ -89,7 +89,7 @@
             -o-transform: translate(-50%);
             -khtml-transform: translate(-50%);
             width: 100%;
-            /* height: 80%; */
+            height: 80%;
             padding: 15px;
             transition: all 0.2s ease-in-out
         }
