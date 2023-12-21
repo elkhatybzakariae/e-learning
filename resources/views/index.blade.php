@@ -452,10 +452,10 @@
                                             margin-top: 24px;
                                             margin-bottom: 10px;"
                                                 class="item card product_item">
-                                                <div class="body">
+                                                <div class="body text-center">
                                                     <div class="cp_img">
                                                         <a href="{{ route('cour.show', $cour->id_C) }}">
-                                                            <img style="width: 195px; height:195px;"
+                                                            <img 
                                                                 src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
                                                                 class="img-fluid">
                                                         </a>
@@ -494,7 +494,9 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    <div class="product_details" style="width: 174px;">
+                                                    <div class="product_details" 
+                                                    {{-- style="width: 174px;" --}}
+                                                    >
                                                         <h5 class="title ">
                                                             <a class="" href="#">{{ $cour->title }}</a>
                                                         </h5>
