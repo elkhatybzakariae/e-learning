@@ -338,25 +338,6 @@
             margin-left: 0px;
         }
     </style>
-
-
-
-    <style>
-        /* .dropdown:hover>div>.dropdown-menu {
-                            display: block;
-                        } */
-
-        /* .dropdown:hover> div>.dropdown-menu {
-                                display: block;
-                            } */
-        /* .dropdown:hover>.dropdown-menu {
-                    display: block;
-                } */
-
-        /* .dropdown>.dropdown-toggle:active {
-                            pointer-events: none;
-                        } */
-    </style>
     <script>
         // Get the dropdown menu
         const dropdownMenu = document.querySelector('.dropdown');
@@ -366,7 +347,7 @@
             event.stopPropagation();
         });
     </script>
-    <style>
+    {{-- <style>
         .dropdown:hover>.dropdown-menu {
             display: block;
         }
@@ -399,7 +380,7 @@
             /*Without this, clicking will make it sticky*/
             pointer-events: none;
         }
-    </style>
+    </style> --}}
 @endsection
 @section('content')
     <div id="">
@@ -408,7 +389,7 @@
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="height: 75px;">
+                {{-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="height: 75px;">
                     <a class="sidebar-brand d-flex align-items-center justify-content-center mr-3"
                         href="{{ route('home') }}">
                         <div class="sidebar-brand-icon">
@@ -574,7 +555,7 @@
                                 <a class="dropdown-item text-center small text-gray-500" >Read More
                                     Messages</a>
                             </div>
-                        </li> --}}
+                        </li> --}
                         <li class="nav-item no-arrow mx-1">
                             <a class="nav-link" href="{{ route('panier.index') }}" role="button">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -606,7 +587,7 @@
                                 <a class="btn btn-dark px-3" href="{{ route('github') }}" role="button">
                                     <i class="fa-brands fa-github"></i>
                                 </a>
-                          @endguest --}}
+                          @endguest --}
                                 <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
@@ -645,7 +626,9 @@
                             </div>
                         @endguest
                     </ul>
-                </nav>
+                </nav> --}}
+                
+            @include('master.navbar')
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -682,21 +665,19 @@
                                     </p>
                                 </div>
                             </div>
-                            {{-- <div class="carousel-item">
-                                <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
+                            <div class="carousel-item">
+                                <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/e6cc1a30-2dec-4dc5-b0f2-c5b656909d5b.jpg"
                                     class="d-block w-100" alt="...">
                                 <div class="position-absolute  p-4"
                                     style="left:10%; top: 20%; width:35%; 
                                     background-color:#fff;border-radius:5%;
                                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                                    <h1 style="font-family: Georgia, serif;">Des compétences pour votre
-                                        avenir.</h1>
+                                    <h1 style="font-family: Georgia, serif;">Un apprentissage qui vous ressemble.</h1>
                                     <p>
-                                        Développez votre potentiel avec un cours à partir de 11,99&nbsp;$US seulement. La
-                                        promotion se termine aujourd'hui.
+                                        Des compétences pour aujourd'hui (et demain). Nous vous accompagnons dans vos premiers pas.
                                     </p>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                             data-bs-slide="prev">
