@@ -36,13 +36,13 @@
         }
 
         /* .owl-carousel .owl-nav button {
-                                                                                                                            width: 25px;
-                                                                                                                            text-align: center;
-                                                                                                                            border: 1px solid #0b0606 !important;
-                                                                                                                        } */
+                                                                                                                                width: 25px;
+                                                                                                                                text-align: center;
+                                                                                                                                border: 1px solid #0b0606 !important;
+                                                                                                                            } */
         .owl-nav {
             position: relative;
-            top: -230px;
+            top: -50%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -627,8 +627,8 @@
                         @endguest
                     </ul>
                 </nav> --}}
-                
-            @include('master.navbar')
+
+                @include('master.navbar')
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -674,7 +674,8 @@
                                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                     <h1 style="font-family: Georgia, serif;">Un apprentissage qui vous ressemble.</h1>
                                     <p>
-                                        Des compétences pour aujourd'hui (et demain). Nous vous accompagnons dans vos premiers pas.
+                                        Des compétences pour aujourd'hui (et demain). Nous vous accompagnons dans vos
+                                        premiers pas.
                                     </p>
                                 </div>
                             </div>
@@ -700,8 +701,7 @@
                                 Plus de 15 000&nbsp;entreprises et des millions de participants nous font confiance dans
                                 le monde entier
                             </h2>
-                            <ul
-                                class="list-unstyled d-flex justify-content-between align-items-center ms-3 me-3 flex-wrap">
+                            <ul class="list-unstyled d-flex justify-content-between align-items-center ms-3 me-3 flex-wrap">
 
                                 <li class="partner-logos-module--item--1KtIF">
                                     <img src="https://s.udemycdn.com/partner-logos/ou-v1/volkswagen.svg"
@@ -724,8 +724,8 @@
                                 </li>
                                 <li class="partner-logos-module--item--1KtIF"><img
                                         src="https://s.udemycdn.com/partner-logos/ou-v1/hewlett_packard_enterprise.svg"
-                                        alt="Hewlett Packard Enterprise logo" width="94" height="40"
-                                        loading="lazy"></li>
+                                        alt="Hewlett Packard Enterprise logo" width="94" height="40" loading="lazy">
+                                </li>
                                 <li class="partner-logos-module--item--1KtIF"><img
                                         src="https://s.udemycdn.com/partner-logos/ou-v1/citi.svg" alt="Citi logo"
                                         width="62" height="40" loading="lazy"></li>
@@ -743,10 +743,10 @@
                         <div class="owl-carousel">
                             @foreach ($lastC as $cour)
                                 <div style="margin-top: 24px;margin-bottom: 10px;" class="item card product_item">
-                                    <div class="body">
+                                    {{-- <div class="body">
                                         <div class="cp_img">
                                             <a href="{{ route('cour.show', $cour->id_C) }}">
-                                                <img style="width: 195px; height:195px;"
+                                                <img 
                                                     src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
                                                     class="img-fluid">
                                             </a>
@@ -789,6 +789,61 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                    </div> --}}
+                                    <div class="body text-center">
+                                        <div class="cp_img">
+                                            <a href="{{ route('cour.show', $cour->id_C) }}">
+                                                <img src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
+                                                    class="img-fluid">
+                                            </a>
+                                            <div class="hover">
+                                                {{-- <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a>
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a> --}}
+
+                                                @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                                    <a href="{{ route('panier.index') }}" class="btn btn-primary btn-sm">
+                                                        {{-- Acceder au panier --}}
+
+                                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="#" name="panier" data-id="{{ $cour->id_C }}"
+                                                        class="btn btn-primary btn-sm"
+                                                        data-route="{{ route('panier.store') }}">
+                                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                                    </a>
+                                                @endif
+                                                @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                                    <a href="{{ route('wishlist.index') }}" class="btn btn-white">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
+                                                        class="btn btn-white" data-route="{{ route('wishlist.store') }}">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="product_details">
+                                            <h5 class="title ">
+                                                <a class="" href="#">{{ $cour->title }}</a>
+                                            </h5>
+                                            <ul class="product_price list-unstyled">
+                                                {{-- <li class="old_price">$16.00</li> --}}
+                                                <li class="new_price">
+                                                    @if ($cour->price === 0.0)
+                                                        Free
+                                                    @else
+                                                        ${{ $cour->price }}
+                                                    @endif
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
@@ -799,7 +854,7 @@
 
                     <div>
                         <h5 style="color: black ;font-family: Georgia, serif;">Meilleures catégories</h5>
-                        <div class="row" id="divcat">
+                        <div class="row text-center" id="divcat">
                         </div>
                     </div>
 
@@ -807,7 +862,8 @@
                         <div class="row ms-5 me-5 d-flex justify-content-center align-item-center">
                             <div class="col-4" {{-- style="background-color: #f4f7f6;" --}}>
                                 <h3 class="pt-4" style="font-family: Georgia, serif; color:#4463d1;">E-Learning</h3>
-                                <h4 style="font-family: Georgia, serif;" class="mt-2 pt-2">Développez tes compétences avec E-Learning
+                                <h4 style="font-family: Georgia, serif;" class="mt-2 pt-2">Développez tes compétences avec
+                                    E-Learning
                                 </h4>
                                 <h6 style="font-family: Georgia, serif;" class="mt-2 pt-2">
                                     Accès illimité à plus de 25 000+ des meilleurs cours E-Learning, partout et à tout
@@ -938,18 +994,6 @@
     </div>
 @endsection
 @section('script')
-    {{-- <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            /////// Prevent closing from click inside dropdown
-            document.querySelectorAll('.dropdown-menu').forEach(function(element) {
-                element.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-            })
-        });
-        // DOMContentLoaded  end
-    </script> --}}
-
     <script>
         $(document).ready(function() {
             var cat = document.getElementById('cat');
@@ -1234,7 +1278,7 @@
 
             for (let index = 0; index <= 3; index++) {
                 const Dchild = `
-                        <a href='#' class='col-3' style='text-decoration: none;'>
+                <a href='#' class='col-sm-6 col-md-6 col-lg-3' style='text-decoration: none;'>
                             <div><img style='height:183px ;width:275px; ' src='storage/images/categoriesImg/${categories[index].CatName}.jpg'/></div>
                             <div><h6 style='color: #2d2f31;
                                     padding: .8rem 0 1.6rem;' class='ms-1'>${categories[index].CatName}</h6></div>
