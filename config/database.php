@@ -72,7 +72,7 @@ return [
         // ],
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('AH_MYSQL_STACKHERO_BROWN_HOST'),
+            'host' => env('DB_HOST'),
             'port' => 3306,
             'username' => env('DB_USERNAME'),
             'password' => env('DB_PASSWORD'),
