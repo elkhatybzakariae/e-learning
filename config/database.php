@@ -75,7 +75,7 @@ return [
             'host' => env('AH_MYSQL_STACKHERO_BROWN_HOST'),
             'port' => 3306,
             'username' => env('DB_USERNAME'),
-            'password' => env('AH_MYSQL_STACKHERO_BROWN_ROOT_PASSWORD'),
+            'password' => env('DB_PASSWORD'),
             'database' => env('DB_USERNAME'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
