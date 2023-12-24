@@ -25,28 +25,10 @@ class UserController extends Controller
 
     public function index()
     {
-        // $categorie=Categorie::all();
-        // $souscategorie=SousCategorie::all();
-        // $sujets=Sujet::all();
-        // // $coursList = Cour::where('valider', 1)->get();
-        // $coursList = Cour::with('sujet', 'sujet.souscategorie', 'sujet.souscategorie.categorie')
-        //               ->where('valider', 1)
-        //               ->get()
-        //               ->groupBy('sujet.souscategorie.categorie_id_Cat');
         $Cour = new Cour();
         $coursList = $Cour->coursesByCategory();
-        // dd($coursList['coursesGroupedByCategory']);
-        // return view('index', compact('coursList','categorie','souscategorie','sujets'));
-        
-        // return view('index', [
-        //     'coursList' => $coursList,
-        //     // 'categorie' => $coursList['categorie'],
-        //     'souscategorie' => $coursList['souscategorie'],
-        //     'sujets' => $coursList['sujets']
-        // ]);
         return view('index', [
             'coursList' => $coursList,
-            // 'categorie' => $coursList['categorie'],
             'souscategorie' => $coursList['souscategorie'],
             'sujets' => $coursList['sujets']
         ]);
@@ -69,8 +51,6 @@ class UserController extends Controller
             $coursV = Cour::where('valider', '1')->count();
             return view('auth.dashboard2', compact('coursNo', 'coursV', 'coursN'));
         } elseif (auth()->user()->roles->contains('role_name', 'client')) {
-            // $coursN = Cour::count();
-            // $coursNo = Cour::where('valider', '0')->count();
             $cours = Cour::whereHas('section.session.video.videoterminer', function($query) {
                 $query->where('id_U', Auth::id());
             })->count();
@@ -86,7 +66,6 @@ class UserController extends Controller
     }
     public function teachdashboard()
     {
-        // $cours = Cour::where('id_U',$id)->get();,compact('cours')
         return redirect()->route('home2');
     }
     public function redirectToGoogle()
@@ -108,7 +87,6 @@ class UserController extends Controller
                 Auth::login($user);
                 return redirect()->route('home2');
             }
-            // dd($user->roles->contains('role_name', 'client'));
         } else {
             $fullname = explode(" ", $googleUser['name']);
             $newUser = User::create([
@@ -118,14 +96,11 @@ class UserController extends Controller
                 'Email' => $googleUser->email,
                 'Password' => bcrypt(Str::random(16)),
             ]);
-            // dd($newUser);
             Role_User::create([
                 'id' => $id,
                 'id_U' => $newUser->id_U,
                 'id_R' => "3",
             ]);
-
-            // Auth::login($newUser);
 
             if ($newUser->roles->contains('role_name', 'client')) {
                 Auth::login($newUser);
@@ -172,9 +147,6 @@ class UserController extends Controller
                 'id_U' => $githubUser->id_U,
                 'id_R' => "3",
             ]);
-
-            // Auth::login($user);
-
             if ($newUser->roles->contains('role_name', 'client')) {
                 Auth::login($newUser);
                 return redirect()->route('index');
@@ -182,8 +154,6 @@ class UserController extends Controller
                 Auth::login($newUser);
             }
         }
-
-        // Redirect the user to their dashboard or some other page
         return redirect()->route('dashboard');
     }
 
@@ -271,7 +241,6 @@ class UserController extends Controller
                 'id_R' => $type->id_R,
             ]);
             auth()->login($newuser);
-            // return redirect()->route('dashboard');
             return redirect()->route('index');
         } else {
             return redirect()->route('registerpage');
@@ -322,7 +291,6 @@ class UserController extends Controller
     }
     public function edituser($id)
     {
-        // $user = User::find($id);
         $user = Role_User::where('id_U', $id)->first();
         $roles = Role::all();
         return view('auth.superadmin.edit', compact('user', 'roles'));
