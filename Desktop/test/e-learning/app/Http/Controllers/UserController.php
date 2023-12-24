@@ -292,9 +292,6 @@ class UserController extends Controller
 
         if ($u) {
             if (Hash::check($request->Password, $u->Password)) {
-                // Authentication was successful
-                // auth()->login($u);
-                // return redirect()->route('dashboard'); // Redirect to the intended page after login
                 if ($u->roles->contains('role_name', 'client')) {
                     Auth::login($u);
                     return redirect()->route('index');
@@ -304,7 +301,6 @@ class UserController extends Controller
             }
             return redirect()->route('loginpage');
         } else {
-            // Password is incorrect; show an error message
             return back()->with('error', 'Invalid email or password.');
         }
     }
@@ -322,7 +318,6 @@ class UserController extends Controller
     }
     public function edituser($id)
     {
-        // $user = User::find($id);
         $user = Role_User::where('id_U', $id)->first();
         $roles = Role::all();
         return view('auth.superadmin.edit', compact('user', 'roles'));
