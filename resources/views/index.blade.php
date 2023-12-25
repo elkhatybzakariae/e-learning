@@ -496,18 +496,9 @@
                                                                 class="img-fluid">
                                                         </a>
                                                         <div class="hover">
-                                                            {{-- <a href="javascript:void(0);"
-                                                                    class="btn btn-primary btn-sm waves-effect"><i
-                                                                        class="zmdi zmdi-plus"></i></a>
-                                                                <a href="javascript:void(0);"
-                                                                    class="btn btn-primary btn-sm waves-effect"><i
-                                                                        class="zmdi zmdi-shopping-cart"></i></a> --}}
-
                                                             @if ($cour->panier()->where('id_C', $cour->id_C)->where('id_U', Auth::id())->exists())
                                                                 <a href="{{ route('panier.index') }}"
                                                                     class="btn btn-primary btn-sm">
-                                                                    {{-- Acceder au panier --}}
-
                                                                     <i class="zmdi zmdi-shopping-cart"></i>
                                                                 </a>
                                                             @else
@@ -517,7 +508,7 @@
                                                                     <i class="zmdi zmdi-shopping-cart"></i>
                                                                 </a>
                                                             @endif
-                                                            @if ($cour->wishlist()->where('id_C', $cour->id_C)->exists())
+                                                            @if ($cour->wishlist()->where('id_C', $cour->id_C)->where('id_U', Auth::id())->exists())
                                                                 <a href="{{ route('wishlist.index') }}" class="btn btn-white">
                                                                     <i class="fa-solid fa-heart"></i>
                                                                 </a>
@@ -530,7 +521,7 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    <div class="product_details" {{-- style="width: 174px;" --}}>
+                                                    <div class="product_details">
                                                         <h5 class="title ">
                                                             <a class="" href="#">{{ $cour->title }}</a>
                                                         </h5>
