@@ -797,17 +797,8 @@
                                                     class="img-fluid">
                                             </a>
                                             <div class="hover">
-                                                {{-- <a href="javascript:void(0);"
-                                                        class="btn btn-primary btn-sm waves-effect"><i
-                                                            class="zmdi zmdi-plus"></i></a>
-                                                    <a href="javascript:void(0);"
-                                                        class="btn btn-primary btn-sm waves-effect"><i
-                                                            class="zmdi zmdi-shopping-cart"></i></a> --}}
-
                                                 @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
                                                     <a href="{{ route('panier.index') }}" class="btn btn-primary btn-sm">
-                                                        {{-- Acceder au panier --}}
-
                                                         <i class="zmdi zmdi-shopping-cart"></i>
                                                     </a>
                                                 @else
@@ -860,7 +851,7 @@
 
                     <div class="inner-div ms-3 me-3 mt-5">
                         <div class="row ms-5 me-5 d-flex justify-content-center align-item-center">
-                            <div class="col-4" {{-- style="background-color: #f4f7f6;" --}}>
+                            <div class="col-sm-12 col-md-4 col-lg-4" {{-- style="background-color: #f4f7f6;" --}}>
                                 <h3 class="pt-4" style="font-family: Georgia, serif; color:#4463d1;">E-Learning</h3>
                                 <h4 style="font-family: Georgia, serif;" class="mt-2 pt-2">Développez tes compétences avec
                                     E-Learning
@@ -871,8 +862,8 @@
                                 </h6>
                                 <a href="#" class="btn btn-dark mt-5">En savoir plus</a>
                             </div>
-                            <div class="col-1"></div>
-                            <div class="col-4" {{-- style="background-color: #f4f7f6;" --}}>
+                            <div class="col-sm-12 col-md-4 col-lg-4"></div>
+                            <div class="col-sm-12 col-md-4 col-lg-4" {{-- style="background-color: #f4f7f6;" --}}>
                                 <img src="{{ asset('storage/images/AccImg/img1.webp') }}" height="400px"
                                     width="" />
                             </div>
@@ -880,12 +871,12 @@
                     </div>
                     <div class="inner-div ms-3 me-3 mt-5">
                         <div class="row ms-5 me-5 d-flex justify-content-center align-item-center">
-                            <div class="col-4">
+                            <div class="col-sm-12 col-md-4 col-lg-4">
                                 <img src="{{ asset('storage/images/AccImg/img2.jpg') }}" height="400px"
                                     width="" />
                             </div>
-                            <div class="col-1"></div>
-                            <div class="col-4">
+                            <div class="col-sm-12 col-md-4 col-lg-4"></div>
+                            <div class="col-sm-12 col-md-4 col-lg-4">
                                 <h3 class="pt-4" style="font-family: Georgia, serif;">Devenir formateur</h3>
                                 <h4 style="font-family: Georgia, serif;">
                                     Nos formateurs du monde entier donnent des cours à des millions de participants sur
