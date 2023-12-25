@@ -52,7 +52,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user" action="{{ route('login') }}" method="POST">
+                                    <form class="user" action="{{ secure(route('login')) }}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" name="Email" class="form-control form-control-user"
