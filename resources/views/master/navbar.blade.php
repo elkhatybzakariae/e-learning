@@ -411,13 +411,13 @@
             </li>
         @endauth
 
-        {{-- @guest
+        @guest
             <div class="mt-3">
                 <a href="{{ route('loginpage') }}" class="btn btn-outline-primary" style="border-radius: 20px;"
                     role="button">Login</a>
                 <a href="{{ route('registerpage') }}" class="btn btn-primary" style="border-radius: 20px;"
                     role="button">Register</a>
             </div>
-        @endguest --}}
+        @endguest
     </ul>
 </nav>
