@@ -370,7 +370,7 @@
             <!-- Main Content -->
             <div id="content">
                 @include('master.navbar')
-                <div class="container-fluid" id="bodycontent">
+                <div class="container-fluid  d-flex justify-content-center align-item-center" id="bodycontent">
 
                     {{-- @foreach ($coursList['coursesGroupedByCategory'] as $courses)
                         <hr class="my-4">
