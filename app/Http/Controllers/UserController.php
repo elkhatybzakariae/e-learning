@@ -78,6 +78,7 @@ class UserController extends Controller
         $id_U = Helpers::generateIdU();
         $id = Helpers::generateIdUR();
         $googleUser = Socialite::driver('google')->user();
+        dd($googleUser);
         $user = User::where('Email', $googleUser->email)->first();
         if ($user) {
             if ($user->roles->contains('role_name', 'client')) {
