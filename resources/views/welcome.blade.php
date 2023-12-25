@@ -347,6 +347,14 @@
             event.stopPropagation();
         });
     </script>
+    <style>
+        .image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+    </style>
     {{-- <style>
         .dropdown:hover>.dropdown-menu {
             display: block;
@@ -862,18 +870,18 @@
                                 </h6>
                                 <a href="#" class="btn btn-dark mt-5">En savoir plus</a>
                             </div>
-                            <div class="col-sm-12 col-md-4 col-lg-4"></div>
-                            <div class="col-sm-12 col-md-4 col-lg-4" {{-- style="background-color: #f4f7f6;" --}}>
-                                {{-- <img src="{{ asset('storage/images/AccImg/img1.webp') }}" height="400px"/> --}}
+                            {{-- <div class="col-sm-12 col-md-4 col-lg-4"></div> --}}
+                            <div class="image-container col-sm-12 col-md-4 col-lg-4" {{-- style="background-color: #f4f7f6;" --}}>
+                                <img class="img-fluid" src="{{ asset('storage/images/AccImg/img1.webp') }}"/>
                             </div>
                         </div>
                     </div>
                     <div class="inner-div ms-3 me-3 mt-5">
                         <div class="row ms-5 me-5 d-flex justify-content-center align-item-center">
-                            <div class="col-sm-12 col-md-4 col-lg-4">
-                                {{-- <img src="{{ asset('storage/images/AccImg/img2.jpg') }}" height="400px"/> --}}
+                            <div class="image-container col-sm-12 col-md-4 col-lg-4 ">
+                                <img class="img-fluid" src="{{ asset('storage/images/AccImg/img2.jpg') }}" />
                             </div>
-                            <div class="col-sm-12 col-md-4 col-lg-4"></div>
+                            {{-- <div class="col-sm-12 col-md-4 col-lg-4"></div> --}}
                             <div class="col-sm-12 col-md-4 col-lg-4">
                                 <h3 class="pt-4" style="font-family: Georgia, serif;">Devenir formateur</h3>
                                 <h4 style="font-family: Georgia, serif;">
