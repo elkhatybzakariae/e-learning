@@ -503,7 +503,7 @@
                                                                     class="btn btn-primary btn-sm waves-effect"><i
                                                                         class="zmdi zmdi-shopping-cart"></i></a> --}}
 
-                                                            @if ($cour->panier()->where('id_C', $cour->id_C)->exists())
+                                                            @if ($cour->panier()->where('id_C', $cour->id_C)->where('id_U', Auth::id())->exists())
                                                                 <a href="{{ route('panier.index') }}"
                                                                     class="btn btn-primary btn-sm">
                                                                     {{-- Acceder au panier --}}

@@ -118,77 +118,45 @@ class UserController extends Controller
         return Socialite::driver('github')->redirect();
     }
 
-    // public function handleGithubCallback()
-    // {
-
-    //     $id_U = Helpers::generateIdU();
-    //     $id = Helpers::generateIdUR();
-    //     $githubUser = Socialite::driver('github')->user();
-    //     $user = User::where('Email', $githubUser->email)->first();
-
-    //     if ($user) {
-    //         if ($user->roles->contains('role_name', 'client')) {
-    //             Auth::login($user);
-    //             return redirect()->route('index');
-    //         } else {
-    //             Auth::login($user);
-    //             return redirect()->route('home2');
-    //         }
-    //     } else {
-    //         $newUser = User::create([
-    //             'id_U' => $id_U,
-    //             'FirstName' => $githubUser->nickname,
-    //             'LastName' => $githubUser->nickname,
-    //             'Email' => $githubUser->email,
-    //             'Password' => bcrypt(Str::random(16)),
-    //         ]);
-    //         $typeuser = Role_User::create([
-    //             'id' => $id,
-    //             'id_U' => $githubUser->id_U,
-    //             'id_R' => "3",
-    //         ]);
-    //         if ($newUser->roles->contains('role_name', 'client')) {
-    //             Auth::login($newUser);
-    //             return redirect()->route('index');
-    //         } else {
-    //             Auth::login($newUser);
-    //         }
-    //     }
-    //     return redirect()->route('dashboard');
-    // }
     public function handleGithubCallback()
     {
+
+        $id_U = Helpers::generateIdU();
+        $id = Helpers::generateIdUR();
         $githubUser = Socialite::driver('github')->user();
-    
-        // Check if the user already exists in your application
         $user = User::where('Email', $githubUser->email)->first();
-    
+
         if ($user) {
-            // User exists, log in
-            Auth::login($user);
-            return redirect()->route('index');
+            if ($user->roles->contains('role_name', 'client')) {
+                Auth::login($user);
+                return redirect()->route('index');
+            } else {
+                Auth::login($user);
+                return redirect()->route('home2');
+            }
         } else {
-            // User does not exist, create a new user
             $newUser = User::create([
-                'id_U' => Helpers::generateIdU(),
+                'id_U' => $id_U,
                 'FirstName' => $githubUser->nickname,
                 'LastName' => $githubUser->nickname,
                 'Email' => $githubUser->email,
                 'Password' => bcrypt(Str::random(16)),
             ]);
-    
             $typeuser = Role_User::create([
-                'id' => Helpers::generateIdUR(),
-                'id_U' => $newUser->id_U,
-                'id_R' => "3", 
+                'id' => $id,
+                'id_U' => $githubUser->id_U,
+                'id_R' => "3",
             ]);
-    
-            // Log in the new user
-            Auth::login($newUser);
-    
-            return redirect()->route('index');
+            if ($newUser->roles->contains('role_name', 'client')) {
+                Auth::login($newUser);
+                return redirect()->route('index');
+            } else {
+                Auth::login($newUser);
+            }
         }
+        return redirect()->route('dashboard');
     }
+
     public function teach()
     {
         $idRole = Helpers::generateIdRole();
