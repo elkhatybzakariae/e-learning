@@ -435,7 +435,7 @@
                         </div>
                     @endforeach --}}
 
-                    <div class="container">
+                    <div class="container text-center">
                         @isset($coursList)
                             @foreach ($coursList['coursesGroupedByCategory'] as $courses)
                                 <hr class="my-4">
