@@ -871,8 +871,7 @@
                     <div class="inner-div ms-3 me-3 mt-5">
                         <div class="row ms-5 me-5 d-flex justify-content-center align-item-center">
                             <div class="col-sm-12 col-md-4 col-lg-4">
-                                <img src="{{ asset('storage/images/AccImg/img2.jpg') }}" height="400px"
-                                    width="" />
+                                {{-- <img src="{{ asset('storage/images/AccImg/img2.jpg') }}" height="400px"/> --}}
                             </div>
                             <div class="col-sm-12 col-md-4 col-lg-4"></div>
                             <div class="col-sm-12 col-md-4 col-lg-4">
