@@ -524,7 +524,7 @@
                                         <div class="cp_img ">
                                             <a class="d-flex justify-content-center align-items-center"
                                                 href="{{ route('cour.show', $cour->id_C) }}">
-                                                <img style="width: 195px; height:195px;"
+                                                <img 
                                                     src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
                                                     class="img-fluid" class="img-fluid">
                                             </a>
