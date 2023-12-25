@@ -864,8 +864,7 @@
                             </div>
                             <div class="col-sm-12 col-md-4 col-lg-4"></div>
                             <div class="col-sm-12 col-md-4 col-lg-4" {{-- style="background-color: #f4f7f6;" --}}>
-                                <img src="{{ asset('storage/images/AccImg/img1.webp') }}" height="400px"
-                                    width="" />
+                                {{-- <img src="{{ asset('storage/images/AccImg/img1.webp') }}" height="400px"/> --}}
                             </div>
                         </div>
                     </div>
