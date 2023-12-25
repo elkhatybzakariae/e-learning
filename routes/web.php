@@ -19,6 +19,7 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VideoTerminerController;
 use App\Http\Controllers\WishListController;
 use App\Models\Cour;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,8 +58,11 @@ Route::group(['middleware' => 'authen'], function () {
 Route::get('/signup', [UserController::class, 'registerpage'])->name('registerpage');
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/signin', [UserController::class, 'loginpage'])->name('loginpage');
-Route::post('/login', [UserController::class, 'login'])->name('login');
+// Route::post('/login', [UserController::class, 'login'])->name('login');
 
+Route::get('/login', function () {
+    return Redirect::to('https://' . request()->getHost() . request()->getRequestUri(), 301);
+})->name('login');
 
 Route::get('password/reset', [PasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [PasswordController::class, 'sendResetLinkEmail'])->name('password.email');
