@@ -517,7 +517,7 @@
                         </div>
                     @endisset
                     @isset($cours)
-                        <div class="container row ms-5 d-flex justify-content-center align-item-center">
+                        <div class="container row d-flex justify-content-center align-item-center">
                             @foreach ($cours as $cour)
                                 <div class=" card product_item col-lg-3 ms-4 me-4">
                                     <div class="body">
