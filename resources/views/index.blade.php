@@ -360,6 +360,43 @@
                                                 overflow: hidden;
                                                 text-overflow: ellipsis; */
         }
+        .owl-nav {
+            position: relative;
+            top: -50%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .owl-prev {
+            width: 50px;
+            height: 50px;
+            right: -15px;
+            text-align: center;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #cf8d29;
+            color: #FFFBF5;
+            cursor: pointer;
+            outline: none;
+            z-index: 1;
+        }
+
+        .owl-next {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #FFFBF5;
+            color: #FFFBF5;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+            z-index: 1;
+        }
     </style>
 @endsection
 
@@ -587,7 +624,7 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function() {            
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,
@@ -603,7 +640,7 @@
                     },
                     1000: {
                         items: 5,
-                        // nav: true,
+                        nav: true,
                         loop: true
                     }
                 }
