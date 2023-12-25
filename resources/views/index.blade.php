@@ -435,7 +435,7 @@
                         </div>
                     @endforeach --}}
 
-                    <div class="container text-center">
+                    <div class="container">
                         @isset($coursList)
                             @foreach ($coursList['coursesGroupedByCategory'] as $courses)
                                 <hr class="my-4">
@@ -519,7 +519,7 @@
                             @endforeach
                         @endisset
                         @isset($cours)
-                            <div class="container row ms-5">
+                            <div class="container row ms-5 text-center">
                                 @foreach ($cours as $cour)
                                     <div class=" card product_item col-lg-3 ms-4 me-4">
                                         <div class="body">
