@@ -183,7 +183,6 @@
                                                     aria-labelledby="heading{{ $section->id_Sec }}"
                                                     data-bs-parent="#accordionPanelsStayOpenExample">
                                                     <div class="accordion-body ">
-
                                                         @php $sesscounter = 1; @endphp
                                                         @foreach ($section->session as $session)
                                                             <div class="accordion accordion-flush" id="">

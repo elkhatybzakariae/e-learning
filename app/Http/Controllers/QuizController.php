@@ -66,7 +66,6 @@ class QuizController extends Controller
     {
         $idU = Auth::id();
         $quiz = Quiz::where('id_Q', $id)->with(['questions.reponse', 'quizpasser.qrpasser'])->first();
-
         $DejaPasser = QuizPasser::where('id_Q', $quiz->id_Q)->where('id_U', $idU)->first();
 
 
@@ -75,8 +74,9 @@ class QuizController extends Controller
         // $ids = $Q->pluck('id_Que')->all();
 
         $nbQue = Question::where('questable_id', $quiz->id_Q)->count();
-        // if ($DejaPasser) {
+        if ($DejaPasser) {
         $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
+        }
         //  dd($oldRep);
         if ($oldRep) {
             $QandR = explode('&', $oldRep->QRdata);

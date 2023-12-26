@@ -650,7 +650,8 @@
                                 <div class="position-absolute  p-4"
                                     style="left:10%; top: 20%; width:35%; 
                                         background-color:#fff;border-radius:5%;
-                                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+                                        >
                                     <h1 style="font-family: Georgia, serif;">Des compétences pour votre
                                         avenir.</h1>
                                     <p>
@@ -710,7 +711,6 @@
                                 le monde entier
                             </h2>
                             <ul class="list-unstyled d-flex justify-content-between align-items-center ms-3 me-3 flex-wrap">
-
                                 <li class="partner-logos-module--item--1KtIF">
                                     <img src="https://s.udemycdn.com/partner-logos/ou-v1/volkswagen.svg"
                                         alt="Volkswagen logo" width="48" height="48" loading="lazy">
@@ -736,7 +736,8 @@
                                 </li>
                                 <li class="partner-logos-module--item--1KtIF"><img
                                         src="https://s.udemycdn.com/partner-logos/ou-v1/citi.svg" alt="Citi logo"
-                                        width="62" height="40" loading="lazy"></li>
+                                        width="62" height="40" loading="lazy">
+                                </li>
                                 <li class="partner-logos-module--item--1KtIF"><img
                                         src="https://s.udemycdn.com/partner-logos/ou-v1/ericsson.svg" alt="Ericsson logo"
                                         width="55" height="48" loading="lazy">
