@@ -156,10 +156,10 @@
 
 
     <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
-        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        class="d-none d-sm-inline-block form-inline  navbar-search">
         @csrf
         <div
-            class="p-1 bg-light rounded rounded-pill shadow-sm mb-4 d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            class="p-1 bg-light rounded rounded-pill shadow-sm d-none d-sm-inline-block form-inline navbar-search">
             <div class="input-group">
                 <input type="search" name="searchInput" id="searchInput" placeholder="Search for...?"
                     aria-describedby="button-addon1" class="form-control border-0 bg-light">
