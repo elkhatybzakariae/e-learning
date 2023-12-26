@@ -74,9 +74,9 @@ class QuizController extends Controller
         // $ids = $Q->pluck('id_Que')->all();
 
         $nbQue = Question::where('questable_id', $quiz->id_Q)->count();
-        if ($DejaPasser) {
+        // if ($DejaPasser) {
         $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
-        }
+        // }
         if ($oldRep) {
             $QandR = explode('&', $oldRep->QRdata);
 
