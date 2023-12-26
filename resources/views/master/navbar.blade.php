@@ -158,8 +158,7 @@
     <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
         class="d-none d-sm-inline-block form-inline  navbar-search">
         @csrf
-        <div
-            class="p-1 bg-light rounded rounded-pill shadow-sm d-none d-sm-inline-block form-inline navbar-search">
+        <div class="p-1 bg-light rounded rounded-pill shadow-sm d-none d-sm-inline-block form-inline navbar-search">
             <div class="input-group">
                 <input type="search" name="searchInput" id="searchInput" placeholder="Search for...?"
                     aria-describedby="button-addon1" class="form-control border-0 bg-light">
@@ -170,11 +169,15 @@
             </div>
         </div>
     </form>
-    
-    <!-- Topbar Navbar -->
-    <ul class="navbar-nav ml-auto">
-        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-        {{-- <li class="nav-item dropdown no-arrow d-sm-none">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            {{-- <li class="nav-item dropdown no-arrow d-sm-none">
             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
@@ -199,33 +202,33 @@
                 
             </div>
         </li> --}}
-        <li class="nav-item dropdown no-arrow d-sm-none">
-            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-            </a>
-            <!-- Dropdown - Messages -->
-            <div class="dropdown-menu dropdown-menu-right p-2 shadow animated--grow-in"
-                aria-labelledby="searchDropdown">
-                <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
-                    class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    @csrf
-                    <div
-                        class="bg-light rounded rounded-pill shadow-sm d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 navbar-search">
-                        <div class="input-group">
-                            <input type="search" name="searchInput" id="searchInput" placeholder="Search for...?"
-                                aria-describedby="button-addon1" class="form-control border-0 bg-light">
-                            <div class="input-group-append">
-                                <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i
-                                        class="fa fa-search"></i></button>
+            <li class="nav-item dropdown no-arrow d-sm-none">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-menu dropdown-menu-right p-2 shadow animated--grow-in"
+                    aria-labelledby="searchDropdown">
+                    <form id="courSearchForm" method="get" action="{{ route('cour.search') }}"
+                        class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        @csrf
+                        <div
+                            class="bg-light rounded rounded-pill shadow-sm d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 navbar-search">
+                            <div class="input-group">
+                                <input type="search" name="searchInput" id="searchInput" placeholder="Search for...?"
+                                    aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                                <div class="input-group-append">
+                                    <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i
+                                            class="fa fa-search"></i></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </li>
+                    </form>
+                </div>
+            </li>
 
-        {{-- <li class="nav-item dropdown no-arrow d-sm-none">
+            {{-- <li class="nav-item dropdown no-arrow d-sm-none">
             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                 aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
@@ -242,8 +245,8 @@
             </div>
         </li> --}}
 
-        <!-- Nav Item - Alerts -->
-        {{-- <li class="nav-item dropdown no-arrow mx-1">
+            <!-- Nav Item - Alerts -->
+            {{-- <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle"  id="alertsDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
@@ -358,66 +361,70 @@
                     Messages</a>
             </div>
         </li> --}}
-        <li class="nav-item no-arrow mx-1">
-            <a class="nav-link" href="{{ route('panier.index') }}" role="button">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </a>
-        </li>
-        <li class="nav-item no-arrow mx-1">
-            <a class="nav-link" href="{{ route('wishlist.index') }}" role="button">
-                <i class="fa-regular fa-heart"></i>
-            </a>
-        </li>
-
-        <div class="topbar-divider d-none d-sm-block"></div>
-
-        @auth
-            <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <div class="rounded-circle d-flex justify-content-center align-items-center"
-                        style="width: 40px; height: 40px; background-color: black; color: white;">
-                        {{ strtoupper(substr(auth()->user()->FirstName, 0, 1) . substr(auth()->user()->LastName, 0, 1)) }}
-                    </div>
+            <li class="nav-item no-arrow mx-1">
+                <a class="nav-link" href="{{ route('panier.index') }}" role="button">
+                    <i class="fa-solid fa-cart-shopping"></i>
                 </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="{{ route('profile') }}">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
-                    </a>
-                    @if (auth()->user()->roles->contains('role_name', 'moderateur'))
-                        <a class="dropdown-item" href="{{ route('home2') }}">
-                            <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
-                            Dashboard
-                        </a>
-                    @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
-                        <a class="dropdown-item" href="{{ route('teach') }}">
-                            <i class="fa-solid fa-book-open"></i>
-                            Formateur
-                        </a>
-                    @elseif (auth()->user()->roles->contains('role_name', 'client'))
-                        <a class="dropdown-item" href="{{ route('home2') }}">
-                            <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
-                            Dashboard
-                        </a>
-                    @endif
-                    <div class="dropdown-divider"></div>
-                    <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                    </a>
-                </div>
             </li>
-        @endauth
+            @auth
+                <li class="nav-item no-arrow mx-1">
+                    <a class="nav-link" href="{{ route('wishlist.index') }}" role="button">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+                </li>
+            @endauth
 
-        @guest
-            <div class="mt-3">
-                <a href="{{ route('loginpage') }}" class="btn btn-outline-primary" style="border-radius: 20px;"
-                    role="button">Login</a>
-                <a href="{{ route('registerpage') }}" class="btn btn-primary" style="border-radius: 20px;"
-                    role="button">Register</a>
-            </div>
-        @endguest
-    </ul>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            @auth
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center"
+                            style="width: 40px; height: 40px; background-color: black; color: white;">
+                            {{ strtoupper(substr(auth()->user()->FirstName, 0, 1) . substr(auth()->user()->LastName, 0, 1)) }}
+                        </div>
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="{{ route('profile') }}">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                            <a class="dropdown-item" href="{{ route('home2') }}">
+                                <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
+                                Dashboard
+                            </a>
+                        @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
+                            <a class="dropdown-item" href="{{ route('teach') }}">
+                                <i class="fa-solid fa-book-open"></i>
+                                Formateur
+                            </a>
+                        @elseif (auth()->user()->roles->contains('role_name', 'client'))
+                            <a class="dropdown-item" href="{{ route('home2') }}">
+                                <i class="fa-solid fa-gauge-high" style="color: #d1d3e2;"></i>
+                                Dashboard
+                            </a>
+                        @endif
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            @endauth
+
+            @guest
+                <div class="mt-3">
+                    <a href="{{ route('loginpage') }}" class="btn btn-outline-primary" style="border-radius: 20px;"
+                        role="button">Login</a>
+                    <a href="{{ route('registerpage') }}" class="btn btn-primary" style="border-radius: 20px;"
+                        role="button">Register</a>
+                </div>
+            @endguest
+        </ul>
+    </div>
 </nav>
