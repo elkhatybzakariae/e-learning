@@ -176,6 +176,28 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow d-sm-none">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                    aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small"
+                                placeholder="Search for..." aria-label="Search"
+                                aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
                 <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                 {{-- <li class="nav-item dropdown no-arrow d-sm-none">
                 <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
@@ -427,49 +449,6 @@
             @endguest
         </ul>
     </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarNav">
-    <!-- Topbar Navbar -->
-    <ul class="navbar-nav ml-auto">
-        <!-- Search Dropdown - Visible Only XS -->
-        <li class="nav-item dropdown no-arrow d-sm-none">
-            <!-- ... -->
-        </li>
-        <li class="nav-item dropdown no-arrow d-sm-none">
-            <!-- ... -->
-        </li>
-        <!-- ... -->
-        <!-- Cart Icon -->
-        <li class="nav-item no-arrow mx-1">
-            <a class="nav-link" href="{{ route('panier.index') }}" role="button">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </a>
-        </li>
-        <!-- Wishlist Icon -->
-        @auth
-        <li class="nav-item no-arrow mx-1">
-            <!-- ... -->
-        </li>
-        @endauth
-        <!-- User Dropdown -->
-        @auth
-        <li class="nav-item dropdown no-arrow">
-            <!-- ... -->
-        </li>
-        @endauth
-        <!-- Login/Register Links -->
-        @guest
-        <div class="mt-3">
-            <a href="{{ route('loginpage') }}" class="btn btn-outline-primary" style="border-radius: 20px;"
-                role="button">Login</a>
-            <a href="{{ route('registerpage') }}" class="btn btn-primary" style="border-radius: 20px;"
-                role="button">Register</a>
-        </div>
-        @endguest
-    </ul>
-</div>
+    
 
 </nav>
