@@ -338,7 +338,7 @@
             margin-left: 0px;
         }
     </style>
-    <script>
+    {{-- <script>
         // Get the dropdown menu
         const dropdownMenu = document.querySelector('.dropdown');
 
@@ -346,7 +346,7 @@
         dropdownMenu.addEventListener('mouseleave', function(event) {
             event.stopPropagation();
         });
-    </script>
+    </script> --}}
     <style>
         .image-container {
   width: 100%;
