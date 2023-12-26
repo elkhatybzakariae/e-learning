@@ -77,7 +77,7 @@ class QuizController extends Controller
         if ($DejaPasser) {
         $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
         }
-        //  dd($oldRep);
+         dd($oldRep);
         if ($oldRep) {
             $QandR = explode('&', $oldRep->QRdata);
 
