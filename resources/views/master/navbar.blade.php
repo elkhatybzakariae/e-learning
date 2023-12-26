@@ -197,29 +197,33 @@
         </li> --}}
 
         <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
             </a>
             <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="userDropdown">
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="{{ route('panier.index') }}" role="button">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
-                <a href="{{ route('loginpage') }}" class="dropdown-item btn btn-outline-primary" style="border-radius: 20px;"
-                        role="button">Login</a>
-                    <a href="{{ route('registerpage') }}" class= " dropdown-item btn btn-primary" style="border-radius: 20px;"
-                        role="button">Register</a>
                 <a class="dropdown-item" href="#">
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                </a>
+                @auth
+                    <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                @endauth
+                @guest
+                    <a href="{{ route('loginpage') }}" class="dropdown-item btn btn-outline-primary"
+                        style="border-radius: 20px;" role="button">Login</a>
+                    <a href="{{ route('registerpage') }}" class= " dropdown-item btn btn-primary"
+                        style="border-radius: 20px;" role="button">Register</a>
+                @endguest
+
             </div>
         </li>
 
@@ -429,8 +433,8 @@
 
         @auth
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="rounded-circle d-flex justify-content-center align-items-center"
                         style="width: 40px; height: 40px; background-color: black; color: white;">
                         {{ strtoupper(substr(auth()->user()->FirstName, 0, 1) . substr(auth()->user()->LastName, 0, 1)) }}
