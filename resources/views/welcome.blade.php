@@ -1276,7 +1276,7 @@
             for (let index = 0; index <= 3; index++) {
                 const Dchild = `
                 <a href='#' class='col-sm-6 col-md-6 col-lg-3' style='text-decoration: none;'>
-                            <div><img style='height:183px ;width:275px; ' src="{{ asset('storage/images/categoriesImg/${categories[index].CatName}.jpg')}}"/></div>
+                            <div><img style='height:183px ;width:275px; ' src="{{ asset('storage/images/CategoriesImg/${categories[index].CatName}.jpg')}}"/></div>
                             <div><h6 style='color: #2d2f31;
                                     padding: .8rem 0 1.6rem;' class='ms-1'>${categories[index].CatName}</h6></div>
                         </a>
