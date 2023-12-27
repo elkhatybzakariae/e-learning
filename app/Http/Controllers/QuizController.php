@@ -55,8 +55,6 @@ class QuizController extends Controller
         Quiz::create($validatedData);
         return redirect()->route('quiz.index')->with('success', 'quiz created successfully');
     }
-
-
     public function destroy($id)
     {
         Quiz::find($id)->delete();
@@ -76,7 +74,7 @@ class QuizController extends Controller
         //nb question in this quiz
         $nbQue = Question::where('questable_id', $quiz->id_Q)->count();
 
-        if ($DejaPasser->id_QP = null) {
+        if ($DejaPasser = null) {
             return view('management.quiz.passerquiz', compact('quiz'));
         } else {
             $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
