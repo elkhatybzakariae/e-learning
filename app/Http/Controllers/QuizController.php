@@ -76,23 +76,25 @@ class QuizController extends Controller
         //nb question in this quiz
         $nbQue = Question::where('questable_id', $quiz->id_Q)->count();
 
-        if ($DejaPasser->id_QP) {
-            $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
-        }
-        if ($oldRep) {
-            $QandR = explode('&', $oldRep->QRdata);
-
-            $tab = [];
-            foreach ($QandR as $item) {
-                list($key, $value) = explode('=', $item);
-                // array_push($tab, $value);
-                $tab[$key] = $value;
-            }
-            // dd($tab);
-            return view('management.quiz.passerquiz', compact('quiz', 'tab', 'DejaPasser', 'nbQue'));
-            // }
-        } else {
+        if ($DejaPasser->id_QP = null) {
             return view('management.quiz.passerquiz', compact('quiz'));
+        } else {
+            $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
+            if ($oldRep) {
+                $QandR = explode('&', $oldRep->QRdata);
+
+                $tab = [];
+                foreach ($QandR as $item) {
+                    list($key, $value) = explode('=', $item);
+                    // array_push($tab, $value);
+                    $tab[$key] = $value;
+                }
+                // dd($tab);
+                return view('management.quiz.passerquiz', compact('quiz', 'tab', 'DejaPasser', 'nbQue'));
+                // }
+            } else {
+                return view('management.quiz.passerquiz', compact('quiz'));
+            }
         }
     }
     public function valider(Request $request)
