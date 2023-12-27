@@ -32,7 +32,7 @@ class QuizController extends Controller
             $quiz = Quiz::whereIn('id_Sec', $idsS)->get();
             return view('management.quiz.index', compact('quiz'));
         } elseif ($client) {
-            $quiz= QuizPasser::where('id_U',$id)->with(['quiz'])->get();
+            $quiz = QuizPasser::where('id_U', $id)->with(['quiz'])->get();
             // dd($quiz);
             return view('management.quiz.index', compact('quiz'));
         }
@@ -73,10 +73,12 @@ class QuizController extends Controller
 
         // $ids = $Q->pluck('id_Que')->all();
 
+        //nb question in this quiz
         $nbQue = Question::where('questable_id', $quiz->id_Q)->count();
-        // if ($DejaPasser) {
-        $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
-        // }
+
+        if ($DejaPasser->id_QP) {
+            $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
+        }
         if ($oldRep) {
             $QandR = explode('&', $oldRep->QRdata);
 
