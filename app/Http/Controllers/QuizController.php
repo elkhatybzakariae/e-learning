@@ -74,7 +74,7 @@ class QuizController extends Controller
         //nb question in this quiz
         $nbQue = Question::where('questable_id', $quiz->id_Q)->count();
 
-        if ($DejaPasser = null) {
+        if ($DejaPasser === null) {
             return view('management.quiz.passerquiz', compact('quiz'));
         } else {
             $oldRep = QRPasser::where('id_QP', $DejaPasser->id_QP)->first();
