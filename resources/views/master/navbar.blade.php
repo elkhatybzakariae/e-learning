@@ -19,6 +19,24 @@
         top: 22px;
         right: 1px;
     }
+
+    @media screen and (min-width: 773px) {
+        .authM {
+            display: none;
+        }
+        .authD {
+            display: block;
+        }
+    }
+
+    @media screen and (max-width: 772px) {
+        .authM {
+            display: block;
+        }
+        .authD {
+            display: none;
+        }
+    }
 </style>
 
 
@@ -196,36 +214,7 @@
             </div>
         </li> --}}
 
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fa-solid fa-bars"></i>
-            </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{ route('panier.index') }}" role="button">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                @auth
-                    <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                    </a>
-                @endauth
-                @guest
-                    <a href="{{ route('loginpage') }}" class="dropdown-item btn btn-outline-primary"
-                        style="border-radius: 20px;" role="button">Login</a>
-                    <a href="{{ route('registerpage') }}" class= " dropdown-item btn btn-primary"
-                        style="border-radius: 20px;" role="button">Register</a>
-                @endguest
-
-            </div>
-        </li>
+        
 
 
 
@@ -430,7 +419,36 @@
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
+        <li class="nav-item dropdown no-arrow" name="authM">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{{ route('panier.index') }}" role="button">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+                @auth
+                    <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                @endauth
+                @guest
+                    <a href="{{ route('loginpage') }}" class="dropdown-item btn btn-outline-primary"
+                        style="border-radius: 20px;" role="button">Login</a>
+                    <a href="{{ route('registerpage') }}" class= " dropdown-item btn btn-primary"
+                        style="border-radius: 20px;" role="button">Register</a>
+                @endguest
 
+            </div>
+        </li>
         @auth
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -472,7 +490,7 @@
         @endauth
 
         @guest
-            <div class="mt-3">
+            <div class="mt-3" name="authD">
                 <a href="{{ route('loginpage') }}" class="btn btn-outline-primary" style="border-radius: 20px;"
                     role="button">Login</a>
                 <a href="{{ route('registerpage') }}" class="btn btn-primary" style="border-radius: 20px;"
