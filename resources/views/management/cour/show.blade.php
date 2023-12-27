@@ -415,7 +415,6 @@
                         }
                     });
                 } else {
-                    // const idV = $(this).attr('id');
                     const url = "{{ route('videoTerminer.delete') }}";
                     $.ajax({
                         url: url,

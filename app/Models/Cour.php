@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Cour extends Model
 {
@@ -81,7 +82,9 @@ class Cour extends Model
                     $query->with([
                         'session' => function ($query) {
                             $query->with(['video' => function ($query) {
-                                $query->orderBy('created_at', 'asc')->with('videoterminer');
+                                $query->orderBy('created_at', 'asc')->with(['videoterminer' => function ($query) {
+                                    $query->where('id_U',Auth::id());
+                                }]);
                             }]);
                         },
                         'quiz',
