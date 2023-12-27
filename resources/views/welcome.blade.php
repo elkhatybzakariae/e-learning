@@ -82,21 +82,22 @@
 
 
         @media screen and (min-width: 773px) {
-
-            .carousel-item .position-absolute {
-                left: 10%;
+            div[name='carouseltext']{
+                left:10%;
                 top: 20%;
-                width: 35%;
+                width:35%;                 
+                background-color:#fff;
+                border-radius:2%;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
             }
         }
 
         /* Styles for screens with a maximum width of 772px */
         @media screen and (max-width: 772px) {
-            .carousel-item {
+            /* .carousel-item {
                 position: relative;
                 color: black;
                 height: auto;
-                /* Adjust height as needed */
             }
 
             .carousel-item img {
@@ -110,7 +111,7 @@
                 width: 90%;
                 border-radius: 5%;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            }
+            } */
         }
     </style>
 
@@ -681,10 +682,7 @@
                             <div class="carousel-item active position-relative" style="color: black">
                                 <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
                                     class="d-block w-100" alt="...">
-                                <div class="position-absolute  p-4"
-                                    style="left:10%; top: 20%; width:35%; 
-                                        background-color:#fff;border-radius:5%;
-                                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                <div class="position-absolute  p-4" name='carouseltext'>
                                     <h1 style="font-family: Georgia, serif;">Des compétences pour votre
                                         avenir.</h1>
                                     <p>
@@ -696,10 +694,7 @@
                             <div class="carousel-item">
                                 <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/a312e355-0a20-4a46-a0b8-65c71539af30.jpg"
                                     class="d-block w-100" alt="...">
-                                <div class="position-absolute  p-4"
-                                    style="left:10%; top: 20%; width:35%; 
-                                    background-color:#fff;border-radius:5%;
-                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                <div class="position-absolute  p-4" name='carouseltext'>
                                     <h1 style="font-family: Georgia, serif;">Des connaissances pour votre futur moi.</h1>
                                     <p>
                                         Apprenez des compétences auprès de formateurs confirmés du monde entier. Les cours
@@ -710,10 +705,7 @@
                             <div class="carousel-item">
                                 <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/e6cc1a30-2dec-4dc5-b0f2-c5b656909d5b.jpg"
                                     class="d-block w-100" alt="...">
-                                <div class="position-absolute  p-4"
-                                    style="left:10%; top: 20%; width:35%; 
-                                    background-color:#fff;border-radius:5%;
-                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                <div class="position-absolute  p-4" name='carouseltext'>
                                     <h1 style="font-family: Georgia, serif;">Un apprentissage qui vous ressemble.</h1>
                                     <p>
                                         Des compétences pour aujourd'hui (et demain). Nous vous accompagnons dans vos
