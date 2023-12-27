@@ -184,6 +184,13 @@
         }
 
         @media (min-width: 1200px) {
+            div[name='carouseltext']>h1 {
+                font-size: 24px;
+            }
+
+            div[name='carouseltext']>p {
+                font-size: 18px;
+            }
             div[name='carouseltext'] {
                 left: 10%;
                 top: 20%;
