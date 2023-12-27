@@ -36,10 +36,10 @@
         }
 
         /* .owl-carousel .owl-nav button {
-                                                                                                                                width: 25px;
-                                                                                                                                text-align: center;
-                                                                                                                                border: 1px solid #0b0606 !important;
-                                                                                                                            } */
+                                                                                                                                    width: 25px;
+                                                                                                                                    text-align: center;
+                                                                                                                                    border: 1px solid #0b0606 !important;
+                                                                                                                                } */
         .owl-nav {
             position: relative;
             top: -50%;
@@ -76,6 +76,41 @@
             cursor: pointer;
             outline: none;
             z-index: 1;
+        }
+
+
+
+
+        @media screen and (min-width: 773px) {
+
+            .carousel-item .position-absolute {
+                left: 10%;
+                top: 20%;
+                width: 35%;
+            }
+        }
+
+        /* Styles for screens with a maximum width of 772px */
+        @media screen and (max-width: 772px) {
+            .carousel-item {
+                position: relative;
+                color: black;
+                height: auto;
+                /* Adjust height as needed */
+            }
+
+            .carousel-item img {
+                width: 100%;
+                height: auto;
+            }
+
+            .carousel-item .position-absolute {
+                left: 5%;
+                top: 10%;
+                width: 90%;
+                border-radius: 5%;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
         }
     </style>
 
@@ -349,11 +384,10 @@
     </script> --}}
     <style>
         .image-container {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
     </style>
     {{-- <style>
         .dropdown:hover>.dropdown-menu {
@@ -650,8 +684,7 @@
                                 <div class="position-absolute  p-4"
                                     style="left:10%; top: 20%; width:35%; 
                                         background-color:#fff;border-radius:5%;
-                                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
-                                        >
+                                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                     <h1 style="font-family: Georgia, serif;">Des compétences pour votre
                                         avenir.</h1>
                                     <p>
@@ -873,7 +906,7 @@
                             </div>
                             {{-- <div class="col-sm-12 col-md-4 col-lg-4"></div> --}}
                             <div class="image-container col-sm-12 col-md-4 col-lg-4" {{-- style="background-color: #f4f7f6;" --}}>
-                                <img class="img-fluid" src="{{ asset('storage/images/AccImg/img1.webp') }}"/>
+                                <img class="img-fluid" src="{{ asset('storage/images/AccImg/img1.webp') }}" />
                             </div>
                         </div>
                     </div>
@@ -1277,7 +1310,7 @@
             for (let index = 0; index <= 3; index++) {
                 const Dchild = `
                 <a href='#' class='col-sm-6 col-md-6 col-lg-3' style='text-decoration: none;'>
-                            <div><img style='height:183px ;width:275px; ' src="{{ asset('storage/images/CategoriesImg/${categories[index].CatName}.jpg')}}"/></div>
+                            <div><img style='height:183px ;width:275px; ' src="{{ asset('storage/images/CategoriesImg/${categories[index].CatName}.jpg') }}"/></div>
                             <div><h6 style='color: #2d2f31;
                                     padding: .8rem 0 1.6rem;' class='ms-1'>${categories[index].CatName}</h6></div>
                         </a>
