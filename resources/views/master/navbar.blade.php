@@ -29,11 +29,7 @@
         #authD {
             display: block;
         }
-        .carousel-item .position-absolute {
-        left: 10%;
-        top: 20%;
-        width: 35%;
-    }
+        
     }
 
     /* Styles for screens with a maximum width of 772px */
@@ -45,22 +41,6 @@
         #authD {
             display: none;
         }
-        .carousel-item {
-        position: relative;
-        color: black;
-        height: auto; /* Adjust height as needed */
-    }
-    .carousel-item img {
-        width: 100%;
-        height: auto;
-    }
-    .carousel-item .position-absolute {
-        left: 5%;
-        top: 10%;
-        width: 90%;
-        border-radius: 5%;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
     }
 </style>
 
