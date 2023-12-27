@@ -26,7 +26,7 @@
                                 <th>quiz Name</th>
                                 <th>Score</th>
                                 <th>Date Passer</th>
-                                <th>Actions</th>
+                                {{-- <th>Actions</th> --}}
                             @endif
                         </tr>
                     </thead>
@@ -41,7 +41,7 @@
                                 <th>quiz Name</th>
                                 <th>Score</th>
                                 <th>Date Passer</th>
-                                <th>Actions</th>
+                                {{-- <th>Actions</th> --}}
                             @endif
                         </tr>
                     </tfoot>
@@ -97,12 +97,12 @@
                                 {{-- @foreach ($cour->section as $section)
                                             @foreach ($section->quiz as $quiz) --}}
                                 <tr>
-                                    <td>{{ $quiz->quiz->quizName }}</td>
+                                    <td><a href="{{route('quiz.passer',$quiz->quiz->id_Q)}}">{{ $quiz->quiz->quizName }}</a></td>
                                     <td>{{ $quiz->score }} %</td>
                                     {{-- <td>{{ $quiz->quiz->updated_at }}</td> --}}
                                     <td>{{ \Carbon\Carbon::parse($quiz->quiz->updated_at)->format('Y/m/d') }}</td>
-                                    <td class="d-flex justify-content-center">
-                                        {{-- <div class="dropdown">
+                                    {{--<td class="d-flex justify-content-center">
+                                         <div class="dropdown">
                                             <button class="btn btn-primary dropdown-toggle" type="button"
                                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
@@ -132,8 +132,8 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                        </div> --}}
-                                    </td>
+                                        </div> 
+                                    </td>--}}
                                 </tr>
                                 {{-- @endforeach
                                     @endforeach --}}
