@@ -21,25 +21,47 @@
     }
 
     /* Styles for screens with a minimum width of 773px */
-@media screen and (min-width: 773px) {
-    #authM {
-        display: none;
-    }
-    #authD {
-        display: block;
-    }
-}
+    @media screen and (min-width: 773px) {
+        #authM {
+            display: none;
+        }
 
-/* Styles for screens with a maximum width of 772px */
-@media screen and (max-width: 772px) {
-    #authM {
-        display: block;
+        #authD {
+            display: block;
+        }
+        .carousel-item .position-absolute {
+        left: 10%;
+        top: 20%;
+        width: 35%;
     }
-    #authD {
-        display: none;
     }
-}
 
+    /* Styles for screens with a maximum width of 772px */
+    @media screen and (max-width: 772px) {
+        #authM {
+            display: block;
+        }
+
+        #authD {
+            display: none;
+        }
+        .carousel-item {
+        position: relative;
+        color: black;
+        height: auto; /* Adjust height as needed */
+    }
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+    }
+    .carousel-item .position-absolute {
+        left: 5%;
+        top: 10%;
+        width: 90%;
+        border-radius: 5%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    }
 </style>
 
 
@@ -216,11 +238,6 @@
             @endguest
             </div>
         </li> --}}
-
-        
-
-
-
 
         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
         {{-- <li class="nav-item dropdown no-arrow d-sm-none">
@@ -422,42 +439,41 @@
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
-        
-                @guest
-                <li id="authM" class="nav-item dropdown no-arrow" >
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fa-solid fa-bars"></i>
-            </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                {{-- <a class="dropdown-item" href="{{ route('panier.index') }}" role="button">
-                    <i class="fa-solid fa-cart-shopping"></i>
+
+        @guest
+            <li id="authM" class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-bars"></i>
                 </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                </a> --}}
-                {{-- <div class="dropdown-divider"></div> --}}
-                {{-- @auth
-                    <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                    </a>
-                @endauth --}}
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    {{-- <a class="dropdown-item" href="{{ route('panier.index') }}" role="button">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Activity Log
+                        </a> --}}
+                            {{-- <div class="dropdown-divider"></div> --}}
+                            {{-- @auth
+                            <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                    @endauth --}}
                     <a href="{{ route('loginpage') }}" class="dropdown-item btn btn-outline-primary"
                         style="border-radius: 20px;" role="button">Login</a>
                     <a href="{{ route('registerpage') }}" class= " dropdown-item btn btn-primary"
                         style="border-radius: 20px;" role="button">Register</a>
-                
 
-            </div>
-        </li>
+
+                </div>
+            </li>
         @endguest
         @auth
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     <div class="rounded-circle d-flex justify-content-center align-items-center"
                         style="width: 40px; height: 40px; background-color: black; color: white;">
                         {{ strtoupper(substr(auth()->user()->FirstName, 0, 1) . substr(auth()->user()->LastName, 0, 1)) }}
