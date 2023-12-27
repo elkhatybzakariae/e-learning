@@ -36,10 +36,10 @@
         }
 
         /* .owl-carousel .owl-nav button {
-                                                                                                                                    width: 25px;
-                                                                                                                                    text-align: center;
-                                                                                                                                    border: 1px solid #0b0606 !important;
-                                                                                                                                } */
+                                                                                                                                                width: 25px;
+                                                                                                                                                text-align: center;
+                                                                                                                                                border: 1px solid #0b0606 !important;
+                                                                                                                                            } */
         .owl-nav {
             position: relative;
             top: -50%;
@@ -78,41 +78,146 @@
             z-index: 1;
         }
 
-
-
-
-        @media screen and (min-width: 773px) {
-            div[name='carouseltext']{
-                left:10%;
-                top: 20%;
-                width:35%;                 
-                background-color:#fff;
-                border-radius:2%;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
-            }
-        }
-
-        /* Styles for screens with a maximum width of 772px */
-        @media screen and (max-width: 772px) {
-            /* .carousel-item {
-                position: relative;
-                color: black;
-                height: auto;
+        @media (max-width: 430.98px) {
+            div[name='carouseltext']>h1 {
+                font-size: x-small;
             }
 
-            .carousel-item img {
-                width: 100%;
-                height: auto;
+            div[name='carouseltext']>p {
+                font-size: xx-small;
+                margin-bottom: 0px;
             }
 
-            .carousel-item .position-absolute {
-                left: 5%;
-                top: 10%;
-                width: 90%;
-                border-radius: 5%;
+            div[name='carouseltext'] {
+                left: 10%;
+                top: 5%;
+                width: 38%;
+                background-color: #fff;
+                border-radius: 2%;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            } */
+                padding: 10px;
+            }
         }
+
+        @media (min-width: 431px) {
+            div[name='carouseltext']>h1 {
+                font-size: x-small;
+            }
+
+            div[name='carouseltext']>p {
+                font-size: xx-small;
+                margin-bottom: 0px;
+            }
+
+            div[name='carouseltext'] {
+                left: 10%;
+                top: 15%;
+                width: 38%;
+                background-color: #fff;
+                border-radius: 2%;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                padding: 10px;
+            }
+        }
+
+        @media (min-width: 576px) {
+            div[name='carouseltext']>h1 {
+                font-size: 16px;
+            }
+
+            div[name='carouseltext']>p {
+                font-size: 10px;
+            }
+
+            div[name='carouseltext'] {
+                font-size: 14px;
+                left: 10%;
+                top: 20%;
+                width: 35%;
+                background-color: #fff;
+                border-radius: 2%;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                padding: 24px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            div[name='carouseltext']>h1 {
+                font-size: 18px;
+            }
+
+            div[name='carouseltext']>p {
+                font-size: 12px;
+            }
+
+            div[name='carouseltext'] {
+                font-size: 14px;
+                left: 10%;
+                top: 20%;
+                width: 35%;
+                background-color: #fff;
+                border-radius: 2%;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                padding: 24px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            div[name='carouseltext']>h1 {
+                font-size: 20px;
+            }
+
+            div[name='carouseltext']>p {
+                font-size: 14px;
+            }
+
+            div[name='carouseltext'] {
+                font-size: 14px;
+                left: 10%;
+                top: 20%;
+                width: 35%;
+                background-color: #fff;
+                border-radius: 2%;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                padding: 24px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            div[name='carouseltext'] {
+                left: 10%;
+                top: 20%;
+                width: 35%;
+                background-color: #fff;
+                border-radius: 2%;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                padding: 24px;
+            }
+        }
+
+        /* @media screen and (min-width: 773px) {
+                    
+                }
+                @media screen and (max-width: 772px) {
+                     .carousel-item {
+                            position: relative;
+                            color: black;
+                            height: auto;
+                        }
+
+                        .carousel-item img {
+                            width: 100%;
+                            height: auto;
+                        }
+
+                        .carousel-item .position-absolute {
+                            left: 5%;
+                            top: 10%;
+                            width: 90%;
+                            border-radius: 5%;
+                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                        }
+                } */
     </style>
 
     <style>
@@ -682,7 +787,7 @@
                             <div class="carousel-item active position-relative" style="color: black">
                                 <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/4eab1b33-68a6-4419-ab03-14a255b62f42.jpg"
                                     class="d-block w-100" alt="...">
-                                <div class="position-absolute  p-4" name='carouseltext'>
+                                <div class="position-absolute" name='carouseltext'>
                                     <h1 style="font-family: Georgia, serif;">Des compétences pour votre
                                         avenir.</h1>
                                     <p>
@@ -694,7 +799,7 @@
                             <div class="carousel-item">
                                 <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/a312e355-0a20-4a46-a0b8-65c71539af30.jpg"
                                     class="d-block w-100" alt="...">
-                                <div class="position-absolute  p-4" name='carouseltext'>
+                                <div class="position-absolute" name='carouseltext'>
                                     <h1 style="font-family: Georgia, serif;">Des connaissances pour votre futur moi.</h1>
                                     <p>
                                         Apprenez des compétences auprès de formateurs confirmés du monde entier. Les cours
@@ -705,7 +810,7 @@
                             <div class="carousel-item">
                                 <img src="https://img-b.udemycdn.com/notices/web_carousel_slide/image/e6cc1a30-2dec-4dc5-b0f2-c5b656909d5b.jpg"
                                     class="d-block w-100" alt="...">
-                                <div class="position-absolute  p-4" name='carouseltext'>
+                                <div class="position-absolute" name='carouseltext'>
                                     <h1 style="font-family: Georgia, serif;">Un apprentissage qui vous ressemble.</h1>
                                     <p>
                                         Des compétences pour aujourd'hui (et demain). Nous vous accompagnons dans vos
@@ -757,7 +862,8 @@
                                 </li>
                                 <li class="partner-logos-module--item--1KtIF"><img
                                         src="https://s.udemycdn.com/partner-logos/ou-v1/hewlett_packard_enterprise.svg"
-                                        alt="Hewlett Packard Enterprise logo" width="94" height="40" loading="lazy">
+                                        alt="Hewlett Packard Enterprise logo" width="94" height="40"
+                                        loading="lazy">
                                 </li>
                                 <li class="partner-logos-module--item--1KtIF"><img
                                         src="https://s.udemycdn.com/partner-logos/ou-v1/citi.svg" alt="Citi logo"
