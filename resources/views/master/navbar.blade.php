@@ -22,20 +22,20 @@
 
     /* Styles for screens with a minimum width of 773px */
 @media screen and (min-width: 773px) {
-    .authM {
+    #authM {
         display: none;
     }
-    .authD {
+    #authD {
         display: block;
     }
 }
 
 /* Styles for screens with a maximum width of 772px */
 @media screen and (max-width: 772px) {
-    .authM {
+    #authM {
         display: block;
     }
-    .authD {
+    #authD {
         display: none;
     }
 }
@@ -422,7 +422,7 @@
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
-        <li class="nav-item dropdown no-arrow" name="authM">
+        <li id="authM" class="nav-item dropdown no-arrow" >
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
@@ -493,7 +493,7 @@
         @endauth
 
         @guest
-            <div class="mt-3" name="authD">
+            <div class="mt-3" id="authD">
                 <a href="{{ route('loginpage') }}" class="btn btn-outline-primary" style="border-radius: 20px;"
                     role="button">Login</a>
                 <a href="{{ route('registerpage') }}" class="btn btn-primary" style="border-radius: 20px;"
