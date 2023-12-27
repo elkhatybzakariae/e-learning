@@ -20,23 +20,26 @@
         right: 1px;
     }
 
-    @media screen and (min-width: 773px) {
-        .authM {
-            display: none;
-        }
-        .authD {
-            display: block;
-        }
+    /* Styles for screens with a minimum width of 773px */
+@media screen and (min-width: 773px) {
+    .authM {
+        display: none;
     }
+    .authD {
+        display: block;
+    }
+}
 
-    @media screen and (max-width: 772px) {
-        .authM {
-            display: block;
-        }
-        .authD {
-            display: none;
-        }
+/* Styles for screens with a maximum width of 772px */
+@media screen and (max-width: 772px) {
+    .authM {
+        display: block;
     }
+    .authD {
+        display: none;
+    }
+}
+
 </style>
 
 
