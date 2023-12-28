@@ -692,7 +692,7 @@
                     }
                 });
             });
-            $('.btn-close').on('click',function(params) {
+            $('.btn-close').on('click',function() {
                 $(this).addClass('none');
             });
         });
