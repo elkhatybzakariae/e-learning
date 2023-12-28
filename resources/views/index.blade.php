@@ -397,6 +397,7 @@
             outline: none;
             z-index: 1;
         }
+        
     </style>
 @endsection
 
@@ -690,6 +691,9 @@
                         console.error(error);
                     }
                 });
+            });
+            $('.btn-close').on('click',function(params) {
+                $(this).addClass('none');
             });
         });
     </script>
