@@ -781,8 +781,8 @@
                             </div>
                         @endguest
                     </ul>
-                </nav> --}}
-
+                </nav> --}}               
+                
                 @include('master.navbar')
                 <!-- End of Topbar -->
 

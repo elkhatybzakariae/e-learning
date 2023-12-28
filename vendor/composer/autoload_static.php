@@ -574,6 +574,7 @@ class ComposerStaticInitb04f99f773c6195dc2ebfa890ad046ca
         'App\\Http\\Middleware\\AuthMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthMiddleware.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
+        'App\\Http\\Middleware\\ForceHttps' => __DIR__ . '/../..' . '/app/Http/Middleware/ForceHttps.php',
         'App\\Http\\Middleware\\FormateurMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/FormateurMiddleware.php',
         'App\\Http\\Middleware\\ModerateurMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/ModerateurMiddleware.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',

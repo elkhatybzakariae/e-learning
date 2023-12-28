@@ -34,6 +34,7 @@ return array(
     'App\\Http\\Middleware\\AuthMiddleware' => $baseDir . '/app/Http/Middleware/AuthMiddleware.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
+    'App\\Http\\Middleware\\ForceHttps' => $baseDir . '/app/Http/Middleware/ForceHttps.php',
     'App\\Http\\Middleware\\FormateurMiddleware' => $baseDir . '/app/Http/Middleware/FormateurMiddleware.php',
     'App\\Http\\Middleware\\ModerateurMiddleware' => $baseDir . '/app/Http/Middleware/ModerateurMiddleware.php',
     'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => $baseDir . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',

@@ -406,6 +406,14 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Compléter Ton Profile</strong>
+                    <span class="badge bg-primary rounded-pill">
+                        Fin dans <span id="timerCountdown">5 h 59 min 13 s</span>.
+                    </span>
+                    <button type="button" class="btn">Cliquez pour Compléter</button>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
                 @include('master.navbar')
                 <div class="container-fluid  d-flex justify-content-center align-item-center" id="bodycontent">
 
