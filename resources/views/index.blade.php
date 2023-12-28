@@ -407,7 +407,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="clickbtn">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="msg">
                     <strong>Compléter Ton Profile</strong>
                     <span class="badge bg-primary rounded-pill">
                         Fin dans <span id="timerCountdown">5 h 59 min 13 s</span>.
@@ -693,7 +693,7 @@
                 });
             });
             $('.btn-close').on('click',function() {
-                $('#clickbtn').addClass('none');
+                $('#msg').addClass('none');
             });
         });
     </script>
