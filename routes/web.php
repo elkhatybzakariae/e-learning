@@ -18,15 +18,13 @@ use App\Http\Controllers\TestQuestionController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VideoTerminerController;
 use App\Http\Controllers\WishListController;
-use App\Models\Cour;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\URL;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
-use Illuminate\Support\Facades\URL;
 
 URL::forceScheme('https');
 // Route::get('/welcome', function () {
