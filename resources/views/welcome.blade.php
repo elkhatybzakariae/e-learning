@@ -36,10 +36,10 @@
         }
 
         /* .owl-carousel .owl-nav button {
-                                                                                                                                                width: 25px;
-                                                                                                                                                text-align: center;
-                                                                                                                                                border: 1px solid #0b0606 !important;
-                                                                                                                                            } */
+                                                                                                                                                    width: 25px;
+                                                                                                                                                    text-align: center;
+                                                                                                                                                    border: 1px solid #0b0606 !important;
+                                                                                                                                                } */
         .owl-nav {
             position: relative;
             top: -50%;
@@ -191,6 +191,7 @@
             div[name='carouseltext']>p {
                 font-size: 18px;
             }
+
             div[name='carouseltext'] {
                 left: 10%;
                 top: 20%;
@@ -203,28 +204,28 @@
         }
 
         /* @media screen and (min-width: 773px) {
-                    
-                }
-                @media screen and (max-width: 772px) {
-                     .carousel-item {
-                            position: relative;
-                            color: black;
-                            height: auto;
-                        }
+                        
+                    }
+                    @media screen and (max-width: 772px) {
+                         .carousel-item {
+                                position: relative;
+                                color: black;
+                                height: auto;
+                            }
 
-                        .carousel-item img {
-                            width: 100%;
-                            height: auto;
-                        }
+                            .carousel-item img {
+                                width: 100%;
+                                height: auto;
+                            }
 
-                        .carousel-item .position-absolute {
-                            left: 5%;
-                            top: 10%;
-                            width: 90%;
-                            border-radius: 5%;
-                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                        }
-                } */
+                            .carousel-item .position-absolute {
+                                left: 5%;
+                                top: 10%;
+                                width: 90%;
+                                border-radius: 5%;
+                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                            }
+                    } */
     </style>
 
     <style>
@@ -781,8 +782,15 @@
                             </div>
                         @endguest
                     </ul>
-                </nav> --}}               
-                
+                </nav> --}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="msg">
+                    <strong>Compléter Ton Profile</strong>
+                    <span class="badge bg-primary rounded-pill">
+                        Fin dans <span id="timerCountdown">5 h 59 min 13 s</span>.
+                    </span>
+                    <button type="button" class="btn"><a href="{{route('profile')}}">Cliquez pour Compléter</a></button>
+                    <button type="button" id="msgbtn" class="btn-close" aria-label="Close"></button>
+                </div>
                 @include('master.navbar')
                 <!-- End of Topbar -->
 
@@ -1422,6 +1430,13 @@
                     `;
                 divcat.insertAdjacentHTML('beforeend', Dchild);
             }
+
+
+
+
+            $('#msgbtn').on('click', function() {
+                $('#msg').hide();
+            });
 
         });
     </script>
