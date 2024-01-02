@@ -71,28 +71,33 @@
                             <h4 class="pb-4 border-bottom">Profession Informations</h4>
                             <div class="row py-2">
                                 <div class="col-lg-12 col-sm-12 form-group row">
-                                    <label for="FirstName" class="col-lg-4 col-sm-12 col-form-label">First Name</label>
+                                    <label for="Specialization" class="col-lg-4 col-sm-12 col-form-label">Specialization
+                                        :</label>
                                     <div class="col-lg-8 col-sm-12">
-                                        <input type="text" name="FirstName" class="form-control bg-light"
-                                            value="{{ $profile->FirstName }}">
+                                        <select class="form-select bg-light" name="Specialization" id="Specialization">
+                                            <option value="0">Select Specialization </option>
+
+                                        </select>
+                                            {{-- value="{{ $profile->Specialization }}" --}}
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12 col-sm-12 form-group row">
-                                    <label for="lastname" class="col-lg-4 col-sm-12 col-form-label">Last Name</label>
+                                    <label for="option" class="col-lg-4 col-sm-12 col-form-label">Option :</label>
                                     <div class="col-lg-8 col-sm-12">
-                                        <input type="text" name="LastName" class="form-control bg-light"
-                                            value="{{ $profile->LastName }}">
+                                        <input type="text" name="option" class="form-control bg-light"
+                                            {{-- value="{{ $profile->LastName }}" --}}
+                                            >
                                     </div>
                                 </div>
 
-                                <div class="col-lg-12 col-sm-12 form-group row">
+                                {{-- <div class="col-lg-12 col-sm-12 form-group row">
                                     <label for="phone" class="col-lg-4 col-sm-12 col-form-label">Phone Number</label>
                                     <div class="col-lg-8 col-sm-12">
                                         <input type="tel" name="Phone" class="form-control bg-light"
                                             value="{{ $profile->Phone }}">
                                     </div>
-                                </div>
+                                </div> --}}
 
                             </div>
                             <div class="py-3 pb-4 border-bottom text-end">
@@ -108,4 +113,15 @@
     </div>
 
 
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+    for (let index = 0; index < categories.length; index++) {
+        const optionchild = `<option value="${categories[index].CatName}">${categories[index].CatName}</option>`;
+        $('#Specialization').append(optionchild);
+    }
+});
+
+    </script>
 @endsection

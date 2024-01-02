@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login</title>
-    <link rel="icon" type="image/x-icon" href="{{ secure_asset('storage/images/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/logo.png') }}">
 
     <!-- Custom fonts for this template-->
-    <link href="{{ secure_asset('storage/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('storage/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{ secure_asset('storage/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('storage/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
     <style>
         .bg-login-image {
-            background: url("{{ secure_asset('storage/img/e-learning.jpg') }}");
+            background: url("{{ asset('storage/img/e-learning.jpg') }}");
             background-position: end;
             background-size: cover;
         }
@@ -52,7 +52,8 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user" action="{{ URL::route('login') }}" method="POST">
+                                    {{-- <form class="user" action="{{ URL::route('login') }}" method="POST"> --}}
+                                    <form class="user" action="{{ route('login') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" name="Email" class="form-control form-control-user"
@@ -103,14 +104,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src=" {{ secure_asset('storage/vendor/jquery/jquery.min.js') }}"></script>
-    <script src=" {{ secure_asset('storage/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src=" {{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>
+    <script src=" {{ asset('storage/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src=" {{ secure_asset('storage/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src=" {{ asset('storage/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src=" {{ secure_asset('storage/js/sb-admin-2.min.js') }}"></script>
+    <script src=" {{ asset('storage/js/sb-admin-2.min.js') }}"></script>
 
 </body>
 

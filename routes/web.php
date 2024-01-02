@@ -19,14 +19,20 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VideoTerminerController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
+// use Illuminate\Support\Facades\URL;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
 
-URL::forceScheme('https');
+
+
+// URL::forceScheme('https');
+
+
+
+
 // Route::get('/welcome', function () {
 //     $lastC= Cour::orderBy('created_at', 'desc')->take(10)->get();
 //     return view('welcome',compact('lastC'));

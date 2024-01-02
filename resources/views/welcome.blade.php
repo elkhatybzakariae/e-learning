@@ -782,15 +782,7 @@
                             </div>
                         @endguest
                     </ul>
-                </nav> --}}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="msg">
-                    <strong>Compléter Ton Profile</strong>
-                    <span class="badge bg-primary rounded-pill">
-                        Fin dans <span id="timerCountdown">5 h 59 min 13 s</span>.
-                    </span>
-                    <button type="button" class="btn"><a href="{{route('profile')}}">Cliquez pour Compléter</a></button>
-                    <button type="button" id="msgbtn" class="btn-close" aria-label="Close"></button>
-                </div>
+                </nav> --}}            
                 @include('master.navbar')
                 <!-- End of Topbar -->
 
@@ -1434,9 +1426,7 @@
 
 
 
-            $('#msgbtn').on('click', function() {
-                $('#msg').hide();
-            });
+            
 
         });
     </script>

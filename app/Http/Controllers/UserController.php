@@ -10,6 +10,7 @@ use App\Models\Role_User;
 use App\Models\Role;
 use App\Models\Categorie;
 use App\Models\Cour;
+use App\Models\DetailsUser;
 use App\Models\Panier;
 use App\Models\QuizPasser;
 use App\Models\SousCategorie;
@@ -51,12 +52,12 @@ class UserController extends Controller
             $coursV = Cour::where('valider', '1')->count();
             return view('auth.dashboard2', compact('coursNo', 'coursV', 'coursN'));
         } elseif (auth()->user()->roles->contains('role_name', 'client')) {
-            $cours = Cour::whereHas('section.session.video.videoterminer', function($query) {
+            $cours = Cour::whereHas('section.session.video.videoterminer', function ($query) {
                 $query->where('id_U', Auth::id());
             })->count();
-            $videoN = VideoTerminer::where('id_U',Auth::id())->count();
-            $quizpasser = QuizPasser::where('id_U',Auth::id())->count();
-            return view('auth.dashboard2', compact('videoN','cours','quizpasser'));
+            $videoN = VideoTerminer::where('id_U', Auth::id())->count();
+            $quizpasser = QuizPasser::where('id_U', Auth::id())->count();
+            return view('auth.dashboard2', compact('videoN', 'cours', 'quizpasser'));
         }
     }
 
@@ -166,7 +167,6 @@ class UserController extends Controller
         $userrole = Role_User::where('id_R', $role->id_R)
             ->where('id_U', $id)
             ->exists();
-        // dd($userrole);
         if ($userrole) {
 
             return redirect()->route('home2');
@@ -195,13 +195,28 @@ class UserController extends Controller
         $validation = $req->validate([
             'FirstName' => 'required|string|max:50',
             'LastName' => 'required|string|max:50',
-            // 'Phone' => 'required|string|max:50',
+            'Phone' => 'nullable|string|max:50',
+            'Specialization' => 'nullable',
+            'option' => 'nullable|string|max:50',
         ]);
         $id = Auth::id();
         $profile = User::find($id);
+        $UserD = DetailsUser::where('id_U',$id)->first();
+        // $UserD = DetailsUser::find($id);
+        
         if ($profile) {
             $profile->update($req->all());
-
+            if ($UserD) {
+                $UserD->update([
+                    'id_U' => $id,
+                    'info' => $req->Specialization . '&' . $req->option,
+                ]);
+            } else {        
+                DetailsUser::create([
+                    'id_U' => $id,
+                    'info' => $req->Specialization . '&' . $req->option,
+                ]);
+            }
             return redirect()->route('profile', $profile->id_U)->with('success', 'Record updated successfully.');
         } else {
             return redirect()->route('profile', $profile->id_U)->with('error', 'profile not found.');
@@ -233,8 +248,8 @@ class UserController extends Controller
                 'Email' => $validation['Email'],
                 'Password' => Hash::make($validation['Password']),
             ]);
-            $type=Role::where('role_name',$validation['usertype'])->first();
-            
+            $type = Role::where('role_name', $validation['usertype'])->first();
+
             Role_User::create([
                 'id' => $id,
                 'id_U' => $newuser->id_U,
@@ -263,7 +278,7 @@ class UserController extends Controller
             if (Hash::check($request->Password, $u->Password)) {
                 // Authentication was successful
                 // auth()->login($u);
-                // return redirect()->route('dashboard'); // Redirect to the intended page after login
+                // return redirect()->route('dashboard');
                 if ($u->roles->contains('role_name', 'client')) {
                     Auth::login($u);
                     return redirect()->route('index');
@@ -282,8 +297,6 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->route('loginpage');
     }
-
-
     public function gestiondescomptes()
     {
         $users = User::where('id_U', '!=', auth()->id())->get();

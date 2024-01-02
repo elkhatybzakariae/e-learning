@@ -412,8 +412,8 @@
                     <span class="badge bg-primary rounded-pill">
                         Fin dans <span id="timerCountdown">5 h 59 min 13 s</span>.
                     </span>
-                    <button type="button" class="btn">Cliquez pour Compléter</button>
-                    <button type="button" class="btn-close" aria-label="Close"></button>
+                    <button type="button" class="btn"><a href="{{route('profile')}}">Cliquez pour Compléter</a></button>
+                    <button type="button" id="msgbtn" class="btn-close" aria-label="Close"></button>
                 </div>
                 @include('master.navbar')
                 <div class="container-fluid  d-flex justify-content-center align-item-center" id="bodycontent">
@@ -624,7 +624,10 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {            
+        $(document).ready(function() {   
+            $('#msgbtn').on('click', function() {
+                $('#msg').hide();
+            });         
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,

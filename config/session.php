@@ -155,8 +155,8 @@ return [
     |
     */
 
-    // 'domain' => env('SESSION_DOMAIN'),
-    'domain' => env('SESSION_DOMAIN', 'ze-learning-eaaadd07e00f.herokuapp.com'),
+    'domain' => env('SESSION_DOMAIN'),
+    // 'domain' => env('SESSION_DOMAIN', 'ze-learning-eaaadd07e00f.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------
