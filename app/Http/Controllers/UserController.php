@@ -188,7 +188,9 @@ class UserController extends Controller
     {
         $id = Auth::id();
         $profile = User::find($id);
-        return view('auth.profile', compact('profile'));
+        $UserD = DetailsUser::where('id_U',$id)->first();   
+        $info = $UserD->info;   
+        return view('auth.profile', compact('profile','info'));
     }
     public function update(Request $req)
     {
@@ -201,9 +203,7 @@ class UserController extends Controller
         ]);
         $id = Auth::id();
         $profile = User::find($id);
-        $UserD = DetailsUser::where('id_U',$id)->first();
-        // $UserD = DetailsUser::find($id);
-        
+        $UserD = DetailsUser::where('id_U',$id)->first();        
         if ($profile) {
             $profile->update($req->all());
             if ($UserD) {

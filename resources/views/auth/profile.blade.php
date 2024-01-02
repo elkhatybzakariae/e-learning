@@ -78,16 +78,14 @@
                                             <option value="0">Select Specialization </option>
 
                                         </select>
-                                            {{-- value="{{ $profile->Specialization }}" --}}
+                                        {{-- value="{{ $profile->Specialization }}" --}}
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12 col-sm-12 form-group row">
                                     <label for="option" class="col-lg-4 col-sm-12 col-form-label">Option :</label>
                                     <div class="col-lg-8 col-sm-12">
-                                        <input type="text" name="option" class="form-control bg-light"
-                                            {{-- value="{{ $profile->LastName }}" --}}
-                                            >
+                                        <input type="text" name="option" id="option" class="form-control bg-light">
                                     </div>
                                 </div>
 
@@ -117,11 +115,21 @@
 @section('script')
     <script>
         $(document).ready(function() {
-    for (let index = 0; index < categories.length; index++) {
-        const optionchild = `<option value="${categories[index].CatName}">${categories[index].CatName}</option>`;
-        $('#Specialization').append(optionchild);
-    }
-});
-
+            var info = @json($info);
+            var tb = info.split("&");
+            if (info) {
+                $('#option').val(tb[1]);
+            }
+            for (let index = 0; index < categories.length; index++) {
+                const optionchild =`${(() => {
+                        if (categories[index].CatName === tb[0]) {
+                            return `<option value="${categories[index].CatName}" selected>${categories[index].CatName}</option>`;
+                        } else {
+                            return `<option value="${categories[index].CatName}">${categories[index].CatName}</option>`;
+                        }
+                    })()}`;                    
+                $('#Specialization').append(optionchild);
+            }
+        });
     </script>
 @endsection

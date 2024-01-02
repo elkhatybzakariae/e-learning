@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('details_user', function (Blueprint $table) {
+            $table->id();
             $table->string('id_U');
             $table->foreign('id_U')->references('id_U')->on('users');
             $table->text('info');

@@ -10,6 +10,8 @@ class DetailsUser extends Model
     use HasFactory;
 
     protected $table = 'details_user';
+    protected $primaryKey = 'id';
+    public $incrementing = true;
     public $timestamps = true;
     protected $fillable = [
         'id_U',
