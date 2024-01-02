@@ -30,12 +30,10 @@
 
         .accordion-header {
             transition: background-color 0.3s;
-            /* Transition for smooth color change */
         }
 
         .accordion-header:hover .accordion-button {
             background-color: #f0f0f0;
-            /* Change background color on hover */
         }
 
 
@@ -52,8 +50,6 @@
 
         #toggleAccordion:hover {
             background-color: #e0e0e0;
-            /* background-color: transparent;
-                                                                            color: azure; */
         }
 
         /* Style for the expanded button */
@@ -79,8 +75,6 @@
 
         .sticky::after {
             content: " Contenu cour";
-            /* font-family: Arial, sans-serif;\2190 */
-            /* padding: 5px; */
             font-style: italic;
             margin-left: 10px;
             width: 0;
@@ -94,17 +88,7 @@
             width: 100px;
             background-color: transparent;
         }
-
-
-        /* .progress-section{text-align: center; padding: 80px 0px; background: #303030;}
-    .progress-section h1{ margin-bottom:70px; color:#fff;}
-    .progress-bars{ margin: auto; background: #fff; width: 120px; height: 120px; transform: rotate(45deg); position: relative;}
-    .progress-bars h2 { line-height: 120px; text-align: center; transform: rotate(-45deg);}
-    .progress-bars:before{position: absolute; content: ""; border: solid 5px #595959; border-width: 5px 0px 0px 5px; width: 30px; height: 30px; top: -9px; left: -9px; bottom: -9px; right: -9px; z-index: 10;}
-    .progress-bars:after{position: absolute; content: ""; border: solid 5px #2bb0ef; border-width: 5px 5px 5px 5px; width: 140px; height: 140px; top: -9px; left: -9px; bottom: -9px; right: -9px;}
-     */
     </style>
-
 @endsection
 @section('content')
     <div id="wrapper">
@@ -148,9 +132,6 @@
                                 </div>
                                 <!-- List Section (Right) -->
                                 <div class="col-lg-4 mb-4 ps-0" id="courdetails">
-                                    {{-- <button class="btn btn-white" id="toggleAccordion">
-                                        <i class="fa-solid fa-eye-slash"></i>
-                                    </button> --}}
                                     <div class="d-flex justify-content-between align-items-center" id="toggleAccordion">
                                         <span class="flex-grow-1 fst-italic fs-4">
                                             Contenu cour
@@ -159,10 +140,7 @@
                                         </sub>
                                         <i id="toggle" class="fa-solid fa-xmark"></i>
                                     </div>
-
-
                                     <div class="accordion accordion-flush border-start border-top border-bottom">
-
                                         @php $sectcounter = 1; @endphp
                                         @foreach ($cour->section as $section)
                                             <div class="accordion-item">
@@ -335,23 +313,6 @@
         }
 
         $(document).ready(function() {
-            // const id = $('#img').data('hidden-id');
-            // const url = "{{ route('videoTerminer.progress') }}";
-            //         $.ajax({
-            //             url: url,
-            //             method: 'GET',
-            //             data: {
-            //                 id: id,
-            //                 _token: '{{ csrf_token() }}'
-            //             },
-            //             success: function(response) {
-            //                 $('#sub').html( response.videoTerminerCount +' sur ' + response.videoCount +' terminé.')
-            //                 console.log(response);
-            //             },
-            //             error: function(xhr, status, error) {
-            //                 console.error('Error:', error);
-            //             }
-            //         });
             progress();
             $('[name="video"]').on('click', function(params) {
                 $('#videocontent').html(`
@@ -360,19 +321,6 @@
                      frameborder="0" allowfullscreen></iframe>
                  `);
             })
-            // $('#toggleAccordion').click(function() {
-            //     $('.accordion').slideToggle(function() {
-            //         const isVisible = $('.accordion').is(':visible');
-            //         const iconClass = isVisible ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
-            //         $('#toggleAccordion i').removeClass().addClass('fas ' + iconClass);
-            //         // const isCollapsed = isVisible ? 'Contenu du cours' : '';
-            //         // $('#toggleAccordion').text(isCollapsed);
-            //         const sideClass = isVisible ? 'col-lg-4 mb-4' : 'col-lg-1 mb-4';
-            //         $('#courdetails').removeClass().addClass(sideClass);
-            //         const Class = isVisible ? 'col-lg-8 mb-4' : 'col-lg-11 mb-4';
-            //         $('#videocontent').removeClass().addClass(Class);
-            //     });
-            // });
             $('#toggleAccordion').on('click', function() {
                 $('#courdetails .accordion').toggle();
                 $('#toggleAccordion').toggleClass('sticky');
@@ -384,21 +332,17 @@
 
                 $('#toggleAccordion i').removeClass().addClass('fas ' + iconClass);
                 $('#toggleAccordion span').text(span);
-                // $('#toggleAccordion').addClass(class);
             });
             $('#presen').on('click', function(e) {
                 e.preventDefault();
                 const courDes =
                     `<h5 class='p-1'>À propos de ce cours</h5><div class='p-3'>{{ $cour->description }}</div>`;
-
-
                 $('#details').html(courDes);
             });
             $('[name="videoT"]').on('change', function(e) {
 
                 const idV = $(this).attr('id');
                 if ($(this).is(':checked')) {
-                    // const idV = $(this).attr('id');
                     const url = "{{ route('videoTerminer.check') }}";
                     $.ajax({
                         url: url,
@@ -430,9 +374,7 @@
                             console.error('Error:', error);
                         }
                     });
-                }
-                // $('#').html(courDes);
-                
+                }                
             progress();
             });
 

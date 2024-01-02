@@ -356,10 +356,11 @@
         .title {
             text-transform: capitalize;
             /* white-space: nowrap;
-                                                max-width: 150px;
-                                                overflow: hidden;
-                                                text-overflow: ellipsis; */
+                                                    max-width: 150px;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis; */
         }
+
         .owl-nav {
             position: relative;
             top: -50%;
@@ -397,7 +398,6 @@
             outline: none;
             z-index: 1;
         }
-        
     </style>
 @endsection
 
@@ -407,14 +407,18 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="msg">
-                    <strong>Compléter Ton Profile</strong>
-                    <span class="badge bg-primary rounded-pill">
-                        Fin dans <span id="timerCountdown">5 h 59 min 13 s</span>.
-                    </span>
-                    <button type="button" class="btn"><a href="{{route('profile')}}">Cliquez pour Compléter</a></button>
-                    <button type="button" id="msgbtn" class="btn-close" aria-label="Close"></button>
-                </div>
+                @if (!$haveDU)
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="msg">
+                        <strong>Compléter Ton Profile</strong>
+                        {{-- <span class="badge bg-primary rounded-pill">
+                            Fin dans <span id="timerCountdown">5 h 59 min 13 s</span>.
+                        </span> --}}
+                        <button type="button" class="btn"><a href="{{ route('profile') }}">Cliquez pour
+                                Compléter</a></button>
+                        <button type="button" id="msgbtn" class="btn-close" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 @include('master.navbar')
                 <div class="container-fluid  d-flex justify-content-center align-item-center" id="bodycontent">
 
@@ -561,8 +565,7 @@
                                         <div class="cp_img ">
                                             <a class="d-flex justify-content-center align-items-center"
                                                 href="{{ route('cour.show', $cour->id_C) }}">
-                                                <img 
-                                                    src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
+                                                <img src="{{ asset('storage/' . $cour['photo']) }}" alt="Product"
                                                     class="img-fluid" class="img-fluid">
                                             </a>
                                             <div class="hover">
@@ -624,10 +627,10 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {   
+        $(document).ready(function() {
             $('#msgbtn').on('click', function() {
                 $('#msg').hide();
-            });         
+            });
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,
@@ -695,569 +698,9 @@
                     }
                 });
             });
-            $('.btn-close').on('click',function() {
+            $('.btn-close').on('click', function() {
                 $('#msg').addClass('none');
             });
         });
     </script>
-
-    {{-- <script>
-        var result = document.getElementById('result')
-        var categorieselect = document.getElementById('categorie')
-        var souscategorieselect = document.getElementById('souscategorie')
-        var sujetselect = document.getElementById('sujet')
-        var responseData;
-        $(document).ready(function() {
-            $('a[name="panier"]').on('click', function(event) {
-                event.preventDefault();
-                var $panierLink = $(this);
-                var id = $(this).data('id');
-                var url = $(this).data('route');
-                $.ajax({
-                    method: 'POST',
-                    url: url,
-                    data: {
-                        id: id,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(data) {
-                        $panierLink.text('Acceder au panier');
-                        $panierLink.attr('href', '{{ route('panier.index') }}');
-                        $panierLink.off('click');
-
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            });
-            $('a[name="wishlist"]').on('click', function(event) {
-                event.preventDefault();
-                var $wishlistLink = $(this);
-                var id = $(this).data('id');
-                var url = $(this).data('route');
-                $.ajax({
-                    method: 'POST',
-                    url: url,
-                    data: {
-                        id: id,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(data) {
-                        $wishlistLink.html('<i class="fa-solid fa-heart"></i>');
-                        $wishlistLink.attr('href', '{{ route('wishlist.index') }}');
-                        $wishlistLink.off('click');
-
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            });
-            $('#categorie').one('click', function(e) {
-                categories.forEach(categorie => {
-                    const catoption = document.createElement('option');
-                    const cata = document.createElement('a');
-                    cata.textContent = categorie.CatName;
-                    catoption.name = categorie.id_Cat;
-                    // catoption.id = categorie.id_Cat;
-                    cata.id = categorie.id_Cat;
-                    // cata.classList.add('dropdown-item');
-                    catoption.appendChild(cata);
-                    categorieselect.appendChild(catoption);
-                    // console.log(categorieselect);
-                    // $('#souscategorie').one('click', function(e) {
-                    // if ($(this).children('option:selected')) {
-                    //     var souscat = souscategories.filter(e => e.id_C === $(this).children(
-                    //         'option:selected').attr('name'))
-                    // }
-                    // // souscategories.forEach(souscategorie => {
-                    // //     if (souscategorie.id_C === $(this).children('option:selected').attr(
-                    // //             'name')) {
-                    // //         console.log("gut");
-                    // //     }
-                    // // });
-                    // console.log(souscat);
-                    // const souscatoption = document.createElement('option');
-                    // const souscata = document.createElement('a');
-                    // souscata.textContent = souscategorie.SCatName;
-                    // souscatoption.name = souscategorie.id_SCat;
-                    // // souscatoption.id = souscategorie.id_SCat;
-                    // souscata.id = souscategorie.id_SCat;
-                    // // souscata.classList.add('dropdown-item');
-                    // souscatoption.appendChild(souscata);
-                    // souscategorieselect.appendChild(souscatoption);
-                    // // console.log(categorieselect);
-                    // });
-                    // })
-                });
-            })
-            // $('#souscategorie').one('click', function(e) {
-            //     souscategories.forEach(souscategorie => {
-            //         // if (souscategorie.id_C === $('#categorie').children('option:selected').attr('name');) {
-            //         //     console.log("gut");
-            //         // }
-            //         const souscatoption = document.createElement('option');
-            //         const souscata = document.createElement('a');
-            //         souscata.textContent = souscategorie.SCatName;
-            //         souscatoption.name = souscategorie.id_SCat;
-            //         // souscatoption.id = souscategorie.id_SCat;
-            //         souscata.id = souscategorie.id_SCat;
-            //         // souscata.classList.add('dropdown-item');
-            //         souscatoption.appendChild(souscata);
-            //         souscategorieselect.appendChild(souscatoption);
-            //         // console.log(categorieselect);
-            //     });
-            // })
-            $('#categorie').on('change', function(e) {
-                $('#souscategorie').html('<option selected>Filtrer par SousCategorie</option>')
-                var vl = $('#categorie').children(':selected').prop('name')
-                var souscat = souscategories.filter(e => e.id_Cat === vl)
-                souscat.forEach(ele => {
-                    const scatoption = document.createElement('option');
-                    const cata = document.createElement('a');
-                    cata.textContent = ele.SCatName;
-                    scatoption.name = ele.id_SCat;
-                    // scatoption.id = categorie.id_Cat;
-                    cata.id = ele.id_SCat;
-                    scatoption.appendChild(cata);
-                    souscategorieselect.appendChild(scatoption);
-
-
-                    // const Parentdiv= document.createElement('div')
-                    // Parentdiv.classList.add("col-xl-3 col-md-6 mb-4");
-                    // const cardtdiv= document.createElement('div')
-                    // cardtdiv.classList.add("card shadow h-100 py-2");
-                    // const imgdiv= document.createElement('div')
-                    // imgdiv.classList.add("text-center");
-                    // const img= document.createElement('img')
-                    // img.classList.add("card-img-top");
-                    // img.src = "{{ asset('storage/images/logo.png') }}";
-                    // img.alt = "Card image cap";
-                    // img.style = "width: 200px;";
-                    // const bodydiv= document.createElement('div')
-                    // bodydiv.classList.add("card-body");
-                    // const rowdiv= document.createElement('div')
-                    // rowdiv.classList.add("row no-gutters align-items-center");
-                    // const rowchilddiv= document.createElement('div')
-                    // rowchilddiv.classList.add("col mr-2");
-                    // const h6= document.createElement('h6')
-                    // h6.classList.add("card-title font-weight-bold text-dark text-uppercase mb-1");
-                    // h6.textContent = ele.SCatName;
-                    // const p= document.createElement('p')
-                    // p.classList.add("card-text");
-                    // p.textContent = ele.SCatName;
-                    // <div class="">
-                    //     <div class="text-center">
-                    //         <img class="card-img-top" =""
-                    //             src="" alt="">
-                    //     </div>
-                    //     <div class="">
-                    //         <div class="row no-gutters align-items-center">
-                    //             <div class="col mr-2">
-                    //                 <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                    //                     {{ $cour->title }}
-                    //                 </h6>
-                    //                     <p class="card-text">{{ $cour->user->FirstName }}
-                    //                         {{ $cour->user->LastName }}
-                    //                         </p>
-                    //                     <div class="h5 mb-1 font-weight-bold text-gray-800">
-                    //                         {{ $cour->price }}$</div>
-                    //                     <a href="#" name="panier" data-id="{{ $cour->id_C }}"
-                    //                         class="btn btn-primary"
-                    //                         data-route="{{ route('panier.store') }}">Ajouter
-                    //                         au panier</a>
-                    //                     <a href="#" name="wishlist" data-id="{{ $cour->id_C }}"
-                    //                         class="btn btn-white"
-                    //                         data-route="{{ route('wishlist.store') }}"><i
-                    //                             class="fa-regular fa-heart"></i></a>
-                    //             </div>
-                    //         </div>
-                    //     </div>
-                    // </div>
-                });
-                // console.log(souscat);
-
-                const name = $(this).children(':selected').val();
-                const url = "{{ route('cour.filterparcat', ':name') }}".replace(':name', name);
-                console.log(url);
-                $.ajax({
-                    method: 'GET',
-                    url: url,
-                    data: {
-                        name: name,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(data) {
-                        responseData = data;
-                        $('#result').html('');
-                        if (data.length === 0) {
-                            $('#result').html(`<div class="col-xl-12 text-center col-md-12 mb-4 mt-5">
-                                    <div class="card shadow text-center h-100 py-2">
-                                        <div class="card-body text-center">
-                                            <div class="row text-center no-gutters align-items-center">
-                                                <div class="col text-center mr-2">
-                                                    <h5 class="card-title text-center font-weight-bold text-dark text-uppercase mb-1">
-                                                      nothing found
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`);
-                        } else {
-                            $.each(data, function(index, cour) {
-                                var Item = `<div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card shadow h-100 py-2">
-                                        <div class="text-center">
-                                            <img class="card-img-top" style="width: 200px;"
-                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                        ` + cour.title + `</h5>
-                                                        <p class="card-text"> ` + cour.user.FirstName + `
-                                                            ` + cour.user.LastName + `</p>
-                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
-                                                            ` + cour.price + `$</div>
-                                                            <div style="display: flex; justify-content: space-between;">
-                                                        <a href="#" name="panier" data-id="` + cour.id_C + `"
-                                                            
-                                                        class="btn btn-primary btn-sm"
-                                                            data-route="{{ route('panier.store') }}">Ajouter
-                                                            au panier</a>
-                                                        <a href="#" name="wishlist" data-id="` + cour.id_C + `"
-                                                            class="btn btn-white"
-                                                            data-route="{{ route('wishlist.store') }}"><i
-                                                                class="fa-regular fa-heart"></i></a>   
-                                                                </div>  
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`;
-                                $('#result').append(Item);
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            })
-            $('#souscategorie').on('change', function(e) {
-                $('#sujet').html('<option selected>Filtrer par Sujet</option>')
-                var vl = $('#souscategorie').children(':selected').prop('name')
-                var sjlist = sujets.filter(e => e.id_SCat === vl)
-                sjlist.forEach(ele => {
-                    const sjoption = document.createElement('option');
-                    const sja = document.createElement('a');
-                    sja.textContent = ele.SjName;
-                    sjoption.name = ele.id_Sj;
-                    // sjoption.id = categorie.id_Sj;
-                    const id = ele.id_Sj;
-                    sja.id = ele.id_Sj;
-                    sjoption.appendChild(sja);
-                    sujetselect.appendChild(sjoption);
-                });
-
-                const name = $(this).children(':selected').val();
-                const url = "{{ route('cour.filterparsouscat', ':name') }}".replace(':name', name);
-                $.ajax({
-                    method: 'GET',
-                    url: url,
-                    data: {
-                        name: name,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(data) {
-                        responseData = data;
-                        $('#result').html('');
-                        if (data.length === 0) {
-                            $('#result').html(`<div class="col-xl-12 text-center col-md-12 mb-4 mt-5">
-                                    <div class="card shadow text-center h-100 py-2">
-                                        <div class="card-body text-center">
-                                            <div class="row text-center no-gutters align-items-center">
-                                                <div class="col text-center mr-2">
-                                                    <h5 class="card-title text-center font-weight-bold text-dark text-uppercase mb-1">
-                                                      nothing found
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`);
-                        } else {
-                            $.each(data, function(index, cour) {
-                                var Item = `<div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card shadow h-100 py-2">
-                                        <div class="text-center">
-                                            <img class="card-img-top" style="width: 200px;"
-                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                        ` + cour.title + `</h5>
-                                                        <p class="card-text"> ` + cour.user.FirstName + `
-                                                            ` + cour.user.LastName + `</p>
-                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
-                                                            ` + cour.price + `$</div>
-                                                            
-                                                        <div style="display: flex; justify-content: space-between;">
-                                                        <a href="#" name="panier" data-id="` + cour.id_C + `"
-                                                            
-                                                        class="btn btn-primary btn-sm"
-                                                            data-route="{{ route('panier.store') }}">Ajouter
-                                                            au panier</a>
-                                                        <a href="#" name="wishlist" data-id="` + cour.id_C + `"
-                                                            class="btn btn-white"
-                                                            data-route="{{ route('wishlist.store') }}"><i
-                                                                class="fa-regular fa-heart"></i></a>   
-                                                                </div>                         
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`;
-                                $('#result').append(Item);
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            })
-
-            $('#sujet').on('change', function(e) {
-                // console.log($('#sujet').children(':selected').prop('name'));
-                var $panierLink = $(this);
-                // var id = $(this).children(':selected').prop('name');
-                var name = $(this).children(':selected').val();
-                // var url = $(this).data('route');
-                var url = "{{ route('cour.filterparsj', ':name') }}".replace(':name', name);
-                $.ajax({
-                    method: 'GET',
-                    url: url,
-                    // headers: {
-                    //     'Authorization': '{{ csrf_token() }}'
-                    // },
-                    data: {
-                        name: name,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(data) {
-                        responseData = data;
-                        $('#result').html('');
-                        if (data.length === 0) {
-                            $('#result').html(`<div class="col-xl-12 text-center col-md-12 mb-4 mt-5">
-                                    <div class="card shadow text-center h-100 py-2">
-                                        <div class="card-body text-center">
-                                            <div class="row text-center no-gutters align-items-center">
-                                                <div class="col text-center mr-2">
-                                                    <h5 class="card-title text-center font-weight-bold text-dark text-uppercase mb-1">
-                                                      nothing found
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`);
-                        } else {
-                            $.each(data, function(index, cour) {
-                                var Item = `<div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card shadow h-100 py-2">
-                                        <div class="text-center">
-                                            <img class="card-img-top" style="width: 200px;"
-                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                        ` + cour.title + `</h5>
-                                                        <p class="card-text"> ` + cour.user.FirstName + `
-                                                            ` + cour.user.LastName + `</p>
-                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
-                                                            ` + cour.price + `$</div>
-                                                            <div style="display: flex; justify-content: space-between;">
-                                                        <a href="#" name="panier" data-id="` + cour.id_C + `"
-                                                            
-                                                        class="btn btn-primary btn-sm"
-                                                            data-route="{{ route('panier.store') }}">Ajouter
-                                                            au panier</a>
-                                                        <a href="#" name="wishlist" data-id="` + cour.id_C + `"
-                                                            class="btn btn-white"
-                                                            data-route="{{ route('wishlist.store') }}"><i
-                                                                class="fa-regular fa-heart"></i></a>   
-                                                                </div>  
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`;
-                                $('#result').append(Item);
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            })
-
-            $('#min').on('input', function(e) {
-                const min = $(this).val();
-                const max = $('#max').val();
-                filter(min, max);
-            })
-            $('#max').on('input', function(e) {
-                const min = $('#min').val();
-                const max = $(this).val();
-                filter(min, max);
-            })
-
-            function filter(min, max) {
-                if (min === null || min == undefined || min == '') {
-                    min = 0;
-                }
-                if (max === null || max == undefined || max == '') {
-                    max = 10000;
-                }
-                const filteredCourses = responseData.filter(function(cour) {
-                    const courPrice = parseFloat(cour.price);
-                    return courPrice >= parseFloat(min) && courPrice <= parseFloat(max);
-                });
-                $('#result').html('');
-                if (filteredCourses.length === 0) {
-                    $('#result').html(`<div class="col-xl-12 text-center col-md-12 mb-4 mt-5">
-                                    <div class="card shadow text-center h-100 py-2">
-                                        <div class="card-body text-center">
-                                            <div class="row text-center no-gutters align-items-center">
-                                                <div class="col text-center mr-2">
-                                                    <h5 class="card-title text-center font-weight-bold text-dark text-uppercase mb-1">
-                                                      nothing found
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`);
-                } else {
-                    $.each(filteredCourses, function(index, cour) {
-                        var Item = `<div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card shadow h-100 py-2">
-                                        <div class="text-center">
-                                            <img class="card-img-top" style="width: 200px;"
-                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                        ` + cour.title + `</h5>
-                                                        <p class="card-text"> ` + cour.user.FirstName + `
-                                                            ` + cour.user.LastName + `</p>
-                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
-                                                            ` + cour.price + `$</div>
-                                                            <div style="display: flex; justify-content: space-between;">
-                                                        <a href="#" name="panier" data-id="` + cour.id_C + `"
-                                                            
-                                                        class="btn btn-primary btn-sm"
-                                                            data-route="{{ route('panier.store') }}">Ajouter
-                                                            au panier</a>
-                                                        <a href="#" name="wishlist" data-id="` + cour.id_C + `"
-                                                            class="btn btn-white"
-                                                            data-route="{{ route('wishlist.store') }}"><i
-                                                                class="fa-regular fa-heart"></i></a>   
-                                                                </div>  
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`;
-                        $('#result').append(Item);
-                    });
-                }
-            }
-
-            $('#priceFilter').on('show.bs.collapse hide.bs.collapse', function() {
-                $('#priceToggle i').toggleClass('fa-plus fa-minus');
-            });
-
-            $("#courSearchForm").on("submit", function(e) {
-                e.preventDefault();
-                var searchQuery = $("#searchInput").val();
-                $.ajax({
-                    method: 'GET',
-                    url: "{{ route('cour.search') }}",
-                    data: {
-                        query: searchQuery,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(data) {
-                        responseData = data;
-                        $('#result').html('');
-                        if (data.length === 0) {
-                            $('#result').html(`<div class="col-xl-12 text-center col-md-12 mb-4 mt-5">
-                                    <div class="card shadow text-center h-100 py-2">
-                                        <div class="card-body text-center">
-                                            <div class="row text-center no-gutters align-items-center">
-                                                <div class="col text-center mr-2">
-                                                    <h5 class="card-title text-center font-weight-bold text-dark text-uppercase mb-1">
-                                                      nothing found
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`);
-                        } else {
-                            $.each(data, function(index, cour) {
-                                var Item = `<div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card shadow h-100 py-2">
-                                        <div class="text-center">
-                                            <img class="card-img-top" style="width: 200px;"
-                                                src="{{ asset('storage/images/logo.png') }}" alt="Card image cap">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <h6 class="card-title font-weight-bold text-dark text-uppercase mb-1">
-                                                        ` + cour.title + `</h5>
-                                                        <p class="card-text"> ` + cour.user.FirstName + `
-                                                            ` + cour.user.LastName + `</p>
-                                                        <div class="h5 mb-1 font-weight-bold text-gray-800">
-                                                            ` + cour.price + `$</div>
-                                                            <div style="display: flex; justify-content: space-between;">
-                                                        <a href="#" name="panier" data-id="` + cour.id_C + `"
-                                                            
-                                                        class="btn btn-primary btn-sm"
-                                                            data-route="{{ route('panier.store') }}">Ajouter
-                                                            au panier</a>
-                                                        <a href="#" name="wishlist" data-id="` + cour.id_C + `"
-                                                            class="btn btn-white"
-                                                            data-route="{{ route('wishlist.store') }}"><i
-                                                                class="fa-regular fa-heart"></i></a>   
-                                                                </div>  
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`;
-                                $('#result').append(Item);
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            });
-        });
-    </script> --}}
 @endsection

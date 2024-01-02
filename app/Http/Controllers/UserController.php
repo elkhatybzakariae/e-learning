@@ -28,10 +28,12 @@ class UserController extends Controller
     {
         $Cour = new Cour();
         $coursList = $Cour->coursesByCategory();
+        $haveDU = DetailsUser::where('id_U', Auth::id())->exists();
         return view('index', [
             'coursList' => $coursList,
             'souscategorie' => $coursList['souscategorie'],
-            'sujets' => $coursList['sujets']
+            'sujets' => $coursList['sujets'],
+            'haveDU'=>$haveDU,
         ]);
     }
     public function index2()
@@ -188,9 +190,13 @@ class UserController extends Controller
     {
         $id = Auth::id();
         $profile = User::find($id);
-        $UserD = DetailsUser::where('id_U',$id)->first();   
-        $info = $UserD->info;   
-        return view('auth.profile', compact('profile','info'));
+        $UserD = DetailsUser::where('id_U', $id)->first();
+        if ($UserD) {
+            $info = $UserD->info;
+        }else{
+            $info ='';
+        }
+        return view('auth.profile', compact('profile', 'info'));
     }
     public function update(Request $req)
     {
@@ -203,7 +209,7 @@ class UserController extends Controller
         ]);
         $id = Auth::id();
         $profile = User::find($id);
-        $UserD = DetailsUser::where('id_U',$id)->first();        
+        $UserD = DetailsUser::where('id_U', $id)->first();
         if ($profile) {
             $profile->update($req->all());
             if ($UserD) {
@@ -211,7 +217,7 @@ class UserController extends Controller
                     'id_U' => $id,
                     'info' => $req->Specialization . '&' . $req->option,
                 ]);
-            } else {        
+            } else {
                 DetailsUser::create([
                     'id_U' => $id,
                     'info' => $req->Specialization . '&' . $req->option,

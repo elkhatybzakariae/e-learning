@@ -1224,169 +1224,6 @@
                 }
                 return sujetsList;
             }
-
-
-            // function categorie() {
-            //     categories.forEach(categorie => {
-            //         const catli = document.createElement('li');
-            //         const cata = document.createElement('a');
-            //         cata.textContent = categorie.CatName;
-            //         catli.name = categorie.id_Cat;
-            //         cata.id = categorie.id_Cat;
-            //         cata.classList.add('dropdown-item');
-            //         catli.appendChild(cata);
-            //         catlist.appendChild(catli);
-
-            //         cata.addEventListener('mouseenter', function() {
-            //             souscategorie(cata);
-            //             // scatlist.classList.toggle('show');
-            //         });
-            //         // cata.removeEventListener('mouseleave', souscategorie);
-
-            //         cata.addEventListener('mouseleave', function() {
-            //             cata.removeEventListener('mouseenter', souscategorie);
-            //             const ulToRemove = cata.querySelectorAll('li');
-            //             //     // const ulToRemove = cata.querySelector(`[name='${catli.name}']`);
-            //             //     // const ulToRemove = cata.querySelectorAll('li');
-            //             // console.log(ulToRemove);
-            //             // if (ulToRemove) {
-            //             //     cata.removeChild(ulToRemove);
-            //             // }
-            //             ulToRemove.forEach(li => {
-            //                 cata.removeChild(li);
-            //             });
-            //         });
-            //     });
-            // }
-            // function categorie() {
-            //     // categories dropdown
-            //     categories.forEach(function(categorie) {
-            //         const catli = document.createElement('li');
-            //         const catdiv = document.createElement('div');
-            //         const cata = document.createElement('a');
-            //         cata.textContent = categorie.CatName;
-            //         // cata.setAttribute('href', '#');
-            //         // catdiv.setAttribute('name', categorieid_Cat
-            //         catdiv.name = categorieid_Cat          
-            //         catdiv.classList.add('dropdown');
-            //         catdiv.classList.add('nav-item');
-            //         catdiv.classList.add('dropright');
-            //         cata.classList.add('dropdown-item');
-            //         console.log('vvv');
-            //         catdiv.appendChild(cata);
-            //         catli.appendChild(catdiv);
-            //         catlist.appendChild(catli);
-            //         //event listener for souscategorie
-            //         // catdiv.addEventListener('mouseenter', function() {
-            //         //     souscategorie(catdiv);
-            //         // });
-
-            //         // catdiv.addEventListener('mouseleave', function() {
-            //         //     catdiv.removeEventListener('mouseenter', souscategorie);
-            //         //     const ulToRemove = catdiv.querySelector('div > ul');
-            //         //     if (ulToRemove) {
-            //         //         catdiv.removeChild(ulToRemove);
-            //         //     }
-
-            //         // });
-            //     });
-            // }
-
-            // function souscategorie(cata) {
-            //     var scatlist = document.createElement('ul');
-            //     scatlist.classList.add('dropdown-menu');
-
-            //     const souscat = souscategories.filter(function(e) {
-            //         return e.id_Cat === cata.id;
-            //     });
-            //     console.log(souscat);
-            //     souscat.forEach(function(souscategorie) {
-            //         const souscatLi = document.createElement('li');
-            //         const souscata = document.createElement('a');
-            //         souscata.textContent = souscategorie.SCatName;
-            //         souscatLi.name = souscategorie.id_SCat;
-            //         souscata.classList.add('dropdown-item');
-
-            //         souscatLi.appendChild(souscata);
-            //         // cata.appendChild(souscatLi);
-            //         scatlist.appendChild(souscatLi);
-            //         cata.appendChild(scatlist);
-            //         // console.log(scatlist);
-            //         // catdiv.appendChild(scatlist);
-
-
-            //         // event listener for sujet
-            //         // souscatdiv.addEventListener('mouseenter', function() {
-            //         //     sujet(souscatdiv);
-
-            //         // });
-            //         // souscatdiv.addEventListener('mouseleave', function() {
-            //         //     souscatdiv.removeEventListener('mouseenter', sujet);
-            //         //     const ulToRemove = souscatdiv.querySelector('div > ul');
-            //         //     if (ulToRemove) {
-            //         //         souscatdiv.removeChild(ulToRemove);
-            //         //     }
-            //         // });
-
-            //     });
-
-            //     // souscatdiv.appendChild(souscata); 
-            //     // souscatLi.appendChild(souscatdiv); 
-            //     // scatlist.appendChild(souscatLi);
-
-            // }
-
-            // function sujet(souscatdiv) {
-            //     var sujetList = document.createElement('ul');
-            //     sujetList.classList.add('dropdown-menu');
-            //     const sujet = sujets.filter(function(e) {
-            //         return e.id_Sj == souscatdiv.name;
-            //     })
-            //     sujet.forEach(function(sj) {
-            //         const sujetLi = document.createElement('li');
-            //         const sujetdiv = document.createElement('div');
-            //         const sujeta = document.createElement('a');
-            //         sujeta.textContent = sj.SjName;
-
-            //         sujetdiv.id = sujet.id_Sj;
-            //         sujetdiv.classList.add('dropdown');
-            //         sujetdiv.classList.add('nav-item');
-            //         sujetdiv.classList.add('dropright');
-            //         sujeta.classList.add('dropdown-item');
-            //         sujetdiv.appendChild(sujeta);
-            //         sujetLi.appendChild(sujetdiv);
-            //         sujetList.appendChild(sujetLi);
-
-            //         souscatdiv.appendChild(sujetList);
-            //     });
-            // }
-
-            // cat.addEventListener('mouseenter', categorie);
-            // cat.addEventListener('mouseleave', function() {
-            //     cat.removeEventListener('mouseenter', categorie);
-            // });
-
-
-            // $('.owl-carousel').owlCarousel({
-            //     loop: true,
-            //     margin: 10,
-            //     responsiveClass: true,
-            //     responsive: {
-            //         0: {
-            //             items: 1,
-            //             nav: true
-            //         },
-            //         600: {
-            //             items: 3,
-            //             nav: true
-            //         },
-            //         1000: {
-            //             items: 5,
-            //             nav: true,
-            //             loop: true
-            //         }
-            //     }
-            // });
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,
@@ -1411,7 +1248,6 @@
                 }
             });
 
-
             for (let index = 0; index <= 3; index++) {
                 const Dchild = `
                 <a href='#' class='col-sm-6 col-md-6 col-lg-3' style='text-decoration: none;'>
@@ -1422,12 +1258,6 @@
                     `;
                 divcat.insertAdjacentHTML('beforeend', Dchild);
             }
-
-
-
-
-            
-
         });
     </script>
 @endsection

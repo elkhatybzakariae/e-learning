@@ -14,12 +14,18 @@ class CertificateController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $cours = Cour::where('id_U', $id)->get();
-        $idsC = $cours->pluck('id_C')->all();
-        $certificates = Certificate::whereIn('id_C', $idsC)->get();
-        return view('management.certificate.index', compact('certificates'));
+        $userRole = auth()->user()->roles()->first();
+        // dd($userRole);
+        if ($userRole->role_name === "moderateur") {
+            return view('management.certificate.index', compact('certificates'));
+        } elseif ($userRole->role_name === "formateur") {
+            $cours = Cour::where('id_U', $id)->get();
+            $idsC = $cours->pluck('id_C')->all();
+            $certificates = Certificate::whereIn('id_C', $idsC)->get();
+            return view('management.certificate.index', compact('certificates'));
+        }
     }
-    
+
     public function create()
     {
         $id = Auth::id();

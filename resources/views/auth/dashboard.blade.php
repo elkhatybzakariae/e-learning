@@ -6,7 +6,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('storage/images/logo.png') }}" alt="">
                 </div>
@@ -122,8 +122,22 @@
                 </li>
 
                 <!-- Divider -->
-                {{-- <hr class="sidebar-divider">
+                <hr class="sidebar-divider">
 
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecertificats"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fa-solid fa-certificate"></i>
+                        <span>certificats</span>
+                    </a>
+                    <div id="collapsecertificats" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('certificate.index') }}">Table certificats</a>
+                        </div>
+                    </div>
+                </li>
+                {{--
                 <!-- Heading -->
                 <div class="sidebar-heading">
                     Addons
@@ -481,7 +495,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
                                     class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->FirstName }}</span>
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -491,11 +505,11 @@
                                     Profile
                                 </a>
                                 @if (auth()->user()->roles->contains('role_name', 'formateur'))
-                                    <a class="dropdown-item" href="{{route('index')}}">
+                                    <a class="dropdown-item" href="{{ route('index') }}">
                                         <i class="fa-solid fa-laptop"></i>
                                         Participant
                                     </a>
-                                {{-- @elseif (auth()->user()->roles->contains('role_name', 'client'))
+                                    {{-- @elseif (auth()->user()->roles->contains('role_name', 'client'))
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Settings

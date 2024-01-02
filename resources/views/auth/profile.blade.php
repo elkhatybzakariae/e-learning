@@ -110,12 +110,15 @@
         </div>
     </div>
 
-
+    @php
+    $jsonInfo = json_encode($info);
+@endphp
 @endsection
 @section('script')
     <script>
         $(document).ready(function() {
-            var info = @json($info);
+            // var info = @json($info);
+            var info = {!! $jsonInfo !!};
             var tb = info.split("&");
             if (info) {
                 $('#option').val(tb[1]);
