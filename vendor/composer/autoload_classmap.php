@@ -60,6 +60,7 @@ return array(
     'App\\Models\\Categorie' => $baseDir . '/app/Models/Categorie.php',
     'App\\Models\\Certificate' => $baseDir . '/app/Models/Certificate.php',
     'App\\Models\\Cour' => $baseDir . '/app/Models/Cour.php',
+    'App\\Models\\DetailsUser' => $baseDir . '/app/Models/DetailsUser.php',
     'App\\Models\\Media' => $baseDir . '/app/Models/Media.php',
     'App\\Models\\Panier' => $baseDir . '/app/Models/Panier.php',
     'App\\Models\\PasswordReset' => $baseDir . '/app/Models/PasswordReset.php',

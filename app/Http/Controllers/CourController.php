@@ -39,6 +39,7 @@ class CourController extends Controller
     {
         $couur = new Cour();
         $cour = $couur->show($id);
+        // dd($cour);
         return view('management.cour.show', compact('cour'));
 
 

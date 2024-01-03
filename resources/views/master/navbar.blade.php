@@ -29,7 +29,7 @@
         #authD {
             display: block;
         }
-        
+
     }
 
     /* Styles for screens with a maximum width of 772px */
@@ -404,6 +404,18 @@
                     Messages</a>
             </div>
         </li> --}}
+
+        @if ($haveDU)
+            <li class="nav-item no-arrow mx-1">
+                <a class="nav-link" 
+                {{-- href="{{ route('panier.index') }}"  --}}
+                role="button">
+                    {{-- <i class="fa-solid fa-cart-shopping"></i> --}}
+                    {{-- certificats --}}
+                    <i class="fa-solid fa-certificate"></i>
+                </a>
+            </li>
+        @endif
         <li class="nav-item no-arrow mx-1">
             <a class="nav-link" href="{{ route('panier.index') }}" role="button">
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -434,8 +446,8 @@
                             <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                             Activity Log
                         </a> --}}
-                            {{-- <div class="dropdown-divider"></div> --}}
-                            {{-- @auth
+                    {{-- <div class="dropdown-divider"></div> --}}
+                    {{-- @auth
                             <a href="{{ route('logout') }}" class="dropdown-item" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
@@ -452,8 +464,8 @@
         @endguest
         @auth
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="rounded-circle d-flex justify-content-center align-items-center"
                         style="width: 40px; height: 40px; background-color: black; color: white;">
                         {{ strtoupper(substr(auth()->user()->FirstName, 0, 1) . substr(auth()->user()->LastName, 0, 1)) }}

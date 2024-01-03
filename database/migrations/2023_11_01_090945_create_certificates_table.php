@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->string('id_Cert')->primary();
-            $table->string('certificateName');
-            $table->string('id_C');
-            $table->foreign('id_C')->references('id_C')->on('cours');
+            $table->string('certificateName');            
+            $table->string('certificatetable_id');
+            $table->string('certificatetable_type');
+            // $table->string('id_C');
+            // $table->foreign('id_C')->references('id_C')->on('cours');
             $table->timestamps();
         });
     }

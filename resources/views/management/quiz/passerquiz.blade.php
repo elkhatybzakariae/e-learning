@@ -1,12 +1,6 @@
 @extends('master.layout')
 
 @section('title', 'cour')
-@section('style')
-    <style>
-
-    </style>
-
-@endsection
 @section('content')
     <div id="wrapper">
         <div id="content-wrapper" class="d-flex flex-column">
@@ -107,14 +101,10 @@
                 </nav> --}}
                 @include('master.navbar')
                 <div class="container-fluid justify-content-center align-items-center">
-                    {{-- <div class="container ms-2 d-flex justify-content-center align-items-center"> --}}
-
                     <div class="text center bg-white p-5 pb-3  rounded">
                         <form action="" id="quiz">
-                            {{-- @csrf --}}
                             <div class="form-group row ps-5 pe-5 ms-5 justify-content-center">
                                 @php $counter = 1; @endphp
-                                {{-- @foreach ($quiz as $quiz) --}}
                                 @foreach ($quiz->questions as $Que)
                                     <div class="col-12 mt-2 mb-4">
                                         <h3>Question {{ $counter }} </h3>
@@ -130,7 +120,7 @@
                                                 <span class="d-inline-block col-12">
                                                     <input type="radio" id="{{ $reponse->id_R }}"
                                                         name="responses{{ $Que->id_Que }}" value="{{ $reponse->id_R }}">
-                                                    <label id="label{{ $reponse->id_R }}" {{-- data-hidden-value="{{ $reponse->statusrep }}" --}}
+                                                    <label id="label{{ $reponse->id_R }}"
                                                         for="{{ $reponse->id_R }}" name="responses{{ $Que->id_Que }}">
                                                         {{ $reponse->reponse }}
                                                     </label>
@@ -140,16 +130,7 @@
                                     </div>
                                     @php $counter++; @endphp
                                 @endforeach
-                                {{-- @endforeach --}}
                             </div>
-
-
-
-                            {{-- <div class="form-group text-end mt-3">
-                                <div id="score"></div>
-                                <button type="submit" class="btn btn-outline-primary  gradient-custom-4 text-body"
-                                    style="font-style: italic;">Valider</button>
-                            </div> --}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group text-start mt-3">
@@ -167,11 +148,8 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </form>
                     </div>
-                    {{-- </div> --}}
                 </div>
 
             </div>
@@ -222,27 +200,6 @@
     @endif
     <script>
         $(document).ready(function() {
-            // $('#quiz').on('submit', function(event) {
-            //     event.preventDefault();
-
-            //     $('label').each(function() {
-            //         var hiddenValue = $(this).data('hidden-value');
-
-            //         const iClass = hiddenValue ? $(this).css('color', 'green') : $(this).css(
-            //             'color', 'red');
-            //         const iconClass = hiddenValue ? 'fa-thin fa-check' : 'fa-thin fa-xmark';
-            //         $(this).removeClass().addClass('fas ' + iconClass);
-            //         // if (hiddenValue) {
-            //         //     $(this).css('color', 'green');
-            //         // }else {
-            //         //     $(this).css('color', 'red');;
-            //         // }
-            //     });
-
-
-
-            // });
-
             $('#quiz').on('submit', function(e) {
                 e.preventDefault();
                 var formData = $(this).serialize();

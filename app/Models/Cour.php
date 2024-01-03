@@ -44,10 +44,10 @@ class Cour extends Model
     {
         return $this->hasOne(Panier::class, 'id_C');
     }
-    public function certificate()
-    {
-        return $this->hasOne(Certificate::class, 'id_C');
-    }
+    // public function certificate()
+    // {
+    //     return $this->hasOne(Certificate::class, 'id_C');
+    // }
     public function sujet()
     {
         return $this->belongsTo(Sujet::class, 'id_Sj');
@@ -90,9 +90,14 @@ class Cour extends Model
                         'quiz',
                     ]);
                 },
-                'sujet.souscategorie.categorie'
+                'sujet.souscategorie.categorie','certificate',
             ])
             ->first();
             return $cour;
+    }
+
+    public function certificate()
+    {
+        return $this->morphMany(Certificate::class, 'certificatetable');
     }
 }

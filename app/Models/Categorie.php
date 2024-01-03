@@ -20,4 +20,8 @@ class Categorie extends Model
     public function sousCategorie(){
         return $this->hasMany(SousCategorie::class);
     }
+    public function certificate()
+    {
+        return $this->morphMany(Certificate::class, 'certificatetable');
+    }
 }

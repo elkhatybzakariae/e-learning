@@ -84,7 +84,7 @@
                             @foreach ($certificates as $cert)
                                 <tr>
                                     <td>{{ $cert->certificateName }}</td>
-                                    <td>{{ $cert->cour->title }}</td>
+                                    <td>{{ $cert->certificatetable->title }}</td>
                                     <td class="d-flex justify-content-center">
                                         <div class="dropdown">
                                             <button class="btn btn-primary dropdown-toggle" type="button"

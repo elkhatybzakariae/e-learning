@@ -14,11 +14,14 @@ class Certificate extends Model
     public $timestamps=true;
     protected $fillable = [
         'id_Cert',
-        'certificateName',
-        'id_C',
+        'certificateName',        
+        'certificatetable_id',
+        'certificatetable_type',
+        // 'id_C',
     ];
-    public function cour(){
-        return $this->belongsTo(Cour::class, 'id_C');
+    public function certificatetable(){
+        // return $this->belongsTo(Cour::class, 'id_C');
+        return $this->morphTo();
     }
     public function questions()
     {

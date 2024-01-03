@@ -600,6 +600,7 @@ class ComposerStaticInitb04f99f773c6195dc2ebfa890ad046ca
         'App\\Models\\Categorie' => __DIR__ . '/../..' . '/app/Models/Categorie.php',
         'App\\Models\\Certificate' => __DIR__ . '/../..' . '/app/Models/Certificate.php',
         'App\\Models\\Cour' => __DIR__ . '/../..' . '/app/Models/Cour.php',
+        'App\\Models\\DetailsUser' => __DIR__ . '/../..' . '/app/Models/DetailsUser.php',
         'App\\Models\\Media' => __DIR__ . '/../..' . '/app/Models/Media.php',
         'App\\Models\\Panier' => __DIR__ . '/../..' . '/app/Models/Panier.php',
         'App\\Models\\PasswordReset' => __DIR__ . '/../..' . '/app/Models/PasswordReset.php',
