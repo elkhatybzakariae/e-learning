@@ -5,7 +5,8 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-2 text-gray-800">certificates</h1>
-        @if (auth()->user()->roles->contains('role_name', 'formateur'))
+        @if (auth()->user()->roles->contains('role_name', 'formateur') ||
+                auth()->user()->roles->contains('role_name', 'moderateur'))
             <a href="{{ route('certificate.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fa-regular fa-plus"></i> Ajouter certificate</a>
         @endif
@@ -18,32 +19,31 @@
                     <thead>
                         <tr>
                             <th>certificate Name</th>
-                            <th>Cour</th>
+                            @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                                <th>Categorie</th>
+                            @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
+                                <th>Cour</th>
+                            @endif
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>certificate Name</th>
-                            <th>Cour</th>
+                            @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                                <th>Categorie</th>
+                            @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
+                                <th>Cour</th>
+                            @endif
                             <th>Actions</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        {{-- @if (auth()->user()->roles->contains('role_name', 'moderateur')) --}}
-                            {{-- @foreach ($certificates as $cert)
+                        @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                            @foreach ($certificates as $cert)
                                 <tr>
-                                    <td>{{ $cert->title }}</td>
-                                    <td>{{ $cert->info }}</td>
-                                    <td>{{ $cert->description }}</td>
-                                    <td>{{ $cert->Prerequisites }}</td>
-                                    <td>{{ $cert->price }}</td>
-                                    <td>{{ $cert->coupon }}</td>
-                                    <td>{{ $cert->valider ? "Oui" : "No"; }}</td>
-                                    <td>{{ $cert->terminer ? "Oui" : "No"; }}</td>
-                                    <td>{{ $cert->sujet->SjName }}</td>
-                                    <td>{{ $cert->sujet->souscategorie->SCatName }}</td>
-                                    <td>{{ $cert->sujet->souscategorie->categorie->CatName }}</td>
+                                    <td>{{ $cert->certificateName }}</td>
+                                    <td>{{ $cert->certificatetable->CatName }}</td>
                                     <td class="d-flex justify-content-center">
                                         <div class="dropdown">
                                             <button class="btn btn-primary dropdown-toggle" type="button"
@@ -53,20 +53,21 @@
                                             </button>
                                             <div class="dropdown-menu animated--fade-in"
                                                 aria-labelledby="dropdownMenuButton">
-                                                <a href="{{ route('cert.valider', $cert->id_Cert ) }}"
-                                                    class="btn btn-warning btn-icon-split ">
+                                                <a href="{{ route('testquestion.index', $cert->id_Cert) }}"
+                                                    class="btn btn-warning btn-icon-split ml-4 ">
                                                     <span class="icon text-white-50">
-                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                        <i class="fa-solid fa-question"></i>
                                                     </span>
-                                                    <span class="text">Valider</span>
+                                                    <span class="text">Questions</span>
                                                 </a>
                                                 <div class="dropdown-item">
-                                                    <form action="{{ route('cert.destroy', $cert->id_Cert ) }}" method="post">
+                                                    <form action="{{ route('certificate.destroy', $cert->id_Cert) }}"
+                                                        method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-danger btn-icon-split"
                                                             onclick="return confirm('Are you sure you want to delete this card?')">
-                                                            {{-- <i class="fas fa-trash"></i>class="btn btn-danger btn-circle" 
+                                                            {{-- <i class="fas fa-trash"></i>class="btn btn-danger btn-circle" --}}
                                                             <span class="icon text-white-50">
                                                                 <i class="fas fa-trash"></i>
                                                             </span>
@@ -79,8 +80,8 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach --}}
-                        @if(auth()->user()->roles->contains('role_name', 'formateur'))
+                            @endforeach
+                        @elseif (auth()->user()->roles->contains('role_name', 'formateur'))
                             @foreach ($certificates as $cert)
                                 <tr>
                                     <td>{{ $cert->certificateName }}</td>
@@ -94,7 +95,7 @@
                                             </button>
                                             <div class="dropdown-menu animated--fade-in"
                                                 aria-labelledby="dropdownMenuButton">
-                                                <a href="{{route('testquestion.index', $cert->id_Cert )}}"
+                                                <a href="{{ route('testquestion.index', $cert->id_Cert) }}"
                                                     class="btn btn-warning btn-icon-split ml-4 ">
                                                     <span class="icon text-white-50">
                                                         <i class="fa-solid fa-question"></i>
@@ -102,7 +103,8 @@
                                                     <span class="text">Questions</span>
                                                 </a>
                                                 <div class="dropdown-item">
-                                                    <form action="{{ route('certificate.destroy', $cert->id_Cert ) }}" method="post">
+                                                    <form action="{{ route('certificate.destroy', $cert->id_Cert) }}"
+                                                        method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-danger btn-icon-split"
