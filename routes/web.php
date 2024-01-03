@@ -160,6 +160,7 @@ Route::group(['prefix' => 'media', 'middleware' => 'authen'], function () {
 });
 Route::group(['prefix' => 'certificate', 'middleware' => 'authen'], function () {
     Route::get('/', [CertificateController::class, 'index'])->name('certificate.index');
+    Route::get('/all', [CertificateController::class, 'choisircert'])->name('certificate.choisircert');
     Route::get('/create', [CertificateController::class, 'create'])->name('certificate.create');
     Route::post('/store', [CertificateController::class, 'store'])->name('certificate.store');
     Route::delete('/destroy/{id}', [CertificateController::class, 'destroy'])->name('certificate.destroy');

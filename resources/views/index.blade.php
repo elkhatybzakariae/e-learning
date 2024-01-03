@@ -407,7 +407,8 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
-                @if (!$haveDU)
+                @if (!$haveDU )
+                {{-- && auth()->user()->roles->contains('role_name', 'client') --}}
                     <div class="alert alert-warning alert-dismissible fade show" role="alert" id="msg">
                         <strong>Compléter Ton Profile</strong>
                         {{-- <span class="badge bg-primary rounded-pill">

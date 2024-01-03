@@ -408,7 +408,7 @@
         @if ($haveDU)
             <li class="nav-item no-arrow mx-1">
                 <a class="nav-link" 
-                {{-- href="{{ route('panier.index') }}"  --}}
+                href="{{ route('certificate.choisircert') }}" 
                 role="button">
                     {{-- <i class="fa-solid fa-cart-shopping"></i> --}}
                     {{-- certificats --}}

@@ -104,7 +104,8 @@
                                 <!-- Video Section (Left) -->
                                 <div class="col-lg-8 mb-4 pr-0" id="videocontainer">
                                     <div id="videocontent">
-                                        <img class="card-img-top" id="img" data-hidden-id='{{$cour->id_C}}' style="width: 100%; height: 500px;"
+                                        <img class="card-img-top" id="img" data-hidden-id='{{ $cour->id_C }}'
+                                            style="width: 100%; height: 500px;"
                                             src="{{ asset('storage/' . $cour->photo) }}">
                                     </div>
                                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -258,17 +259,19 @@
                                         @endforeach
                                         @if ($cour->certificate)
                                             <div class="accordion-item">
-                                                <h2 class="accordion-header"
-                                                    id="heading{{ $cour->certificate->id_Cert }}">
-                                                    <button class="accordion-button collapsed " type="button"
-                                                        data-bs-toggle="collapse" name="certi"
-                                                        data-bs-target="#collapse{{ $cour->certificate->id_Cert }}"
-                                                        aria-expanded="false"
-                                                        aria-controls="collapse{{ $cour->certificate->id_Cert }}">
-                                                        <a class="dropdown-item fst-italic" href="#"> Certificat :
-                                                            {{ $cour->certificate->certificateName }}</a>
-                                                    </button>
-                                                </h2>
+                                                @foreach ($cour->certificate as $certificate)
+                                                    <h2 class="accordion-header" id="heading{{ $certificate->id_Cert }}">
+                                                        <button class="accordion-button collapsed " type="button"
+                                                            data-bs-toggle="collapse" name="certi"
+                                                            data-bs-target="#collapse{{ $certificate->id_Cert }}"
+                                                            aria-expanded="false"
+                                                            aria-controls="collapse{{ $certificate->id_Cert }}">
+                                                            <a class="dropdown-item fst-italic" href="#"> Certificat
+                                                                :
+                                                                {{ $certificate->certificateName }}</a>
+                                                        </button>
+                                                    </h2>
+                                                @endforeach
                                             </div>
                                         @endif
                                     </div>
@@ -295,21 +298,21 @@
         function progress() {
             const id = $('#img').data('hidden-id');
             const url = "{{ route('videoTerminer.progress') }}";
-                    $.ajax({
-                        url: url,
-                        method: 'GET',
-                        data: {
-                            id: id,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(response) {
-                            $('#sub').html( response.videoTerminerCount +' sur ' + response.videoCount +' terminé.')
-                            
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Error:', error);
-                        }
-                    });
+            $.ajax({
+                url: url,
+                method: 'GET',
+                data: {
+                    id: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    $('#sub').html(response.videoTerminerCount + ' sur ' + response.videoCount + ' terminé.')
+
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
         }
 
         $(document).ready(function() {
@@ -374,8 +377,8 @@
                             console.error('Error:', error);
                         }
                     });
-                }                
-            progress();
+                }
+                progress();
             });
 
 

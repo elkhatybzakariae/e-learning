@@ -37,7 +37,6 @@ class CertificateController extends Controller
 
     public function store(CertificateRequest $request)
     {
-        // dd($request);
         $customIdCert = Helpers::generateIdCert();
         $validatedData = $request->validated();
         $validatedData['id_Cert'] = $customIdCert;
@@ -55,20 +54,14 @@ class CertificateController extends Controller
             Certificate::create($validatedData);
             return redirect()->route('certificate.index')->with('success', 'certificate created successfully');
         }
-        // $validatedData['certificatetable_id'] = $id;
-        // $incour = Cour::where('id_C', $validatedData['id_C'])->exists();
-        // if ($incour) {
-        //     $validatedData['certificatetable_type'] = 'App\Models\Cour';
-        // } else {
-        //     $validatedData['certificatetable_type'] = 'App\Models\Categorie';
-        // }
-
-        // Certificate::create($validatedData);
-        // return redirect()->route('certificate.index')->with('success', 'certificate created successfully');
     }
     public function destroy($id)
     {
         Certificate::find($id)->delete();
         return redirect()->route('certificate.index')->with('success', 'certificate deleted successfully');
+    }
+    public function choisircert(){
+        $certificats= Certificate::where('certificatetable_type','App\Models\Categorie')->get();
+        return view('management.certificate.choisircert',compact('certificats'));
     }
 }
