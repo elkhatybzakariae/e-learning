@@ -13,7 +13,7 @@
                         <ul class="navbar-nav ml-auto">
                             @foreach ($certificats as $item)
                                 <li class="nav-item no-arrow mx-1">
-                                    <a class="nav-link" {{-- href="{{ route('panier.index') }}"  --}} role="button">
+                                    <a class="nav-link" href="{{ route('certificate.passer',$item->id_Cert) }}" role="button">
                                         <span>{{ $item->certificateName }}</span>
                                     </a>
                                 </li>

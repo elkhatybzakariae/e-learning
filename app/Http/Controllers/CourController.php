@@ -39,18 +39,7 @@ class CourController extends Controller
     {
         $couur = new Cour();
         $cour = $couur->show($id);
-        // dd($cour);
         return view('management.cour.show', compact('cour'));
-
-
-
-        //     $cour = Cour::where('id_C', $id)
-        //         ->with(['section.session.video.media'])
-        //         ->with(['section.quiz'])
-        //         ->with(['sujet.souscategorie.categorie'])
-        //         ->first();
-        //     // dd($cour);
-        //     return view('management.cour.show', compact('cour'));
     }
     public function catshow($name)
     {
@@ -87,7 +76,6 @@ class CourController extends Controller
 
     public function store(CourRequest $request)
     {
-        // dd($request);
         $creator = Auth::id();
         $customIdC = Helpers::generateIdC();
         $validatedData = $request->validated();
@@ -143,13 +131,7 @@ class CourController extends Controller
         $path = 'images/' . $category . '/' . $subCategory['SCatName'] . '/' . $sujet['SjName'];
         $imgName = time() . $request->file('photo')->getClientOriginalName();
 
-        // $photoPath = $request->file('photo')->store($path);
         $photoPath = $request->file('photo')->storeAs($path, $imgName, 'public');
-
-        // Get the URL or relative path to access the image
-        // $validatedData['photo'] = $path;
-
-        // $photoPath = $request->file('photo')->store('public/'.$path);
         $validatedData['photo'] = $photoPath;
         $Cour->update($validatedData);
         return redirect()->route('cour.index')->with('success', 'Cour updated successfully');
@@ -163,9 +145,9 @@ class CourController extends Controller
 
     public function filterparcat($name)
     {
-        $categorie = Categorie::all();
-        $souscategorie = SousCategorie::all();
-        $sujets = Sujet::all();
+        // $categorie = Categorie::all();
+        // $souscategorie = SousCategorie::all();
+        // $sujets = Sujet::all();
         $coursList = Cour::whereHas('sujet.souscategorie.categorie', function ($query) use ($name) {
             $query->where('CatName', $name);
         })->where('valider', 1)->with('user')->get();
@@ -178,7 +160,6 @@ class CourController extends Controller
         $categorie = Categorie::all();
         $souscategorie = SousCategorie::all();
         $sujets = Sujet::all();
-        // $coursList = Cour::where('valider', 1)->get();
         $coursList = Cour::whereHas('sujet.souscategorie', function ($query) use ($name) {
             $query->where('SCatName', $name);
         })->where('valider', 1)->with('user')->get();
@@ -191,7 +172,6 @@ class CourController extends Controller
         $categorie = Categorie::all();
         $souscategorie = SousCategorie::all();
         $sujets = Sujet::all();
-        // $coursList = Cour::where('valider', 1)->get();
         $coursList = Cour::whereHas('sujet', function ($query) use ($name) {
             $query->where('SjName', $name);
         })->where('valider', 1)->with('user')->get();
@@ -205,24 +185,12 @@ class CourController extends Controller
     public function search(Request $request)
     {
         $searchQuery = $request->input('searchInput');
-        // $searchQuery = $request->input('searchInput');
-        // if ($searchQuery) {
         $cours = Cour::where('title', 'like', '%' . $searchQuery . '%')
             ->where('valider', 1)
             ->with('user', 'sujet.souscategorie.categorie')
             ->paginate(6);
-        // dd($searchResults);
-        // if ($cours) {
         return view('index', [
             'cours' => $cours,
         ]);
-        // return redirect()->route('index', compact($cours));
-        // return response()->json($searchResults);
-        //     } else {
-        //         return response()->json(['message' => 'searchResults empty']);
-        //     }
-        // } else {
-        //     return response()->json(['message' => 'searchInput empty']);
-        // }
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\CertificateRequest;
 use App\Models\Categorie;
 use App\Models\Certificate;
 use App\Models\Cour;
+use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 
 class CertificateController extends Controller
@@ -63,5 +64,10 @@ class CertificateController extends Controller
     public function choisircert(){
         $certificats= Certificate::where('certificatetable_type','App\Models\Categorie')->get();
         return view('management.certificate.choisircert',compact('certificats'));
+    }
+    public function passer($id){
+        $certQues= Question::where('questable_id',$id)->get();
+        // dd($certQues);
+        return view('management.certificate.passer',compact('certQues'));
     }
 }

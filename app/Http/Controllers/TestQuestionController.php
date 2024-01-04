@@ -41,11 +41,12 @@ class TestQuestionController extends Controller
         foreach ($validatedData['responses'] as $response) {
             Reponse::create([
                 'id_R' => Helpers::generateIdQR(),
-                'reponse' => $response['response_text'],
-                'statusrep' => $response['is_true'],
+                'reponse' => $response['response_text'] === null ? '' : $response['response_text'],
+                'statusrep' => $response['is_true'] === null ? '': $response['is_true'],
                 'id_Que' => $customIdQues,
             ]);
         }
+        
         $url = url()->previous();
         // dd($url);
         return redirect()->to(url()->previous())->with('success', 'Question added successfully');
