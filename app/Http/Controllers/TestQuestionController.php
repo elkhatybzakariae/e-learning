@@ -20,6 +20,10 @@ class TestQuestionController extends Controller
     {
         return view('management.testquestion.create', compact('id'));
     }
+    public function createN($id)
+    {
+        return view('management.testquestion.createN', compact('id'));
+    }
 
     public function store(TestQuestionRequest $request, $id)
     {
@@ -54,6 +58,26 @@ class TestQuestionController extends Controller
         // return redirect()->route('sujet.index')->with('success', 'Sujet created successfully');
 
         // return redirect()->back()->with('success', 'Question added successfully');
+    }
+    public function storeN(Request $request, $id)
+    {
+
+        $customIdQues = Helpers::generateIdQues();
+        $validatedData = $request->validate([
+            'question' => 'required|string|max:100',
+        ]);
+        $validatedData['id_Que'] = $customIdQues;
+
+        $validatedData['questable_id'] = $id;
+        $inquiz = Quiz::where('id_Q', $id)->exists();
+        if ($inquiz) {
+            $validatedData['questable_type'] = 'App\Models\Quiz';
+        } else {
+            $validatedData['questable_type'] = 'App\Models\Certificate';
+        }
+
+        Question::create($validatedData);
+        return redirect()->to(url()->previous())->with('success', 'Question added successfully');
     }
     public function destroy($id)
     {

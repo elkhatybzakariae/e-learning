@@ -177,7 +177,9 @@ Route::group(['prefix' => 'quiz', 'middleware' => 'authen'], function () {
 Route::group(['prefix' => 'testquestion', 'middleware' => 'authen'], function () {
     Route::get('/{id}', [TestQuestionController::class, 'index'])->name('testquestion.index');
     Route::get('/create/{id}', [TestQuestionController::class, 'create'])->name('testquestion.create');
+    Route::get('/createN/{id}', [TestQuestionController::class, 'createN'])->name('testquestion.createN');
     Route::post('/store/{id}', [TestQuestionController::class, 'store'])->name('testquestion.store');
+    Route::post('/storeN/{id}', [TestQuestionController::class, 'storeN'])->name('testquestion.storeN');
     Route::delete('/destroy/{id}', [TestQuestionController::class, 'destroy'])->name('testquestion.destroy');
 });
 Route::group(['prefix' => 'panier', 'middleware' => 'authen'], function () {
@@ -199,3 +201,7 @@ Route::group(['prefix' => 'videoTerminer', 'middleware' => 'authen'], function (
 Route::fallback(function () {
     return view('404');
 });
+
+
+
+Route::get('/sendEmail', [CertificateController::class, 'sendEmail'])->name('sendEmail');

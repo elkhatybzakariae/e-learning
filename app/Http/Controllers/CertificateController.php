@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helpers;
 use App\Http\Requests\CertificateRequest;
+use App\Mail\ValiderCert;
 use App\Models\Categorie;
 use App\Models\Certificate;
 use App\Models\Cour;
 use App\Models\Question;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CertificateController extends Controller
 {
@@ -69,5 +72,13 @@ class CertificateController extends Controller
         $certQues= Question::where('questable_id',$id)->get();
         // dd($certQues);
         return view('management.certificate.passer',compact('certQues'));
+    }
+    public function sendEmail()
+    {
+        $id = Auth::id();
+        $user= User::where('id_U',$id)->first();
+        $email=$user->Email;
+        Mail::to($email)->send(new ValiderCert());
+        return 'Email sent successfully!';
     }
 }

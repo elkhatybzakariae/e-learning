@@ -7,8 +7,15 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-2 text-gray-800">Questions</h1>
-        <a href="{{ route('testquestion.create',$id) }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fa-regular fa-plus"></i> Ajouter Question</a>
+        <div>
+            <a href="{{ route('testquestion.create', $id) }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fa-regular fa-plus"></i> Ajouter Question (QSM)</a>
+            @if (auth()->user()->roles->contains('role_name', 'moderateur'))
+                <a href="{{ route('testquestion.createN', $id) }}"
+                    class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fa-regular fa-plus"></i> Ajouter Question</a>
+            @endif
+        </div>
     </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -37,7 +44,7 @@
                                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
                                             Actions
-                                        </button>                                       
+                                        </button>
                                         <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                                             <div class="dropdown-item">
                                                 <form action="{{ route('testquestion.destroy', $ques->id_Que) }}"
@@ -51,7 +58,7 @@
                                                             <i class="fas fa-trash"></i>
                                                         </span>
                                                         <span class="text">supprimer</span>
-                                                        
+
                                                     </button>
                                                 </form>
                                             </div>
