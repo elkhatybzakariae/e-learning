@@ -20,9 +20,11 @@ class ValiderCert extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    private $data ='';
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -46,6 +48,9 @@ class ValiderCert extends Mailable
     {
         return new Content(
             view: 'emails.ValiderCert',
+            with: [
+                'data' => $this->data,
+            ],
         );
     }
 
@@ -61,10 +66,8 @@ class ValiderCert extends Mailable
 
     public function build()
     {
-        return $this->view('emails.ValiderCert')
-                    ->subject('Your Subject Here')
-                    ->with([
-                        'message' => 'Your Message Here',
-                    ]);
+        return $this->subject('Your Subject Here')
+            ->markdown('emails.ValiderCert',compact(['data'=>$this->data]));
+            // ->with('data', $this->data);
     }
 }

@@ -57,6 +57,7 @@ return array(
     'App\\Http\\Requests\\TestQuestionRequest' => $baseDir . '/app/Http/Requests/TestQuestionRequest.php',
     'App\\Http\\Requests\\VideoRequest' => $baseDir . '/app/Http/Requests/VideoRequest.php',
     'App\\Mail\\ForgotPasswordMail' => $baseDir . '/app/Mail/ForgotPasswordMail.php',
+    'App\\Mail\\ValiderCert' => $baseDir . '/app/Mail/ValiderCert.php',
     'App\\Models\\Categorie' => $baseDir . '/app/Models/Categorie.php',
     'App\\Models\\Certificate' => $baseDir . '/app/Models/Certificate.php',
     'App\\Models\\Cour' => $baseDir . '/app/Models/Cour.php',

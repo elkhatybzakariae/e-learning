@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Categorie;
 use App\Models\Certificate;
+use App\Models\CertPasser;
 use App\Models\Cour;
 use App\Models\Media;
 use App\Models\Panier;
@@ -181,6 +182,14 @@ class Helpers
     {
         $id = Str::random(15);
         while (QRPasser::where('id_QRP', $id)->exists()) {
+            $id = Str::random(15);
+        }
+        return $id;
+    }
+    public static function generateIdCertP()
+    {
+        $id = Str::random(15);
+        while (CertPasser::where('id_CertP', $id)->exists()) {
             $id = Str::random(15);
         }
         return $id;

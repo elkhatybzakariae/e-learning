@@ -7,6 +7,7 @@ use App\Http\Requests\CertificateRequest;
 use App\Mail\ValiderCert;
 use App\Models\Categorie;
 use App\Models\Certificate;
+use App\Models\CertPasser;
 use App\Models\Cour;
 use App\Models\Question;
 use App\Models\User;
@@ -71,14 +72,21 @@ class CertificateController extends Controller
     public function passer($id){
         $certQues= Question::where('questable_id',$id)->get();
         // dd($certQues);
-        return view('management.certificate.passer',compact('certQues'));
+        return view('management.certificate.passer',compact('certQues','id'));
     }
-    public function sendEmail()
+    public function sendEmail($id)
     {
-        $id = Auth::id();
-        $user= User::where('id_U',$id)->first();
-        $email=$user->Email;
-        Mail::to($email)->send(new ValiderCert());
-        return 'Email sent successfully!';
+        $idU = Auth::id();
+        $idCertP= Helpers::generateIdCertP();
+        $user= User::where('id_U',$idU)->first();
+        $aa = CertPasser::create([
+            'id_CertP' => $idCertP,
+            'valider' => 1,
+            'id_U' => $idU,
+            'id_Cert' => $id,
+        ]);
+        
+        Mail::to($user->Email)->send(new ValiderCert($user));
+        return 'ggggggggggg';
     }
 }

@@ -7,7 +7,7 @@
             <div id="content">
                 <div class="container-fluid justify-content-center align-items-center">
                     <div class="text center bg-white p-5 pb-3  rounded">
-                        <form action="{{route('sendEmail')}}" id="">
+                        <form action="{{route('sendEmail',$id)}}" id="">
                             <div class="form-group row ps-5 pe-5 ms-5 justify-content-center">
                                 @php $counter = 1; @endphp
                                 @foreach ($certQues as $Que)

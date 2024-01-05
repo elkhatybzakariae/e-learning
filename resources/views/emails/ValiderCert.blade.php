@@ -4,6 +4,7 @@
     <title>Your Email Subject</title>
 </head>
 <body>
-    <p>hhi</p>
+    <p>hi {{$data->FirstName}}</p>
+    
 </body>
 </html>

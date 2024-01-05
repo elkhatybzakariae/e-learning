@@ -204,4 +204,4 @@ Route::fallback(function () {
 
 
 
-Route::get('/sendEmail', [CertificateController::class, 'sendEmail'])->name('sendEmail');
+Route::get('/sendEmail/{id}', [CertificateController::class, 'sendEmail'])->name('sendEmail');
