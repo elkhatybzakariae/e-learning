@@ -27,4 +27,5 @@ class Certificate extends Model
     {
         return $this->morphMany(Question::class, 'questable');
     }
+    
 }

@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('certpasser', function (Blueprint $table) {
-            $table->string('id_CertP')->primary();
-            $table->boolean('passer')->default(0);
-            $table->boolean('valider')->default(0);
-            $table->text('QR')->nullable();
+        Schema::create('messages', function (Blueprint $table) {
+            $table->string('id_Mess')->primary();
             $table->string('id_U');
             $table->foreign('id_U')->references('id_U')->on('users');
-            $table->string('id_Cert');
-            $table->foreign('id_Cert')->references('id_Cert')->on('certificates');
+            $table->string('id_CertP');
+            $table->foreign('id_CertP')->references('id_CertP')->on('certpasser');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('certpasser');
+        Schema::dropIfExists('messages');
     }
 };

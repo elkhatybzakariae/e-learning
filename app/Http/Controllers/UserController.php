@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\Categorie;
 use App\Models\Cour;
 use App\Models\DetailsUser;
+use App\Models\Message;
 use App\Models\Panier;
 use App\Models\QuizPasser;
 use App\Models\SousCategorie;
@@ -52,7 +53,12 @@ class UserController extends Controller
             $coursN = Cour::count();
             $coursNo = Cour::where('valider', '0')->count();
             $coursV = Cour::where('valider', '1')->count();
-            return view('auth.dashboard2', compact('coursNo', 'coursV', 'coursN'));
+            $messages= Message::all();
+            // $messages= Message::with('certpasser')->get();
+            
+            // dd($messages);
+            $nbmessages = Message::count();
+            return view('auth.dashboard2', compact('coursNo', 'coursV', 'coursN', 'nbmessages','messages'));
         } elseif (auth()->user()->roles->contains('role_name', 'client')) {
             $cours = Cour::whereHas('section.session.video.videoterminer', function ($query) {
                 $query->where('id_U', Auth::id());

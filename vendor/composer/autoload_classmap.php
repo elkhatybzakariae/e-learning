@@ -59,6 +59,7 @@ return array(
     'App\\Mail\\ForgotPasswordMail' => $baseDir . '/app/Mail/ForgotPasswordMail.php',
     'App\\Mail\\ValiderCert' => $baseDir . '/app/Mail/ValiderCert.php',
     'App\\Models\\Categorie' => $baseDir . '/app/Models/Categorie.php',
+    'App\\Models\\CertPasser' => $baseDir . '/app/Models/CertPasser.php',
     'App\\Models\\Certificate' => $baseDir . '/app/Models/Certificate.php',
     'App\\Models\\Cour' => $baseDir . '/app/Models/Cour.php',
     'App\\Models\\DetailsUser' => $baseDir . '/app/Models/DetailsUser.php',

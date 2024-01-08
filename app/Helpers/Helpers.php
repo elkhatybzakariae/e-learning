@@ -7,6 +7,7 @@ use App\Models\Certificate;
 use App\Models\CertPasser;
 use App\Models\Cour;
 use App\Models\Media;
+use App\Models\Message;
 use App\Models\Panier;
 use App\Models\QRPasser;
 use App\Models\Question;
@@ -190,6 +191,14 @@ class Helpers
     {
         $id = Str::random(15);
         while (CertPasser::where('id_CertP', $id)->exists()) {
+            $id = Str::random(15);
+        }
+        return $id;
+    }
+    public static function generateIdMess()
+    {
+        $id = Str::random(15);
+        while (Message::where('id_Mess', $id)->exists()) {
             $id = Str::random(15);
         }
         return $id;

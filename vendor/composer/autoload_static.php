@@ -599,6 +599,7 @@ class ComposerStaticInitb04f99f773c6195dc2ebfa890ad046ca
         'App\\Mail\\ForgotPasswordMail' => __DIR__ . '/../..' . '/app/Mail/ForgotPasswordMail.php',
         'App\\Mail\\ValiderCert' => __DIR__ . '/../..' . '/app/Mail/ValiderCert.php',
         'App\\Models\\Categorie' => __DIR__ . '/../..' . '/app/Models/Categorie.php',
+        'App\\Models\\CertPasser' => __DIR__ . '/../..' . '/app/Models/CertPasser.php',
         'App\\Models\\Certificate' => __DIR__ . '/../..' . '/app/Models/Certificate.php',
         'App\\Models\\Cour' => __DIR__ . '/../..' . '/app/Models/Cour.php',
         'App\\Models\\DetailsUser' => __DIR__ . '/../..' . '/app/Models/DetailsUser.php',

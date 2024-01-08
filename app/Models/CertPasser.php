@@ -17,6 +17,7 @@ class CertPasser extends Model
         'id_Cert',
         'passer',
         'valider',
+        'QR',
         'id_U',
     ];
     
@@ -27,5 +28,9 @@ class CertPasser extends Model
     public function certificat()
     {
         return $this->belongsTo(Certificate::class, 'id_Cert');
+    }
+    public function message()
+    {
+        return $this->hasOne(Message::class, 'id_CertP');
     }
 }

@@ -18,6 +18,7 @@ use App\Http\Controllers\TestQuestionController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VideoTerminerController;
 use App\Http\Controllers\WishListController;
+use App\Models\Message;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\URL;
 /*
@@ -37,6 +38,17 @@ use Illuminate\Support\Facades\Route;
 //     $lastC= Cour::orderBy('created_at', 'desc')->take(10)->get();
 //     return view('welcome',compact('lastC'));
 // })->name('welcome');
+
+
+
+// Route::get('/welcomee', function () {
+//     $messages= Message::all();
+//             $nbmessages = Message::count();
+// dd($nbmessages);
+//         });
+
+
+
 Route::get('/', [Home::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'superadmin'], function () {
@@ -163,6 +175,7 @@ Route::group(['prefix' => 'certificate', 'middleware' => 'authen'], function () 
     Route::get('/all', [CertificateController::class, 'choisircert'])->name('certificate.choisircert');
     Route::get('/create', [CertificateController::class, 'create'])->name('certificate.create');
     Route::get('/passer/{id}', [CertificateController::class, 'passer'])->name('certificate.passer');
+    Route::get('/valider/{id}{idU}', [CertificateController::class, 'valider'])->name('certificate.valider');
     Route::post('/store', [CertificateController::class, 'store'])->name('certificate.store');
     Route::delete('/destroy/{id}', [CertificateController::class, 'destroy'])->name('certificate.destroy');
 });

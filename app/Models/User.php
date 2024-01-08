@@ -74,6 +74,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(VideoTerminer::class,'id_U');
     }
+    public function message()
+    {
+        return $this->hasMany(Message::class,'id_U');
+    }
     public function detailsUser()
     {
         return $this->hasOne(DetailsUser::class,'id_U');
