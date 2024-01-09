@@ -15,6 +15,7 @@ class Message extends Model
     public $timestamps=true;
     protected $fillable = [
         'id_Mess',
+        'lire',
         'id_U',
         'id_CertP',
     ];    

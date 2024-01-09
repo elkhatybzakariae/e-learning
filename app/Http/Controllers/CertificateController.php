@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helpers;
 use App\Http\Requests\CertificateRequest;
+use App\Mail\ResultatCert;
 use App\Mail\ValiderCert;
 use App\Models\Categorie;
 use App\Models\Certificate;
@@ -75,12 +76,12 @@ class CertificateController extends Controller
     public function passer($id)
     {
         $certQues = Question::where('questable_id', $id)->get();
-        // dd($certQues);
         return view('management.certificate.passer', compact('certQues', 'id'));
     }
-    public function valider($id, $idU)
+    public function valider($id)
     {
-        $certP = CertPasser::where('id_CertP', $id)->where('id_U', $idU)->first();
+        $msg = Message::find($id);
+        $certP = CertPasser::where('id_CertP', $msg->id_CertP)->first();
         $splitPairs = explode('&', $certP->QR);
         $questions = [];
         $responses = [];
@@ -92,13 +93,47 @@ class CertificateController extends Controller
                 $responses[] = urldecode($value);
             }
         }
-        return view('management.certificate.passer', compact('certP', 'id','responses','questions'));
+        $msg->update([
+            'lire' => 1,
+        ]);
+        return view('management.certificate.passer', compact('certP', 'id', 'responses', 'questions'));
     }
-    public function validertest(Request $req,$id, $idU)
+    public function validertest(Request $req, $id, $idU)
     {
-        dd($req);
-        
-        return view('management.certificate.passer', compact('certP', 'id','responses','questions'));
+        $resultat = $req->input('resultat');
+        $percentage = number_format($resultat * 100, 1);
+        $user = User::where('id_U', $idU)->first();
+        if ($percentage >= 60) {
+            $cert = CertPasser::find($id);
+            $cert->update([
+                'valider' => 1,
+            ]);
+            $data = [
+                'message' => 'félicitation tu as réussi le certificat.',
+                'status' => 'success',
+                'resultat' => $percentage.'%',
+            ];
+            Mail::to($user->Email)->send(new ResultatCert($data));
+
+            return response()->json($data);
+        } elseif ($percentage< 60) {
+            $data = [
+                'message' => 'Malheureusement, vous n\'avez pas réussi l\'examen de certificat cette fois-ci.',
+                'resultat' => $percentage .'%',
+            ];
+            Mail::to($user->Email)->send(new ResultatCert($data));
+
+            return response()->json($data);
+        }
+
+
+        // return view('management.certificate.passer', compact('certP', 'id','responses','questions'));
+        // $data = [
+        //     'message' => 'Your message here',
+        //     'status' => 'success',
+        //     'resultat' => $percentage,
+        // ];
+
     }
     public function sendEmail(Request $req, $id)
     {
@@ -106,37 +141,34 @@ class CertificateController extends Controller
         $dejapasser = CertPasser::where('id_Cert', $id)->where('id_U', $idU)->exists();
 
         // if (!$dejapasser) {
-            $idCertP = Helpers::generateIdCertP();
-            $idMess = Helpers::generateIdMess();
-            $formData = $req->except('_token');
-            $formDataString = '';
+        $idCertP = Helpers::generateIdCertP();
+        $idMess = Helpers::generateIdMess();
+        $formData = $req->except('_token');
+        $formDataString = '';
 
-            foreach ($formData as $key => $value) {
-                $formDataString .= $key . '=' . $value . '&';
-            }
-            $aa = CertPasser::create([
-                'id_CertP' => $idCertP,
-                'passer' => 1,
-                'valider' => 0,
-                'QR' => $formDataString,
-                'id_U' => $idU,
-                'id_Cert' => $id,
-            ]);
-            $a = Message::create([
-                'id_Mess' => $idMess,
-                'id_CertP' => $aa->id_CertP,
-                'id_U' => $idU,
-            ]);
-            $user = User::where('id_U', $idU)->first();
-        $data=['user'=>$user->FirstName,"message"=>'hi dear we will validate your cert in the next 24H'];
+        foreach ($formData as $key => $value) {
+            $formDataString .= $key . '=' . $value . '&';
+        }
+        $aa = CertPasser::create([
+            'id_CertP' => $idCertP,
+            'passer' => 1,
+            'valider' => 0,
+            'QR' => $formDataString,
+            'id_U' => $idU,
+            'id_Cert' => $id,
+        ]);
+        $a = Message::create([
+            'id_Mess' => $idMess,
+            'id_CertP' => $aa->id_CertP,
+            'id_U' => $idU,
+        ]);
+        $user = User::where('id_U', $idU)->first();
+        $data = ['user' => $user->FirstName, "message" => 'hi dear we will validate your cert in the next 24H'];
         // dd($data);
         Mail::to($user->Email)->send(new ValiderCert($data));
         // } else {
         //     return 'att pour valider ton cert';
         // }
-
-
-        
         return view('emails.ValiderCert');
     }
 }

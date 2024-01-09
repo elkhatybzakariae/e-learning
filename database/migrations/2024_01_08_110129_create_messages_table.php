@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->string('id_Mess')->primary();
+            $table->boolean('lire')->default(0);
             $table->string('id_U');
             $table->foreign('id_U')->references('id_U')->on('users');
             $table->string('id_CertP');

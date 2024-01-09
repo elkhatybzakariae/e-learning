@@ -65,12 +65,13 @@
                                 </div>
                             </form>
                         @elseif (auth()->user()->roles->contains('role_name', 'moderateur'))
-                        <h1>Valider test pour user : {{$certP->user->FirstName}} {{$certP->user->LastName}}</h1>
-                            <form action="{{ route('certificate.validertest',['id' => $certP->id_CertP, 'idU' => $certP->user->id_U]) }}" id="">
+                            <h1>Valider test pour user : {{ $certP->user->FirstName }} {{ $certP->user->LastName }}</h1>
+                            <form id="responseForm"
+                                action="{{ route('certificate.validertest', ['id' => $certP->id_CertP, 'idU' => $certP->user->id_U]) }}"
+                                >
                                 @csrf
                                 <div class="form-group row ps-5 pe-5 ms-5 justify-content-center">
                                     @php $counter = 1; @endphp
-
                                     @foreach ($questions as $index => $question)
                                         <div class="col-12 mt-2 mb-4">
                                             <h3>Question {{ $counter }} </h3>
@@ -90,14 +91,14 @@
                                                     <span for="question" style="font-style: italic;">
                                                         <span class="btn btn-white d-inline-block col-6">
                                                             <input type="radio" id="true{{ $question }}"
-                                                                name="{{ $question }}" value="{{ $question }}">
+                                                                name="{{ $question }}" value="true">
                                                             <label id="label{{ $question }}"
                                                                 for="true{{ $question }}" name="{{ $question }}">
                                                                 true
                                                             </label>
                                                         </span><span class="btn btn-white d-inline-block col-6">
                                                             <input type="radio" id="false{{ $question }}"
-                                                                name="{{ $question }}" value="{{ $question }}">
+                                                                name="{{ $question }}" value="false">
                                                             <label id="label{{ $question }}"
                                                                 for="false{{ $question }}" name="{{ $question }}">
                                                                 false
@@ -137,4 +138,74 @@
         </div>
         <!-- End of Content Wrapper -->
     </div>
+@endsection
+@section('script')
+    <script>
+        // function calculateCounts() {
+        //     let trueCount = 0;
+        //     let falseCount = 0;
+
+        //     document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        //         if (radio.checked) {
+        //             if (radio.value === 'true') {
+        //                 trueCount++;
+        //             } else if (radio.value === 'false') {
+        //                 falseCount++;
+        //             }
+        //         }
+        //     });
+        //     // let totalques = falseCount + trueCount;
+        //     let totalques = document.querySelectorAll('input[type="radio"]').length / 2;
+        //     var resultat = trueCount / totalques;
+        //     console.log('resultat:', resultat);
+        //     console.log('totalques Count:', totalques);
+        //     console.log('True Count:', trueCount);
+        //     console.log('False Count:', falseCount);
+        // }
+
+        document.getElementById('responseForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // calculateCounts();
+            let trueCount = 0;
+            let falseCount = 0;
+
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                if (radio.checked) {
+                    if (radio.value === 'true') {
+                        trueCount++;
+                    } else if (radio.value === 'false') {
+                        falseCount++;
+                    }
+                }
+            });
+            let totalques = document.querySelectorAll('input[type="radio"]').length / 2;
+            var resultat = trueCount / totalques;
+            var url = $(this).attr('action');
+            console.log('resultat:', resultat);
+            console.log('totalques Count:', totalques);
+            console.log('True Count:', trueCount);
+            console.log('False Count:', falseCount);
+            $.ajax({
+                method: 'POST',
+                url: url,
+                data: {
+                    resultat: resultat,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    // $wishlistLink.html('<i class="fa-solid fa-heart"></i>');
+                    // $wishlistLink.attr('href', '{{ route('wishlist.index') }}');
+                    // $wishlistLink.off('click');
+                    // console.log(data);
+                    window.location.href = '{{ route("home2") }}';
+
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    console.error(status);
+                    console.error(xhr);
+                }
+            });
+        });
+    </script>
 @endsection

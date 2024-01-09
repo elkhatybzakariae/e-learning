@@ -34,8 +34,8 @@ class AppServiceProvider extends ServiceProvider
             $view->with(['numberOfItems' => $numberOfItems, 'haveDU' => $haveDU]);
         });
         view()->composer('auth.message', function ($view) {
-            $nbmessages = Message::count();
-            $messages = Message::with('certpasser', 'user')->get();
+            $nbmessages = Message::where('lire',0)->count();
+            $messages = Message::with('certpasser', 'user')->orderBy('created_at', 'DESC')->get();
             $view->with(['nbmessages' => $nbmessages, 'messages'=>$messages]);
         });
     }

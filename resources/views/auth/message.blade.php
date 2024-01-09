@@ -1,7 +1,7 @@
 <!-- Nav Item - Messages -->
 <li class="nav-item dropdown no-arrow mx-1">
-    <a class="nav-link dropdown-toggle" id="messagesDropdown" role="button"
-        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         <i class="fas fa-envelope fa-fw"></i>
         <!-- Counter - Messages -->
         <span class="badge badge-danger badge-counter">{{ $nbmessages }}</span>
@@ -13,10 +13,11 @@
             Message Center
         </h6>
         @if ($messages->isNotEmpty())
-            @foreach ($messages as $msg)
+            @foreach ($messages as $index => $msg)
                 {{-- <a class="dropdown-item d-flex align-items-center" href="{{route('certificate.valider',$msg->CertPasser->id_CertP,$msg->user->id_U)}}"> --}}
-                    <a class="dropdown-item d-flex align-items-center" href="{{ route('certificate.valider', ['id' => $msg->CertPasser->id_CertP, 'idU' => $msg->user->id_U]) }}">
-                       
+                <a class="dropdown-item d-flex align-items-center" style="display: none"
+                    href="{{ route('certificate.valider', $msg->id_Mess) }}">
+            
                     <div class="dropdown-list-image mr-3">
                         <div class="rounded-circle d-flex justify-content-center align-items-center"
                             style="width: 40px; height: 40px; background-color: black; color: white;">
@@ -25,7 +26,9 @@
                         <div class="status-indicator bg-success"></div>
                     </div>
                     <div class="font-weight-bold">
-                        <div class="text-truncate">Salut! Je me demande si vous pouvez valider mon test en 
+                        <div class="text-truncate"
+                            @if ($msg->lire === 1) style="font-weight: normal;" @endif>Salut! Je me demande
+                            si vous pouvez valider mon test en
                             {{-- {{ $msg->CertPasser->certificateName }}  --}}
                             .</div>
                         <div class="small text-gray-500">{{ $msg->user->FirstName }}
