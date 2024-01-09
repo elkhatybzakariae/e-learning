@@ -65,45 +65,48 @@
                                 </div>
                             </form>
                         @elseif (auth()->user()->roles->contains('role_name', 'moderateur'))
-                            <form action="{{ route('sendEmail', $id) }}" id="">
+                        <h1>Valider test pour user : {{$certP->user->FirstName}} {{$certP->user->LastName}}</h1>
+                            <form action="{{ route('certificate.validertest',['id' => $certP->id_CertP, 'idU' => $certP->user->id_U]) }}" id="">
                                 @csrf
                                 <div class="form-group row ps-5 pe-5 ms-5 justify-content-center">
                                     @php $counter = 1; @endphp
-                                    
+
                                     @foreach ($questions as $index => $question)
                                         <div class="col-12 mt-2 mb-4">
                                             <h3>Question {{ $counter }} </h3>
                                             <hr>
-                                            <div class=" mb-3">
-                                                <span for="question" style="font-style: italic;">
-                                                    {{ $question }} ?
-                                                </span>
-                                            </div>
-                                            <div class=" mb-3">
-                                                <span for="question" style="font-style: italic;">
-                                                    {{ $responses[$index] }}
-                                                </span>
-                                            </div>
-                                            {{-- @if ($Que->reponse->isNotEmpty())
-                                                <div
-                                                    class="form-outline  mb-2 d-flex justify-content-center align-items-center flex-wrap">
-                                                    @foreach ($Que->reponse as $reponse)
-                                                        <span class="d-inline-block col-12">
-                                                            <input type="radio" id="{{ $reponse->id_R }}"
-                                                                name="{{ $Que->id_Que }}" value="{{ $reponse->id_R }}">
-                                                            <label id="label{{ $reponse->id_R }}"
-                                                                for="{{ $reponse->id_R }}" name="{{ $Que->id_Que }}">
-                                                                {{ $reponse->reponse }}
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <span for="question" style="font-style: italic;">
+                                                        {{ $question }} ?
+                                                    </span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <span for="question" style="font-style: italic;">
+                                                        {{ $responses[$index] }}
+                                                    </span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <span for="question" style="font-style: italic;">
+                                                        <span class="btn btn-white d-inline-block col-6">
+                                                            <input type="radio" id="true{{ $question }}"
+                                                                name="{{ $question }}" value="{{ $question }}">
+                                                            <label id="label{{ $question }}"
+                                                                for="true{{ $question }}" name="{{ $question }}">
+                                                                true
+                                                            </label>
+                                                        </span><span class="btn btn-white d-inline-block col-6">
+                                                            <input type="radio" id="false{{ $question }}"
+                                                                name="{{ $question }}" value="{{ $question }}">
+                                                            <label id="label{{ $question }}"
+                                                                for="false{{ $question }}" name="{{ $question }}">
+                                                                false
                                                             </label>
                                                         </span>
-                                                    @endforeach
+                                                    </span>
                                                 </div>
-                                            @else
-                                                <div class="mb-3">
-                                                    <label for="textAR" class="form-label">Response:</label>
-                                                    <textarea class="form-control" name="{{ $Que->id_Que }}" rows="3"></textarea>
-                                                </div>
-                                            @endif --}}
+                                            </div>
+
 
                                         </div>
                                         @php $counter++; @endphp

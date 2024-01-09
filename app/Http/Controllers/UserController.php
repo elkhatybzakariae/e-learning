@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 
+
+use Illuminate\Support\Facades\Log;
+
 class UserController extends Controller
 {
 
@@ -34,7 +37,7 @@ class UserController extends Controller
             'coursList' => $coursList,
             'souscategorie' => $coursList['souscategorie'],
             'sujets' => $coursList['sujets'],
-            'haveDU'=>$haveDU,
+            'haveDU' => $haveDU,
         ]);
     }
     public function index2()
@@ -53,12 +56,7 @@ class UserController extends Controller
             $coursN = Cour::count();
             $coursNo = Cour::where('valider', '0')->count();
             $coursV = Cour::where('valider', '1')->count();
-            $messages= Message::all();
-            // $messages= Message::with('certpasser')->get();
-            
-            // dd($messages);
-            $nbmessages = Message::count();
-            return view('auth.dashboard2', compact('coursNo', 'coursV', 'coursN', 'nbmessages','messages'));
+            return view('auth.dashboard2', compact('coursNo', 'coursV', 'coursN'));
         } elseif (auth()->user()->roles->contains('role_name', 'client')) {
             $cours = Cour::whereHas('section.session.video.videoterminer', function ($query) {
                 $query->where('id_U', Auth::id());
@@ -199,8 +197,8 @@ class UserController extends Controller
         $UserD = DetailsUser::where('id_U', $id)->first();
         if ($UserD) {
             $info = $UserD->info;
-        }else{
-            $info ='';
+        } else {
+            $info = '';
         }
         return view('auth.profile', compact('profile', 'info'));
     }

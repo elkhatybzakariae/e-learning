@@ -81,18 +81,23 @@ class CertificateController extends Controller
     public function valider($id, $idU)
     {
         $certP = CertPasser::where('id_CertP', $id)->where('id_U', $idU)->first();
-        $splitPairs = explode('&', $certP);
-
+        $splitPairs = explode('&', $certP->QR);
         $questions = [];
         $responses = [];
         foreach ($splitPairs as $pair) {
-            // Split each pair into key-value parts
-            list($key, $value) = explode('=', $pair);
-        
-            // Extract question and response
-            $questions[] = $key;      // Store the question
-            $responses[] = urldecode($value); // Store the response, decoding URL encoding if present
+            $explodedPair = explode('=', $pair);
+            if (count($explodedPair) === 2) {
+                list($key, $value) = $explodedPair;
+                $questions[] = $key;
+                $responses[] = urldecode($value);
+            }
         }
+        return view('management.certificate.passer', compact('certP', 'id','responses','questions'));
+    }
+    public function validertest(Request $req,$id, $idU)
+    {
+        dd($req);
+        
         return view('management.certificate.passer', compact('certP', 'id','responses','questions'));
     }
     public function sendEmail(Request $req, $id)
@@ -100,7 +105,7 @@ class CertificateController extends Controller
         $idU = Auth::id();
         $dejapasser = CertPasser::where('id_Cert', $id)->where('id_U', $idU)->exists();
 
-        if (!$dejapasser) {
+        // if (!$dejapasser) {
             $idCertP = Helpers::generateIdCertP();
             $idMess = Helpers::generateIdMess();
             $formData = $req->except('_token');
@@ -119,16 +124,19 @@ class CertificateController extends Controller
             ]);
             $a = Message::create([
                 'id_Mess' => $idMess,
-                'id_CertP' => $idCertP,
+                'id_CertP' => $aa->id_CertP,
                 'id_U' => $idU,
             ]);
-        } else {
-            return 'att pour valider ton cert';
-        }
+            $user = User::where('id_U', $idU)->first();
+        $data=['user'=>$user->FirstName,"message"=>'hi dear we will validate your cert in the next 24H'];
+        // dd($data);
+        Mail::to($user->Email)->send(new ValiderCert($data));
+        // } else {
+        //     return 'att pour valider ton cert';
+        // }
 
 
-        $user = User::where('id_U', $idU)->first();
-        Mail::to($user->Email)->send(new ValiderCert($user));
-        return 'ggggggggggg';
+        
+        return view('emails.ValiderCert');
     }
 }

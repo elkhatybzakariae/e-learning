@@ -175,7 +175,8 @@ Route::group(['prefix' => 'certificate', 'middleware' => 'authen'], function () 
     Route::get('/all', [CertificateController::class, 'choisircert'])->name('certificate.choisircert');
     Route::get('/create', [CertificateController::class, 'create'])->name('certificate.create');
     Route::get('/passer/{id}', [CertificateController::class, 'passer'])->name('certificate.passer');
-    Route::get('/valider/{id}{idU}', [CertificateController::class, 'valider'])->name('certificate.valider');
+    Route::get('/valider/{id}/{idU}', [CertificateController::class, 'valider'])->name('certificate.valider');
+    Route::get('/validertest/{id}/{idU}', [CertificateController::class, 'validertest'])->name('certificate.validertest');
     Route::post('/store', [CertificateController::class, 'store'])->name('certificate.store');
     Route::delete('/destroy/{id}', [CertificateController::class, 'destroy'])->name('certificate.destroy');
 });

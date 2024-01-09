@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Message extends Model
 {
@@ -16,12 +17,13 @@ class Message extends Model
         'id_Mess',
         'id_U',
         'id_CertP',
-    ];
-    
-    public function certpasser(){
+    ];    
+    public function certpasser(): BelongsTo
+    {
         return $this->belongsTo(CertPasser::class, 'id_CertP');
     }
-    public function user(){
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class, 'id_U');
     }
 
