@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class CertificateController extends Controller
 {
     public function index()
@@ -108,18 +110,28 @@ class CertificateController extends Controller
             $cert->update([
                 'valider' => 1,
             ]);
+            // $data = [
+            //     'user' => $user,
+            //     'description' => '1 Year Subscription',
+            //     'price' => '129.00'
+            // ];
+            $pdf = PDF::loadView('pdf.cert', compact('user'));
             $data = [
                 'message' => 'félicitation tu as réussi le certificat.',
                 'status' => 'success',
-                'resultat' => $percentage.'%',
+                'resultat' => $percentage . '%',
+                'user' => $user,
+                'pdf' => $pdf,
             ];
             Mail::to($user->Email)->send(new ResultatCert($data));
 
             return response()->json($data);
-        } elseif ($percentage< 60) {
+        } elseif ($percentage < 60) {
             $data = [
                 'message' => 'Malheureusement, vous n\'avez pas réussi l\'examen de certificat cette fois-ci.',
-                'resultat' => $percentage .'%',
+                
+                'status' => 'fail',
+                'resultat' => $percentage . '%',
             ];
             Mail::to($user->Email)->send(new ResultatCert($data));
 
@@ -128,11 +140,7 @@ class CertificateController extends Controller
 
 
         // return view('management.certificate.passer', compact('certP', 'id','responses','questions'));
-        // $data = [
-        //     'message' => 'Your message here',
-        //     'status' => 'success',
-        //     'resultat' => $percentage,
-        // ];
+
 
     }
     public function sendEmail(Request $req, $id)
@@ -170,5 +178,22 @@ class CertificateController extends Controller
         //     return 'att pour valider ton cert';
         // }
         return view('emails.ValiderCert');
+    }
+
+
+
+    public function download($id)
+    {
+        $user = User::where('id_U', $id)->first();
+        $data = [
+            'user' => $user,
+            'description' => '1 Year Subscription',
+            'price' => '129.00'
+        ];
+
+        $pdf = Pdf::loadView('pdf.cert', ['data' => $data]);
+        // $pdf = Pdf::loadView('pdf.cert');
+
+        return $pdf->download();
     }
 }

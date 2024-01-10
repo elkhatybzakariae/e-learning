@@ -549,15 +549,19 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('a[name=readmore]').on('click',function (e) {
+            $('a[name=readmore]').on('click', function(e) {
                 e.preventDefault();
-                $('#messagesDropdown').trigger('click');
+                // $('#messagesDropdown').trigger('click');
+                var anotherButton = document.getElementById('messagesDropdown');
+                anotherButton.click();
+                console.log(anotherButton);
                 $('#limsg').addClass('nav-item dropdown no-arrow mx-1 show');
                 $('#messagesDropdown').attr('aria-expanded', 'true');
                 $('#limsg > div').addClass('dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in show');
-                
+
                 $('div[name=messages]').css('display', 'block');
             })
         });
+        
     </script>
 @endsection

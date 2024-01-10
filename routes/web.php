@@ -216,6 +216,7 @@ Route::fallback(function () {
     return view('404');
 });
 
+Route::get('/download/{id}', [CertificateController::class, 'download'])->name('certificate.download');
 
 
 Route::get('/sendEmail/{id}', [CertificateController::class, 'sendEmail'])->name('sendEmail');
