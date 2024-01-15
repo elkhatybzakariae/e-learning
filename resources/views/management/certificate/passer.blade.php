@@ -141,34 +141,10 @@
 @endsection
 @section('script')
     <script>
-        // function calculateCounts() {
-        //     let trueCount = 0;
-        //     let falseCount = 0;
-
-        //     document.querySelectorAll('input[type="radio"]').forEach(radio => {
-        //         if (radio.checked) {
-        //             if (radio.value === 'true') {
-        //                 trueCount++;
-        //             } else if (radio.value === 'false') {
-        //                 falseCount++;
-        //             }
-        //         }
-        //     });
-        //     // let totalques = falseCount + trueCount;
-        //     let totalques = document.querySelectorAll('input[type="radio"]').length / 2;
-        //     var resultat = trueCount / totalques;
-        //     console.log('resultat:', resultat);
-        //     console.log('totalques Count:', totalques);
-        //     console.log('True Count:', trueCount);
-        //     console.log('False Count:', falseCount);
-        // }
-
         document.getElementById('responseForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            // calculateCounts();
             let trueCount = 0;
             let falseCount = 0;
-
             document.querySelectorAll('input[type="radio"]').forEach(radio => {
                 if (radio.checked) {
                     if (radio.value === 'true') {
@@ -193,12 +169,7 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    // $wishlistLink.html('<i class="fa-solid fa-heart"></i>');
-                    // $wishlistLink.attr('href', '{{ route('wishlist.index') }}');
-                    // $wishlistLink.off('click');
-                    // console.log(data);
                     window.location.href = '{{ route("home2") }}';
-
                 },
                 error: function(xhr, status, error) {
                     console.error(error);

@@ -368,8 +368,7 @@
             padding: 20px;
             font-weight: 400;
         }
-    </style>
-    <style>
+    
         .tabletd {
             white-space: nowrap;
             max-width: 150px;

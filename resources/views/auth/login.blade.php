@@ -52,7 +52,6 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    {{-- <form class="user" action="{{ URL::route('login') }}" method="POST"> --}}
                                     <form class="user" action="{{ route('login') }}" method="POST">
                                         @csrf
                                         <div class="form-group">

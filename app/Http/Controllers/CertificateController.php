@@ -110,11 +110,6 @@ class CertificateController extends Controller
             $cert->update([
                 'valider' => 1,
             ]);
-            // $data = [
-            //     'user' => $user,
-            //     'description' => '1 Year Subscription',
-            //     'price' => '129.00'
-            // ];
             $pdf = PDF::loadView('pdf.cert', compact('user'));
             $data = [
                 'message' => 'félicitation tu as réussi le certificat.',
@@ -129,7 +124,6 @@ class CertificateController extends Controller
         } elseif ($percentage < 60) {
             $data = [
                 'message' => 'Malheureusement, vous n\'avez pas réussi l\'examen de certificat cette fois-ci.',
-                
                 'status' => 'fail',
                 'resultat' => $percentage . '%',
             ];
@@ -148,7 +142,6 @@ class CertificateController extends Controller
         $idU = Auth::id();
         $dejapasser = CertPasser::where('id_Cert', $id)->where('id_U', $idU)->exists();
 
-        // if (!$dejapasser) {
         $idCertP = Helpers::generateIdCertP();
         $idMess = Helpers::generateIdMess();
         $formData = $req->except('_token');
@@ -172,11 +165,7 @@ class CertificateController extends Controller
         ]);
         $user = User::where('id_U', $idU)->first();
         $data = ['user' => $user->FirstName, "message" => 'hi dear we will validate your cert in the next 24H'];
-        // dd($data);
         Mail::to($user->Email)->send(new ValiderCert($data));
-        // } else {
-        //     return 'att pour valider ton cert';
-        // }
         return view('emails.ValiderCert');
     }
 
@@ -188,11 +177,9 @@ class CertificateController extends Controller
         $data = [
             'user' => $user,
             'description' => '1 Year Subscription',
-            'price' => '129.00'
         ];
 
         $pdf = Pdf::loadView('pdf.cert', ['data' => $data]);
-        // $pdf = Pdf::loadView('pdf.cert');
 
         return $pdf->download();
     }

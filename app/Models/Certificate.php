@@ -20,7 +20,6 @@ class Certificate extends Model
         // 'id_C',
     ];
     public function certificatetable(){
-        // return $this->belongsTo(Cour::class, 'id_C');
         return $this->morphTo();
     }
     public function questions()

@@ -69,6 +69,5 @@ class ValiderCert extends Mailable
         return $this->subject('Your Subject Here')
             ->markdown('emails.ValiderCert')
             ->with('data', $this->data);
-            // ,compact(['data'=>$this->data])
     }
 }
