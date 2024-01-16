@@ -24,11 +24,9 @@ class CourController extends Controller
             $cours = Cour::where('valider', '0')->orderBy('id_C', 'desc')->get();
             return view('management.cour.index', compact('cours'));
         } elseif ($client) {
-            // $cours = VideoTerminer::where('id_U', Auth::id())->with(['video.session.section'])->get();
             $cours = Cour::whereHas('section.session.video.videoterminer', function ($query) {
                 $query->where('id_U', Auth::id());
             })->with('section.session.video')->get();
-            // dd($cours);            
             return view('management.cour.index', compact('cours'));
         } else {
             $cours = Cour::where('id_U', $id)->orderBy('id_C', 'desc')->get();
@@ -145,15 +143,11 @@ class CourController extends Controller
 
     public function filterparcat($name)
     {
-        // $categorie = Categorie::all();
-        // $souscategorie = SousCategorie::all();
-        // $sujets = Sujet::all();
         $coursList = Cour::whereHas('sujet.souscategorie.categorie', function ($query) use ($name) {
             $query->where('CatName', $name);
         })->where('valider', 1)->with('user')->get();
 
         return response()->json($coursList);
-        // return view('index', compact('coursList','categorie','souscategorie','sujets'));
     }
     public function filterparsouscat($name)
     {
@@ -165,19 +159,15 @@ class CourController extends Controller
         })->where('valider', 1)->with('user')->get();
 
         return response()->json($coursList);
-        // return view('index', compact('coursList','categorie','souscategorie','sujets'));
     }
     public function filterparsj($name)
     {
-        $categorie = Categorie::all();
-        $souscategorie = SousCategorie::all();
-        $sujets = Sujet::all();
+        // $categorie = Categorie::all();
+        // $souscategorie = SousCategorie::all();
+        // $sujets = Sujet::all();
         $coursList = Cour::whereHas('sujet', function ($query) use ($name) {
             $query->where('SjName', $name);
         })->where('valider', 1)->with('user')->get();
-        // dd($coursList);
-        // return view('index', compact('coursList','categorie','souscategorie','sujets'));
-        // return Json('coursList','categorie','souscategorie','sujets');
         return response()->json($coursList);
     }
 

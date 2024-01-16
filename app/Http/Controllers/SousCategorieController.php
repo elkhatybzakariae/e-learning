@@ -40,13 +40,6 @@ class SousCategorieController extends Controller
         }
         return view('management.souscategorie.edit', compact('souscategorie','categorie'));
     }
-    // public function souscat($id)
-    // {
-    //     $listchildren = Categorie::all();
-    //     dd($listchildren->sousCategorie);
-    //     return view('management.listchildren', compact('listchildren'));
-    // }
-
     public function update(SousCategorieRequest $request, $id)
     {
         

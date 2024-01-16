@@ -186,10 +186,6 @@ class UserController extends Controller
             return redirect()->route('home2');
         }
     }
-    // public function dashboard()
-    // {
-    //     return view('auth.dashboard');
-    // }
     public function profile()
     {
         $id = Auth::id();
@@ -286,9 +282,6 @@ class UserController extends Controller
 
         if ($u) {
             if (Hash::check($request->Password, $u->Password)) {
-                // Authentication was successful
-                // auth()->login($u);
-                // return redirect()->route('dashboard');
                 if ($u->roles->contains('role_name', 'client')) {
                     Auth::login($u);
                     return redirect()->route('index');
@@ -298,7 +291,6 @@ class UserController extends Controller
             }
             return redirect()->route('loginpage');
         } else {
-            // Password is incorrect; show an error message
             return back()->with('error', 'Invalid email or password.');
         }
     }

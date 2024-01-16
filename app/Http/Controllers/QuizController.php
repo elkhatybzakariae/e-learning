@@ -33,7 +33,6 @@ class QuizController extends Controller
             return view('management.quiz.index', compact('quiz'));
         } elseif ($client) {
             $quiz = QuizPasser::where('id_U', $id)->with(['quiz'])->get();
-            // dd($quiz);
             return view('management.quiz.index', compact('quiz'));
         }
     }
@@ -66,11 +65,6 @@ class QuizController extends Controller
         $quiz = Quiz::where('id_Q', $id)->with(['questions.reponse', 'quizpasser.qrpasser'])->first();
         $DejaPasser = QuizPasser::where('id_Q', $quiz->id_Q)->where('id_U', $idU)->first();
 
-
-        // $Q = Question::where('questable_id',$quiz->id_Q)->get();
-
-        // $ids = $Q->pluck('id_Que')->all();
-
         //nb question in this quiz
         $nbQue = Question::where('questable_id', $quiz->id_Q)->count();
 
@@ -84,12 +78,10 @@ class QuizController extends Controller
                 $tab = [];
                 foreach ($QandR as $item) {
                     list($key, $value) = explode('=', $item);
-                    // array_push($tab, $value);
                     $tab[$key] = $value;
                 }
-                // dd($tab);
                 return view('management.quiz.passerquiz', compact('quiz', 'tab', 'DejaPasser', 'nbQue'));
-                // }
+                
             } else {
                 return view('management.quiz.passerquiz', compact('quiz'));
             }

@@ -48,12 +48,8 @@ class VideoTerminerController extends Controller
         $cour=$couur->show($id);
         if ($cour) {
             $videoCount = 0;
-
-            // Loop through each section of the cour
             foreach ($cour->section as $section) {
-                // Loop through each session in the section
                 foreach ($section->session as $session) {
-                    // Add the count of videos in each session to the total count
                     $videoCount += $session->video->count();
                 }
             }

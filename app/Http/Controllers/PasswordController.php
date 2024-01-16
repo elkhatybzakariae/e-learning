@@ -17,7 +17,6 @@ class PasswordController extends Controller
     }
     public function sendResetLinkEmail(Request $request)
     {
-        // $this->validateEmail($request);
         $this->broker()->sendResetLink(
             $request->only('email')
         );

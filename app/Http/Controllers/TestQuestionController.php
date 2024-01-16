@@ -50,14 +50,7 @@ class TestQuestionController extends Controller
                 'id_Que' => $customIdQues,
             ]);
         }
-        
-        $url = url()->previous();
-        // dd($url);
         return redirect()->to(url()->previous())->with('success', 'Question added successfully');
-
-        // return redirect()->route('sujet.index')->with('success', 'Sujet created successfully');
-
-        // return redirect()->back()->with('success', 'Question added successfully');
     }
     public function storeN(Request $request, $id)
     {
