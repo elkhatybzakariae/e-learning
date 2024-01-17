@@ -22,13 +22,6 @@
                                 </span>
                             @endforeach
                         </div>
-                        {{-- <div class="form-outline mb-2">
-                            <input type="text" name="title" value="{{ old('title', $cour->title) }}" id="title"
-                                class="form-control form-control-lg  " style="" />
-                        </div>
-                        @error('title')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror --}}
                     </div>
 
 

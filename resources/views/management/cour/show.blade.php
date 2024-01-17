@@ -121,9 +121,7 @@
                                                     id="presen">Presentation <span class="sr-only">(current)</span></a>
                                                 <a class="nav-item nav-link" href="#">Remarques</a>
                                                 <a class="nav-item nav-link" href="#">Avis</a>
-                                                {{-- <div class="progress-bars">
-                                                    <h2>85%</h2>
-                                                </div><!--progress-bars--> --}}
+                                                
                                             </div>
                                         </div>
                                     </nav>

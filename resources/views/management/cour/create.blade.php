@@ -7,20 +7,6 @@
             <form action="{{ route('cour.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row ps-3 pe-3 ">
-                    {{-- <div>
-                        <div class="mb-4 d-flex justify-content-center">
-                            <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                            alt="example placeholder" style="width: 300px;" />
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <div class="btn btn-primary btn-rounded">
-                                <label class="form-label text-white m-1" for="photo">Choose file</label>
-                                <input type="file" class="form-control d-none" name="photo" 
-                                accept="image/jpeg, image/png, image/jpg, image/gif" 
-                                id="photo" onchange="displaySelectedImage(event, 'selectedImage')" />
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="photo" style="font-style: italic;">Image:</label>
                     </div>
@@ -159,7 +145,7 @@
 <script>
         $(document).ready(function() {
             $('#id_Cat').on('change', function() {
-                var categoryId = $(this).val(); // Get the selected category ID
+                var categoryId = $(this).val();
                 if (categoryId) {
                     $('#id_SCat').empty();
                     $('#id_SCat').append('<option selected>select SousCategorie</option>');

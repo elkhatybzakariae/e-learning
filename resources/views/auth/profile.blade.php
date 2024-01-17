@@ -78,7 +78,6 @@
                                             <option value="0">Select Specialization </option>
 
                                         </select>
-                                        {{-- value="{{ $profile->Specialization }}" --}}
                                     </div>
                                 </div>
 
