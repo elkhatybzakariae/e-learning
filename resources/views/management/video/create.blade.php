@@ -116,20 +116,6 @@
                     $('#id_Sec').append('<option selected>select Section</option>');
                 }
             });
-            // $('#id_Sec').on('change', function() {
-            //     var selectedSub = $(this).val();
-            //     var filteredsessions = sessions.filter(function(session) {
-            //         return session.id_Sec == selectedSub;
-            //     });
-
-            //     $('#id_Sess').empty();
-            //     $('#id_Sess').append('<option  selected>select Session</option>');
-            //     filteredsessions.forEach(function(session) {
-            //         console.log($('#id_Sess'));
-            //         $('#id_Sess').append('<option value="' + session.id_Sess + '>' + session
-            //             .Sess_Name + '</option>');
-            //     });
-            // });
             $('#id_Sec').on('change', function() {
                 var selectedSub = $(this).val();
                 var filteredsessions = sessions.filter(function(session) {

@@ -42,12 +42,6 @@
                     </div>
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
-                            {{-- <select name="id_SCat" id="id_SCat" class="custom-select">
-                                <option selected>select SousCategorie</option>
-                                @foreach ($souscategorie as $scat)
-                                    <option value="{{$scat->id_SCat}}">{{$scat->SCatName}}</option>
-                                @endforeach
-                            </select> --}}
                             <select name="id_SCat" id="id_SCat" class="custom-select">
                                 <option selected>select SousCategorie</option>
                             </select>

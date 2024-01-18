@@ -23,10 +23,6 @@
             padding: 10px;
         }
 
-        /* body {
-                                                                background: #eee;
-                                                            } */
-
         .cart {
             background: #fff;
         }
@@ -124,8 +120,6 @@
             /* background-color: #7300ff; */
             background-color: gray;
         }
-    </style>
-    <style>
         body {
             font-family: 'Varela Round', sans-serif;
         }
@@ -242,9 +236,6 @@
                             <div class="card-body text-center" style="background-color: #f5f5f5">
                                 <div class="container mt-2 p-2 rounded cart d-flex justify-content-center align-items-center"
                                     style="background-color: #f5f5f5">
-
-                                    {{-- <img src="{{asset('storage/images/icon/empty.png')}}"  width="250px"> --}}
-                                    {{-- <img src="{{asset('storage/images/icon/empty-cart.png')}}"  width="250px"> --}}
                                     <img src="{{ asset('storage/images/icon/empty-box.png') }}" width="250px">
                                 </div>
                                 <a href="{{ route('index') }}">
@@ -256,58 +247,6 @@
                             </div>
                         @else
                             <div class="card-body" style="background-color: #f5f5f5">
-                                {{-- <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Cour</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Cour</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            @foreach ($listC as $item)
-                                                <tr>
-                                                    <td>{{ $item->title }}</td>
-                                                    <td class="d-flex justify-content-center">
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-primary dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton" data-toggle="dropdown"
-                                                                aria-haspopup="true" aria-expanded="false">
-                                                                Actions
-                                                            </button>
-                                                            <div class="dropdown-menu animated--fade-in"
-                                                                aria-labelledby="dropdownMenuButton">                                                            
-                                                                <div class="dropdown-item">
-                                                                    <form id="delete-form"
-                                                                        action="{{ route('panier.delete', $item->id_C) }}"
-                                                                        method="post">
-                                                                        @csrf
-                                                                        @method('delete')
-                                                                        <button type="submit"
-                                                                            class="btn btn-danger btn-icon-split"
-                                                                            onclick="return confirm('Are you sure you want to delete this card?')">
-                                                                            <span class="icon text-white-50">
-                                                                                <i class="fas fa-trash"></i>
-                                                                            </span>
-                                                                            <span class="text">supprimer</span>
-
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    </div> --}}
                                 <div class="container mt-2 p-2 rounded cart" style="background-color: #f5f5f5">
                                     <div class="row no-gutters">
                                         <div class="col-md-8">
@@ -419,8 +358,6 @@
                                                             class="fa-brands fa-apple-pay fa-2xl"></i>
                                                         <i style="color: #000000;"
                                                             class="fa-brands fa-amazon-pay fa-2xl"></i>
-
-                                                        {{-- <img class="cart-icons-img" src="https://img.alicdn.com/tfs/TB1xcMWdEKF3KVjSZFEXXXExFXa-68-48.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S7b20ce778ba44e60a062008c35e98b57M/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/Sea8b6d9e957a4b4783785f087af30ba2r/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S91ee3e0f4fde4535aad35f7c30f6bacfh/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S8df1a1d99c8049d1b1a86c9a144719b6W/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S173da9e53a234dcb9795cebd1856c4d7J/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/Sa4a89534ef694f1c8877ae3d864db6acz/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S85aba413145f4b479fc18825603f87aaZ/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S0321450614244c4dafba2517560de3b8s/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/Sffbd9fb9807e42d9a32feda7bc09121cA/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S7774cbfd89914cad85c8b548087820308/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/Sf9caac85ebcd470a95d0ff441ebf609fc/216x144.png"><img class="cart-icons-img" src="https://ae01.alicdn.com/kf/S2a5881f5906b4fb58a0c6da600ddf7bf1/216x144.png"></div><div class="cart-icons-line"></div> --}}
                                                     </div>
                                                     <hr>
                                                     <div class="cart-icons-title mt-3"
@@ -434,32 +371,8 @@
                                                         ne correspond pas à sa description.
                                                     </div>
                                                 </div>
-                                                {{-- <div class="d-flex justify-content-between align-items-center"><span>
-                                                Protection acheteur</span>
-                                        </div>
-
-                                        <div>
-                                            <label class="credit-card-label">Email </label>
-                                            <input class="form-control credit-inputs" type="email"
-                                                placeholder="Email@...">
-                                        </div>
-                                        <hr class="line">
-                                        <div class="d-flex justify-content-between information">
-                                            <span><img
-                                                    src="https://ae01.alicdn.com/kf/S5d155b426fd74b24bd10e73f9ac90a93b/64x76.png"
-                                                    height="21" style="vertical-align: middle;"></span><span>0</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between information">
-                                            <span> Obtenez un remboursement complet si l'article vous est livré en
-                                                retard ou bien ne correspond pas à sa description.</span>
-                                            <span></span>
-                                        </div> --}}
                                             </div>
                                         </div>
-
-
-
-
                                         <!-- Modal HTML -->
                                         <div id="myModal" class="modal fade">
                                             <div class="modal-dialog modal-confirm">

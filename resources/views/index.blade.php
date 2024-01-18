@@ -46,7 +46,6 @@
         }
     </style>
 @endsection
-
 @section('content')
     <div id="wrapper">
         <!-- Content Wrapper -->

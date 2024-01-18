@@ -79,48 +79,9 @@
                         </div>
                     </div>
 
-                    {{-- <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="id_Cat" style="font-style: italic;">Categorie:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <select name="id_Cat" id="id_Cat" class="custom-select">
-                                @foreach ($categories as $cat)
-                                    <option value="{{ $cat->id_Cat }}" @if (old('id_Cat') == $cat->id_Cat) selected @endif>
-                                        {{ $cat->CatName }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-3 col-form-label d-inline">
-                        <label for="id_SCat" style="font-style: italic;">SousCategorie:</label>
-                    </div>
-                    <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <select name="id_SCat" id="id_SCat" class="custom-select">
-                                @foreach ($souscategories as $scat)
-                                    <option value="{{ $scat->id_SCat }}" @if (old('id_SCat') == $scat->id_SCat) selected @endif>
-                                        {{ $scat->SCatName }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div> --}}
-
                     <div class="col-6 col-sm-3 col-form-label d-inline">
                         <label for="id_Sj" style="font-style: italic;">Sujet:</label>
                     </div>
-                    {{-- <div class="col-6 col-sm-9 d-inline  ">
-                        <div class="form-outline mb-2">
-                            <select name="id_Sj" id="id_Sj" disabled class="custom-select">
-                                <option value="{{ $cour->id_Sj }}" @if (old('id_Sj') == $cour->id_Sj) selected @endif>
-                                    {{ $cour->sujet->SjName }}</option>
-                            </select>
-                        </div>
-                        @error('id_Sj')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
                     <div class="col-6 col-sm-9 d-inline  ">
                         <div class="form-outline mb-2">
                             <select name="id_Sj" id="id_Sj" class="custom-select">
@@ -144,78 +105,4 @@
             </form>
         </div>
     </div>
-@endsection
-@section('script')
-    <script>
-        // $(document).ready(function() {
-
-        //     $('#id_Cat').on('change', function() {
-        //         var categoryId = $(this).val(); // Get the selected category ID
-        //         if (categoryId) {
-        //             $('#id_SCat').empty();
-        //             $('#id_SCat').append('<option selected>select SousCategorie</option>');
-
-        //             $.each(souscategories, function(index, souscat) {
-        //                 if (souscat.id_Cat == categoryId) {
-        //                     $('#id_SCat').append('<option value="' + souscat.id_SCat + '" >' +
-        //                         souscat.SCatName + '</option>');
-        //                 }
-        //             });
-        //         } else {
-        //             $('#id_SCat').empty();
-        //             $('#id_SCat').append('<option selected>select SousCategorie</option>');
-        //         }
-        //     });
-        //     $('#id_SCat').on('change', function() {
-        //         var selectedSubcategoryId = $(this).val();
-        //         var filteredSujets = sujets.filter(function(sujet) {
-        //             return sujet.id_SCat == selectedSubcategoryId;
-        //         });
-
-        //         var subjectsSelect = $('#id_Sj');
-        //         subjectsSelect.empty();
-        //         subjectsSelect.append('<option value="" selected>select Subject</option>');
-        //         filteredSujets.forEach(function(sujet) {
-        //             subjectsSelect.append('<option value="' + sujet.id_Sj + '">' + sujet.SjName + '</option>');
-        //         });
-        //     });
-        // });
-        // $(document).ready(function() {
-        //     $('#id_Cat').on('change', function() {
-        //         var categoryId = $(this).val(); // Get the selected category ID
-        //         if (categoryId) {
-        //             $('#id_SCat').empty();
-        //             $('#id_SCat').append('<option selected>select SousCategorie</option>');
-
-        //             // Define the selected subcategory ID
-        //             var selectedSCatId = @json($categories); // Replace with the actual variable name from your controller
-
-        //             $.each(souscategories, function(index, souscat) {
-        //                 if (souscat.id_Cat == categoryId) {
-        //                     var selected = selectedSCatId === souscat.id_SCat ? 'selected' : '';
-        //                     $('#id_SCat').append('<option value="' + souscat.id_SCat + '" ' + selected + '>' +
-        //                         souscat.SCatName + '</option>');
-        //                 }
-        //             });
-        //         } else {
-        //             $('#id_SCat').empty();
-        //             $('#id_SCat').append('<option selected>select SousCategorie</option>');
-        //         }
-        //     });
-
-        //     $('#id_SCat').on('change', function() {
-        //         var selectedSubcategoryId = $(this).val();
-        //         var filteredSujets = sujets.filter(function(sujet) {
-        //             return sujet.id_SCat == selectedSubcategoryId;
-        //         });
-
-        //         var subjectsSelect = $('#id_Sj');
-        //         subjectsSelect.empty();
-        //         subjectsSelect.append('<option value="" selected>select Subject</option>');
-        //         filteredSujets.forEach(function(sujet) {
-        //             subjectsSelect.append('<option value="' + sujet.id_Sj + '">' + sujet.SjName + '</option>');
-        //         });
-        //     });
-        // });
-    </script>
 @endsection

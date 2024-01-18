@@ -59,7 +59,6 @@
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-danger btn-icon-split"
                                                         onclick="return confirm('Are you sure you want to delete this card?')">
-                                                        {{-- <i class="fas fa-trash"></i>class="btn btn-danger btn-circle" --}}
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-trash"></i>
                                                         </span>

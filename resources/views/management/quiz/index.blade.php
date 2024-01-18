@@ -48,8 +48,6 @@
                     <tbody>
                         @if (auth()->user()->roles->contains('role_name', 'formateur'))
                             @foreach ($quiz as $quiz)
-                                {{-- @foreach ($cour->section as $section)
-                                            @foreach ($section->quiz as $quiz) --}}
                                 <tr>
                                     <td>{{ $quiz->quizName }}</td>
                                     <td>{{ $quiz->section->Sec_Name }}</td>
@@ -89,13 +87,9 @@
                                         </div>
                                     </td>
                                 </tr>
-                                {{-- @endforeach
-                                    @endforeach --}}
                             @endforeach
                         @elseif(auth()->user()->roles->contains('role_name', 'client'))
                             @foreach ($quiz as $quiz)
-                                {{-- @foreach ($cour->section as $section)
-                                            @foreach ($section->quiz as $quiz) --}}
                                 <tr>
                                     <td><a href="{{route('quiz.passer',$quiz->quiz->id_Q)}}">{{ $quiz->quiz->quizName }}</a></td>
                                     <td>{{ $quiz->score }} %</td>
@@ -135,8 +129,6 @@
                                         </div> 
                                     </td>--}}
                                 </tr>
-                                {{-- @endforeach
-                                    @endforeach --}}
                             @endforeach
                         @endif
                     </tbody>
