@@ -26,7 +26,6 @@ class TestQuestionRequest extends FormRequest
         // dd($_REQUEST);
         return [
             'question' => 'required|string|max:100',
-            // 'questable_id' => 'required',
             'responses.*.response_text' => 'required|string',
             'responses.*.is_true' => 'required',
         ];

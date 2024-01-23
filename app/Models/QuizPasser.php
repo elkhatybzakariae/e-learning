@@ -27,7 +27,6 @@ class QuizPasser extends Model
     
     public function quiz()
     {
-        // return $this->morphMany(Quiz::class, 'id_Q');
         return $this->belongsTo(Quiz::class, 'id_Q');
     }
     public function qrpasser()

@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 class SujetController extends Controller
 {
     public function index(){
-        // $sujets = Sujet::latest()->paginate(9); 
         $sujets = Sujet::orderBy('id_Sj', 'desc')->get();
         return view('management.sujet.index', compact('sujets'));
     }
@@ -44,13 +43,6 @@ class SujetController extends Controller
         }
         return view('management.Sujet.edit', compact('sujet','souscategories'));
     }
-    // public function souscat($id)
-    // {
-    //     $listchildren = Sujet::all();
-    //     dd($listchildren->Sujet);
-    //     return view('management.listchildren', compact('listchildren'));
-    // }
-
     public function update(SujetRequest $request, $id)
     {
         $Sujet = Sujet::find($id);

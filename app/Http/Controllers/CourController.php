@@ -162,9 +162,6 @@ class CourController extends Controller
     }
     public function filterparsj($name)
     {
-        // $categorie = Categorie::all();
-        // $souscategorie = SousCategorie::all();
-        // $sujets = Sujet::all();
         $coursList = Cour::whereHas('sujet', function ($query) use ($name) {
             $query->where('SjName', $name);
         })->where('valider', 1)->with('user')->get();

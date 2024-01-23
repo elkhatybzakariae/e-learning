@@ -51,8 +51,6 @@ class MediaController extends Controller
         $path = $file->store('uploads', 'public');
         $validatedData['id_M'] = $customIdM;
         $validatedData['path'] = $path;
-
-        // $validatedData['lien']=$lien[0];
         Media::create($validatedData);
         return redirect()->route('media.index')->with('success', 'media created successfully');
     }
