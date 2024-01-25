@@ -35,11 +35,6 @@
             font-style: italic;
         }
 
-        /* .owl-carousel .owl-nav button {
-                                                                                                                                                    width: 25px;
-                                                                                                                                                    text-align: center;
-                                                                                                                                                    border: 1px solid #0b0606 !important;
-                                                                                                                                                } */
         .owl-nav {
             position: relative;
             top: -50%;
@@ -204,31 +199,28 @@
         }
 
         /* @media screen and (min-width: 773px) {
-                        
-                    }
-                    @media screen and (max-width: 772px) {
-                         .carousel-item {
-                                position: relative;
-                                color: black;
-                                height: auto;
-                            }
+                            
+                        }
+                        @media screen and (max-width: 772px) {
+                             .carousel-item {
+                                    position: relative;
+                                    color: black;
+                                    height: auto;
+                                }
 
-                            .carousel-item img {
-                                width: 100%;
-                                height: auto;
-                            }
+                                .carousel-item img {
+                                    width: 100%;
+                                    height: auto;
+                                }
 
-                            .carousel-item .position-absolute {
-                                left: 5%;
-                                top: 10%;
-                                width: 90%;
-                                border-radius: 5%;
-                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                            }
-                    } */
-    </style>
-
-    <style>
+                                .carousel-item .position-absolute {
+                                    left: 5%;
+                                    top: 10%;
+                                    width: 90%;
+                                    border-radius: 5%;
+                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                                }
+                        } */
         .footer_area {
             position: relative;
             /* z-index: 1; */
@@ -441,9 +433,6 @@
         #hoverBtn:hover+#hiddenList {
             display: block;
         }
-    </style>
-
-    <style type="text/css">
         .navbar .megamenu {
             padding: 1rem;
         }
@@ -480,63 +469,16 @@
         }
 
         /* ============ mobile view .end// ============ */
-    </style>
-    <style>
         .row {
             margin-right: 0px;
             margin-left: 0px;
         }
-    </style>
-    {{-- <script>
-        // Get the dropdown menu
-        const dropdownMenu = document.querySelector('.dropdown');
-
-        // Prevent the dropdown menu from closing on mouseleave
-        dropdownMenu.addEventListener('mouseleave', function(event) {
-            event.stopPropagation();
-        });
-    </script> --}}
-    <style>
         .image-container {
             width: 100%;
             height: 100%;
             overflow: hidden;
         }
     </style>
-    {{-- <style>
-        .dropdown:hover>.dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu li {
-            position: relative;
-        }
-
-        .dropdown-menu .dropdown-submenu {
-            display: none;
-            position: absolute;
-            left: 100%;
-            top: -11px;
-        }
-
-        .dropdown-menu .dropdown-submenu-left {
-            right: 100%;
-            left: auto;
-        }
-
-        .dropdown-menu>li:hover>.dropdown-submenu {
-            display: block;
-        }
-
-        .dropdown-hover:hover>.dropdown-menu {
-            display: inline-block;
-        }
-
-        .dropdown-hover>.dropdown-toggle:active {
-            /*Without this, clicking will make it sticky*/
-            pointer-events: none;
-        }
-    </style> --}}
 @endsection
 @section('content')
     <div id="">
@@ -782,7 +724,7 @@
                             </div>
                         @endguest
                     </ul>
-                </nav> --}}            
+                </nav> --}}
                 @include('master.navbar')
                 <!-- End of Topbar -->
 
@@ -1139,41 +1081,6 @@
             var divcat = document.getElementById('divcat');
             var ulcatlist = document.getElementById('ulcatlist');
 
-
-            // <li><a class="dropdown-item" href="#"></a></li>
-            // for (let index = 0; index < categories.length; index++) {
-            //     const lichild = `
-
-        //     <li>
-        //                 <a class="dropdown-item" href="#">
-        //                     ${categories[index].CatName} &raquo;
-        //                 </a>
-        //                 <ul class="dropdown-menu dropdown-submenu">`
-            //     for (let j = 0; j < souscategories.length; j++) {
-            //         console.log(souscategories[j].SCatName);
-            //         `
-        //                   <li>
-        //                     <a class="dropdown-item" href="#">${souscategories[j].SCatName} &raquo; </a>
-        //                     <ul class="dropdown-menu dropdown-submenu">
-        //                         `
-            //         for (let k = 0; k < sujets.length; k++) {
-            //             `
-        //                       <li>
-        //                         <a class="dropdown-item" href="#">${sujets[k].SjName}</a>
-        //                       </li>
-        //                       `
-            //         }
-            //         `
-        //                     </ul>
-        //                   </li>
-        //                   `
-            //     }
-            //     `
-        //                 </ul>
-        //               </li>
-        //         `;
-            //     ulcatlist.insertAdjacentHTML('beforeend', lichild);
-            // }
             for (let index = 0; index < categories.length; index++) {
                 const lichild = `
                     <li>
@@ -1227,9 +1134,6 @@
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,
-                //   lazyLoad: 'ondemand',
-                // slidesToShow: 3,
-                // slidesToScroll: 3
                 responsiveClass: true,
                 responsive: {
                     0: {
