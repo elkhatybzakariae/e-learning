@@ -17,7 +17,6 @@ class Certificate extends Model
         'certificateName',        
         'certificatetable_id',
         'certificatetable_type',
-        // 'id_C',
     ];
     public function certificatetable(){
         return $this->morphTo();

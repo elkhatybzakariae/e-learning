@@ -25,14 +25,12 @@ class CertificateRequest extends FormRequest
     {
         return [
             'certificateName' => 'required|string|max:100',
-            // 'id_C' => 'required|exists:cours,id_C',
         ];
     }
     public function messages()
     {
         return [
             'certificateName.required' => 'The certificate Name  is required.',
-            // 'id_C.required' => 'The Cour select is required.',
         ];
     }
 }

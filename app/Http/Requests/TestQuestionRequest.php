@@ -23,7 +23,6 @@ class TestQuestionRequest extends FormRequest
      */
     public function rules()
     {
-        // dd($_REQUEST);
         return [
             'question' => 'required|string|max:100',
             'responses.*.response_text' => 'required|string',

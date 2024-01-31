@@ -44,10 +44,6 @@ class Cour extends Model
     {
         return $this->hasOne(Panier::class, 'id_C');
     }
-    // public function certificate()
-    // {
-    //     return $this->hasOne(Certificate::class, 'id_C');
-    // }
     public function sujet()
     {
         return $this->belongsTo(Sujet::class, 'id_Sj');
