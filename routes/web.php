@@ -20,34 +20,11 @@ use App\Http\Controllers\VideoTerminerController;
 use App\Http\Controllers\WishListController;
 use App\Models\Message;
 use Illuminate\Support\Facades\Route;
-// use Illuminate\Support\Facades\URL;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
+use Illuminate\Support\Facades\URL;
 
 
 
 // URL::forceScheme('https');
-
-
-
-
-// Route::get('/welcome', function () {
-//     $lastC= Cour::orderBy('created_at', 'desc')->take(10)->get();
-//     return view('welcome',compact('lastC'));
-// })->name('welcome');
-
-
-
-// Route::get('/welcomee', function () {
-//     $messages= Message::all();
-//             $nbmessages = Message::count();
-// dd($nbmessages);
-//         });
-
-
 
 Route::get('/', [Home::class, 'index'])->name('home');
 
